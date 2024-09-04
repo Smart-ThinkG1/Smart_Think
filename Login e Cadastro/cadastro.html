@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+        }
+
+        .left-side {
+            flex: 3; /* 60% da largura */
+            background: url('WhatsApp Image 2024-09-04 at 00.02.24.jpeg') no-repeat center center;
+            background-size: cover;
+        }
+
+        .right-side {
+            flex: 2; /* 40% da largura */
+            background: radial-gradient(circle, #ef7c5c,#fe748b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 800px;
+            margin-left: -40%;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #041d3e;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-row {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            display: block;
+            padding: 10px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 32%;
+            border: 2px solid #3162D4;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]::placeholder, input[type="password"]::placeholder {
+            color: #aaa;
+        }
+
+        button {
+            background-color: #041d3e;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #032851;
+        }
+
+        .signup-link {
+            text-align: center;
+            color: #3162D4;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .signup-link a {
+            color: #3162D4;
+            text-decoration: none;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="left-side"></div>
+    <div class="right-side">
+        <div class="form-container">
+            <h1><b>INCIE SEU ACESSO</b></h1>
+            
+            <form class="input-row">
+                <label for="nomeFantasia">Nome Fantasia</label>
+                <input type="text" placeholder="Nome Fantasia">
+
+                <label for="nomeFantasia">CNPJ</label>
+                <input type="text" placeholder="CNPJ">
+
+                <label for="nomeFantasia">E-Mail</label>
+                <input type="text" placeholder="E-mail">
+
+                <label for="nomeFantasia">Celular</label>
+                <input type="text" placeholder="Celular">
+
+                <label for="nomeFantasia">CEP</label>
+                <input type="text" placeholder="CEP">
+        
+                <label for="nomeFantasia">Logradouro</label>
+                <input type="text" placeholder="Logradouro">
+
+                <label for="nomeFantasia">Senha</label>
+                <input type="password" placeholder="Senha">
+
+                <label for="nomeFantasia">Confirme a senha</label>
+                <input type="password" placeholder="Confirmação de senha">
+            
+            </form>
+            <button type="submit"><b>CADASTRAR</b></button>
+
+            <p class="signup-link">Já possui uma conta? <br><a href="login02.html">Clique aqui e acesse!</a></p>
+        </div>
+    </div>
+</body>
+</html>

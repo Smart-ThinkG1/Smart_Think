@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
 
 * {
     margin: 0;
@@ -20,13 +21,13 @@ li {
 
 header {
     width: 100%;
-    height: 75px;
+    height: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.45);
     position: absolute;
     z-index: 99;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar {
@@ -50,11 +51,15 @@ header .container {
 
 .navLogo {
     height: 100%;
+    line-height: 1;
 }
-
+.navLogo .logoName {
+    width: 100px;
+}
 .navLogo h2 {
-    font-weight: 700;
+    font-weight: 900;
     font-size: 24px;
+    text-transform: uppercase;
 }
 
 .navLogo img {
@@ -71,6 +76,7 @@ header .container {
     border-bottom: transparent 4px solid;
     transition: all 0.3s;
     cursor: pointer;
+    text-transform: uppercase;
 }
 
 .navbar li:hover {
@@ -82,26 +88,82 @@ header .container {
     width: 100%;
     height: 100vh;
     position: relative;
-    background-image: url(bgHome.jpeg);
+    background-image: url(bgHome2.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
     display: flex;
     justify-content: center;
-    padding-top: 100px;
-    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, .75));
+    padding-top: 0px;
 }
-
+.banner::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #1f2732;
+    opacity: 0.75;
+    z-index: 9;
+}
+.banner::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to top, #000, transparent);
+    z-index: 10;
+  }
+.banner .container {
+    display: flex;
+    align-items: center;
+}
 .banner .banner-info {
     color: #fff;
-    width: 40%;
+    width: 45%;
+    position: relative;
+    z-index: 10;
 }
 
+.banner .banner-info .text p {
+    font-family: "Lato";
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 1;
+    margin-bottom: 18px;
+    color: rgb(89, 0, 255);
+}
 .banner .banner-info .text h3 {
-    font-size: 32px;
+    font-size: 80px;
     font-weight: 700;
     text-transform: uppercase;
-    line-height: 1.8;
+    line-height: 1;
+    margin-bottom: 12px;
+}
+.banner .banner-info .text h4 {
+    font-size: 16;
+    font-weight: 600;
+    line-height: 1;
+    font-family: "Lato";
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 32px;
+}
+.banner .banner-info button{
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 800;
+    padding: 16px 40px;
+    color: #fff;
+    background-color: rgb(89, 0, 255);
+    border: none;
+    cursor: pointer;
+}
+.banner .banner-info button:hover {
+    background-color: #FFF;
+    color: #000;
 }
 
 .sobreNos {
@@ -153,23 +215,25 @@ header .container {
 }
 .headArea button {
     font-size: 16px;
-    padding: 12px;
-    background-color: rgb(89, 0, 255);
-    border-radius: 8px;
-    font-weight: 700;
+    text-transform: uppercase;
+    font-weight: 800;
+    padding: 16px 40px;
     color: #fff;
-    cursor: pointer;
-    width: 35%;
-    border-radius: 12px;
+    background-color: rgb(89, 0, 255);
     border: none;
-
+    cursor: pointer;
+}
+.headArea button:hover {
+    background-color: #FFF;
+    color: #000;
 }
 .valores {
     background-color: #000;
-    height: 80vh;
+    height: 65vh;
     width: 100%;
     display: flex;
     justify-content: center;
+    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, .75));
 }
 .valores .container {
     display: grid;
@@ -231,4 +295,22 @@ header .container {
 .value-card .icon i {
     font-size: 50px;
     color: rgb(89, 0, 255);
+}
+
+.solution {
+    width: 100%;
+    height: 100vh;
+    background-color: #1E2486;
+    display: flex;
+    justify-content: center;
+}
+.solution .dottedLine {
+    width: 100%;
+    height: 100%;
+
+}
+.solution .dottedLine img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }

@@ -314,3 +314,54 @@ header .container {
     height: 100%;
     object-fit: contain;
 }
+
+.rodape {
+    background-color: #080808;
+    padding: 30px 0;
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.rodape .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo-contato {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 120px;
+    margin-right: 20px;
+}
+
+.contato h3, .redes-sociais h3 {
+    color: #2ec5cf;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.contato p, .redes-sociais p {
+    margin: 5px 0;
+    color: #b8b8b8;
+    font-size: 18px;
+}
+
+.redes-sociais {
+    text-align: right;
+}
+
+.icones a i {
+    font-size: 35px;
+    margin: 0 8px;
+    transition: transform 0.3s ease;
+}
+
+.icones a i:hover {
+    transform: scale(1.1);
+}

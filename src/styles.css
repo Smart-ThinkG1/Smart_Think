@@ -303,6 +303,10 @@ header .container {
     background-color: #1E2486;
     display: flex;
     justify-content: center;
+    position: relative;
+}
+.solution .container {
+    position: relative;
 }
 .solution .dottedLine {
     width: 100%;
@@ -313,6 +317,70 @@ header .container {
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+.solution .bubbles {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    top: 50%;
+    padding: 0 24px;
+    transform: translateY(-50%);
+}
+.solution .bubble {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #FFF;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.solution .bubble i {
+    font-size: 80px;
+    color: #1E2486;
+
+}
+.solution .bubble .numberCircle {
+    width: 60px;
+    height: 60px;
+    background-color: #000;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    right: -5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 800;
+}
+.solution .bubble .secondary {
+    background-color: #FFF;
+    color: #000;
+    top: 0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.solution .bubble .text {
+    position: absolute;
+    bottom: -100%;
+    text-align: center;
+    height: 100%;
+}
+.bubble .text .title {
+    text-transform: capitalize;
+    color: #FFF;
+    margin: 8px 0;
+}
+.bubble .text .title h3 {
+    font-weight: 500;
+    font-size: 18px;
+}
+.bubble .text .description {
+    font-weight: 300;
+    color: #fff;
 }
 
 .rodape {

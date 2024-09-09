@@ -1,6 +1,8 @@
+/* IMPORTAÇÃO DE GOOGLE FONTES - LATO E ROBOTO */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
 
+/* RESET CSS, ZERANDO VALORES PADROES, SETANDO FONTE PADRAO E TIRANDO OUTRAS COISAS */
 * {
     margin: 0;
     padding: 0;
@@ -15,10 +17,12 @@ li {
     list-style: none;
 }
 
+/* CONTAINER PADRAO DO NOSSO SITE */
 .container {
     width: 1180px;
 }
 
+/* CRIANDO HEADER FLUTUANTE */
 header {
     width: 100%;
     height: 90px;
@@ -53,9 +57,11 @@ header .container {
     height: 100%;
     line-height: 1;
 }
+
 .navLogo .logoName {
     width: 100px;
 }
+
 .navLogo h2 {
     font-weight: 900;
     font-size: 24px;
@@ -84,6 +90,7 @@ header .container {
     color: rgb(89, 0, 255);
 }
 
+/* 1ª SESSÃO - BANNER */
 .banner {
     width: 100%;
     height: 100vh;
@@ -94,6 +101,7 @@ header .container {
     display: flex;
     justify-content: center;
 }
+
 .banner::after {
     content: "";
     position: absolute;
@@ -103,6 +111,7 @@ header .container {
     opacity: 0.75;
     z-index: 9;
 }
+
 .banner::before {
     content: "";
     position: absolute;
@@ -111,11 +120,13 @@ header .container {
     height: 200px;
     background: linear-gradient(to top, #000, transparent);
     z-index: 10;
-  }
+}
+
 .banner .container {
     display: flex;
     align-items: center;
 }
+
 .banner .banner-info {
     color: #fff;
     width: 45%;
@@ -133,6 +144,7 @@ header .container {
     margin-bottom: 18px;
     color: rgb(89, 0, 255);
 }
+
 .banner .banner-info .text h3 {
     font-size: 80px;
     font-weight: 700;
@@ -140,6 +152,7 @@ header .container {
     line-height: 1;
     margin-bottom: 12px;
 }
+
 .banner .banner-info .text h4 {
     font-size: 16;
     font-weight: 600;
@@ -149,7 +162,8 @@ header .container {
     letter-spacing: 2px;
     margin-bottom: 32px;
 }
-.banner .banner-info button{
+
+.banner .banner-info button {
     font-size: 16px;
     text-transform: uppercase;
     font-weight: 800;
@@ -159,11 +173,91 @@ header .container {
     border: none;
     cursor: pointer;
 }
+
 .banner .banner-info button:hover {
     background-color: #FFF;
     color: #000;
 }
 
+/* 2ª SESSAO - VALORES */
+.valores {
+    background-color: #000;
+    height: 65vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, .75));
+}
+
+.valores .container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+}
+
+.value-card {
+    background-color: #fff;
+    width: 250px;
+    height: 250px;
+    position: relative;
+    border-radius: 8px;
+    padding: 0px 24px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.value-card .title-card {
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 800;
+    color: rgb(89, 0, 255);
+}
+
+.value-card .description-card {
+    font-weight: 400;
+    font-size: 14px;
+    color: #808080;
+}
+
+.value-card::before {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 8px;
+    background-color: rgb(89, 0, 255);
+    bottom: -10px;
+    left: 10px;
+    z-index: -2;
+}
+
+.value-card .icon {
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    left: -50px;
+    bottom: -50px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.value-card .icon i {
+    font-size: 50px;
+    color: rgb(89, 0, 255);
+}
+
+/* 3ª SESSAO - SOBRE NOS */
 .sobreNos {
     height: 85vh;
     width: 100%;
@@ -172,19 +266,23 @@ header .container {
     justify-content: center;
 
 }
+
 .sobreNos .container {
     display: grid;
     grid-template-columns: 45% 55%;
 }
+
 .sobreNos .area {
     height: 100%;
     width: 100%;
 }
+
 .sobreNos .bannerArea {
     display: flex;
     padding: 24px 0px;
     align-items: center;
 }
+
 .sobreNos .bannerArea img {
     width: 95%;
     height: 95%;
@@ -211,6 +309,7 @@ header .container {
     color: #fff;
     margin-bottom: 32px;
 }
+
 .headArea button {
     font-size: 16px;
     text-transform: uppercase;
@@ -221,80 +320,13 @@ header .container {
     border: none;
     cursor: pointer;
 }
+
 .headArea button:hover {
     background-color: #FFF;
     color: #000;
 }
-.valores {
-    background-color: #000;
-    height: 65vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, .75));
-}
-.valores .container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    height: 100%;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 0;
-}
-.value-card {
-    background-color: #fff;
-    width: 250px;
-    height: 250px;
-    position: relative;
-    border-radius: 8px;
-    padding: 0px 24px;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-}
-.value-card .title-card {
-    text-transform: uppercase;
-    font-size: 24px;
-    font-weight: 800;
-    color: rgb(89, 0, 255);
-}
-.value-card .description-card {
-    font-weight: 400;
-    font-size: 14px;
-    color: #808080;
-}
-.value-card::before {
-    content: "";
-    position: absolute;
-    width: 250px;
-    height: 250px;
-    border-radius: 8px;
-    background-color: rgb(89, 0, 255);
-    bottom: -10px;
-    left: 10px;
-    z-index: -2;
-}
-.value-card .icon {
-    width: 100px;
-    height: 100px;
-    background-color: #fff;
-    border-radius: 50%;
-    position: absolute;
-    left: -50px;
-    bottom: -50px;
-    z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-.value-card .icon i {
-    font-size: 50px;
-    color: rgb(89, 0, 255);
-}
 
+/* 4ª SESSAO - NOSSA SOLUCAO */
 .solution {
     width: 100%;
     height: 100vh;
@@ -303,19 +335,23 @@ header .container {
     justify-content: center;
     position: relative;
 }
+
 .solution .container {
     position: relative;
 }
+
 .solution .dottedLine {
     width: 100%;
     height: 100%;
 
 }
+
 .solution .dottedLine img {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
+
 .solution .bubbles {
     position: absolute;
     width: 100%;
@@ -325,6 +361,7 @@ header .container {
     padding: 0 24px;
     transform: translateY(-50%);
 }
+
 .solution .bubble {
     width: 200px;
     height: 200px;
@@ -335,11 +372,13 @@ header .container {
     justify-content: center;
     align-items: center;
 }
+
 .solution .bubble i {
     font-size: 80px;
     color: #1E2486;
 
 }
+
 .solution .bubble .numberCircle {
     width: 60px;
     height: 60px;
@@ -355,32 +394,38 @@ header .container {
     font-size: 24px;
     font-weight: 800;
 }
+
 .solution .bubble .secondary {
     background-color: #FFF;
     color: #000;
     top: 0;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
 .solution .bubble .text {
     position: absolute;
     bottom: -100%;
     text-align: center;
     height: 100%;
 }
+
 .bubble .text .title {
     text-transform: capitalize;
     color: #FFF;
     margin: 8px 0;
 }
+
 .bubble .text .title h3 {
     font-weight: 500;
     font-size: 18px;
 }
+
 .bubble .text .description {
     font-weight: 300;
     color: #fff;
 }
 
+/* 5ª SESSAO - NOSSA EQUIPE */
 .equipe {
     width: 100%;
     height: 100vh;
@@ -388,12 +433,14 @@ header .container {
     display: flex;
     justify-content: center;
 }
+
 .equipe .bgVideo {
     width: 100%;
     height: 100%;
     position: absolute;
     z-index: -2;
 }
+
 .equipe .bgVideo::before {
     content: "";
     position: absolute;
@@ -403,14 +450,17 @@ header .container {
     opacity: 0.65;
     z-index: 0;
 }
+
 .equipe .bgVideo video {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 .equipe .container {
     position: relative;
 }
+
 .equipe .container .title {
     width: 100%;
     font-size: 32px;
@@ -421,12 +471,14 @@ header .container {
     position: absolute;
     top: 32px;
 }
+
 .equipe .card-wrapper {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     width: 100%;
     height: 100%;
 }
+
 .equipe .card {
     width: 200px;
     height: 280px;
@@ -440,6 +492,7 @@ header .container {
     flex-direction: column;
     padding: 8px 8px;
 }
+
 .equipe .card::before {
     content: "";
     width: 100%;
@@ -451,6 +504,7 @@ header .container {
     left: 4px;
     z-index: -2;
 }
+
 .equipe .card .user {
     height: 75%;
     width: 100%;
@@ -458,12 +512,14 @@ header .container {
     background-color: #d4d4d4;
     overflow: hidden;
 }
+
 .equipe .card .user img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: bottom;
 }
+
 .equipe .card .text {
     width: 100%;
     font-size: 14px;
@@ -472,6 +528,7 @@ header .container {
     text-transform: uppercase;
     text-align: center;
 }
+
 /* RODAPÉ */
 .rodape {
     background-color: #080808;
@@ -498,13 +555,15 @@ header .container {
     margin-right: 20px;
 }
 
-.contato h3, .redes-sociais h3 {
+.contato h3,
+.redes-sociais h3 {
     color: #2ec5cf;
     margin-bottom: 10px;
     font-size: 24px;
 }
 
-.contato p, .redes-sociais p {
+.contato p,
+.redes-sociais p {
     margin: 5px 0;
     color: #b8b8b8;
     font-size: 18px;

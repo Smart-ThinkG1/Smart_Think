@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class demonstracao2 {
 
-    // Lista de filiais movida para fora do método
+
     static List<List<String>> cadastrosFiliais = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -20,21 +20,22 @@ public class demonstracao2 {
 
         List<String> perguntas = List.of("Nome fantasia:", "CNPJ:", "E-mail da empresa:", "Telefone:", "CEP:", "Logradouro:", "Senha desejada:");
 
-        int codigoFilial = cadastrosFiliais.size() + 3;  // Gera um código baseado no número de filiais cadastradas
+        Integer codigoFilial = cadastrosFiliais.size() + 3;
 
         List<String> novaFilial = new ArrayList<>();
 
         for (String pergunta : perguntas) {
-            System.out.println(pergunta);
+            momento=LocalDateTime.now();
+            System.out.println(momento.format(formatter)+" - "+pergunta);
             novaFilial.add(leitor.nextLine());
         }
 
-        // Adiciona a data e código da filial
-        novaFilial.add(momento.format(formatter)); // Adiciona a data e hora
-        novaFilial.add(0, "FL:" + codigoFilial); // Adiciona o código da filial no início
 
-        cadastrosFiliais.add(novaFilial);  // Adiciona a nova filial à lista global
+        novaFilial.add(0, "FL:" + codigoFilial);
 
-        System.out.println(String.format("Cadastrado com sucesso! - %s", momento.format(formatter)));
+        cadastrosFiliais.add(novaFilial);
+
+
+        System.out.println(String.format("%s - Cadastrado com sucesso!\n", momento.format(formatter)));
     }
 }

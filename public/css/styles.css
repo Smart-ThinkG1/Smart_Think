@@ -9,7 +9,9 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
-
+ html {
+    scroll-behavior: smooth;
+ }
 a,
 li {
     color: inherit;
@@ -36,7 +38,7 @@ header {
 
 .navbar {
     color: #fff;
-    font-size: 16px;
+    font-size: 1rem;
     width: 100%;
     height: 100%;
     display: flex;
@@ -73,7 +75,7 @@ header .container {
     object-fit: contain;
 }
 
-.navbar li {
+.navbar a {
     font-weight: 700;
     height: 100%;
     display: flex;
@@ -83,9 +85,10 @@ header .container {
     transition: all 0.3s;
     cursor: pointer;
     text-transform: uppercase;
+    width: 100px;
 }
 
-.navbar li:hover {
+.navbar a:hover {
     border-bottom-color: rgb(89, 0, 255);
     color: rgb(89, 0, 255);
 }
@@ -429,16 +432,17 @@ header .container {
 .equipe {
     width: 100%;
     height: 100vh;
-    position: relative;
     display: flex;
     justify-content: center;
+    position: relative;
+    /* z-index: -10; */
 }
 
 .equipe .bgVideo {
     width: 100%;
     height: 100%;
     position: absolute;
-    z-index: -2;
+    z-index: -11;
 }
 
 .equipe .bgVideo::before {
@@ -448,7 +452,7 @@ header .container {
     height: 100%;
     background-color: #000;
     opacity: 0.65;
-    z-index: 0;
+    z-index: -12;
 }
 
 .equipe .bgVideo video {
@@ -477,6 +481,7 @@ header .container {
     grid-template-columns: repeat(5, 1fr);
     width: 100%;
     height: 100%;
+    position: relative;
 }
 
 .equipe .card {
@@ -486,13 +491,14 @@ header .container {
     border-radius: 12px;
     align-self: center;
     justify-self: center;
-    position: relative;
     display: flex;
     align-items: center;
     flex-direction: column;
     padding: 8px 8px;
-}
 
+    position: relative;
+    z-index: auto;
+}
 .equipe .card::before {
     content: "";
     width: 100%;
@@ -502,7 +508,8 @@ header .container {
     position: absolute;
     bottom: -6px;
     left: 4px;
-    z-index: -2;
+
+    z-index: -1;
 }
 
 .equipe .card .user {
@@ -581,4 +588,18 @@ header .container {
 
 .icones a i:hover {
     transform: scale(1.1);
+}
+
+/* Celulares pequenos */
+@media(max-width: 480px) {
+    header .navbar a {
+        display: none;
+    }
+    header .navbar .navLogo {
+        height: 4rem;
+    }
+}
+/* Celulares grandes e tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+    
 }

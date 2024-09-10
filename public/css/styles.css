@@ -300,7 +300,7 @@ header .container {
     flex-direction: column;
 }
 
-.headArea .title {
+.headArea .headTitle {
     font-size: 38px;
     color: #fff;
     font-weight: 900;
@@ -410,17 +410,17 @@ header .container {
     bottom: -100%;
     text-align: center;
     height: 100%;
+    width: 350px;
 }
 
-.bubble .text .title {
-    text-transform: capitalize;
+.bubble .text .bubbleTitle {
     color: #FFF;
-    margin: 8px 0;
+    margin: 1rem 0;
 }
 
-.bubble .text .title h3 {
+.bubble .text .bubbleTitle h3 {
     font-weight: 500;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .bubble .text .description {
@@ -435,7 +435,6 @@ header .container {
     display: flex;
     justify-content: center;
     position: relative;
-    /* z-index: -10; */
 }
 
 .equipe .bgVideo {
@@ -465,7 +464,7 @@ header .container {
     position: relative;
 }
 
-.equipe .container .title {
+ .container .title {
     width: 100%;
     font-size: 32px;
     color: #fff;
@@ -534,6 +533,7 @@ header .container {
     color: #1E2486;
     text-transform: uppercase;
     text-align: center;
+    margin: auto;
 }
 
 /* RODAPÉ */

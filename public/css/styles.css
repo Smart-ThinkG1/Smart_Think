@@ -166,7 +166,7 @@ header .container {
     margin-bottom: 32px;
 }
 
-.banner .banner-info button {
+.banner .banner-info a {
     font-size: 16px;
     text-transform: uppercase;
     font-weight: 800;
@@ -177,7 +177,7 @@ header .container {
     cursor: pointer;
 }
 
-.banner .banner-info button:hover {
+.banner .banner-info a:hover {
     background-color: #FFF;
     color: #000;
 }

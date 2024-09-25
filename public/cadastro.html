@@ -46,12 +46,15 @@
       color: white;
       text-align: left;
       border-bottom: 3px solid #8f0f73;
-      -webkit-text-stroke: 2px #0d0461; /* adiciona uma borda ao redor do texto */
+      -webkit-text-stroke: 2px #0d0461;
+      /* adiciona uma borda ao redor do texto */
     }
 
     .form-cadastro {
-      display: grid; /* container fica definido como uma grade */
-      grid-template-columns: repeat(2, 1fr); /* define a largura igual das colunas do grid */
+      display: grid;
+      /* container fica definido como uma grade */
+      grid-template-columns: repeat(2, 1fr);
+      /* define a largura igual das colunas do grid */
       gap: 10px;
     }
 
@@ -105,15 +108,24 @@
     .link-login a:hover {
       text-decoration: underline;
     }
+
+    .logo {
+      background-color: rgba(0, 0, 0, 0.329);
+      width: 120px;
+      height: auto;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 
 <body>
-  <aside></aside>
+  <aside>
+    <a href="index.html"><img src="assets/logoSmartThink 1.png" alt="Logo Website" class="logo"></a>
+  </aside>
 
   <section>
     <div class="form-container">
-      <h1><b>INICIE SEU ACESSO</b></h1>
+      <h1><b>INICIE SEU CADASTRO</b></h1>
 
       <form class="form-cadastro">
         <div>
@@ -162,5 +174,5 @@
 </html>
 
 <script>
-  
+
 </script>

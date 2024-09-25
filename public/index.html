@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <header>
+    <header id="head_id">
         <div class="container">
             <ul class="navbar">
 
@@ -41,13 +41,8 @@
                 </div>
 
                 <div class="navClass userBtn">
-<<<<<<< HEAD
                     <a href="login.html">
                         <li>Login</li>
-=======
-                    <a href="#">
-                        <li><a href="login.html">Login</a></li>
->>>>>>> b1bf605fce5c96e110ecec853a2388d8479158f7
                     </a>
                 </div>
             </ul>
@@ -64,11 +59,7 @@
                     </h3>
                     <h4>Liberte seu potencial e alcance novos horizontes!</h4>
                 </div>
-<<<<<<< HEAD
-                <a href="cadastro.html"><button>Cadastrar</button></a>
-=======
                 <a href="cadastro.html">Cadastrar</a>
->>>>>>> b1bf605fce5c96e110ecec853a2388d8479158f7
             </div>
         </div>
     </section>
@@ -291,3 +282,12 @@
 </body>
 
 </html>
+
+<script>
+    
+    window.addEventListener("scroll", function() {
+        const head = document.getElementById("head_id");
+        head.classList.toggle("sticky", window.scrollY > 0)
+
+    })
+</script>

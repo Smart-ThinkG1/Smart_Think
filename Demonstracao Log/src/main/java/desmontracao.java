@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -12,9 +11,7 @@ public class desmontracao {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
         List cadastros_empresas = new ArrayList<>();
-
         List<String> perguntas= List.of("Nome fantasia:", "CNPJ:", "E-mail da empresa:", "Telefone:", "CEP", "Logradouro", "Senha desejada:");
-
 
         System.out.println(momento.format(formatter)+" - Inicie Seu Cadastro!");
         System.out.println(momento.format(formatter)+" - Informe as seguintes informações da empresa");
@@ -35,12 +32,9 @@ public class desmontracao {
         Burguer_King.add("senhaSuperSegura");
 
         cadastros_empresas.add(Burguer_King);
-
         Integer código_empresa=3;
         Integer i = 0;
-
         List nova_empresa = new ArrayList<>();
-
 
         for (; i < perguntas.size() ; i++) {
             momento = LocalDateTime.now();
@@ -60,7 +54,5 @@ public class desmontracao {
             momento = LocalDateTime.now();
             System.out.println( momento.format(formatter)+" - "+cadastros_empresas.get(num_lista_emp));
         }
-
-
     }
 }

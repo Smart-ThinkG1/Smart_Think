@@ -6,14 +6,9 @@ import java.util.Scanner;
 
 public class demonstracao2 {
 
-
     static List<List<String>> cadastrosFiliais = new ArrayList<>();
-
-    public static void main(String[] args) {
-
-    }
-
     public static void unidades() {
+
         Scanner leitor = new Scanner(System.in);
         LocalDateTime momento = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -30,12 +25,8 @@ public class demonstracao2 {
             novaFilial.add(leitor.nextLine());
         }
 
-
         novaFilial.add(0, "FL:" + codigoFilial);
-
         cadastrosFiliais.add(novaFilial);
-
-
         System.out.println(String.format("%s - Cadastrado com sucesso!\n", momento.format(formatter)));
     }
 }

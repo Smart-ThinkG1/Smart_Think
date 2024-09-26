@@ -10,8 +10,6 @@ public class demonstracao3 {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         Scanner leitura = new Scanner(System.in);
 
-
-
         Integer numero_unidades = 0;
 
         System.out.println(momento.format(formatter)+" - Inicie Seu Cadastro e informe as informações a seguir!");
@@ -27,6 +25,5 @@ public class demonstracao3 {
             momento = LocalDateTime.now();
             System.out.println(momento.format(formatter) +" - "+demonstracao2.cadastrosFiliais.get(num_lista_fili));
         }
-
     }
 }

@@ -496,7 +496,7 @@ header .container {
 
 .equipe .card {
     width: 200px;
-    height: 280px;
+    min-height: 300px;
     background-color: #fff;
     border-radius: 12px;
     align-self: center;
@@ -518,7 +518,6 @@ header .container {
     position: absolute;
     bottom: -6px;
     left: 4px;
-
     z-index: -1;
 }
 
@@ -539,13 +538,21 @@ header .container {
 
 .equipe .card .text {
     width: 100%;
-    font-size: 14px;
-    font-weight: 800;
-    color: #1E2486;
     text-transform: uppercase;
     text-align: center;
     margin: auto;
 }
+.equipe .card .text .card-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: #1E2486;
+}
+.equipe .card .text .card-subtitle {
+    font-size: 10px;
+    font-weight: 600;
+    color: #808080;
+}
+
 
 /* RODAPÉ */
 .rodape {

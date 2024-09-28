@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/iconPage.png" type="image/x-icon">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ac116e 20%, #050221 80%);
+            height: 100vh;
+            display: flex;
+        }
+
+        .image-side {
+            flex: 4;
+            /* 60% da largura */
+            background: url('./assets/imagemLogin.jpeg') no-repeat center;
+            background-size: cover;
+            border-radius: 1%;
+        }
+
+        .form-side {
+            flex: 2;
+            /* 40% da largura */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 1%;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 800px;
+            margin-left: -40%;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 40px;
+            color: white;
+            text-align: left;
+            border-bottom: 3px solid #8f0f73;
+            -webkit-text-stroke: 2px #0d0461;
+        }
+
+        label {
+            font-size: 17px;
+            color: #252525;
+            font-weight: 700;
+        }
+
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #8f0f73;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #8f0f73;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 60%;
+            margin-left: 20%;
+        }
+
+        button:hover {
+            background-color: #b60d91;
+        }
+
+        .forgot-password {
+            color: #3162D4;
+            font-size: 14px;
+        }
+
+        .link_cadastro {
+            text-align: center;
+            color: #604CFF;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .link_cadastro a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .link_cadastro a:hover {
+            text-decoration: underline;
+        }
+
+        .logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 20px;
+}
+    </style>
+</head>
+
+<body>
+    <aside class="image-side">
+        <a href="index.html"><img src="assets/logoSmartThink 1.png" alt="Logo Website" class="logo"></a>
+    </aside>
+    <section class="form-side">
+        <div class="form-container">
+            <h1><b>BEM-VINDO!</b></h1>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" placeholder="Digite seu e-mail">
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+            <button onclick="entrar()" type="submit"><b>ENTRAR</b></button>
+            <div id="cardErro" style="display: none; color: red;">
+                <span id="mensagem_erro"></span>
+              </div>              
+            <p class="link_cadastro"><span class="forgot-password"><a href="#">Esqueceu a senha?</a></span> <br><br>Ainda não possui uma conta? <br>
+                <a class="dire_cadastro" href="cadastro.html">Clique aqui </a> e cadastre-se!</p>
+        </div>
+    </section>
+</body>
+
+</html>
+<script>
+function entrar() {
+    
+
+    var emailVar = email.value;
+    var senhaVar = senha.value;
+
+    if (emailVar == "" || senhaVar == "") {
+        cardErro.style.display = "block"
+        mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+        finalizarAguardar();
+        return false;
+    }
+    else {
+        setInterval(sumirMensagem, 5000)
+    }
+
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    fetch("/usuarios/autenticar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            emailServer: emailVar,
+            senhaServer: senhaVar
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                sessionStorage.EMAIL_USUARIO = json.email;
+                sessionStorage.NOME_USUARIO = json.nome;
+                sessionStorage.ID_USUARIO = json.id;
+                sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                setTimeout(function () {
+                    window.location = "./dashboard/cards.html";
+                }, 1000); // apenas para exibir o loading
+
+            });
+
+        } else {
+
+            console.log("Houve um erro ao tentar realizar o login!");
+
+            resposta.text().then(texto => {
+                console.error(texto);
+                finalizarAguardar(texto);
+            });
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+
+    return false;
+}
+
+function sumirMensagem() {
+    var cardErro = document.getElementById('cardErro');
+    if (cardErro) {
+        cardErro.style.display = 'none';
+    }
+}
+
+</script>

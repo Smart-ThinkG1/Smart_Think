@@ -9,9 +9,11 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
- html {
+
+html {
     scroll-behavior: smooth;
- }
+}
+
 a,
 li {
     color: inherit;
@@ -36,6 +38,7 @@ header {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
+
 header.sticky {
     position: fixed;
     border-bottom: 0px;
@@ -475,7 +478,7 @@ header .container {
     position: relative;
 }
 
- .container .title {
+.container .title {
     width: 100%;
     font-size: 32px;
     color: #fff;
@@ -495,8 +498,8 @@ header .container {
 }
 
 .equipe .card {
-    width: 200px;
-    min-height: 300px;
+    width: 240px;
+    height: 320px;
     background-color: #fff;
     border-radius: 12px;
     align-self: center;
@@ -505,10 +508,10 @@ header .container {
     align-items: center;
     flex-direction: column;
     padding: 8px 8px;
-
     position: relative;
     z-index: auto;
 }
+
 .equipe .card::before {
     content: "";
     width: 100%;
@@ -522,7 +525,7 @@ header .container {
 }
 
 .equipe .card .user {
-    height: 75%;
+    height: 65%;
     width: 100%;
     border-radius: inherit;
     background-color: #d4d4d4;
@@ -533,7 +536,6 @@ header .container {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: bottom;
 }
 
 .equipe .card .text {
@@ -542,17 +544,61 @@ header .container {
     text-align: center;
     margin: auto;
 }
-.equipe .card .text .card-title {
-    font-size: 14px;
+
+.equipe .card .text .card-title h1 {
+    font-size: 1.25rem;
     font-weight: 800;
     color: #1E2486;
 }
+
 .equipe .card .text .card-subtitle {
     font-size: 10px;
     font-weight: 600;
     color: #808080;
 }
 
+.equipe .card .social {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: auto 0;
+}
+
+.equipe .card .social .icon {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .5s;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.equipe .card .social .icon a {
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.social .icon:hover a {
+    transform: scale(1.2);
+}
+.social .icon:hover.linkedIn {
+    background-color: #0e76a8;
+    color: #ffffff;
+}
+.social .icon:hover.gitHub {
+    background-color: #333333;
+    color: #ffffff;
+}
+.social .icon:hover.email {
+    background-color: #000;
+    color: #ffffff;
+}
 
 /* RODAPÉ */
 .rodape {
@@ -613,23 +659,25 @@ header .container {
     header .navbar a {
         display: none;
     }
+
     header .navbar .navLogo {
         height: 4rem;
     }
 }
+
 /* Celulares grandes e tablets */
-@media (min-width: 481px) and (max-width: 768px) {
-    
-}
+@media (min-width: 481px) and (max-width: 768px) {}
 
 /* Desktop Grande */
 @media (min-width: 1441px) {
     .container {
         width: 86%;
     }
+
     .sobreNos .container {
         grid-template-columns: 50% auto;
     }
+
     .sobreNos .headArea {
         padding: 0 32px;
         padding-right: 0;

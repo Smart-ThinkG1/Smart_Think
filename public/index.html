@@ -132,9 +132,43 @@
                         permite que você tome decisões informadas, otimizando resultados e maximizando o retorno sobre o
                         investimento. Conte conosco em cada etapa para alcançar o sucesso. </p>
                 </div>
-                <button>
+                <button id="open-modal-btn">
                     Saiba Mais
                 </button>
+            </div>
+
+            <div id="fade-modal" class="hide"></div>
+
+            <div class="modal hide" id="modal-sobrenos">
+                <div class="modal-header">
+                    <div id="close-modal-btn">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    <h2>Sobre Nós</h2>
+                    <!-- <button id="close-modal-sobrenos">fechar</button> -->
+                </div>
+
+                <div class="modal-body">
+
+                    <p> Na Smart Think, somos seu guia nas decisões de marketing. Entendemos que navegar no mundo do
+                        marketing pode ser desafiador. Com nossos dados precisos e insights estratégicos, ajudamos a
+                        tornar suas escolhas mais assertivas, acelerando o crescimento da sua marca. Nossa tecnologia
+                        permite que você tome decisões informadas, otimizando resultados e maximizando o retorno sobre o
+                        investimento. Conte conosco em cada etapa para alcançar o sucesso. </p>
+                    <p>Além de nossos serviços de análise de dados e geração de insights, acreditamos que a educação
+                        contínua é fundamental para o sucesso a longo prazo. Por isso, oferecemos workshops e
+                        treinamentos personalizados, capacitando sua equipe a utilizar as ferramentas de marketing mais
+                        modernas e a entender as melhores práticas do setor. O nosso compromisso vai além de fornecer
+                        soluções; queremos que você e sua equipe se sintam confiantes e preparados para enfrentar os
+                        desafios do marketing digital.
+
+                        Em um mercado em constante evolução, a adaptabilidade é a chave. Estamos sempre atentos às
+                        últimas tendências e inovações do setor, garantindo que nossas estratégias sejam não apenas
+                        eficazes, mas também relevantes. Nossa equipe é composta por especialistas apaixonados, prontos
+                        para se aprofundar nas especificidades do seu negócio e criar soluções sob medida. Na Smart
+                        Think, sua visão se torna nossa missão, e juntos, podemos transformar sua marca em um verdadeiro
+                        case de sucesso.</p>
+                </div>
             </div>
 
         </div>
@@ -161,7 +195,7 @@
                         </div>
                         <div class="description">
                             <p>Coletamos informações da marca de várias fontes e as processamos para compatibilidade com
-                                nossa API</p>
+                                nossa API.</p>
                         </div>
                     </div>
                 </div>
@@ -368,9 +402,26 @@
 
 <script>
 
+    // Header Dinamico
     window.addEventListener("scroll", function () {
         const head = document.getElementById("head_id");
         head.classList.toggle("sticky", window.scrollY > 0)
 
+    })
+    // Modal Sobrenos
+    const OpenModal_sobrenos = document.getElementById("open-modal-btn");
+    const CloseModal_sobrenos = document.getElementById("close-modal-btn");
+    const Modal_sobrenos = document.getElementById("modal-sobrenos");
+    const FadeModal_sobrenos = document.getElementById("fade-modal");
+
+    const toggleModal = () => {
+        Modal_sobrenos.classList.toggle("hide");
+        FadeModal_sobrenos.classList.toggle("hide");
+
+
+    }
+
+    [FadeModal_sobrenos, OpenModal_sobrenos, CloseModal_sobrenos].forEach((el) => {
+        el.addEventListener("click", () => toggleModal())
     })
 </script>

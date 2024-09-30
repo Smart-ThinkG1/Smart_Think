@@ -2,6 +2,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
 
+/* ADICIONANDO CORES PADRÃO */
+:root {
+    --branco: #FFF;
+    --preto: #000;
+
+    --roxo-primario: #332DA2;
+    --roxo-secundario: #5900ff;
+    /* Cor antiga*/
+
+    --azul-escuro: #1E2486;
+
+    --cinza-claro: #A3A3A3;
+    --cinza-medio: #5C5C5C;
+    --cinza-escuro: #373535;
+}
+
 /* RESET CSS, ZERANDO VALORES PADROES, SETANDO FONTE PADRAO E TIRANDO OUTRAS COISAS */
 * {
     margin: 0;
@@ -34,7 +50,7 @@ header {
     justify-content: center;
     align-items: center;
     position: absolute;
-    z-index: 99;
+    z-index: 12;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
@@ -47,7 +63,7 @@ header.sticky {
 }
 
 .navbar {
-    color: #fff;
+    color: var(--branco);
     font-size: 1rem;
     width: 100%;
     height: 100%;
@@ -86,7 +102,7 @@ header .container {
 }
 
 .navbar a {
-    font-weight: 700;
+    font-weight: 800;
     height: 100%;
     display: flex;
     align-items: center;
@@ -99,8 +115,8 @@ header .container {
 }
 
 .navbar a:hover {
-    border-bottom-color: rgb(89, 0, 255);
-    color: rgb(89, 0, 255);
+    border-bottom-color: var(--roxo-primario);
+    color: var(--roxo-primario);
 }
 
 /* 1ª SESSÃO - BANNER */
@@ -141,7 +157,7 @@ header .container {
 }
 
 .banner .banner-info {
-    color: #fff;
+    color: var(--branco);
     width: 45%;
     position: relative;
     z-index: 10;
@@ -155,7 +171,7 @@ header .container {
     letter-spacing: 4px;
     line-height: 1;
     margin-bottom: 18px;
-    color: rgb(89, 0, 255);
+    color: var(--roxo-primario);
 }
 
 .banner .banner-info .text h3 {
@@ -181,14 +197,14 @@ header .container {
     text-transform: uppercase;
     font-weight: 800;
     padding: 16px 40px;
-    color: #fff;
-    background-color: rgb(89, 0, 255);
+    color: var(--branco);
+    background-color: var(--roxo-primario);
     border: none;
     cursor: pointer;
 }
 
 .banner .banner-info a:hover {
-    background-color: #FFF;
+    background-color: var(--branco);
     color: #000;
 }
 
@@ -213,7 +229,7 @@ header .container {
 }
 
 .value-card {
-    background-color: #fff;
+    background-color: var(--branco);
     width: 280px;
     height: 280px;
     position: relative;
@@ -230,14 +246,14 @@ header .container {
     margin-bottom: 8px;
     font-size: 24px;
     font-weight: 800;
-    color: rgb(89, 0, 255);
+    color: var(--roxo-primario);
 }
 
 .value-card .description-card {
     font-weight: 400;
     font-size: 14px;
     line-height: 1.35;
-    color: #808080;
+    color: var(--cinza-claro);
 }
 
 .value-card::before {
@@ -246,7 +262,7 @@ header .container {
     width: 100%;
     height: 100%;
     border-radius: 8px;
-    background-color: rgb(89, 0, 255);
+    background-color: var(--roxo-primario);
     bottom: -10px;
     left: 10px;
     z-index: -2;
@@ -255,7 +271,7 @@ header .container {
 .value-card .icon {
     width: 100px;
     height: 100px;
-    background-color: #fff;
+    background-color: var(--branco);
     border-radius: 50%;
     position: absolute;
     left: -50px;
@@ -269,7 +285,7 @@ header .container {
 
 .value-card .icon i {
     font-size: 50px;
-    color: rgb(89, 0, 255);
+    color: var(--roxo-primario);
 }
 
 /* 3ª SESSAO - SOBRE NOS */
@@ -315,14 +331,14 @@ header .container {
 
 .headArea .headTitle {
     font-size: 2.35rem;
-    color: #fff;
+    color: var(--branco);
     font-weight: 900;
     margin-bottom: 24px;
 }
 
 .headArea .description {
     font-size: 18px;
-    color: #fff;
+    color: var(--branco);
     margin-bottom: 32px;
 }
 
@@ -331,16 +347,124 @@ header .container {
     text-transform: uppercase;
     font-weight: 800;
     padding: 16px 40px;
-    color: #fff;
+    color: var(--branco);
     background-color: transparent;
-    border: solid 3px #fff;
+    border: solid 3px var(--branco);
     cursor: pointer;
 }
 
 .headArea button:hover {
-    background-color: #FFF;
+    background-color: var(--branco);
     color: #000;
 }
+
+.sobreNos #fade-modal {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.45);
+    width: 100%;
+    height: 100%;
+    z-index: 14;
+    top: 0;
+    left: 0;
+}
+
+.sobreNos .modal {
+    background-color: var(--branco);
+    position: fixed;
+    width: 640px;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 15;
+    border-radius: 16px;
+    min-height: 400px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.sobreNos .modal::-webkit-scrollbar {
+    width: 8px;
+    margin-left: 10px;
+}
+.sobreNos .modal::-webkit-scrollbar-thumb {
+    background-color: var(--cinza-escuro);
+    border-radius: 20px;
+
+}
+.sobreNos .modal::-webkit-scrollbar-track {
+    margin: 16px 0;
+    height: 80%;
+}
+
+.sobreNos .modal button {
+    font-family: "Lato", sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    background-color: var(--cinza-escuro);
+    width: 180px;
+    height: 50px;
+    color: var(--branco);
+    text-transform: uppercase;
+    border-radius: 12px;
+    border: none;
+    opacity: 0.85;
+    cursor: pointer;
+}
+
+.sobreNos .modal button:hover {
+    opacity: 1;
+}
+
+.sobreNos .modal #close-modal-btn {
+    width: fit-content;
+    margin-left: auto;
+}
+
+.sobreNos .modal #close-modal-btn i {
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--cinza-claro);
+}
+
+.modal #close-modal-btn i:hover {
+    color: var(--cinza-escuro);
+}
+
+.sobreNos .modal .modal-header {
+    width: 100%;
+    padding: 16px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.sobreNos .modal .modal-header h2 {
+    font-size: 24px;
+    color: var(--cinza-escuro);
+    font-family: "Lato";
+    font-weight: 800;
+}
+
+.sobreNos .modal .modal-body {
+    width: 100%;
+    padding: 16px;
+}
+.sobreNos .modal .modal-body p {
+    font-size: 16px;
+    color: var(--cinza-medio);
+    line-height: 2rem;
+}
+#modal-sobrenos, #fade-modal {
+    transition: .3s;
+    opacity: 1;
+    pointer-events: all;
+}
+#modal-sobrenos.hide, #fade-modal.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+#modal-sobrenos.hide {
+    top: 0;
+}
+
 
 /* 4ª SESSAO - NOSSA SOLUCAO */
 .solution {
@@ -354,6 +478,11 @@ header .container {
 
 .solution .container {
     position: relative;
+}
+
+.solution .container .title {
+    top: 15%;
+    font-size: 2.5rem;
 }
 
 .solution .dottedLine {
@@ -382,7 +511,7 @@ header .container {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background-color: #FFF;
+    background-color: var(--branco);
     position: relative;
     display: flex;
     justify-content: center;
@@ -406,13 +535,13 @@ header .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
+    color: var(--branco);
     font-size: 24px;
     font-weight: 800;
 }
 
 .solution .bubble .secondary {
-    background-color: #FFF;
+    background-color: var(--branco);
     color: #000;
     top: 0;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -427,7 +556,7 @@ header .container {
 }
 
 .bubble .text .bubbleTitle {
-    color: #FFF;
+    color: var(--branco);
     margin-top: 1.35rem;
     margin-bottom: 1rem;
 }
@@ -439,7 +568,7 @@ header .container {
 
 .bubble .text .description {
     font-weight: 300;
-    color: #fff;
+    color: var(--branco);
 }
 
 /* 5ª SESSAO - NOSSA EQUIPE */
@@ -481,7 +610,7 @@ header .container {
 .container .title {
     width: 100%;
     font-size: 32px;
-    color: #fff;
+    color: var(--branco);
     font-weight: 800;
     text-align: center;
     text-transform: none;
@@ -500,7 +629,7 @@ header .container {
 .equipe .card {
     width: 240px;
     height: 320px;
-    background-color: #fff;
+    background-color: var(--branco);
     border-radius: 12px;
     align-self: center;
     justify-self: center;
@@ -517,7 +646,7 @@ header .container {
     width: 100%;
     height: 100%;
     border-radius: inherit;
-    background-color: rgb(89, 0, 255);
+    background-color: var(--roxo-primario);
     position: absolute;
     bottom: -6px;
     left: 4px;
@@ -536,6 +665,7 @@ header .container {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top;
 }
 
 .equipe .card .text {
@@ -554,7 +684,7 @@ header .container {
 .equipe .card .text .card-subtitle {
     font-size: 10px;
     font-weight: 600;
-    color: #808080;
+    color: var(--cinza-claro);
 }
 
 .equipe .card .social {
@@ -569,7 +699,7 @@ header .container {
     width: 40px;
     height: 40px;
     font-size: 16px;
-    background-color: #fff;
+    background-color: var(--branco);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -577,6 +707,7 @@ header .container {
     transition: all .5s;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
+
 .equipe .card .social .icon a {
     display: inline-flex;
     width: 100%;
@@ -584,20 +715,24 @@ header .container {
     justify-content: center;
     align-items: center;
 }
+
 .social .icon:hover a {
     transform: scale(1.2);
 }
+
 .social .icon:hover.linkedIn {
     background-color: #0e76a8;
-    color: #ffffff;
+    color: var(--branco);
 }
+
 .social .icon:hover.gitHub {
     background-color: #333333;
-    color: #ffffff;
+    color: var(--branco);
 }
+
 .social .icon:hover.email {
     background-color: #000;
-    color: #ffffff;
+    color: var(--branco);
 }
 
 /* RODAPÉ */

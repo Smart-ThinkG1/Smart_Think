@@ -382,15 +382,18 @@ header .container {
     overflow: hidden;
     overflow-y: auto;
 }
+
 .sobreNos .modal::-webkit-scrollbar {
     width: 8px;
     margin-left: 10px;
 }
+
 .sobreNos .modal::-webkit-scrollbar-thumb {
     background-color: var(--cinza-escuro);
     border-radius: 20px;
 
 }
+
 .sobreNos .modal::-webkit-scrollbar-track {
     margin: 16px 0;
     height: 80%;
@@ -447,20 +450,26 @@ header .container {
     width: 100%;
     padding: 16px;
 }
+
 .sobreNos .modal .modal-body p {
     font-size: 16px;
     color: var(--cinza-medio);
     line-height: 2rem;
 }
-#modal-sobrenos, #fade-modal {
+
+#modal-sobrenos,
+#fade-modal {
     transition: .3s;
     opacity: 1;
     pointer-events: all;
 }
-#modal-sobrenos.hide, #fade-modal.hide {
+
+#modal-sobrenos.hide,
+#fade-modal.hide {
     opacity: 0;
     pointer-events: none;
 }
+
 #modal-sobrenos.hide {
     top: 0;
 }
@@ -638,7 +647,7 @@ header .container {
     flex-direction: column;
     padding: 8px 8px;
     position: relative;
-    z-index: auto;
+
 }
 
 .equipe .card::before {
@@ -791,6 +800,11 @@ header .container {
 
 /* Celulares pequenos */
 @media(max-width: 480px) {
+
+    .container {
+        width: 80%;
+    }
+    /* HEADER */
     header .navbar a {
         display: none;
     }
@@ -798,6 +812,33 @@ header .container {
     header .navbar .navLogo {
         height: 4rem;
     }
+
+    /* 1ª SESSÃO - BANNER */
+    /* 2ª SESSAO - VALORES */
+    .valores .container {
+        grid-template-columns: none;
+        grid-template-rows: repeat(3, 1fr);
+    }
+    /* 3ª SESSAO - SOBRE NOS */
+    /* 4ª SESSAO - NOSSA SOLUCAO */
+    /* 5ª SESSAO - NOSSA EQUIPE */
+    .equipe {
+        height: auto;
+    }
+    .equipe .card-wrapper {
+        display: grid;
+        grid-template-columns: none;
+        grid-template-rows: repeat(5, 1fr);
+    }
+    .equipe .card {
+        max-width: 45%;
+        max-height: 85%;
+    }
+
+
+    /* RODAPÉ */
+
+
 }
 
 /* Celulares grandes e tablets */

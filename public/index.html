@@ -45,8 +45,34 @@
                         <li>Login</li>
                     </a>
                 </div>
+
+                <div id="mobile-btn">
+                    <button><i class="fa-solid fa-bars"></i></button>
+                </div>
             </ul>
         </div>
+        <ul id="mobile-menu" class="hide">
+
+            <a href="#home">
+                Início
+            </a>
+            <a href="#valores">
+                Nossos valores
+            </a>
+            <a href="#sobreNos">
+                Sobre nós
+            </a>
+            <a href="#solution">
+                Nossa Solução
+            </a>
+            <a href="#equipe">
+                Nossa Equipe
+            </a>
+
+            <a href="" class="login-btn">
+                Login
+            </a>
+        </ul>
 
     </header>
     <section class="banner" id="home">
@@ -180,12 +206,12 @@
             <div class="title">
                 <h2>Nossa solução tecnológica</h2>
             </div>
-            
+
             <div class="bubbles">
                 <div class="dottedLine">
                     <img src="assets/line.png" alt="">
                 </div>
-                
+
                 <div class="bubbleArea">
                     <div class="bubble">
                         <i class="fa-solid fa-database"></i>
@@ -455,4 +481,39 @@
     [FadeModal_sobrenos, OpenModal_sobrenos, CloseModal_sobrenos].forEach((el) => {
         el.addEventListener("click", () => toggleModal())
     })
+
+    // Mobile Hamburger
+    const mobileBtn = document.getElementById("mobile-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuLinks = mobileMenu.querySelectorAll("a");
+
+    // Altera a visibilidade do menu mobile
+    if (mobileBtn && mobileMenu) {
+        const toggleMobileMenu = () => {
+            mobileMenu.classList.toggle("hide");
+
+            // Alterna o ícone do botão
+            toggleIcon();
+        };
+
+        mobileBtn.addEventListener("click", toggleMobileMenu);
+    }
+    // fechar menu quando acessar link
+    menuLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            mobileMenu.classList.add("hide");
+            toggleIcon();
+
+        })
+    })
+
+    // trocar icone
+    const toggleIcon = () => {
+        const icon = mobileBtn.querySelector('i');
+            icon.classList.toggle('fa-xmark');
+            icon.classList.toggle('fa-bars');
+    }
+
+
+
 </script>

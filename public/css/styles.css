@@ -70,6 +70,7 @@ header.sticky {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 header .container {
@@ -119,6 +120,46 @@ header .container {
 .navbar a:hover {
     border-bottom-color: var(--roxo-primario);
     color: var(--roxo-primario);
+}
+
+#mobile-btn {
+    display: none;
+}
+#mobile-btn button {
+    background: none;
+    border: none;
+    color: var(--branco);
+    cursor: pointer;
+    font-size: 2rem;
+}
+#mobile-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--branco);
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 0 .75rem;
+    padding-bottom: 1rem
+}
+#mobile-menu.hide {
+    display: none;
+}
+#mobile-menu a {
+    display: flex;
+    padding: 1rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+}
+#mobile-menu .login-btn {
+    background-color: var(--roxo-primario);
+    padding: 1rem 2rem;
+
 }
 
 /* 1ª SESSÃO - BANNER */
@@ -849,6 +890,9 @@ header .container {
 
     header .navbar .navLogo {
         height: 4rem;
+    }
+    header .navbar #mobile-btn {
+        display: block;
     }
 
     /* 1ª SESSÃO - BANNER */

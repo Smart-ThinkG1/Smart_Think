@@ -45,8 +45,34 @@
                         <li>Login</li>
                     </a>
                 </div>
+
+                <div id="mobile-btn">
+                    <button><i class="fa-solid fa-bars"></i></button>
+                </div>
             </ul>
         </div>
+        <ul id="mobile-menu" class="hide">
+
+            <a href="#home">
+                Início
+            </a>
+            <a href="#valores">
+                Nossos valores
+            </a>
+            <a href="#sobreNos">
+                Sobre nós
+            </a>
+            <a href="#solution">
+                Nossa Solução
+            </a>
+            <a href="#equipe">
+                Nossa Equipe
+            </a>
+
+            <a href="" class="login-btn">
+                Login
+            </a>
+        </ul>
 
     </header>
     <section class="banner" id="home">
@@ -132,9 +158,43 @@
                         permite que você tome decisões informadas, otimizando resultados e maximizando o retorno sobre o
                         investimento. Conte conosco em cada etapa para alcançar o sucesso. </p>
                 </div>
-                <button>
+                <button id="open-modal-btn">
                     Saiba Mais
                 </button>
+            </div>
+
+            <div id="fade-modal" class="hide"></div>
+
+            <div class="modal hide" id="modal-sobrenos">
+                <div class="modal-header">
+                    <div id="close-modal-btn">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    <h2>Sobre Nós</h2>
+                    <!-- <button id="close-modal-sobrenos">fechar</button> -->
+                </div>
+
+                <div class="modal-body">
+
+                    <p> Na Smart Think, somos seu guia nas decisões de marketing. Entendemos que navegar no mundo do
+                        marketing pode ser desafiador. Com nossos dados precisos e insights estratégicos, ajudamos a
+                        tornar suas escolhas mais assertivas, acelerando o crescimento da sua marca. Nossa tecnologia
+                        permite que você tome decisões informadas, otimizando resultados e maximizando o retorno sobre o
+                        investimento. Conte conosco em cada etapa para alcançar o sucesso. </p>
+                    <p>Além de nossos serviços de análise de dados e geração de insights, acreditamos que a educação
+                        contínua é fundamental para o sucesso a longo prazo. Por isso, oferecemos workshops e
+                        treinamentos personalizados, capacitando sua equipe a utilizar as ferramentas de marketing mais
+                        modernas e a entender as melhores práticas do setor. O nosso compromisso vai além de fornecer
+                        soluções; queremos que você e sua equipe se sintam confiantes e preparados para enfrentar os
+                        desafios do marketing digital.
+
+                        Em um mercado em constante evolução, a adaptabilidade é a chave. Estamos sempre atentos às
+                        últimas tendências e inovações do setor, garantindo que nossas estratégias sejam não apenas
+                        eficazes, mas também relevantes. Nossa equipe é composta por especialistas apaixonados, prontos
+                        para se aprofundar nas especificidades do seu negócio e criar soluções sob medida. Na Smart
+                        Think, sua visão se torna nossa missão, e juntos, podemos transformar sua marca em um verdadeiro
+                        case de sucesso.</p>
+                </div>
             </div>
 
         </div>
@@ -142,33 +202,41 @@
 
     <section class="solution" id="solution">
         <div class="container">
+
             <div class="title">
                 <h2>Nossa solução tecnológica</h2>
             </div>
-            <div class="dottedLine">
-                <img src="assets/line.png" alt="">
-            </div>
 
             <div class="bubbles">
-                <div class="bubble">
-                    <i class="fa-solid fa-database"></i>
-                    <div class="numberCircle">
-                        1
+                <div class="dottedLine">
+                    <img src="assets/line.png" alt="">
+                </div>
+
+                <div class="bubbleArea">
+                    <div class="bubble">
+                        <i class="fa-solid fa-database"></i>
+                        <div class="numberCircle">
+                            1
+                        </div>
                     </div>
+
                     <div class="text">
                         <div class="bubbleTitle">
                             <h3>Captura e Tratamento de Dados</h3>
                         </div>
                         <div class="description">
                             <p>Coletamos informações da marca de várias fontes e as processamos para compatibilidade com
-                                nossa API</p>
+                                nossa API.</p>
                         </div>
                     </div>
                 </div>
-                <div class="bubble">
-                    <i class="fa-solid fa-magnifying-glass-chart"></i>
-                    <div class="numberCircle secondary">
-                        2
+
+                <div class="bubbleArea">
+                    <div class="bubble">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        <div class="numberCircle secondary">
+                            2
+                        </div>
                     </div>
                     <div class="text">
                         <div class="bubbleTitle">
@@ -180,21 +248,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="bubble">
-                    <i class="fa-solid fa-lightbulb"></i>
-                    <div class="numberCircle">
-                        3
+
+                <div class="bubbleArea">
+                    <div class="bubble">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        <div class="numberCircle">
+                            3
+                        </div>
                     </div>
+
                     <div class="text">
                         <div class="bubbleTitle">
                             <h3>Sugestões e Insights</h3>
                         </div>
                         <div class="description">
-                            <p>Fornecemos recomendações e insights estratégicos para maximizar o desempenho da marca e a
+                            <p>Fornecemos recomendações e insights estratégicos para maximizar o desempenho da marca
+                                e a
                                 satisfação do cliente.</p>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -203,10 +277,12 @@
         <div class="bgVideo">
             <video src="assets/bgNossaEquipe.mp4" autoplay muted loop></video>
         </div>
+
         <div class="container">
             <div class="title">
                 <h2>Conheça nossa equipe</h2>
             </div>
+
             <div class="card-wrapper">
                 <div class="card">
                     <div class="user">
@@ -214,10 +290,21 @@
                     </div>
                     <div class="text">
                         <div class="card-title">
-                            <h1>Gustavo Aloe</h1>
+                            <h1>Ana Silva</h1>
                         </div>
                         <div class="card-subtitle">
                             <h2>Infraestrutura e Design</h2>
+                        </div>
+                    </div>
+                    <div class="social">
+                        <div class="icon linkedIn">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                        <div class="icon gitHub">
+                            <a href="#"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                        <div class="icon email">
+                            <a href="#"><i class="fa-solid fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
@@ -228,10 +315,21 @@
                     </div>
                     <div class="text">
                         <div class="card-title">
-                            <h1>Gustavo Aloe</h1>
+                            <h1>Cristhian Lauriano</h1>
                         </div>
                         <div class="card-subtitle">
                             <h2>Infraestrutura e Design</h2>
+                        </div>
+                    </div>
+                    <div class="social">
+                        <div class="icon linkedIn">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                        <div class="icon gitHub">
+                            <a href="#"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                        <div class="icon email">
+                            <a href="#"><i class="fa-solid fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
@@ -241,23 +339,47 @@
                     </div>
                     <div class="text">
                         <div class="card-title">
-                            <h1>Gustavo Aloe</h1>
+                            <h1>Denyel Henry</h1>
                         </div>
                         <div class="card-subtitle">
                             <h2>Infraestrutura e Design</h2>
+                        </div>
+                    </div>
+                    <div class="social">
+                        <div class="icon linkedIn">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                        <div class="icon gitHub">
+                            <a href="#"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                        <div class="icon email">
+                            <a href="#"><i class="fa-solid fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="user">
-                        <img src="assets/User Profile/Imagem1.jpg" alt="">
+                        <img src="assets/User Profile/Fernando.jpg" alt="">
                     </div>
                     <div class="text">
                         <div class="card-title">
-                            <h1>Gustavo Aloe</h1>
+                            <h1>Fernando Henrique</h1>
                         </div>
                         <div class="card-subtitle">
-                            <h2>Infraestrutura e Design</h2>
+                            <h2>Dev FullStack</h2>
+                        </div>
+                    </div>
+                    <div class="social">
+                        <div class="icon linkedIn">
+                            <a href="https://www.linkedin.com/in/fernando-henrique-santos-soares-955a9419b/"
+                                target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                        <div class="icon gitHub">
+                            <a href="https://github.com/Fernando-Henrique-SpTech" target="_blank"><i
+                                    class="fa-brands fa-github"></i></a>
+                        </div>
+                        <div class="icon email">
+                            <a href="#"><i class="fa-solid fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
@@ -274,6 +396,18 @@
                             <h2>Infraestrutura e Design</h2>
                         </div>
                     </div>
+                    <div class="social">
+                        <div class="icon linkedIn">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                        <div class="icon gitHub">
+                            <a href="#"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                        <div class="icon email">
+                            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
@@ -281,25 +415,40 @@
     </section>
 
     <footer class="rodape" id="contato">
+
         <div class="container">
-            <div class="logo-contato">
-                <img src="assets/logoSmartThink 1.png" alt="Logo" class="logo">
+
+            <div class="social">
+
                 <div class="contato">
                     <h3>CONTATO</h3>
                     <p>E-mail: contato@smartthink.com</p>
                     <p>Telefone: (11) 1234-5678</p>
                     <p>Endereço: Av. Inovação, 456, São Paulo, SP</p>
                 </div>
-            </div>
-            <div class="redes-sociais">
-                <h3>REDES SOCIAIS</h3>
-                <div class="icones">
 
-                    <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <div class="redes-sociais">
+                    <h3>REDES SOCIAIS</h3>
+                    <div class="icones">
+                        <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
                 </div>
+
             </div>
+
+
+            <div class="logo">
+                <img src="assets/logoSmartThink 1.png" alt="Logo">
+            </div>
+
+            <div class="copyright">
+                <p>© 2024 Todos os direitos reservados | Smart Think</p>
+            </div>
+
+
+
         </div>
 
     </footer>
@@ -310,9 +459,61 @@
 
 <script>
 
+    // Header Dinamico
     window.addEventListener("scroll", function () {
         const head = document.getElementById("head_id");
         head.classList.toggle("sticky", window.scrollY > 0)
 
     })
+    // Modal Sobrenos
+    const OpenModal_sobrenos = document.getElementById("open-modal-btn");
+    const CloseModal_sobrenos = document.getElementById("close-modal-btn");
+    const Modal_sobrenos = document.getElementById("modal-sobrenos");
+    const FadeModal_sobrenos = document.getElementById("fade-modal");
+
+    const toggleModal = () => {
+        Modal_sobrenos.classList.toggle("hide");
+        FadeModal_sobrenos.classList.toggle("hide");
+
+
+    }
+
+    [FadeModal_sobrenos, OpenModal_sobrenos, CloseModal_sobrenos].forEach((el) => {
+        el.addEventListener("click", () => toggleModal())
+    })
+
+    // Mobile Hamburger
+    const mobileBtn = document.getElementById("mobile-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuLinks = mobileMenu.querySelectorAll("a");
+
+    // Altera a visibilidade do menu mobile
+    if (mobileBtn && mobileMenu) {
+        const toggleMobileMenu = () => {
+            mobileMenu.classList.toggle("hide");
+
+            // Alterna o ícone do botão
+            toggleIcon();
+        };
+
+        mobileBtn.addEventListener("click", toggleMobileMenu);
+    }
+    // fechar menu quando acessar link
+    menuLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            mobileMenu.classList.add("hide");
+            toggleIcon();
+
+        })
+    })
+
+    // trocar icone
+    const toggleIcon = () => {
+        const icon = mobileBtn.querySelector('i');
+            icon.classList.toggle('fa-xmark');
+            icon.classList.toggle('fa-bars');
+    }
+
+
+
 </script>

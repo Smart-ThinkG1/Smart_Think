@@ -2,6 +2,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
 
+/* ADICIONANDO CORES PADRÃO */
+:root {
+    --branco: #FFF;
+    --preto: #000;
+
+    --roxo-primario: #332DA2;
+    --roxo-secundario: #5900ff;
+    /* Cor antiga*/
+
+    --azul-escuro: #1E2486;
+
+    --cinza-claro: #A3A3A3;
+    --cinza-medio: #5C5C5C;
+    --cinza-escuro: #373535;
+}
+
 /* RESET CSS, ZERANDO VALORES PADROES, SETANDO FONTE PADRAO E TIRANDO OUTRAS COISAS */
 * {
     margin: 0;
@@ -9,9 +25,11 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
- html {
+
+html {
     scroll-behavior: smooth;
- }
+}
+
 a,
 li {
     color: inherit;
@@ -32,10 +50,11 @@ header {
     justify-content: center;
     align-items: center;
     position: absolute;
-    z-index: 99;
+    z-index: 12;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
+
 header.sticky {
     position: fixed;
     border-bottom: 0px;
@@ -44,12 +63,14 @@ header.sticky {
 }
 
 .navbar {
-    color: #fff;
+    color: var(--branco);
     font-size: 1rem;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    position: relative;
 }
 
 header .container {
@@ -60,6 +81,7 @@ header .container {
     display: flex;
     gap: 8px;
     align-items: center;
+    height: 100%;
 }
 
 .navLogo {
@@ -83,7 +105,7 @@ header .container {
 }
 
 .navbar a {
-    font-weight: 700;
+    font-weight: 800;
     height: 100%;
     display: flex;
     align-items: center;
@@ -96,8 +118,48 @@ header .container {
 }
 
 .navbar a:hover {
-    border-bottom-color: rgb(89, 0, 255);
-    color: rgb(89, 0, 255);
+    border-bottom-color: var(--roxo-primario);
+    color: var(--roxo-primario);
+}
+
+#mobile-btn {
+    display: none;
+}
+#mobile-btn button {
+    background: none;
+    border: none;
+    color: var(--branco);
+    cursor: pointer;
+    font-size: 2rem;
+}
+#mobile-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--branco);
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 0 .75rem;
+    padding-bottom: 1rem
+}
+#mobile-menu.hide {
+    display: none;
+}
+#mobile-menu a {
+    display: flex;
+    padding: 1rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+}
+#mobile-menu .login-btn {
+    background-color: var(--roxo-primario);
+    padding: 1rem 2rem;
+
 }
 
 /* 1ª SESSÃO - BANNER */
@@ -108,6 +170,7 @@ header .container {
     background-image: url(../assets/bgHome2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: center;
 }
@@ -138,7 +201,7 @@ header .container {
 }
 
 .banner .banner-info {
-    color: #fff;
+    color: var(--branco);
     width: 45%;
     position: relative;
     z-index: 10;
@@ -152,7 +215,7 @@ header .container {
     letter-spacing: 4px;
     line-height: 1;
     margin-bottom: 18px;
-    color: rgb(89, 0, 255);
+    color: var(--roxo-primario);
 }
 
 .banner .banner-info .text h3 {
@@ -178,14 +241,14 @@ header .container {
     text-transform: uppercase;
     font-weight: 800;
     padding: 16px 40px;
-    color: #fff;
-    background-color: rgb(89, 0, 255);
+    color: var(--branco);
+    background-color: var(--roxo-primario);
     border: none;
     cursor: pointer;
 }
 
 .banner .banner-info a:hover {
-    background-color: #FFF;
+    background-color: var(--branco);
     color: #000;
 }
 
@@ -210,12 +273,14 @@ header .container {
 }
 
 .value-card {
-    background-color: #fff;
+    background-color: var(--branco);
     width: 280px;
     height: 280px;
+    max-width: 100%;
+    max-height: 85%;
     position: relative;
-    border-radius: 8px;
-    padding: 0px 16px;
+    border-radius: .5rem;
+    padding: 0px 1rem;
     text-align: center;
     justify-content: center;
     display: flex;
@@ -227,14 +292,14 @@ header .container {
     margin-bottom: 8px;
     font-size: 24px;
     font-weight: 800;
-    color: rgb(89, 0, 255);
+    color: var(--roxo-primario);
 }
 
 .value-card .description-card {
     font-weight: 400;
     font-size: 14px;
     line-height: 1.35;
-    color: #808080;
+    color: var(--cinza-claro);
 }
 
 .value-card::before {
@@ -243,16 +308,16 @@ header .container {
     width: 100%;
     height: 100%;
     border-radius: 8px;
-    background-color: rgb(89, 0, 255);
+    background-color: var(--roxo-primario);
     bottom: -10px;
     left: 10px;
     z-index: -2;
 }
 
-.value-card .icon {
+.value-card i {
     width: 100px;
     height: 100px;
-    background-color: #fff;
+    background-color: var(--branco);
     border-radius: 50%;
     position: absolute;
     left: -50px;
@@ -265,8 +330,8 @@ header .container {
 }
 
 .value-card .icon i {
-    font-size: 50px;
-    color: rgb(89, 0, 255);
+    font-size: 3rem;
+    color: var(--roxo-primario);
 }
 
 /* 3ª SESSAO - SOBRE NOS */
@@ -312,14 +377,14 @@ header .container {
 
 .headArea .headTitle {
     font-size: 2.35rem;
-    color: #fff;
+    color: var(--branco);
     font-weight: 900;
     margin-bottom: 24px;
 }
 
 .headArea .description {
     font-size: 18px;
-    color: #fff;
+    color: var(--branco);
     margin-bottom: 32px;
 }
 
@@ -328,16 +393,134 @@ header .container {
     text-transform: uppercase;
     font-weight: 800;
     padding: 16px 40px;
-    color: #fff;
+    color: var(--branco);
     background-color: transparent;
-    border: solid 3px #fff;
+    border: solid 3px var(--branco);
     cursor: pointer;
 }
 
 .headArea button:hover {
-    background-color: #FFF;
+    background-color: var(--branco);
     color: #000;
 }
+
+.sobreNos #fade-modal {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.45);
+    width: 100%;
+    height: 100%;
+    z-index: 14;
+    top: 0;
+    left: 0;
+}
+
+.sobreNos .modal {
+    background-color: var(--branco);
+    position: fixed;
+    width: 640px;
+    max-width: 85%;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 15;
+    border-radius: 16px;
+    min-height: 400px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.sobreNos .modal::-webkit-scrollbar {
+    width: 8px;
+    margin-left: 10px;
+}
+
+.sobreNos .modal::-webkit-scrollbar-thumb {
+    background-color: var(--cinza-escuro);
+    border-radius: 20px;
+
+}
+
+.sobreNos .modal::-webkit-scrollbar-track {
+    margin: 16px 0;
+    height: 80%;
+}
+
+.sobreNos .modal button {
+    font-family: "Lato", sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    background-color: var(--cinza-escuro);
+    width: 180px;
+    height: 50px;
+    color: var(--branco);
+    text-transform: uppercase;
+    border-radius: 12px;
+    border: none;
+    opacity: 0.85;
+    cursor: pointer;
+}
+
+.sobreNos .modal button:hover {
+    opacity: 1;
+}
+
+.sobreNos .modal #close-modal-btn {
+    width: fit-content;
+    margin-left: auto;
+}
+
+.sobreNos .modal #close-modal-btn i {
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--cinza-claro);
+}
+
+.modal #close-modal-btn i:hover {
+    color: var(--cinza-escuro);
+}
+
+.sobreNos .modal .modal-header {
+    width: 100%;
+    padding: 16px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.sobreNos .modal .modal-header h2 {
+    font-size: 24px;
+    color: var(--cinza-escuro);
+    font-family: "Lato";
+    font-weight: 800;
+}
+
+.sobreNos .modal .modal-body {
+    width: 100%;
+    padding: 16px;
+}
+
+.sobreNos .modal .modal-body p {
+    font-size: 16px;
+    color: var(--cinza-medio);
+    line-height: 2rem;
+}
+
+#modal-sobrenos,
+#fade-modal {
+    transition: .3s;
+    opacity: 1;
+    pointer-events: all;
+}
+
+#modal-sobrenos.hide,
+#fade-modal.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#modal-sobrenos.hide {
+    top: 0;
+}
+
 
 /* 4ª SESSAO - NOSSA SOLUCAO */
 .solution {
@@ -356,39 +539,50 @@ header .container {
 .solution .dottedLine {
     width: 100%;
     height: 100%;
-
+    position: absolute;
 }
 
 .solution .dottedLine img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    object-position: 0 24%;
 }
 
 .solution .bubbles {
-    position: absolute;
     width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.solution .bubbleArea {
     display: flex;
-    justify-content: space-between;
-    top: 50%;
-    padding: 0 24px;
-    transform: translateY(-45%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .solution .bubble {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background-color: #FFF;
+    background-color: var(--branco);
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    align-self: center;
+    justify-self: center;
 }
 
 .solution .bubble i {
     font-size: 80px;
     color: #1E2486;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -403,40 +597,39 @@ header .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
+    color: var(--branco);
     font-size: 24px;
     font-weight: 800;
 }
 
 .solution .bubble .secondary {
-    background-color: #FFF;
+    background-color: var(--branco);
     color: #000;
     top: 0;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.solution .bubble .text {
-    position: absolute;
+.bubbles .text {
+    position: relative;
     text-align: center;
-    width: 350px;
-    top: 100%;
+    width: 85%;
 
 }
 
-.bubble .text .bubbleTitle {
-    color: #FFF;
+ .bubbles .text .bubbleTitle {
+    color: var(--branco);
     margin-top: 1.35rem;
     margin-bottom: 1rem;
 }
 
-.bubble .text .bubbleTitle h3 {
+.bubbles .text .bubbleTitle h3 {
     font-weight: 600;
     font-size: 24px;
 }
 
-.bubble .text .description {
+.bubbles .text .description {
     font-weight: 300;
-    color: #fff;
+    color: var(--branco);
 }
 
 /* 5ª SESSAO - NOSSA EQUIPE */
@@ -475,10 +668,10 @@ header .container {
     position: relative;
 }
 
- .container .title {
+.container .title {
     width: 100%;
     font-size: 32px;
-    color: #fff;
+    color: var(--branco);
     font-weight: 800;
     text-align: center;
     text-transform: none;
@@ -495,9 +688,10 @@ header .container {
 }
 
 .equipe .card {
-    width: 200px;
-    min-height: 300px;
-    background-color: #fff;
+    width: 240px;
+    max-width: 90%;
+    height: 320px;
+    background-color: var(--branco);
     border-radius: 12px;
     align-self: center;
     justify-self: center;
@@ -505,16 +699,16 @@ header .container {
     align-items: center;
     flex-direction: column;
     padding: 8px 8px;
-
     position: relative;
-    z-index: auto;
+
 }
+
 .equipe .card::before {
     content: "";
     width: 100%;
     height: 100%;
     border-radius: inherit;
-    background-color: rgb(89, 0, 255);
+    background-color: var(--roxo-primario);
     position: absolute;
     bottom: -6px;
     left: 4px;
@@ -522,7 +716,7 @@ header .container {
 }
 
 .equipe .card .user {
-    height: 75%;
+    height: 60%;
     width: 100%;
     border-radius: inherit;
     background-color: #d4d4d4;
@@ -533,7 +727,7 @@ header .container {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: bottom;
+    object-position: top;
 }
 
 .equipe .card .text {
@@ -542,96 +736,312 @@ header .container {
     text-align: center;
     margin: auto;
 }
-.equipe .card .text .card-title {
-    font-size: 14px;
+
+.equipe .card .text .card-title h1 {
+    font-size: 1.25rem;
     font-weight: 800;
     color: #1E2486;
 }
+
 .equipe .card .text .card-subtitle {
     font-size: 10px;
     font-weight: 600;
-    color: #808080;
+    color: var(--cinza-claro);
 }
 
+.equipe .card .social {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: auto 0;
+}
+
+.equipe .card .social .icon {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    background-color: var(--branco);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .5s;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.equipe .card .social .icon a {
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.social .icon:hover a {
+    transform: scale(1.2);
+}
+
+.social .icon:hover.linkedIn {
+    background-color: #0e76a8;
+    color: var(--branco);
+}
+
+.social .icon:hover.gitHub {
+    background-color: #333333;
+    color: var(--branco);
+}
+
+.social .icon:hover.email {
+    background-color: #000;
+    color: var(--branco);
+}
 
 /* RODAPÉ */
 .rodape {
-    background-color: #080808;
-    padding: 30px 0;
-    color: white;
     width: 100%;
+    background-color: #080808;
+    color: white;
+    padding: 2rem 0 12rem 0;
     display: flex;
     justify-content: center;
 }
 
 .rodape .container {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    flex-direction: column;
 }
 
-.logo-contato {
+.rodape .social {
     display: flex;
-    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid #333;
 }
 
-.logo {
-    width: 120px;
+.rodape .logo {
+    height: 5rem;
     margin-right: 20px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+.rodape .logo img {
+    object-fit: cover;
+    height: 100%;
+    width: auto;
 }
 
-.contato h3,
-.redes-sociais h3 {
+.rodape .contato h3,
+.rodape .redes-sociais h3 {
     color: #2ec5cf;
     margin-bottom: 10px;
     font-size: 24px;
 }
 
-.contato p,
-.redes-sociais p {
+.rodape .contato p,
+.rodape .redes-sociais p {
     margin: 5px 0;
     color: #b8b8b8;
     font-size: 18px;
 }
 
-.redes-sociais {
-    text-align: right;
+.rodape .redes-sociais {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
-
-.icones a i {
-    font-size: 35px;
-    margin: 0 8px;
+.rodape .icones {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.rodape .icones a i {
+    font-size: 2.5rem;
     transition: transform 0.3s ease;
 }
 
-.icones a i:hover {
+.rodape .icones a i:hover {
     transform: scale(1.1);
 }
+.rodape .copyright {
+    width: 100%;
+    color: var(--cinza-claro);
+    display: flex;
+    justify-content: center;
+}
+
 
 /* Celulares pequenos */
-@media(max-width: 480px) {
+@media(max-width:399px) {
+
+}
+/* Celulares médios */
+@media(min-width: 400px) and (max-width: 780px) {
+
+    .container {
+        width: 90%;
+    }
+    /* HEADER */
     header .navbar a {
         display: none;
     }
+
     header .navbar .navLogo {
         height: 4rem;
     }
-}
-/* Celulares grandes e tablets */
-@media (min-width: 481px) and (max-width: 768px) {
-    
+    header .navbar #mobile-btn {
+        display: block;
+    }
+
+    /* 1ª SESSÃO - BANNER */
+    .banner .banner-info {
+        width: 100%;
+    }
+    .banner .banner-info .text p {
+        font-size: .9rem;
+    }
+    .banner .banner-info .text h3 {
+        font-size: 3.85rem; 
+    }
+
+    /* 2ª SESSAO - VALORES */
+    .valores {
+        padding: 2rem 0;
+    }
+    .valores .container {
+        grid-template-columns: none;
+        grid-template-rows: repeat(3, 1fr);
+        gap: 1rem;
+        justify-content: center;
+    }
+    .valores .container .value-card  {
+        width: 95%;
+        align-self: center;
+        justify-self: center;
+    }
+    .value-card .icon i {
+        top: -15%;
+        transform: translateX(-50%);
+        left: 50%;
+    }
+
+    /* 3ª SESSAO - SOBRE NOS */
+    .sobreNos {
+        padding-bottom: 5.5rem;
+    }
+    .sobreNos .container {
+        /* display: flex; */
+        grid-template-columns: none;
+    }
+    .sobreNos .bannerArea img {
+        width: 100%;
+        height: 100%;
+    }
+    .sobreNos .headArea  {
+        padding: 0;
+    }
+    .headArea .headTitle {
+        font-size: 2.9rem;
+    }
+    /* 4ª SESSAO - NOSSA SOLUCAO */
+    .solution {
+        height: auto;
+        padding-bottom: 5.5rem;
+    }
+    .solution .container {
+        height: 100%;
+    }
+    .solution .container .title {
+        position: relative;
+        top: 0;
+        margin: 3rem 0;
+    }
+    .solution .bubbles {
+        grid-template-columns: none;
+        grid-template-rows: repeat(3, 1fr);
+        gap: 2rem;
+    }
+    .solution .bubbles .dottedLine {
+        display: none;
+    }
+    /* 5ª SESSAO - NOSSA EQUIPE */
+    .equipe {
+        height: auto;
+        padding-bottom: 5.5rem;
+    }
+    .equipe .container {
+        height: 100%;
+    }
+    .equipe .container .title {
+        position: relative;
+        top: 0;
+        margin: 3rem 0;
+    }
+    .equipe .card-wrapper {
+        display: grid;
+        grid-template-columns: none;
+        grid-template-rows: repeat(5, 1fr);
+    }
+    .equipe .card {
+        max-width: 95%;
+        max-height: 95%;
+    }
+    .value-card i {
+        width: 4.5rem;
+        height: 4.5rem;
+        bottom: -2rem;
+        left: -2rem;
+    }
+
+    .value-card .icon i {
+        font-size: 2.5rem;
+    }
+
+
+    /* RODAPÉ */
+    .rodape .social {
+        flex-direction: column;
+        gap: 2.5rem;
+
+    }
+    .rodape .redes-sociais {
+        align-items: flex-start;
+    }
+    .rodape .redes-sociais .icones {
+        width: auto;
+        gap: 2rem;
+    }
+    .rodape .logo {
+        justify-content: center;
+        margin-bottom: .5rem;
+    }
+
 }
 
-/* Desktop Grande */
-@media (min-width: 1441px) {
+/* Celulares grandes, tablets e laptops */
+@media (min-width: 781px) and (max-width: 1080px) {
+
+}
+
+/* Desktop Médio */
+@media (min-width: 1081px) and (max-width: 1536px) {
     .container {
         width: 86%;
     }
+
     .sobreNos .container {
         grid-template-columns: 50% auto;
     }
+
     .sobreNos .headArea {
         padding: 0 32px;
         padding-right: 0;
     }
+}
+
+/* Desktop Grande */
+@media (min-width: 1537px) {
+    
 }

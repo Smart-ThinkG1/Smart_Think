@@ -129,6 +129,7 @@ header .container {
     background-image: url(../assets/bgHome2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: center;
 }

@@ -41,9 +41,10 @@
                 </div>
 
                 <div class="navClass userBtn">
-                    <a href="login.html">
+                    <a href="#" id="loginBtn">
                         <li>Login</li>
                     </a>
+                    <a href="#" id="signupBtn">Cadastrar</a>
                 </div>
 
                 <div id="mobile-btn">
@@ -69,12 +70,107 @@
                 Nossa Equipe
             </a>
 
-            <a href="" class="login-btn">
+            <a href="#" id="signupBtn">Cadastrar</a>
+
+            <a href="#" class="loginBtn">
                 Login
             </a>
         </ul>
 
     </header>
+
+    <div id="modal-container" class="modal-container">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Cadastrar</h2>
+            <p>Seja bem vindo(a) a Smart Think, realize o seu cadastro para obter acesso a área de usuário de sua franquia.</p>
+            <form>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <input type="text" id="nome" placeholder="" required>
+                    <label for="nome">Nome</label>
+                    <span class="info-icon" title="Insira seu nome completo.">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </div>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <input type="text" id="cpf" placeholder="" required pattern="\d*">
+                    <label for="cpf">CPF</label>
+                    <span class="info-icon" title="Apenas números. Ex: 12345678900">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </div>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <input type="email" id="email" placeholder="" required>
+                    <label for="email">Email</label>
+                    <span class="info-icon" title="Insira um email válido.">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </div>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <input type="password" id="senha" placeholder="" required>
+                    <label for="senha">Senha</label>
+                    <span class="info-icon" title="A senha deve ter pelo menos 8 caracteres.">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </div>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <input type="text" id="codigoToken" placeholder="" required>
+                    <label for="codigoToken">Código Token</label>
+                    <span class="info-icon" title="Insira o código enviado para seu email.">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </div>
+                <button type="submit">Cadastrar</button>
+                <div class="switch-text">
+                    <p>Já tem uma conta? <a href="#" id="showLogin">Entre</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="loginModal" class="modal-container">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <p>Bem vindo(a) de volta, realize o login para ter acesso a área do usuário de sua franquia.</p>
+            <form>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <input type="email" id="loginEmail" placeholder="" required>
+                    <label for="loginEmail">Email</label>
+                </div>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <input type="password" id="loginSenha" placeholder="" required>
+                    <label for="loginSenha">Senha</label>
+                </div>
+                <button type="submit">Entrar</button>
+                <div class="switch-text">
+                    <p>Ainda não tem uma conta? <a href="#" id="showSignup">Cadastre-se</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <section class="banner" id="home">
         <div class="container">
             <div class="banner-info">
@@ -85,10 +181,35 @@
                     </h3>
                     <h4>Liberte seu potencial e alcance novos horizontes!</h4>
                 </div>
-                <a href="cadastro.html">Cadastrar</a>
+                <a href="#" id="bannerServiceBtn">Contratar Serviço</a>
             </div>
         </div>
     </section>
+
+    <div id="serviceModal" class="modal-container">
+        <div class="modal-content-service">
+            <span class="close">&times;</span>
+            <h2><strong>Interessado em nosso serviço?</strong></h2>
+            <p>Ficamos felizes em saber que você deseja dar o próximo passo para otimizar suas campanhas de marketing! Preencha o formulário abaixo com o email e seu nome, e entraremos em contato em breve para discutir como podemos ajudar sua empresa de fast food a alcançar os melhores resultados. Nossa equipe especializada enviará todos os detalhes diretamente para o seu e-mail por meio do endereço oficial da Smart Think.</p>
+            <form>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <input type="text" id="nome" placeholder="" required>
+                    <label for="nome">Nome</label>
+                </div>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <input type="email" id="serviceEmail" placeholder="" required>
+                    <label for="serviceEmail">Email</label>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
 
     <section class="valores" id="valores">
         <div class="container">
@@ -298,13 +419,13 @@
                     </div>
                     <div class="social">
                         <div class="icon linkedIn">
-                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="https://www.linkedin.com/in/anacampaner/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
                         </div>
                         <div class="icon gitHub">
-                            <a href="#"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://github.com/anacampaner" target="_blank"><i class="fa-brands fa-github"></i></a>
                         </div>
                         <div class="icon email">
-                            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                            <a href="mailto:anafsilva@sptech.school"><i class="fa-solid fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
@@ -323,13 +444,13 @@
                     </div>
                     <div class="social">
                         <div class="icon linkedIn">
-                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="https://www.linkedin.com/in/cristhian-lauriano-545489203/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
                         </div>
                         <div class="icon gitHub">
-                            <a href="#"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://github.com/Lauriano29" target="_blank"><i class="fa-brands fa-github"></i></a>
                         </div>
                         <div class="icon email">
-                            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                            <a href="mailto:cristhian.marqueze@sptech.school"><i class="fa-solid fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
@@ -347,13 +468,13 @@
                     </div>
                     <div class="social">
                         <div class="icon linkedIn">
-                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="https://www.linkedin.com/in/denyel-oliveira-1b294430b/"" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
                         </div>
                         <div class="icon gitHub">
-                            <a href="#"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://github.com/DHenry14" target="_blank"><i class="fa-brands fa-github"></i></a>
                         </div>
                         <div class="icon email">
-                            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                            <a href="mailto:denyel.oliveira@sptech.school"><i class="fa-solid fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
@@ -379,7 +500,7 @@
                                     class="fa-brands fa-github"></i></a>
                         </div>
                         <div class="icon email">
-                            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                            <a href="mailto:fernando.soares@sptech.school"><i class="fa-solid fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
@@ -398,13 +519,13 @@
                     </div>
                     <div class="social">
                         <div class="icon linkedIn">
-                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="https://www.linkedin.com/in/gustavo-aloe-a957872b6/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
                         </div>
                         <div class="icon gitHub">
-                            <a href="#"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://github.com/GustavoAloe" target="_blank"><i class="fa-brands fa-github"></i></a>
                         </div>
                         <div class="icon email">
-                            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                            <a href="mailto:gustavo.moraes@sptech.school"><i class="fa-solid fa-envelope"></i></a>
                         </div>
                     </div>
 
@@ -510,10 +631,97 @@
     // trocar icone
     const toggleIcon = () => {
         const icon = mobileBtn.querySelector('i');
-            icon.classList.toggle('fa-xmark');
-            icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-xmark');
+        icon.classList.toggle('fa-bars');
     }
 
+    // MODAL
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById("modal-container");
+        const modalService = document.getElementById("serviceModal");
+        const loginModal = document.getElementById("loginModal");
+        const loginBtn = document.getElementById("loginBtn");
+        const signupBtn = document.getElementById("signupBtn");
+        const bannerServiceBtn = document.getElementById("bannerServiceBtn");
+        const closeModal = document.querySelectorAll(".close");
+        const inputs = document.querySelectorAll('input');
+        const cpfInput = document.getElementById('cpf');
+
+        cpfInput.addEventListener('input', function (e) {
+            cpfInput.value = cpfInput.value.replace(/\D/g, '');
+        });
+
+        function clearInputs() {
+            inputs.forEach(input => input.value = '');
+        }
+
+        signupBtn.onclick = function () {
+            modal.style.display = "flex";
+            clearInputs();
+        }
+
+        loginBtn.onclick = function () {
+            loginModal.style.display = "flex";
+            clearInputs();
+        }
+
+        bannerServiceBtn.onclick = function () {
+            modalService.style.display = "flex";
+            clearInputs();
+        }
+
+        closeModal.forEach(button => {
+            button.onclick = function () {
+                modal.style.display = "none";
+                loginModal.style.display = "none";
+                modalService.style.display = "none"
+                clearInputs();
+            }
+        });
+
+        window.onclick = function (event) {
+            if (event.target == modal || event.target == loginModal || event.target == modalService) {
+                modal.style.display = "none";
+                loginModal.style.display = "none";
+                modalService.style.display = "none";
+                clearInputs();
+            }
+        }
+
+        const infoIcons = document.querySelectorAll('.info-icon');
+        let currentTooltip = null;
+
+        infoIcons.forEach(icon => {
+            icon.addEventListener('mouseenter', function () {
+                if (currentTooltip) return;
+
+                currentTooltip = document.createElement('div');
+                currentTooltip.className = 'tooltip';
+                currentTooltip.innerText = icon.getAttribute('title');
+                document.body.appendChild(currentTooltip);
+                const rect = icon.getBoundingClientRect();
+                currentTooltip.style.left = `${rect.left + window.scrollX}px`;
+                currentTooltip.style.top = `${rect.bottom + window.scrollY + 5}px`;
+            });
+
+            icon.addEventListener('mouseleave', function () {
+                if (currentTooltip) {
+                    currentTooltip.remove();
+                    currentTooltip = null;
+                }
+            });
+        });
+
+        document.getElementById("showLogin").onclick = function () {
+            modal.style.display = "none";
+            loginModal.style.display = "flex";
+        }
+
+        document.getElementById("showSignup").onclick = function () {
+            loginModal.style.display = "none";
+            modal.style.display = "flex";
+        }
+    });
 
 
 </script>

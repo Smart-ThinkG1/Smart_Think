@@ -190,7 +190,17 @@ header .container {
     text-align: center;
 }
 
-.modal-content h2 {
+.modal-content-service {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 700px;
+    position: relative;
+    text-align: center;
+
+}
+
+.modal-content h2, .modal-content-service h2 {
     margin-bottom: 10px;
     font-size: 26px;
     font-weight: 700;
@@ -199,6 +209,19 @@ header .container {
 .modal-content p {
     margin-bottom: 25px;
     font-size: small;
+}
+
+.modal-content-service p {
+    font-size: 18px;
+    letter-spacing: 0.6px;
+    line-height: 22px;
+}
+
+.modal-content-service .input-container {
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: flex;
 }
 
 .input-container {
@@ -263,7 +286,7 @@ header .container {
     color: #aaa;
 }
 
-.modal-content button {
+.modal-content button, .modal-content-service button {
     background-color: rgb(89, 0, 255);
     color: white;
     padding: 12px;
@@ -275,7 +298,7 @@ header .container {
     width: 50%;
 }
 
-.modal-content button:hover {
+.modal-content button:hover, .modal-content-service button:hover {
     background-color: #6a00b3;
 }
 

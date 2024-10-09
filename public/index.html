@@ -83,7 +83,7 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Cadastrar</h2>
-            <p>Seja bem vindo(a) a Smart Think, realize o cadastro para obter acesso a área de usuário.</p>
+            <p>Seja bem vindo(a) a Smart Think, realize o seu cadastro para obter acesso a área de usuário de sua franquia.</p>
             <form>
                 <div class="input-container">
                     <div class="input-icon">
@@ -147,7 +147,7 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Login</h2>
-            <p>Bem vindo(a) de volta, realize o login para ter acesso a área do usuário.</p>
+            <p>Bem vindo(a) de volta, realize o login para ter acesso a área do usuário de sua franquia.</p>
             <form>
                 <div class="input-container">
                     <div class="input-icon">
@@ -181,10 +181,35 @@
                     </h3>
                     <h4>Liberte seu potencial e alcance novos horizontes!</h4>
                 </div>
-                <a href="#" id="bannerSignupBtn">Cadastrar</a>
+                <a href="#" id="bannerServiceBtn">Contratar Serviço</a>
             </div>
         </div>
     </section>
+
+    <div id="serviceModal" class="modal-container">
+        <div class="modal-content-service">
+            <span class="close">&times;</span>
+            <h2><strong>Interessado em nosso serviço?</strong></h2>
+            <p>Ficamos felizes em saber que você deseja dar o próximo passo para otimizar suas campanhas de marketing! Preencha o formulário abaixo com o email e seu nome, e entraremos em contato em breve para discutir como podemos ajudar sua empresa de fast food a alcançar os melhores resultados. Nossa equipe especializada enviará todos os detalhes diretamente para o seu e-mail por meio do endereço oficial da Smart Think.</p>
+            <form>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <input type="text" id="nome" placeholder="" required>
+                    <label for="nome">Nome</label>
+                </div>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <input type="email" id="serviceEmail" placeholder="" required>
+                    <label for="serviceEmail">Email</label>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
 
     <section class="valores" id="valores">
         <div class="container">
@@ -613,10 +638,11 @@
     // MODAL
     document.addEventListener('DOMContentLoaded', () => {
         const modal = document.getElementById("modal-container");
+        const modalService = document.getElementById("serviceModal");
         const loginModal = document.getElementById("loginModal");
         const loginBtn = document.getElementById("loginBtn");
         const signupBtn = document.getElementById("signupBtn");
-        const bannerSignupBtn = document.getElementById("bannerSignupBtn");
+        const bannerServiceBtn = document.getElementById("bannerServiceBtn");
         const closeModal = document.querySelectorAll(".close");
         const inputs = document.querySelectorAll('input');
         const cpfInput = document.getElementById('cpf');
@@ -639,8 +665,8 @@
             clearInputs();
         }
 
-        bannerSignupBtn.onclick = function () {
-            modal.style.display = "flex";
+        bannerServiceBtn.onclick = function () {
+            modalService.style.display = "flex";
             clearInputs();
         }
 
@@ -648,14 +674,16 @@
             button.onclick = function () {
                 modal.style.display = "none";
                 loginModal.style.display = "none";
+                modalService.style.display = "none"
                 clearInputs();
             }
         });
 
         window.onclick = function (event) {
-            if (event.target == modal || event.target == loginModal) {
+            if (event.target == modal || event.target == loginModal || event.target == modalService) {
                 modal.style.display = "none";
                 loginModal.style.display = "none";
+                modalService.style.display = "none";
                 clearInputs();
             }
         }

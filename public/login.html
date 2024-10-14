@@ -134,7 +134,10 @@
             <input type="email" id="email" name="email" placeholder="Digite seu e-mail">
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
-            <button type="submit"><b>ENTRAR</b></button>
+            <button onclick="entrar()" type="submit"><b>ENTRAR</b></button>
+            <div id="cardErro" style="display: none; color: red;">
+                <span id="mensagem_erro"></span>
+              </div>              
             <p class="link_cadastro"><span class="forgot-password"><a href="#">Esqueceu a senha?</a></span> <br><br>Ainda não possui uma conta? <br>
                 <a class="dire_cadastro" href="cadastro.html">Clique aqui </a> e cadastre-se!</p>
         </div>
@@ -142,3 +145,73 @@
 </body>
 
 </html>
+<script>
+function entrar() {
+    var emailVar = document.getElementById("email").value;
+    var senhaVar = document.getElementById("senha").value;
+    var cardErro = document.getElementById("cardErro");
+    var mensagemErro = document.getElementById("mensagem_erro");
+
+    if (emailVar === "" || senhaVar === "") {
+        cardErro.style.display = "block";
+        mensagemErro.innerHTML = "(Preencha todos os campos)";
+        return false;
+    }
+
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    fetch("/usuarios/autenticar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            emailServer: emailVar,
+            senhaServer: senhaVar
+        })
+    })
+    .then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!");
+
+        if (resposta.ok) {
+            return resposta.json(); 
+        } else if (resposta.status === 401) {
+            throw new Error("Usuário não existente");
+        } else {
+            throw new Error("Erro ao tentar realizar o login!");
+        }
+    })
+    .then(function (json) {
+        console.log(json);
+        console.log(JSON.stringify(json));
+        
+        sessionStorage.EMAIL_USUARIO = json.email;
+        sessionStorage.NOME_USUARIO = json.nome;
+        sessionStorage.ID_USUARIO = json.id;
+        sessionStorage.AQUARIOS = JSON.stringify(json.aquarios);
+
+        setTimeout(function () {
+            window.location = "./dashboard/cards.html";
+        }, 1000);
+    })
+    .catch(function (erro) {
+        console.error(erro.message);
+
+        // Exibe mensagem de erro
+        cardErro.style.display = "block";
+        mensagemErro.innerHTML = "Usuário não encontrado.";
+    });
+
+    return false;
+}
+
+function sumirMensagem() {
+    var cardErro = document.getElementById('cardErro');
+    if (cardErro) {
+        cardErro.style.display = 'none';
+    }
+}
+
+
+</script>

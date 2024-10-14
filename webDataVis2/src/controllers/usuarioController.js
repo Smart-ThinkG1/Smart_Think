@@ -20,15 +20,15 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
                     
-                        var empresaId = resultadoAutenticar[0].idEmpresaVincular;  // Verifique a chave correta aqui
-                        if (!empresaId) {
-                            console.log("Erro: empresaId está indefinido");
+                        var idEmpresa = resultadoAutenticar[0].idEmpresa;  // Verifique a chave correta aqui
+                        if (!idEmpresa) {
+                            console.log("Erro: idEmpresa está indefinido");
                         } else {
-                            aquarioModel.buscarAquariosPorEmpresa(empresaId)
+                            aquarioModel.buscarAquariosPorEmpresa(idEmpresa)
                                 .then((resultadoAquarios) => {
                                     if (resultadoAquarios.length > 0) {
                                         res.json({
-                                            id: resultadoAutenticar[0].id,
+                                            id: resultadoAutenticar[0].idEmpresa,
                                             email: resultadoAutenticar[0].email,
                                             nome: resultadoAutenticar[0].nome,
                                             senha: resultadoAutenticar[0].senha,

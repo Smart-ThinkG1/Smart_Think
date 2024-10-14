@@ -147,19 +147,15 @@
 </html>
 <script>
 function entrar() {
-    
+    var emailVar = document.getElementById("email").value;
+    var senhaVar = document.getElementById("senha").value;
+    var cardErro = document.getElementById("cardErro");
+    var mensagemErro = document.getElementById("mensagem_erro");
 
-    var emailVar = email.value;
-    var senhaVar = senha.value;
-
-    if (emailVar == "" || senhaVar == "") {
-        cardErro.style.display = "block"
-        mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-        finalizarAguardar();
+    if (emailVar === "" || senhaVar === "") {
+        cardErro.style.display = "block";
+        mensagemErro.innerHTML = "(Preencha todos os campos)";
         return false;
-    }
-    else {
-        setInterval(sumirMensagem, 5000)
     }
 
     console.log("FORM LOGIN: ", emailVar);
@@ -174,39 +170,38 @@ function entrar() {
             emailServer: emailVar,
             senhaServer: senhaVar
         })
-    }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!")
+    })
+    .then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!");
 
         if (resposta.ok) {
-            console.log(resposta);
-
-            resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
-                sessionStorage.EMAIL_USUARIO = json.email;
-                sessionStorage.NOME_USUARIO = json.nome;
-                sessionStorage.ID_USUARIO = json.id;
-                sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
-
-                setTimeout(function () {
-                    window.location = "./dashboard/cards.html";
-                }, 1000); // apenas para exibir o loading
-
-            });
-
+            return resposta.json(); 
+        } else if (resposta.status === 401) {
+            throw new Error("Usuário não existente");
         } else {
-
-            console.log("Houve um erro ao tentar realizar o login!");
-
-            resposta.text().then(texto => {
-                console.error(texto);
-                finalizarAguardar(texto);
-            });
+            throw new Error("Erro ao tentar realizar o login!");
         }
-
-    }).catch(function (erro) {
-        console.log(erro);
     })
+    .then(function (json) {
+        console.log(json);
+        console.log(JSON.stringify(json));
+        
+        sessionStorage.EMAIL_USUARIO = json.email;
+        sessionStorage.NOME_USUARIO = json.nome;
+        sessionStorage.ID_USUARIO = json.id;
+        sessionStorage.AQUARIOS = JSON.stringify(json.aquarios);
+
+        setTimeout(function () {
+            window.location = "./dashboard/cards.html";
+        }, 1000);
+    })
+    .catch(function (erro) {
+        console.error(erro.message);
+
+        // Exibe mensagem de erro
+        cardErro.style.display = "block";
+        mensagemErro.innerHTML = "Usuário não encontrado.";
+    });
 
     return false;
 }
@@ -217,5 +212,6 @@ function sumirMensagem() {
         cardErro.style.display = 'none';
     }
 }
+
 
 </script>

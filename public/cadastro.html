@@ -134,8 +134,13 @@
         </div>
 
         <div>
-          <label for="cnpj">CNPJ:</label>
-          <input type="text" id="cnpj" placeholder="CNPJ" name="cnpj" required />
+          <label for="cargo">Cargo:</label>
+          <input type="text" id="cargo" placeholder="cargo" name="cargo" required />
+        </div>
+
+        <div>
+          <label for="telefone">Telefone:</label>
+          <input type="text" id="telefone" placeholder="telefone" name="telefone" required />
         </div>
 
         <div>
@@ -159,11 +164,14 @@
         </div>
 
         <div>
-          <label for="codigoValidacao">Código Validação:</label>
-          <input type="text" id="codigoValidacao" placeholder="Código Validação Cadastro" />
+          <label for="idEmpresa">Código Validação:</label>
+          <input type="text" id="idEmpresa_input" placeholder="Código Validação Cadastro" />
         </div>
       </form>
-      <button type="submit"><b>CADASTRAR</b></button>
+      <button onclick="cadastrar()"  type="submit"><b>CADASTRAR</b></button>
+      <div id="cardErro" style="display: none;">
+        <span id="mensagem_erro"></span>
+      </div>      
       <p class="link-login">
         Já possui uma conta? <a href="./login.html">Clique aqui </a> e acesse!
       </p>
@@ -174,5 +182,108 @@
 </html>
 
 <script>
+
+  // Array para armazenar empresas cadastradas para validação de código de ativação 
+  let listaEmpresasCadastradas = [];
+
+  function cadastrar() {
+  // Recupere os valores dos campos
+  var nomeVar = nomeUsuario.value;
+  var cpfVar = cpf.value;
+  var cargoVar = cargo.value;
+  var telefoneVar = telefone.value;
+  var emailVar = email.value;
+  var senhaVar = senha.value;
+  var confirmacaoSenhaVar = confirmacaoSenha.value;
+  var idEmpresaVar = idEmpresa_input.value;
+
+  // Validações básicas
+
+  // Valida o nome
+  if (nomeVar.length < 2) {
+    mostrarErro("O nome precisa ter mais de 1 letra.");
+    return;
+  }
+
+  // Valida o CPF com exatamente 11 números
+  if (cpfVar.length !== 11 || isNaN(cpfVar)) {
+    mostrarErro("O CPF deve ter exatamente 11 números.");
+    return;
+  }
+
+  // Valida se o telefone tem apenas números
+  if (isNaN(telefoneVar)) {
+    mostrarErro("O telefone deve conter apenas números.");
+    return;
+  }
+
+  // Valida o e-mail contendo "@" e "."
+  if (emailVar.indexOf("@") === -1 || emailVar.indexOf(".") === -1) {
+    mostrarErro("E-mail inválido. Precisa ter '@' e '.'.");
+    return;
+  }
+
+  // Valida se a senha tem números e letras maiúsculas
+  var temNumero = /\d/;
+  var temMaiuscula = /[A-Z]/;
+  if (!temNumero.test(senhaVar) || !temMaiuscula.test(senhaVar)) {
+    mostrarErro("A senha precisa ter pelo menos uma letra maiúscula e um número.");
+    return;
+  }
+
+  // Valida se a senha e a confirmação são iguais
+  if (senhaVar !== confirmacaoSenhaVar) {
+    mostrarErro("As senhas não conferem.");
+    return;
+  }
+
+  // Se tudo estiver ok, continua com o cadastro
+  if (nomeVar !== "" && cargoVar !== "" && telefoneVar !== "" && emailVar !== "" && cpfVar !== "" && senhaVar !== "" && confirmacaoSenhaVar !== "" && idEmpresaVar !== "") {
+    // Enviar os dados para o servidor
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nomeServer: nomeVar,
+        cpfServer: cpfVar,
+        cargoServer: cargoVar,
+        telefoneServer: telefoneVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        idEmpresaServer: idEmpresaVar
+      }),
+    })
+    .then(function (resposta) {
+      if (resposta.ok) {
+        alert("Cadastro realizado com sucesso! Redirecionando para o login...");
+        window.location = "login.html";
+      } else {
+        mostrarErro("Erro ao tentar realizar o cadastro.");
+      }
+    })
+    .catch(function (erro) {
+      console.log("#ERRO:", erro);
+    });
+  } else {
+    mostrarErro("Todos os campos devem ser preenchidos!");
+  }
+}
+
+// Função simples para exibir mensagens de erro
+function mostrarErro(mensagem) {
+  document.getElementById('cardErro').style.display = 'block';
+  document.getElementById('mensagem_erro').innerHTML = mensagem;
+}
+
+// Função para ocultar a mensagem de erro depois de um tempo
+function sumirMensagem() {
+  var cardErro = document.getElementById('cardErro');
+  if (cardErro) {
+    cardErro.style.display = 'none';
+  }
+}
+
 
 </script>

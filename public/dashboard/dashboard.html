@@ -5,9 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
+
+    <!-- Icons Font Awesome -->
     <script src="https://kit.fontawesome.com/64ceb195cd.js" crossorigin="anonymous"></script>
+    <!-- Icones Box Icons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- CSS do DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- JS do DataTables -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <!-- CSS Local -->
+    <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 
 <body>
@@ -126,7 +136,92 @@
 
             <!-- corpo da dash -->
             <div class="dash-body">
+                <div class="kpi-wrapper">
+                    <div class="kpi-card primary"></div>
+                    <div class="kpi-card secondary"></div>
+                    <div class="kpi-card secondary"></div>
+                </div>
 
+                <div class="chart-wrapper">
+                    <!-- card 1 -->
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h2>Distribuição de reclamações</h2>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-box">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- card 2 -->
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h2>Comparativo de unidades</h2>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-box">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h2>Unidades</h2>
+                        </div>
+                        <div class="search-field">
+                            <input type="text" id="customSearch" class="pesquisar" placeholder="Pesquisar unidade">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <table id="myTable" class="display">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Unidade</th>
+                                    <th>Endereço</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="clickable-row" data-href="http://example.com/unidadeA">
+                                    <td>1</td>
+                                    <td>Unidade A</td>
+                                    <td>Rua A, 123, São Paulo</td>
+                                </tr>
+                                <tr class="clickable-row" data-href="http://example.com/unidadeB">
+                                    <td>2</td>
+                                    <td>Unidade B</td>
+                                    <td>Rua B, 456, Rio de Janeiro</td>
+                                </tr>
+                                <tr class="clickable-row" data-href="http://example.com/unidadeC">
+                                    <td>3</td>
+                                    <td>Unidade C</td>
+                                    <td>Rua C, 789, Belo Horizonte</td>
+                                </tr>
+                                <tr class="clickable-row" data-href="http://example.com/unidadeD">
+                                    <td>4</td>
+                                    <td>Unidade D</td>
+                                    <td>Rua D, 101, Porto Alegre</td>
+                                </tr>
+                                <tr class="clickable-row" data-href="http://example.com/unidadeE">
+                                    <td>5</td>
+                                    <td>Unidade E</td>
+                                    <td>Rua E, 202, Curitiba</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
             <!-- fim do corpo da dash -->
 
@@ -135,6 +230,8 @@
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/graficoBodyDash.js"></script>
 </body>
 
 </html>
@@ -147,8 +244,8 @@
     const SubMenuLi = document.querySelector(".submenu-list");
 
     const toggleSidebar = () => {
-        
-        if(SubMenuLi.classList.contains("active")){
+
+        if (SubMenuLi.classList.contains("active")) {
             SubMenuLi.classList.remove("active");
         };
 
@@ -169,9 +266,32 @@
 
     const openSubMenu = () => {
         if (sidebar.classList.contains("active")) {
-            sidebar.classList.remove("active")
+            sidebar.classList.toggle("active")
+            dashContent.classList.toggle("active");
         }
         SubMenuLi.classList.toggle("active");
     }
+
+
+    $(document).ready(function () {
+        var table = $('#myTable').DataTable({
+            paging: false, // Habilita a paginação
+            searching: true, // Desabilita a pesquisa padrão
+            ordering: true, // Habilita a ordenação
+            lengthChange: false, // Esconde seletor de entradas
+            info: false // Esconde detalhe de entradas
+        });
+
+        // Conexão do campo de pesquisa personalizado com a tabela
+        $('#customSearch').on('keyup change', function () {
+            table.search(this.value).draw(); // Filtra a tabela com o valor do campo
+        });
+
+        // Redireciona ao clicar na linha
+        $('.clickable-row').click(function () {
+            window.location = $(this).data('href');
+        });
+    });
+
 
 </script>

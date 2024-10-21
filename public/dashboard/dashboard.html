@@ -52,16 +52,16 @@
                 <ul class="nav-menu">
 
                     <!-- visão geral -->
-                    <li class="nav-item active">
-                        <a href="">
+                    <li class="nav-item " data-target="visaoGeral">
+                        <a href="#visaoGeral">
                             <i class='bx bxs-grid-alt'></i>
                             <p>Visão Geral</p>
                         </a>
                     </li>
 
                     <!-- unidades -->
-                    <li class="nav-item">
-                        <a href="">
+                    <li class="nav-item" data-target="unidades">
+                        <a href="#unidades">
                             <i class='bx bxs-store'></i>
                             <p>Unidades</p>
                         </a>
@@ -135,11 +135,74 @@
             <!-- fim header da dash -->
 
             <!-- corpo da dash -->
-            <div class="dash-body">
+            <div class="dash-body" id="visaoGeral">
                 <div class="kpi-wrapper">
-                    <div class="kpi-card primary"></div>
-                    <div class="kpi-card secondary"></div>
-                    <div class="kpi-card secondary"></div>
+
+                    <!-- kpi 1 -->
+                    <div class="kpi-card primary">
+                        <div class="kpi-header">
+                            <div class="kpi-title">
+                                <h2>Unidades Ativas</h2>
+                            </div>
+
+                            <div class="tooltip">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <div class="tooltip-box">
+                                    <p>Total de 5 unidades</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="kpi-body">
+                            <div class="kpi-value">
+                                <span>5</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- kpi 2 -->
+                    <div class="kpi-card secondary">
+                        <div class="kpi-header">
+                            <div class="kpi-title">
+                                <h2>Nível de Satisfação Médio</h2>
+                            </div>
+                            <div class="tooltip">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <div class="tooltip-box">
+                                    <p>Total de 4 unidades</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="kpi-body">
+                            <div class="kpi-value">
+                                <span>20%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- kpi 3 -->
+                    <div class="kpi-card secondary">
+                        <div class="kpi-header">
+                            <div class="kpi-title">
+                                <h2>Média de reclamações por filial</h2>
+                            </div>
+
+                            <div class="tooltip">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <div class="tooltip-box">
+                                    <p>Esse valor representa uma estimativa mensal a partir da análise de sentimento dos
+                                        clientes.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="kpi-body">
+                            <div class="kpi-value">
+                                <span>45</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="chart-wrapper">
@@ -164,15 +227,57 @@
                                 <h2>Comparativo de unidades</h2>
                             </div>
                         </div>
+
                         <div class="card-body">
-                            <div class="chart-box">
+                            <div class="chart-box flex-display">
+
+                                <!-- wrap 1 -->
+                                <div class="wrap-area">
+
+                                    <!-- descricao da unidade -->
+                                    <div class="unit-desc">
+                                        <h3 class="name">Unidade Matriz</h3>
+                                        <p class="adress">Av. Sapopemba, 20020 - Vila Ester, São Paulo - SP, 08330-245</p>
+                                    </div>
+
+                                    <!-- status da unidade -->
+                                    <div class="unit-stats">
+                                        <span class="review-rating">1.5</span>
+                                        <span class="star-rating" data-rating-value="1.5"></span>
+                                        <span class="review-number">(300 avaliações)</span>
+                                    </div>
+                                    
+                                    <!-- grafico de avaliações -->
+                                    <div class="chart-mini-box">
+                                        <canvas id="myBarChart"></canvas>
+                                    </div>
+                                </div>
+
+                                <!-- wrap 2 -->
+                                <div class="wrap-area">
+                                    <div class="review positive-review">
+                                        <h2>Análise Positiva</h2>
+
+                                        <span><i class="fa-solid fa-check"></i>Comida boa</span>
+                                        <span><i class="fa-solid fa-check"></i>Local Limpo</span>
+                                        <span><i class="fa-solid fa-check"></i>Atendentes</span>
+                                    </div>
+                                    <div class="review negative-review">
+                                        <h2>Análise Negativa</h2>
+
+                                        <span><i class="fa-solid fa-xmark"></i>Atendimento devagar</span>
+                                        <span><i class="fa-solid fa-xmark"></i>Falta de troco</span>
+                                        <span><i class="fa-solid fa-xmark"></i>Filas</span>
+                                    </div>
+                                </div>
+
 
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="table-card">
+                <div class="table-card" id="unidades">
                     <div class="card-header">
                         <div class="card-title">
                             <h2>Unidades</h2>
@@ -237,6 +342,8 @@
 </html>
 
 <script>
+
+    // Sidebar Dinâmico - Essa função arruma o sidebar para abrir e fechar
     const barBtn = document.getElementById("toggle-dash-btn");
     const sidebar = document.querySelector(".sidebar");
     const dashContent = document.querySelector(".dash-content");
@@ -272,7 +379,7 @@
         SubMenuLi.classList.toggle("active");
     }
 
-
+    // Tabela unidades
     $(document).ready(function () {
         var table = $('#myTable').DataTable({
             paging: false, // Habilita a paginação
@@ -292,6 +399,103 @@
             window.location = $(this).data('href');
         });
     });
+
+    // Active Dinâmico - Essa função passa o active para as seções unidades e visão geral de acordo com scroll da página
+    document.addEventListener('DOMContentLoaded', function () {
+        const visaoGeral = document.getElementById('visaoGeral');
+        const unidades = document.getElementById('unidades');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        const sections = [visaoGeral, unidades];
+
+        function onScroll() {
+            let currentSectionId = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionBottom = sectionTop + sectionHeight;
+                const scrollPosition = window.scrollY + window.innerHeight / 2; // Posição de scroll ajustada
+
+                // Verifica se o meio da janela está dentro dos limites da seção
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            if (currentSectionId) {
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('data-target') === currentSectionId) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+        }
+
+        window.addEventListener('scroll', onScroll);
+        onScroll(); // Inicializa o estado ativo ao carregar a página
+    });
+
+
+    // Essa função apenas ajusta o ponto de acoragem dentro da página por causa do header que ocupa 100px de altura
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            const headerOffset = 100; // Altura do header
+
+            if (targetElement) {
+                const elementPosition = targetElement.offsetTop;
+                const offsetPosition = elementPosition - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+
+    // Seleciona o elemento que contém as estrelas
+    const divEstrelas = document.querySelector('.star-rating');
+
+    // Converte o valor de avaliação para um número
+    const valorEstrela = Number(divEstrelas.getAttribute('data-rating-value'));
+
+    // Separa a parte inteira e decimal do valor de avaliação
+    const valorEstrelaInteiro = Math.trunc(valorEstrela);
+    const valorEstrelaDecimal = valorEstrela - valorEstrelaInteiro;
+
+    // Limpa quaisquer estrelas existentes (opcional)
+    // divEstrelas.innerHTML = '';
+
+    // Adiciona estrelas inteiras
+    for (let i = 0; i < valorEstrelaInteiro; i++) {
+        const starIcon = document.createElement('i');
+        starIcon.classList.add('fa-solid', 'fa-star', 'fill-star');
+        divEstrelas.appendChild(starIcon);
+    }
+
+    // Adiciona meia estrela se necessário
+    if (valorEstrelaDecimal >= 0.5) {
+        const starIcon = document.createElement('i');
+        starIcon.classList.add('fa-solid', 'fa-star-half', 'fill-star');
+        divEstrelas.appendChild(starIcon);
+    }
+
+    // Conta a quantidade de estrelas já adicionadas
+    let qntdEstrelaPreenchida = divEstrelas.querySelectorAll('.fill-star').length;
+
+    // Adiciona estrelas vazias para completar 5 estrelas
+    for (let i = qntdEstrelaPreenchida; i < 5; i++) {
+        const starIcon = document.createElement('i');
+        starIcon.classList.add('fa-solid', 'fa-star', 'null-star'); // Estrela vazia
+        divEstrelas.appendChild(starIcon);
+    }
 
 
 </script>

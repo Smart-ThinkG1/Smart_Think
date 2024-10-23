@@ -1,0 +1,479 @@
+/* IMPORTAÇÃO DE GOOGLE FONTES - LATO E ROBOTO */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+/* ADICIONANDO CORES PADRÃO */
+:root {
+    --branco: #FFF;
+    --preto: #000;
+
+    --roxo-primario: #332DA2;
+    --roxo-secundario: #5900ff;
+    /* Cor antiga*/
+    --roxo-escuro: #2D0B68;
+
+    --azul-escuro: #1E2486;
+
+    --cinza-claro: #A3A3A3;
+    --cinza-medio: #5C5C5C;
+    --cinza-escuro: #373535;
+}
+
+/* RESET CSS, ZERANDO VALORES PADROES, SETANDO FONTE PADRAO E TIRANDO OUTRAS COISAS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a,
+li {
+    color: inherit;
+    text-decoration: none;
+    list-style: none;
+}
+
+/* CRIANDO CAIXA DA DASHBOARD */
+.dash-box {
+    display: flex;
+    height: 100vh;
+}
+
+/* CRIANDO SIDEBAR */
+.dash-box .sidebar {
+    position: fixed;
+    width: 300px;
+    height: 100vh;
+    background-color: var(--roxo-escuro);
+    z-index: 15;
+    padding: .5rem 0;
+    transition: all .3s;
+    white-space: nowrap;
+}
+
+.sidebar.active {
+    width: 80px;
+}
+
+/* HEADER DA SIDEBAR */
+.sidebar .header-sidebar {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 .5rem;
+    margin-bottom: .4rem;
+}
+
+/* LOGO */
+.header-sidebar .nav-logo {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    opacity: 1;
+    pointer-events: all;
+    transition: all .3s;
+}
+
+.sidebar.active .header-sidebar .nav-logo {
+    display: none;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.header-sidebar .nav-logo img {
+    width: auto;
+    height: 100%;
+}
+
+.header-sidebar .nav-logo h2 {
+    text-transform: uppercase;
+    color: var(--branco);
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+/* BOTAO TOGGLE */
+.header-sidebar #toggle-dash-btn {
+    color: var(--branco);
+    cursor: pointer;
+    font-size: 1.4rem;
+    padding: 0.95rem 1.2rem;
+    border-radius: .5rem;
+}
+
+#toggle-dash-btn:hover {
+    background-color: rgba(255, 255, 255, .2);
+}
+
+/* MENU DE NAVEGAÇÃO DA SIDEBAR */
+.sidebar .menu .menu-label h2 {
+    padding: 0 2rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--branco);
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+}
+
+.sidebar .menu .nav-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-menu .submenu-item,
+.nav-menu .nav-item {
+    display: flex;
+    width: 100%;
+    position: relative;
+    color: var(--cinza-medio);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: .2rem;
+}
+
+.nav-menu .nav-item::after {
+    content: "";
+    width: 8px;
+    height: 100%;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.sidebar.active .menu .nav-menu .nav-item a p,
+.sidebar.active .menu .nav-menu .nav-item a span,
+.sidebar.active .menu .menu-label,
+.sidebar.active .menu .submenu p,
+.sidebar.active .menu .submenu span {
+    display: none;
+}
+
+.nav-menu .nav-item.submenu,
+.sidebar .menu .nav-menu .nav-item a,
+.nav-menu .submenu-item a {
+    display: flex;
+    padding: 1rem 2rem;
+    width: 100%;
+    font-size: 1rem;
+    align-items: center;
+    cursor: pointer;
+}
+
+.nav-menu .nav-item a i,
+.nav-menu .nav-item.submenu i {
+    font-size: 1.4rem;
+}
+
+.nav-menu .nav-item a p,
+.nav-menu .nav-item.submenu p,
+.nav-menu .submenu-item a p {
+    display: inline;
+    margin-left: 0.5rem;
+}
+
+.nav-menu .nav-item.submenu span {
+    margin-left: auto;
+}
+
+.nav-menu .submenu-item:hover,
+.nav-menu .nav-item:hover {
+    background-color: rgba(255, 255, 255, .2);
+    color: var(--branco) !important;
+}
+
+.nav-menu .nav-item:hover::after {
+    background-color: var(--roxo-secundario);
+}
+
+.nav-menu .nav-item.active {
+    background-color: rgba(255, 255, 255, .2);
+    color: var(--branco) !important;
+}
+
+.nav-menu .nav-item.active::after {
+    background-color: var(--roxo-secundario);
+}
+
+.nav-menu .submenu-item a {
+    padding: 1rem 4rem;
+}
+
+.submenu-list {
+    display: none;
+}
+
+.submenu-list.active {
+    display: block;
+}
+
+/* RODAPE DA SIDEBAR */
+.footer-sidebar {
+    width: 100%;
+    height: 80px;
+    position: absolute;
+    bottom: 0;
+    padding: 0 .5rem;
+}
+
+.footer-sidebar .menu-user {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: solid 1px var(--cinza-escuro);
+}
+
+.footer-sidebar .menu-user .user-icon {
+    font-size: 1.4rem;
+    border: solid 3px var(--preto);
+    border-radius: 50%;
+    height: 2.5rem;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar.active .menu-user .user-account,
+.sidebar.active .menu-user .user-icon {
+    display: none;
+}
+
+.footer-sidebar .menu-user .userName {
+    font-size: .85rem;
+    color: var(--branco);
+    font-weight: 700;
+}
+
+.footer-sidebar .menu-user .userEmail {
+    font-size: .75rem;
+    color: var(--cinza-claro);
+}
+
+.footer-sidebar .menu-user #exitBtn {
+    color: var(--branco);
+    font-size: 1.4rem;
+    padding: 0.95rem 1.2rem;
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+.menu-user #exitBtn:hover {
+    background-color: rgba(255, 255, 255, .2);
+}
+
+/* FIM SIDEBAR */
+
+
+/* CONTEUDO INTERNO DASHBOARD */
+.dash-box .dash-content {
+    height: 100%;
+    width: calc(100% - 300px);
+    position: absolute;
+    left: 300px;
+    transition: all .3s;
+    position: relative;
+}
+
+.dash-box .dash-content.active {
+    width: calc(100% - 80px);
+    left: 80px;
+}
+
+/* HEADER DASHBOARD */
+.dash-box .dash-content .dash-header {
+    width: calc(100% - 300px);
+    height: 100px;
+    background-color: var(--branco);
+    border-bottom: 1px solid var(--cinza-claro);
+    padding: .5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    transition: all .3s;
+    z-index: 10;
+}
+
+.dash-content.active .dash-header {
+    width: calc(100% - 80px);
+}
+
+.dash-header .title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cinza-escuro);
+}
+
+.dash-header #modal-notify {
+    color: var(--preto);
+    font-size: 1.4rem;
+    padding: 0.95rem 1.2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    border: solid 1px var(--cinza-claro);
+}
+
+.dash-header #modal-notify:hover {
+    background-color: rgba(0, 0, 0, .4);
+    color: var(--branco);
+}
+
+
+/* BODY DASHBOARD */
+.dash-box .dash-content .dash-body {
+    width: 100%;
+    padding: 1rem 2rem;
+    position: relative;
+    z-index: 9;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.dash-body .kpi-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+}
+
+.dash-body .kpi-wrapper .kpi-card {
+    width: calc(100%/3);
+    height: 210px;
+    border-radius: 24px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.kpi-wrapper .kpi-card .kpi-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.kpi-card .kpi-header h2 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.kpi-header .tooltip {
+    cursor: pointer;
+    position: relative;
+    height: fit-content;
+}
+
+.tooltip .tooltip-box {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+    padding: .5rem .5rem;
+    background-color: #000;
+    width: 200px;
+    transition: all .4s ease;
+    opacity: 0;
+    top: calc(100% + .75rem);
+    right: 0;
+    border-radius: .25rem;
+}
+
+.tooltip .tooltip-box::after {
+    content: '';
+    position: absolute;
+    bottom: calc(100%);
+    right: 4px;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-bottom-color: var(--preto);
+    border-top: 0;
+}
+
+.tooltip .tooltip-box p {
+    color: var(--branco);
+    font-size: .75rem;
+}
+
+.tooltip:hover .tooltip-box {
+    visibility: visible;
+    opacity: 1;
+}
+
+.kpi-body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: auto 0;
+}
+
+.kpi-body .kpi-value {
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.kpi-card.primary {
+    background-color: var(--roxo-escuro);
+    color: var(--branco);
+}
+
+.kpi-card.secondary {
+    background-color: var(--branco);
+    border: 1px solid var(--cinza-claro);
+    color: var(--preto);
+}
+
+/* Wrapper Chart */
+.dash-body .chart-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+/* Chart card */
+.dash-body .chart-wrapper .chart-card {
+    width: calc(100%/2);
+    background-color: #FFF;
+    border: 1px solid var(--cinza-claro);
+    border-radius: .25rem;
+}
+
+.dash-body .card-header {
+    padding: 1rem 1.25rem;
+    border-bottom: solid 1px var(--cinza-claro);
+    position: relative;
+}
+
+.card-header .card-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--cinza-escuro);
+}
+
+.dash-body .card-body {
+    width: 100%;
+    height: 300px;
+    padding: 1.25rem;
+}
+
+.card-body .chart-box {
+    height: 100%;
+}

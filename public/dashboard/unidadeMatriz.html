@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unidade Matriz</title>
+
+    <!-- Icons Font Awesome -->
+    <script src="https://kit.fontawesome.com/64ceb195cd.js" crossorigin="anonymous"></script>
+    <!-- Icones Box Icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- CSS Local -->
+    <link rel="stylesheet" href="../css/unidade.css">
+</head>
+
+<body>
+
+
+    <div class="dash-box">
+
+        <!-- sidebar -->
+        <div class="sidebar">
+
+            <!-- header sidebar -->
+            <div class="header-sidebar">
+
+                <!-- logo -->
+                <div class="nav-logo">
+                    <img src="../assets/logoBranca.svg" alt="">
+                    <h2>Smart Think</h2>
+                </div>
+
+                <!-- botão que muda sidebar -->
+                <div id="toggle-dash-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+            <!-- fim header sidebar -->
+
+            <!-- menu sidebar -->
+            <nav class="menu">
+                <div class="menu-label">
+                    <h2>Menu</h2>
+                </div>
+                <ul class="nav-menu">
+
+                    <!-- visão geral -->
+                    <li class="nav-item " data-target="visaoGeral">
+                        <a href="#visaoGeral">
+                            <i class='bx bxs-grid-alt'></i>
+                            <p>Visão Geral</p>
+                        </a>
+                    </li>
+
+                    <!-- unidades -->
+                    <li class="nav-item" data-target="unidades">
+                        <a href="#unidades">
+                            <i class='bx bxs-store'></i>
+                            <p>Unidades</p>
+                        </a>
+                    </li>
+
+                    <!-- campanhas  -->
+                    <li class="nav-item">
+                        <a href="">
+                            <i class='bx bxs-calendar-event'></i>
+                            <p>Campanhas</p>
+                        </a>
+                    </li>
+
+                    <!-- notificações -->
+                    <li class="nav-item">
+                        <a href="">
+                            <i class='bx bxs-inbox'></i>
+                            <p>Notificações</p>
+                        </a>
+                    </li>
+
+                    <!-- configurações -->
+                    <li class="nav-item submenu">
+                        <i class='bx bxs-cog'></i>
+                        <p>Configurações</p>
+                        <span>▾</span>
+                    </li>
+                    <ul class="submenu-list">
+                        <li class="submenu-item">
+                            <a href="">
+                                <p>Meu perfil</p>
+                            </a>
+                        </li>
+                        <li class="submenu-item">
+                            <a href="">
+                                <p>Minha marca</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                </ul>
+            </nav>
+            <!-- fim menu sidebar -->
+
+            <!-- footer sidebar -->
+            <div class="footer-sidebar">
+                <div class="menu-user">
+                    <div class="user-icon"><i class="fa-solid fa-user"></i></div>
+                    <div class="user-account">
+                        <div class="userName"><span>Fernando Henrique</span></div>
+                        <div class="userEmail"><span>fernando.321.www@gmail.com</span></div>
+                    </div>
+                    <div id="exitBtn"><i class="fa-solid fa-right-from-bracket"></i></div>
+                </div>
+            </div>
+            <!-- fim footer sidebar -->
+        </div>
+        <!-- fim sidebar -->
+
+        <!-- conteudo da dash -->
+        <div class="dash-content">
+
+            <!-- header da dash -->
+            <div class="dash-header">
+
+                <div class="title"><span>Unidade Matriz</span></div>
+                <div id="modal-notify">
+                    <i class='bx bxs-inbox'></i>
+                </div>
+            </div>
+            <!-- fim header da dash -->
+
+            <!-- corpo da dash -->
+            <div class="dash-body" id="visaoGeral">
+                <div class="kpi-wrapper">
+
+                    <!-- kpi 1 -->
+                    <div class="kpi-card primary">
+                        <div class="kpi-header">
+                            <div class="kpi-title">
+                                <h2>Campanhas Ativas</h2>
+                            </div>
+
+                            <div class="tooltip">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <div class="tooltip-box">
+                                    <p>Total de 3 campanhas</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="kpi-body">
+                            <div class="kpi-value">
+                                <span>3</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- kpi 2 -->
+                    <div class="kpi-card secondary">
+                        <div class="kpi-header">
+                            <div class="kpi-title">
+                                <h2>Nível de Satisfação</h2>
+                            </div>
+                            <div class="tooltip">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <div class="tooltip-box">
+                                    <p>Total de 4 unidades</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="kpi-body">
+                            <div class="kpi-value">
+                                <span>75%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- kpi 3 -->
+                    <div class="kpi-card secondary">
+                        <div class="kpi-header">
+                            <div class="kpi-title">
+                                <h2>Média de reclamações</h2>
+                            </div>
+
+                            <div class="tooltip">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <div class="tooltip-box">
+                                    <p>Esse valor representa uma estimativa mensal a partir da análise de sentimento dos
+                                        clientes.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="kpi-body">
+                            <div class="kpi-value">
+                                <span>20</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-wrapper">
+
+                    <!-- card 1 -->
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h2>Dias mais buscados na Semana</h2>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-box">
+                                <canvas id="matrizBar1"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h2>Buscas por região</h2>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-box">
+                                <canvas id="matrizBar2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- fim do corpo da dash -->
+
+        </div>
+        <!-- fim conteudo da dash -->
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/graficoUnidadeMatriz.js"></script>
+
+</body>
+
+</html>
+
+<script>
+
+    // Sidebar Dinâmico - Essa função arruma o sidebar para abrir e fechar
+    const barBtn = document.getElementById("toggle-dash-btn");
+    const sidebar = document.querySelector(".sidebar");
+    const dashContent = document.querySelector(".dash-content");
+    const configSubMenu = document.querySelectorAll(".submenu");
+    const SubMenuLi = document.querySelector(".submenu-list");
+
+    const toggleSidebar = () => {
+
+        if (SubMenuLi.classList.contains("active")) {
+            SubMenuLi.classList.remove("active");
+        };
+
+        sidebar.classList.toggle("active");
+        dashContent.classList.toggle("active");
+    }
+
+
+    barBtn.addEventListener("click", () => {
+        toggleSidebar();
+    })
+
+    configSubMenu.forEach((el) => {
+        el.addEventListener("click", () => {
+            openSubMenu();
+        });
+    });
+
+    const openSubMenu = () => {
+        if (sidebar.classList.contains("active")) {
+            sidebar.classList.toggle("active")
+            dashContent.classList.toggle("active");
+        }
+        SubMenuLi.classList.toggle("active");
+    }
+
+
+
+</script>

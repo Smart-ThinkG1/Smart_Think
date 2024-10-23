@@ -12,6 +12,8 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- CSS do DataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <!-- CSS do Swipper Slides -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- JS do DataTables -->
@@ -221,59 +223,139 @@
                     </div>
 
                     <!-- card 2 -->
-                    <div class="chart-card">
+                    <div class="chart-card swiper">
                         <div class="card-header">
                             <div class="card-title">
                                 <h2>Comparativo de unidades</h2>
                             </div>
+                            <!-- Pagination -->
+                            <div class="swiper-pagination"></div>
                         </div>
 
-                        <div class="card-body">
-                            <div class="chart-box flex-display">
 
-                                <!-- wrap 1 -->
-                                <div class="wrap-area">
-
-                                    <!-- descricao da unidade -->
-                                    <div class="unit-desc">
-                                        <h3 class="name">Unidade Matriz</h3>
-                                        <p class="adress">Av. Sapopemba, 20020 - Vila Ester, São Paulo - SP, 08330-245</p>
+                        <!-- Unidade 1 -->
+                        <div class="swiper-wrapper">
+                            <div class="card-body swiper-slide">
+                                <div class="chart-box flex-display swiper-slide">
+                                    <!-- wrap 1 -->
+                                    <div class="wrap-area">
+                                        <!-- descricao da unidade -->
+                                        <div class="unit-desc">
+                                            <h3 class="name">Unidade Matriz</h3>
+                                            <p class="adress">Av. Sapopemba, 20020 - Vila Ester, São Paulo - SP,
+                                                08330-245</p>
+                                        </div>
+                                        <!-- status da unidade -->
+                                        <div class="unit-stats">
+                                            <span class="review-rating">1.5</span>
+                                            <span class="star-rating" data-rating-value="1.5"></span>
+                                            <span class="review-number">(300 avaliações)</span>
+                                        </div>
+                                        <!-- grafico de avaliações -->
+                                        <div class="chart-mini-box">
+                                            <canvas id="myBarChart1"></canvas>
+                                        </div>
                                     </div>
-
-                                    <!-- status da unidade -->
-                                    <div class="unit-stats">
-                                        <span class="review-rating">1.5</span>
-                                        <span class="star-rating" data-rating-value="1.5"></span>
-                                        <span class="review-number">(300 avaliações)</span>
-                                    </div>
-                                    
-                                    <!-- grafico de avaliações -->
-                                    <div class="chart-mini-box">
-                                        <canvas id="myBarChart"></canvas>
-                                    </div>
-                                </div>
-
-                                <!-- wrap 2 -->
-                                <div class="wrap-area">
-                                    <div class="review positive-review">
-                                        <h2>Análise Positiva</h2>
-
-                                        <span><i class="fa-solid fa-check"></i>Comida boa</span>
-                                        <span><i class="fa-solid fa-check"></i>Local Limpo</span>
-                                        <span><i class="fa-solid fa-check"></i>Atendentes</span>
-                                    </div>
-                                    <div class="review negative-review">
-                                        <h2>Análise Negativa</h2>
-
-                                        <span><i class="fa-solid fa-xmark"></i>Atendimento devagar</span>
-                                        <span><i class="fa-solid fa-xmark"></i>Falta de troco</span>
-                                        <span><i class="fa-solid fa-xmark"></i>Filas</span>
+                                    <!-- wrap 2 -->
+                                    <div class="wrap-area">
+                                        <div class="review positive-review">
+                                            <h2>Análise Positiva</h2>
+                                            <span><i class="fa-solid fa-check"></i>Comida boa</span>
+                                            <span><i class="fa-solid fa-check"></i>Local Limpo</span>
+                                            <span><i class="fa-solid fa-check"></i>Atendentes</span>
+                                        </div>
+                                        <div class="review negative-review">
+                                            <h2>Análise Negativa</h2>
+                                            <span><i class="fa-solid fa-xmark"></i>Atendimento devagar</span>
+                                            <span><i class="fa-solid fa-xmark"></i>Falta de troco</span>
+                                            <span><i class="fa-solid fa-xmark"></i>Filas</span>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
 
+                            <!-- Unidade 2 -->
+                            <div class="card-body swiper-slide">
 
+                                <div class="chart-box flex-display swiper-slide">
+                                    <!-- wrap 1 -->
+                                    <div class="wrap-area">
+                                        <!-- descricao da unidade -->
+                                        <div class="unit-desc">
+                                            <h3 class="name">Unidade 2</h3>
+                                            <p class="adress">Av. das Américas, 5000 - Barra da Tijuca, Rio de Janeiro -
+                                                RJ, 22640-102</p>
+                                        </div>
+                                        <!-- status da unidade -->
+                                        <div class="unit-stats">
+                                            <span class="review-rating">4.0</span>
+                                            <span class="star-rating" data-rating-value="4.0"></span>
+                                            <span class="review-number">(999 avaliações)</span>
+                                        </div>
+                                        <!-- grafico de avaliações -->
+                                        <div class="chart-mini-box">
+                                            <canvas id="myBarChart2"></canvas>
+                                        </div>
+                                    </div>
+                                    <!-- wrap 2 -->
+                                    <div class="wrap-area">
+                                        <div class="review positive-review">
+                                            <h2>Análise Positiva</h2>
+                                            <span><i class="fa-solid fa-check"></i>Comida boa</span>
+                                            <span><i class="fa-solid fa-check"></i>Local Limpo</span>
+                                            <span><i class="fa-solid fa-check"></i>Atendentes</span>
+                                        </div>
+                                        <div class="review negative-review">
+                                            <h2>Análise Negativa</h2>
+                                            <span><i class="fa-solid fa-xmark"></i>Atendimento devagar</span>
+                                            <span><i class="fa-solid fa-xmark"></i>Falta de troco</span>
+                                            <span><i class="fa-solid fa-xmark"></i>Filas</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Unidade 3 -->
+                            <div class="card-body swiper-slide">
+                                <div class="chart-box flex-display swiper-slide">
+                                    <!-- wrap 1 -->
+                                    <div class="wrap-area">
+                                        <!-- descricao da unidade -->
+                                        <div class="unit-desc">
+                                            <h3 class="name">Unidade 3</h3>
+                                            <p class="adress">Av. Afonso Pena, 1000 - Centro, Belo Horizonte - MG,
+                                                30130-003</p>
+                                        </div>
+                                        <!-- status da unidade -->
+                                        <div class="unit-stats">
+                                            <span class="review-rating">4.9</span>
+                                            <span class="star-rating" data-rating-value="4.9"></span>
+                                            <span class="review-number">(1920 avaliações)</span>
+                                        </div>
+                                        <!-- grafico de avaliações -->
+                                        <div class="chart-mini-box">
+                                            <canvas id="myBarChart3"></canvas>
+                                        </div>
+                                    </div>
+                                    <!-- wrap 2 -->
+                                    <div class="wrap-area">
+                                        <div class="review positive-review">
+                                            <h2>Análise Positiva</h2>
+                                            <span><i class="fa-solid fa-check"></i>Comida boa</span>
+                                            <span><i class="fa-solid fa-check"></i>Local Limpo</span>
+                                            <span><i class="fa-solid fa-check"></i>Atendentes</span>
+                                        </div>
+                                        <div class="review negative-review">
+                                            <h2>Análise Negativa</h2>
+                                            <span><i class="fa-solid fa-xmark"></i>Atendimento devagar</span>
+                                            <span><i class="fa-solid fa-xmark"></i>Falta de troco</span>
+                                            <span><i class="fa-solid fa-xmark"></i>Filas</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -337,6 +419,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/graficoBodyDash.js"></script>
+    <!-- JS do Swiper Slides -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 
 </html>
@@ -460,42 +544,49 @@
     });
 
 
-    // Seleciona o elemento que contém as estrelas
-    const divEstrelas = document.querySelector('.star-rating');
+    // Seleciona todos os elementos que contêm as estrelas
+    const divEstrelasList = document.querySelectorAll('.star-rating');
 
-    // Converte o valor de avaliação para um número
-    const valorEstrela = Number(divEstrelas.getAttribute('data-rating-value'));
+    // Itera sobre cada elemento
+    divEstrelasList.forEach(divEstrelas => {
+        // Converte o valor de avaliação para um número
+        const valorEstrela = Number(divEstrelas.getAttribute('data-rating-value'));
 
-    // Separa a parte inteira e decimal do valor de avaliação
-    const valorEstrelaInteiro = Math.trunc(valorEstrela);
-    const valorEstrelaDecimal = valorEstrela - valorEstrelaInteiro;
+        // Separa a parte inteira e decimal do valor de avaliação
+        const valorEstrelaInteiro = Math.trunc(valorEstrela);
+        const valorEstrelaDecimal = valorEstrela - valorEstrelaInteiro;
 
-    // Limpa quaisquer estrelas existentes (opcional)
-    // divEstrelas.innerHTML = '';
 
-    // Adiciona estrelas inteiras
-    for (let i = 0; i < valorEstrelaInteiro; i++) {
-        const starIcon = document.createElement('i');
-        starIcon.classList.add('fa-solid', 'fa-star', 'fill-star');
-        divEstrelas.appendChild(starIcon);
-    }
+        // Adiciona estrelas inteiras
+        for (let i = 0; i < valorEstrelaInteiro; i++) {
+            const starIcon = document.createElement('i');
+            starIcon.classList.add('fa-solid', 'fa-star', 'fill-star');
+            divEstrelas.appendChild(starIcon);
+        }
 
-    // Adiciona meia estrela se necessário
-    if (valorEstrelaDecimal >= 0.5) {
-        const starIcon = document.createElement('i');
-        starIcon.classList.add('fa-solid', 'fa-star-half', 'fill-star');
-        divEstrelas.appendChild(starIcon);
-    }
+        // Adiciona meia estrela se necessário
+        if (valorEstrelaDecimal >= 0.5) {
+            const starIcon = document.createElement('i');
+            starIcon.classList.add('fa-solid', 'fa-star-half', 'fill-star');
+            divEstrelas.appendChild(starIcon);
+        }
 
-    // Conta a quantidade de estrelas já adicionadas
-    let qntdEstrelaPreenchida = divEstrelas.querySelectorAll('.fill-star').length;
+        // Conta a quantidade de estrelas já adicionadas
+        let qntdEstrelaPreenchida = divEstrelas.querySelectorAll('.fill-star').length;
 
-    // Adiciona estrelas vazias para completar 5 estrelas
-    for (let i = qntdEstrelaPreenchida; i < 5; i++) {
-        const starIcon = document.createElement('i');
-        starIcon.classList.add('fa-solid', 'fa-star', 'null-star'); // Estrela vazia
-        divEstrelas.appendChild(starIcon);
-    }
+        // Adiciona estrelas vazias para completar 5 estrelas
+        for (let i = qntdEstrelaPreenchida; i < 5; i++) {
+            const starIcon = document.createElement('i');
+            starIcon.classList.add('fa-solid', 'fa-star', 'null-star'); // Estrela vazia
+            divEstrelas.appendChild(starIcon);
+        }
+    });
+    const swiper = new Swiper('.swiper', {
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'progressbar',
+        }
 
+    });
 
 </script>

@@ -54,24 +54,40 @@
                 <ul class="nav-menu">
 
                     <!-- visão geral -->
-                    <li class="nav-item " data-target="visaoGeral">
-                        <a href="#visaoGeral">
+                    <li class="nav-item active" data-target="visaoGeral">
+                        <a href="dashboard.html">
                             <i class='bx bxs-grid-alt'></i>
                             <p>Visão Geral</p>
                         </a>
                     </li>
 
                     <!-- unidades -->
-                    <li class="nav-item" data-target="unidades">
-                        <a href="#unidades">
-                            <i class='bx bxs-store'></i>
-                            <p>Unidades</p>
-                        </a>
+                    <li class="nav-item submenu" data-target="unidades">
+                        <i class='bx bxs-store'></i>
+                        <p>Unidades</p>
+                        <span>▾</span>
                     </li>
+                    <ul class="submenu-list">
+                        <li class="submenu-item">
+                            <a href="unidadeMatriz.html">
+                                <p>Matriz</p>
+                            </a>
+                        </li>
+                        <li class="submenu-item">
+                            <a href="unidade2.html">
+                                <p>Unidade 2</p>
+                            </a>
+                        </li>
+                        <li class="submenu-item">
+                            <a href="unidade3.html">
+                                <p>Unidade 3</p>
+                            </a>
+                        </li>
+                    </ul>
 
                     <!-- campanhas  -->
                     <li class="nav-item">
-                        <a href="">
+                        <a href="campanha.html">
                             <i class='bx bxs-calendar-event'></i>
                             <p>Campanhas</p>
                         </a>
@@ -81,7 +97,7 @@
                     <li class="nav-item">
                         <a href="">
                             <i class='bx bxs-inbox'></i>
-                            <p>Notificações</p>
+                            <p>Atividades</p>
                         </a>
                     </li>
 
@@ -150,14 +166,14 @@
                             <div class="tooltip">
                                 <i class="fa-solid fa-circle-info"></i>
                                 <div class="tooltip-box">
-                                    <p>Total de 5 unidades</p>
+                                    <p>Total de 3 unidades</p>
                                 </div>
                             </div>
 
                         </div>
                         <div class="kpi-body">
                             <div class="kpi-value">
-                                <span>5</span>
+                                <span>3</span>
                             </div>
                         </div>
                     </div>
@@ -166,7 +182,7 @@
                     <div class="kpi-card secondary">
                         <div class="kpi-header">
                             <div class="kpi-title">
-                                <h2>Nível de Satisfação Médio</h2>
+                                <h2>Satisfação Média Mensal</h2>
                             </div>
                             <div class="tooltip">
                                 <i class="fa-solid fa-circle-info"></i>
@@ -214,6 +230,14 @@
                             <div class="card-title">
                                 <h2>Distribuição de reclamações</h2>
                             </div>
+
+                            <div class="tooltip">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <div class="tooltip-box">
+                                    <p>Unidade 3: 72,6%</p>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="card-body">
                             <div class="chart-box">
@@ -228,6 +252,12 @@
                             <div class="card-title">
                                 <h2>Comparativo de unidades</h2>
                             </div>
+                            <select id="slideSelector" class="selectSlide">
+                                <option value="0">Matriz</option>
+                                <option value="1">Unidade 2</option>
+                                <option value="2">Unidade 3</option>
+                                <!-- Adicione mais opções conforme necessário -->
+                            </select>
                             <!-- Pagination -->
                             <div class="swiper-pagination"></div>
                         </div>
@@ -240,7 +270,7 @@
                                     <!-- wrap 1 -->
                                     <div class="wrap-area">
                                         <!-- descricao da unidade -->
-                                        
+
                                         <div class="unit-desc">
                                             <h3 class="name">Unidade Matriz</h3>
                                             <p class="adress">Av. Sapopemba, 20020 - Vila Ester, São Paulo - SP,
@@ -248,15 +278,16 @@
                                         </div>
                                         <!-- status da unidade -->
                                         <div class="unit-stats">
-                                            <span class="review-rating">1.5</span>
-                                            <span class="star-rating" data-rating-value="1.5"></span>
-                                            <span class="review-number">(300 avaliações)</span>
+                                            <span class="review-rating">3.5</span>
+                                            <span class="star-rating" data-rating-value="3.5"></span>
+                                            <span class="review-number">(679 avaliações)</span>
                                         </div>
                                         <!-- grafico de avaliações -->
+
                                         <div class="chart-mini-box">
                                             <canvas id="myBarChart1"></canvas>
                                         </div>
-                                        
+
                                     </div>
                                     <!-- wrap 2 -->
                                     <div class="wrap-area">
@@ -272,6 +303,8 @@
                                             <span><i class="fa-solid fa-xmark"></i>Falta de troco</span>
                                             <span><i class="fa-solid fa-xmark"></i>Filas</span>
                                         </div>
+
+                                        <a href="unidadeMatriz.html" class="linkBtn">acessar</a>
                                     </div>
                                 </div>
                             </div>
@@ -290,8 +323,8 @@
                                         </div>
                                         <!-- status da unidade -->
                                         <div class="unit-stats">
-                                            <span class="review-rating">4.0</span>
-                                            <span class="star-rating" data-rating-value="4.0"></span>
+                                            <span class="review-rating">3.9</span>
+                                            <span class="star-rating" data-rating-value="3.9"></span>
                                             <span class="review-number">(999 avaliações)</span>
                                         </div>
                                         <!-- grafico de avaliações -->
@@ -313,6 +346,7 @@
                                             <span><i class="fa-solid fa-xmark"></i>Falta de troco</span>
                                             <span><i class="fa-solid fa-xmark"></i>Filas</span>
                                         </div>
+                                        <a href="unidade2.html" class="linkBtn">acessar</a>
                                     </div>
                                 </div>
                             </div>
@@ -330,8 +364,8 @@
                                         </div>
                                         <!-- status da unidade -->
                                         <div class="unit-stats">
-                                            <span class="review-rating">4.9</span>
-                                            <span class="star-rating" data-rating-value="4.9"></span>
+                                            <span class="review-rating">2.2</span>
+                                            <span class="star-rating" data-rating-value="2.2"></span>
                                             <span class="review-number">(1920 avaliações)</span>
                                         </div>
                                         <!-- grafico de avaliações -->
@@ -353,6 +387,7 @@
                                             <span><i class="fa-solid fa-xmark"></i>Falta de troco</span>
                                             <span><i class="fa-solid fa-xmark"></i>Filas</span>
                                         </div>
+                                        <a href="unidade3.html" class="linkBtn">acessar</a>
                                     </div>
                                 </div>
                             </div>
@@ -402,17 +437,19 @@
                     </div>
                 </div>
             </div> -->
-            <!-- fim do corpo da dash -->
+                <!-- fim do corpo da dash -->
+
+            </div>
+            <!-- fim conteudo da dash -->
 
         </div>
-        <!-- fim conteudo da dash -->
 
-    </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/graficoBodyDash.js"></script>
-    <!-- JS do Swiper Slides -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script src="../js/graficoBodyDash.js"></script>
+        <!-- JS do Swiper Slides -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 
 </html>
@@ -423,37 +460,82 @@
     const barBtn = document.getElementById("toggle-dash-btn");
     const sidebar = document.querySelector(".sidebar");
     const dashContent = document.querySelector(".dash-content");
-    const configSubMenu = document.querySelectorAll(".submenu");
-    const SubMenuLi = document.querySelector(".submenu-list");
+    const subMenuBtns = document.querySelectorAll(".submenu");
+
 
     const toggleSidebar = () => {
-
-        if (SubMenuLi.classList.contains("active")) {
-            SubMenuLi.classList.remove("active");
-        };
-
         sidebar.classList.toggle("active");
         dashContent.classList.toggle("active");
-    }
 
+        // Fecha todos os submenus ao alternar o sidebar
+        subMenuBtns.forEach(btn => {
+            const subMenuList = btn.nextElementSibling;
+            if (subMenuList) {
+                subMenuList.classList.remove("active");
+            }
+        });
+    }
 
     barBtn.addEventListener("click", () => {
         toggleSidebar();
-    })
+    });
 
-    configSubMenu.forEach((el) => {
-        el.addEventListener("click", () => {
-            openSubMenu();
+
+    subMenuBtns.forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+            event.preventDefault(); // Impede o comportamento padrão do link <a>
+
+            // Encontra a lista submenu correspondente
+            const subMenuList = btn.nextElementSibling;
+
+            if (subMenuList) { // Verifica se o submenu existe
+                // Fecha outros submenus abertos
+                subMenuBtns.forEach(otherBtn => {
+                    if (otherBtn !== btn) {
+                        const otherSubMenuList = otherBtn.nextElementSibling;
+                        if (otherSubMenuList) {
+                            otherSubMenuList.classList.remove("active");
+                        }
+                    }
+                });
+
+                // Alterna a visibilidade do submenu clicado
+                subMenuList.classList.toggle("active");
+
+                // Ajusta o sidebar se estiver aberto e o submenu for ativado
+                if (sidebar.classList.contains("active") && subMenuList.classList.contains("active")) {
+                    sidebar.classList.remove("active");
+                    dashContent.classList.remove("active");
+                }
+            }
         });
     });
 
-    const openSubMenu = () => {
-        if (sidebar.classList.contains("active")) {
-            sidebar.classList.toggle("active")
-            dashContent.classList.toggle("active");
+    // Inicializando Carrosel   
+    const swiper = new Swiper('.swiper', {
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'progressbar',
         }
-        SubMenuLi.classList.toggle("active");
-    }
+
+    });
+
+    // Obtenha o campo select
+    const slideSelector = document.getElementById('slideSelector');
+
+    // Adicione um ouvinte de eventos para mudar o slide quando o valor do select mudar
+    slideSelector.addEventListener('change', function () {
+        const selectedSlideIndex = parseInt(this.value, 10);
+        swiper.slideTo(selectedSlideIndex);
+    });
+
+    // Adicione um ouvinte de eventos ao carrossel para detectar mudanças de slide
+    swiper.on('slideChange', function () {
+        const currentSlideIndex = swiper.activeIndex;
+        slideSelector.value = currentSlideIndex;
+    });
+
+
 
     // Tabela unidades
     $(document).ready(function () {
@@ -573,12 +655,6 @@
             divEstrelas.appendChild(starIcon);
         }
     });
-    const swiper = new Swiper('.swiper', {
-        pagination: {
-            el: '.swiper-pagination',
-            type: 'progressbar',
-        }
 
-    });
 
 </script>

@@ -375,7 +375,7 @@ li {
     font-weight: 900;
 }
 
-.kpi-header .tooltip {
+.tooltip {
     cursor: pointer;
     position: relative;
     height: fit-content;
@@ -460,6 +460,9 @@ li {
     padding: 1rem 1.25rem;
     border-bottom: solid 1px var(--cinza-claro);
     position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .card-header .card-title {
@@ -467,11 +470,20 @@ li {
     font-weight: 500;
     color: var(--cinza-escuro);
 }
-
+.card-header .tooltip i {
+    color: #BF0413;
+}
+.card-header .selectSlide {
+    padding: .45rem 1rem ;
+    height: 100%;
+    font-family: 'Lato', sans-serif;
+    border: 1px solid var(--cinza-claro);
+    border-radius: .25rem;
+}
 .dash-body .card-body {
     width: 100%;
     height: 300px;
-    padding: 1.25rem;
+    padding: 1rem;
 }
 
 .card-body .chart-box {
@@ -488,6 +500,8 @@ li {
 .card-body .chart-box .wrap-area {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Unit Desc */
@@ -504,10 +518,11 @@ li {
 }
 
 .wrap-area .unit-desc p {
-    font-size: .75rem;
+    font-size: .65rem;
     font-weight: 500;
     color: var(--cinza-claro);
 }
+
 
 /* Unit Stats */
 .wrap-area .unit-stats {
@@ -516,10 +531,17 @@ li {
 }
 
 .wrap-area .unit-stats span {
-    font-size: .75rem;
+    font-size: .65rem;
     font-weight: 500;
     color: var(--cinza-claro);
 }
+.wrap-area .unit-stats .review-rating {
+    margin-right: .25rem;
+}
+.wrap-area .unit-stats .review-number {
+    margin-left: .25rem;
+}
+
 
 .wrap-area .unit-stats .fill-star {
     color: yellow;
@@ -538,7 +560,10 @@ li {
 .wrap-area .chart-mini-box {
     width: 100%;
     height: fit-content;
-    margin-top: .5rem;
+}
+.wrap-area .chart-mini-box canvas {
+    width: 100% !important;
+    height: 100% !important;
 }
 
 /* Review */
@@ -554,7 +579,7 @@ li {
 .review span {
     display: block;
     margin-bottom: .25rem;
-    font-size: .85rem;
+    font-size: .75rem;
     font-weight: 500;
 }
 .wrap-area .review i {
@@ -566,6 +591,24 @@ li {
 }
 .wrap-area .negative-review i {
     color: red;
+}
+.wrap-area .linkBtn {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 800;
+    width: fit-content;
+    height: fit-content;
+    padding: 12px 22px;
+    color: var(--branco);
+    background-color: var(--roxo-escuro);
+    border: none;
+    cursor: pointer;
+    margin: auto 0 0 auto;
+}
+.wrap-area .linkBtn:hover {
+    background-color: var(--branco);
+    color: #000;
+    border: 1px solid var(--preto);
 }
 
 

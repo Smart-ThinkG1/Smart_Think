@@ -47,23 +47,39 @@
 
                     <!-- visão geral -->
                     <li class="nav-item " data-target="visaoGeral">
-                        <a href="#visaoGeral">
+                        <a href="dashboard.html">
                             <i class='bx bxs-grid-alt'></i>
                             <p>Visão Geral</p>
                         </a>
                     </li>
 
-                    <!-- unidades -->
-                    <li class="nav-item" data-target="unidades">
-                        <a href="#unidades">
-                            <i class='bx bxs-store'></i>
-                            <p>Unidades</p>
+                   <!-- unidades -->
+                   <li class="nav-item submenu" data-target="unidades">
+                    <i class='bx bxs-store'></i>
+                    <p>Unidades</p>
+                    <span>▾</span>
+                </li>
+                <ul class="submenu-list">
+                    <li class="submenu-item">
+                        <a href="unidadeMatriz.html">
+                            <p>Matriz</p>
                         </a>
                     </li>
+                    <li class="submenu-item">
+                        <a href="unidade2.html">
+                            <p>Unidade 2</p>
+                        </a>
+                    </li>
+                    <li class="submenu-item">
+                        <a href="unidade3.html">
+                            <p>Unidade 3</p>
+                        </a>
+                    </li>
+                </ul>
 
                     <!-- campanhas  -->
                     <li class="nav-item">
-                        <a href="">
+                        <a href="campanha.html">
                             <i class='bx bxs-calendar-event'></i>
                             <p>Campanhas</p>
                         </a>
@@ -73,7 +89,7 @@
                     <li class="nav-item">
                         <a href="">
                             <i class='bx bxs-inbox'></i>
-                            <p>Notificações</p>
+                            <p>Atividades</p>
                         </a>
                     </li>
 
@@ -249,37 +265,56 @@
     const barBtn = document.getElementById("toggle-dash-btn");
     const sidebar = document.querySelector(".sidebar");
     const dashContent = document.querySelector(".dash-content");
-    const configSubMenu = document.querySelectorAll(".submenu");
-    const SubMenuLi = document.querySelector(".submenu-list");
+    const subMenuBtns = document.querySelectorAll(".submenu");
+
 
     const toggleSidebar = () => {
-
-        if (SubMenuLi.classList.contains("active")) {
-            SubMenuLi.classList.remove("active");
-        };
-
         sidebar.classList.toggle("active");
         dashContent.classList.toggle("active");
-    }
 
+        // Fecha todos os submenus ao alternar o sidebar
+        subMenuBtns.forEach(btn => {
+            const subMenuList = btn.nextElementSibling;
+            if (subMenuList) {
+                subMenuList.classList.remove("active");
+            }
+        });
+    }
 
     barBtn.addEventListener("click", () => {
         toggleSidebar();
-    })
-
-    configSubMenu.forEach((el) => {
-        el.addEventListener("click", () => {
-            openSubMenu();
-        });
     });
 
-    const openSubMenu = () => {
-        if (sidebar.classList.contains("active")) {
-            sidebar.classList.toggle("active")
-            dashContent.classList.toggle("active");
-        }
-        SubMenuLi.classList.toggle("active");
-    }
+
+    subMenuBtns.forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+            event.preventDefault(); // Impede o comportamento padrão do link <a>
+
+            // Encontra a lista submenu correspondente
+            const subMenuList = btn.nextElementSibling;
+
+            if (subMenuList) { // Verifica se o submenu existe
+                // Fecha outros submenus abertos
+                subMenuBtns.forEach(otherBtn => {
+                    if (otherBtn !== btn) {
+                        const otherSubMenuList = otherBtn.nextElementSibling;
+                        if (otherSubMenuList) {
+                            otherSubMenuList.classList.remove("active");
+                        }
+                    }
+                });
+
+                // Alterna a visibilidade do submenu clicado
+                subMenuList.classList.toggle("active");
+
+                // Ajusta o sidebar se estiver aberto e o submenu for ativado
+                if (sidebar.classList.contains("active") && subMenuList.classList.contains("active")) {
+                    sidebar.classList.remove("active");
+                    dashContent.classList.remove("active");
+                }
+            }
+        });
+    });
 
 
 

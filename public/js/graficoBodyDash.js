@@ -1,23 +1,24 @@
+// Certifique-se de que o Chart.js e o plugin de datalabels estão disponíveis
+Chart.register(ChartDataLabels);
+
 const ctx = document.getElementById('myChart');
 
 new Chart(ctx, {
-    type: 'pie', //Tipo de gráfico
+    type: 'pie', // Tipo de gráfico
     data: {
-        labels: ['Unidade 1', 'Unidade 2', 'Unidade 3', 'Matriz'],
+        labels: ['Unidade 2', 'Unidade 3', 'Matriz'],
         datasets: [{
             label: 'Distribuição',
-            data: [20, 30, 40, 200], // Dados 
+            data: [1280, 312, 170], // Dados 
             backgroundColor: [
-                'rgba(255, 99, 132, 0.4)',
-                'rgba(54, 162, 235, 0.4)',
-                'rgba(255, 206, 86, 0.4)',
-                'rgba(75, 192, 192, 0.4)',
+                'rgba(74, 42, 140, 0.9)', 
+                'rgba(95, 59, 170, 0.9)', 
+                'rgba(43, 8, 92, 0.9)', 
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
+                '#fff', // Cor Base
+                '#fff', // Cor Base
+                '#fff', // Cor Base
             ],
             borderWidth: 1
         }]
@@ -27,11 +28,32 @@ new Chart(ctx, {
         maintainAspectRatio: false, // Permitir que o gráfico mantenha a proporção
         plugins: {
             legend: {
-                position: 'bottom', // Posicionar a legenda na parte inferior
+                position: 'right', // Posicionar a legenda na direita
+            },
+            datalabels: {
+                color: '#fff', // Cor dos rótulos
+                formatter: (value, context) => {
+                    // Calcula a porcentagem
+                    const data = context.chart.data.datasets[0].data;
+                    const total = data.reduce((acc, val) => acc + val, 0);
+                    const percentage = (value / total * 100).toFixed(1);
+                    return `${percentage}%`; // Retorna o valor em porcentagem
+                },
+                anchor: 'end', // Alinha o rótulo ao final do setor
+                align: 'start', // Alinha o texto do rótulo
+                offset: 0, // Distância dos rótulos em relação ao gráfico
+                font: {
+                    weight: 'bold',
+                    size: 12,
+                }
             }
         }
     }
 });
+
+
+
+
 
 
 // Gráfico Barra Horizontal Unidade 1 (Matriz)
@@ -39,20 +61,20 @@ const ctx2 = document.getElementById('myBarChart1').getContext('2d');
 new Chart(ctx2, {
     type: 'bar',
     data: {
-        labels: ['Negativos', 'Positivos', 'Neutros'],
+        labels: ['Positivos', 'Neutros', 'Negativos'], // Ordem alterada
         datasets: [{
             axis: 'y',
             label: 'Quantidade',
-            data: [1500, 3500, 1000], // Dados alterados
+            data: [396, 113, 170], // Ordem dos dados ajustada
             backgroundColor: [
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(75, 192, 192, 0.8)',
-                'rgba(255, 206, 86, 0.8)'
+                'rgba(75, 192, 192, 0.8)', // Cor para Positivos
+                'rgba(255, 206, 86, 0.8)', // Cor para Neutros
+                'rgba(255, 99, 132, 0.8)'  // Cor para Negativos
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
                 'rgba(75, 192, 192, 1)',
-                'rgba(255, 206, 86, 1)'
+                'rgba(255, 206, 86, 1)',
+                'rgba(255, 99, 132, 1)'
             ],
             borderWidth: 1
         }]
@@ -60,13 +82,14 @@ new Chart(ctx2, {
     options: {
         indexAxis: 'y',
         responsive: true,
+        maintainAspectRatio: false,
         scales: {
             x: {
                 beginAtZero: true,
                 ticks: {
                     font: {
                         family: 'Lato',
-                        size: 10
+                        size: 10 
                     }
                 }
             },
@@ -86,7 +109,7 @@ new Chart(ctx2, {
             title: {
                 display: true,
                 align: 'start',
-                text: 'Distribuição de Sentimentos',
+                text: 'Distribuição de Avaliações',
                 font: {
                     family: 'Lato',
                     size: 12 
@@ -95,25 +118,27 @@ new Chart(ctx2, {
         }
     }
 });
+
+
 
 const ctx3 = document.getElementById('myBarChart2').getContext('2d');
 new Chart(ctx3, {
     type: 'bar',
     data: {
-        labels: ['Negativos', 'Positivos', 'Neutros'],
+        labels: ['Positivos', 'Neutros', 'Negativos'], // Ordem alterada
         datasets: [{
             axis: 'y',
             label: 'Quantidade',
-            data: [2500, 3000, 2500], // Dados alterados
+            data: [375, 312, 312], // Dados redistribuídos
             backgroundColor: [
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(75, 192, 192, 0.8)',
-                'rgba(255, 206, 86, 0.8)'
+                'rgba(75, 192, 192, 0.8)', // Cor para Positivos
+                'rgba(255, 206, 86, 0.8)', // Cor para Neutros
+                'rgba(255, 99, 132, 0.8)'  // Cor para Negativos
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
                 'rgba(75, 192, 192, 1)',
-                'rgba(255, 206, 86, 1)'
+                'rgba(255, 206, 86, 1)',
+                'rgba(255, 99, 132, 1)'
             ],
             borderWidth: 1
         }]
@@ -147,7 +172,7 @@ new Chart(ctx3, {
             title: {
                 display: true,
                 align: 'start',
-                text: 'Distribuição de Sentimentos',
+                text: 'Distribuição de Avaliações',
                 font: {
                     family: 'Lato',
                     size: 12 
@@ -157,24 +182,25 @@ new Chart(ctx3, {
     }
 });
 
+
 const ctx4 = document.getElementById('myBarChart3').getContext('2d');
 new Chart(ctx4, {
     type: 'bar',
     data: {
-        labels: ['Negativos', 'Positivos', 'Neutros'],
+        labels: ['Positivos', 'Neutros', 'Negativos'], // Ordem alterada
         datasets: [{
             axis: 'y',
             label: 'Quantidade',
-            data: [1000, 5000, 1500], // Dados alterados
+            data: [256, 384, 1280], // Dados redistribuídos
             backgroundColor: [
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(75, 192, 192, 0.8)',
-                'rgba(255, 206, 86, 0.8)'
+                'rgba(75, 192, 192, 0.8)', // Cor para Positivos
+                'rgba(255, 206, 86, 0.8)', // Cor para Neutros
+                'rgba(255, 99, 132, 0.8)'  // Cor para Negativos
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
                 'rgba(75, 192, 192, 1)',
-                'rgba(255, 206, 86, 1)'
+                'rgba(255, 206, 86, 1)',
+                'rgba(255, 99, 132, 1)'
             ],
             borderWidth: 1
         }]
@@ -208,7 +234,7 @@ new Chart(ctx4, {
             title: {
                 display: true,
                 align: 'start',
-                text: 'Distribuição de Sentimentos',
+                text: 'Distribuição de Avaliações',
                 font: {
                     family: 'Lato',
                     size: 12 

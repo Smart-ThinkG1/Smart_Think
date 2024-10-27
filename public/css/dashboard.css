@@ -141,7 +141,11 @@ li {
     font-size: 1rem;
     margin-bottom: .2rem;
 }
-
+.nav-menu .nav-item svg {
+    height: 1.4rem;
+    width: 1.4rem;
+    overflow: unset;
+}
 .nav-menu .nav-item::after {
     content: "";
     width: 8px;
@@ -338,13 +342,13 @@ li {
 /* BODY DASHBOARD */
 .dash-box .dash-content .dash-body {
     width: 100%;
-    padding: 0.5rem 2rem;
+    padding: .5rem 2rem;
     position: relative;
     z-index: 9;
     margin-top: 100px;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: .5rem;
 }
 
 .dash-body .kpi-wrapper {

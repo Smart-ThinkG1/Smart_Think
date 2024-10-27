@@ -142,6 +142,12 @@ li {
     margin-bottom: .2rem;
 }
 
+.nav-menu .nav-item svg {
+    height: 1.4rem;
+    width: 1.4rem;
+    overflow: unset;
+}
+
 .nav-menu .nav-item::after {
     content: "";
     width: 8px;
@@ -375,7 +381,7 @@ li {
     font-weight: 900;
 }
 
-.kpi-header .tooltip {
+.tooltip {
     cursor: pointer;
     position: relative;
     height: fit-content;
@@ -460,6 +466,9 @@ li {
     padding: 1rem 1.25rem;
     border-bottom: solid 1px var(--cinza-claro);
     position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .card-header .card-title {
@@ -471,9 +480,14 @@ li {
 .dash-body .card-body {
     width: 100%;
     height: 300px;
-    padding: 1.25rem;
+    padding: 1rem;
 }
 
 .card-body .chart-box {
     height: 100%;
+}
+
+.card-body .chart-box canvas {
+    width: 100% !important;
+    height: 100% !important;
 }

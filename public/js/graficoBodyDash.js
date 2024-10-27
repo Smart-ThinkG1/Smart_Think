@@ -9,7 +9,7 @@ new Chart(ctx, {
         labels: ['Unidade 2', 'Unidade 3', 'Matriz'],
         datasets: [{
             label: 'Distribuição',
-            data: [1280, 312, 170], // Dados 
+            data: [1100 , 360, 269], // Dados 
             backgroundColor: [
                 'rgba(74, 42, 140, 0.9)', 
                 'rgba(95, 59, 170, 0.9)', 

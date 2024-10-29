@@ -649,46 +649,37 @@
         const inputs = document.querySelectorAll('input');
         const cpfInput = document.getElementById('cpf');
 
-        // Array para armazenar empresas cadastradas para validação de código de ativação
         let listaEmpresasCadastradas = [];
 
-        // Restrição de CPF para dígitos numéricos
         cpfInput.addEventListener('input', function () {
             cpfInput.value = cpfInput.value.replace(/\D/g, '');
         });
 
-        // Função para limpar os campos de entrada
         function clearInputs() {
             inputs.forEach(input => input.value = '');
         }
 
-        // Função para abrir o modal de cadastro
         function openSignupModal() {
             modal.style.display = "flex";
             clearInputs();
         }
 
-        // Função para abrir o modal de login
         function openLoginModal() {
             loginModal.style.display = "flex";
             clearInputs();
         }
 
-        // Evento de clique para abrir o modal de cadastro
         signupBtn.onclick = openSignupModal;
         signupBtnMobile.onclick = openSignupModal;
 
-        // Evento de clique para abrir o modal de login
         loginBtn.onclick = openLoginModal;
         loginBtnMobile.onclick = openLoginModal;
 
-        // Evento de clique para abrir o modal de serviços (se aplicável)
         bannerServiceBtn.onclick = function () {
             modalService.style.display = "flex";
             clearInputs();
         };
 
-        // Fechar modais ao clicar nos botões de fechar
         closeModal.forEach(button => {
             button.onclick = function () {
                 modal.style.display = "none";
@@ -698,7 +689,6 @@
             };
         });
 
-        // Fechar modais ao clicar fora deles
         window.onclick = function (event) {
             if (event.target == modal || event.target == loginModal || event.target == modalService) {
                 modal.style.display = "none";
@@ -708,7 +698,6 @@
             }
         };
 
-        // Função de cadastro
         function cadastrar() {
             var nomeVar = document.getElementById('nome').value;
             var cpfVar = document.getElementById('cpf').value;
@@ -717,7 +706,6 @@
             var codigoAccessVar = document.getElementById('codigoAccess').value;
             var idEmpresaVar = document.getElementById('idEmpresa_input')?.value;
 
-            // Validações básicas
             if (nomeVar.length < 2) {
                 mostrarErro("O nome precisa ter mais de 1 letra.");
                 return;
@@ -770,13 +758,11 @@
             }
         }
 
-        // Função para exibir mensagens de erro
         function mostrarErro(mensagem) {
             document.getElementById('cardErro').style.display = 'block';
             document.getElementById('mensagem_erro').innerHTML = mensagem;
         }
 
-        // Função para ocultar a mensagem de erro depois de um tempo
         function sumirMensagem() {
             var cardErro = document.getElementById('cardErro');
             if (cardErro) {
@@ -784,14 +770,12 @@
             }
         }
 
-        // Adiciona o evento ao botão de cadastro dentro do modal
         document.querySelector('.modal-content button[type="submit"]').addEventListener('click', function(event) {
-            event.preventDefault(); // Evita o envio do formulário padrão
-            cadastrar(); // Chama a função de cadastro
+            event.preventDefault();
+            cadastrar();
         });
     })
 
-    // Fechar modais ao clicar fora deles
     window.onclick = function (event) {
         if (event.target == modal || event.target == loginModal || event.target == modalService) {
             modal.style.display = "none";
@@ -807,12 +791,10 @@
         const emailInput = document.getElementById("loginEmail");
         const senhaInput = document.getElementById("loginSenha");
 
-        // Função de login
         function login() {
             const emailVar = emailInput.value;
             const senhaVar = senhaInput.value;
 
-            // Validações básicas de email e senha
             if (!emailVar || emailVar.indexOf("@") === -1 || emailVar.indexOf(".") === -1) {
                 mostrarErro("E-mail inválido. Por favor, insira um e-mail válido.");
                 return;
@@ -823,7 +805,6 @@
                 return;
             }
 
-            // Envio dos dados de login
             fetch("/usuarios/login", {
                 method: "POST",
                 headers: {
@@ -837,7 +818,7 @@
             .then(function (resposta) {
                 if (resposta.ok) {
                     alert("Login realizado com sucesso!");
-                    window.location = "dashboard.html"; // Redireciona para a página do sistema
+                    window.location = "dashboard.html";
                 } else {
                     mostrarErro("E-mail ou senha incorretos. Tente novamente.");
                 }
@@ -848,7 +829,6 @@
             });
         }
 
-        // Função para exibir mensagens de erro
         function mostrarErro(mensagem) {
             let cardErro = document.getElementById('cardErro');
             if (!cardErro) {
@@ -861,7 +841,6 @@
             cardErro.innerHTML = mensagem;
         }
 
-        // Função para ocultar a mensagem de erro após um tempo
         function sumirMensagem() {
             const cardErro = document.getElementById('cardErro');
             if (cardErro) {
@@ -869,10 +848,9 @@
             }
         }
 
-        // Adiciona o evento ao botão de login dentro do modal
         document.querySelector('#loginModal form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Evita o envio do formulário padrão
-            login(); // Chama a função de login
+            event.preventDefault();
+            login();
         });
     });
 

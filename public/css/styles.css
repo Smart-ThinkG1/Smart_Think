@@ -207,7 +207,7 @@ header .container {
 }
 
 .modal-content p {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     font-size: small;
 }
 
@@ -304,7 +304,7 @@ header .container {
 
 .switch-text {
     font-size: 14px;
-    margin-top: 20px;
+    margin-top: 15px;
     font-weight: bold;
 }
 
@@ -1198,12 +1198,209 @@ input::placeholder {
         margin-bottom: .5rem;
     }
 
+    /* MODAL */
+    .modal-container {
+        display: none;
+        z-index: 100;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.75);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        width: 320px;
+        position: relative;
+        text-align: center;
+        height: auto;
+        width: auto;
+    }
+
+    .modal-content p {
+        margin-bottom: 10px;
+        font-size: small;
+    }
+
+    .input-container {
+        position: relative;
+        margin-bottom: 1rem;
+        display: flex;
+    }
+
+    .switch-text {
+        font-size: 14px;
+        margin-top: 15px;
+        font-weight: bold;
+    }
 }
 
 /* Celulares grandes, tablets e laptops */
 @media (min-width: 781px) and (max-width: 1080px) {
+    .container {
+        width: 90%;
+    }
 
+    /* HEADER */
+    header .navbar a {
+        display: none;
+    }
+
+    header .navbar .navLogo {
+        height: 4rem;
+    }
+    header .navbar #mobile-btn {
+        display: block;
+    }
+
+    /* MODAL */
+    .modal-container {
+        display: none;
+        z-index: 100;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.75);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 94%;
+        width: 80%;
+    }
+
+    #loginModal .modal-content {
+        height: auto;
+        width: auto;
+    }
+
+    /* 1ª SESSÃO - BANNER */
+    .banner .banner-info {
+        width: 100%;
+        padding: 1rem;
+        text-align: initial;
+    }
+    .banner .banner-info .text p {
+        font-size: 1rem;
+    }
+    .banner .banner-info .text h3 {
+        font-size: 3.5rem; 
+    }
+
+    /* 2ª SESSAO - VALORES */
+    .valores {
+        padding: 2rem 0;
+    }
+    .valores .container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .valores .container .value-card {
+        width: 90%;
+        margin: auto;
+    }
+    .value-card .icon i {
+        font-size: 3.2rem;
+        top: -20%;
+        left: 45%;
+    }
+
+    /* 3ª SESSAO - SOBRE NOS */
+    .sobreNos {
+        padding: 3rem 0;
+    }
+    .sobreNos .container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .sobreNos .bannerArea img {
+        width: 100%;
+        height: auto;
+    }
+    .headArea .headTitle {
+        font-size: 2.5rem;
+    }
+
+    /* 4ª SESSAO - NOSSA SOLUCAO */
+    .solution {
+        padding: 3rem 0;
+        height: inherit;
+    }
+    .solution .container {
+        height: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .solution .bubbles {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 1fr);
+        gap: 2rem;
+        padding-top: 7rem;
+    }
+    .solution .bubbles .dottedLine {
+        display: none;
+    }
+    .solution .container .title {
+        margin: 2rem 0;
+        top: auto;
+    }
+
+    /* 5ª SESSAO - NOSSA EQUIPE */
+    .equipe {
+        height: inherit;
+    }
+    .equipe .container {
+        height: auto;
+        display: grid;
+        gap: 2rem;
+        justify-items: center;
+    }
+    .equipe .card-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 50%;
+        gap: 2rem;
+        padding: 8rem 0rem;
+    }
+    .equipe .card {
+        width: 90%;
+        max-width: 100%;
+        height: auto;
+        margin: auto;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
+    /* RODAPÉ */
+    .rodape {
+        padding: 1rem 0 1rem 0;
+    }
+
+    .rodape .social {
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+    .rodape .redes-sociais {
+        align-items: center;
+    }
+    .rodape .logo {
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
 }
+
 
 /* Desktop Médio */
 @media (min-width: 1081px) and (max-width: 1536px) {

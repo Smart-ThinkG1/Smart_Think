@@ -190,11 +190,9 @@
   // Recupere os valores dos campos
   var nomeVar = nomeUsuario.value;
   var cpfVar = cpf.value;
-  var cargoVar = cargo.value;
-  var telefoneVar = telefone.value;
   var emailVar = email.value;
   var senhaVar = senha.value;
-  var confirmacaoSenhaVar = confirmacaoSenha.value;
+  var codigoAccessVar = codigoAccess.value;
   var idEmpresaVar = idEmpresa_input.value;
 
   // Validações básicas
@@ -231,14 +229,9 @@
     return;
   }
 
-  // Valida se a senha e a confirmação são iguais
-  if (senhaVar !== confirmacaoSenhaVar) {
-    mostrarErro("As senhas não conferem.");
-    return;
-  }
 
   // Se tudo estiver ok, continua com o cadastro
-  if (nomeVar !== "" && cargoVar !== "" && telefoneVar !== "" && emailVar !== "" && cpfVar !== "" && senhaVar !== "" && confirmacaoSenhaVar !== "" && idEmpresaVar !== "") {
+  if (nomeVar !== "" && cargoVar !== "" && telefoneVar !== "" && emailVar !== "" && cpfVar !== "" && senhaVar !== "" && codigoAccessVar !== "" && idEmpresaVar !== "") {
     // Enviar os dados para o servidor
     fetch("/usuarios/cadastrar", {
       method: "POST",
@@ -248,8 +241,6 @@
       body: JSON.stringify({
         nomeServer: nomeVar,
         cpfServer: cpfVar,
-        cargoServer: cargoVar,
-        telefoneServer: telefoneVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
         idEmpresaServer: idEmpresaVar

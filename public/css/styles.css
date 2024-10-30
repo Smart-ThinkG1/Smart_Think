@@ -1058,7 +1058,7 @@ input::placeholder {
 
 }
 /* Celulares médios */
-@media(min-width: 400px) and (max-width: 780px) {
+@media(min-width: 300px) and (max-width: 780px) {
 
     .container {
         width: 90%;

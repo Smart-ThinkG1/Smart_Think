@@ -434,6 +434,11 @@ li {
     font-size: 4rem;
     font-weight: 700;
 }
+.kpi-body .kpi-value p {
+    font-size: 2.5rem;
+    color: var(--cinza-medio);
+}
+
 
 .kpi-card.primary {
     background-color: var(--roxo-escuro);

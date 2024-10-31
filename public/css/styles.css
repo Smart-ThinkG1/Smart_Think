@@ -1272,7 +1272,7 @@ input::placeholder {
         padding: 30px;
         border-radius: 10px;
         position: relative;
-        display: flex;
+        /* display: flex; */
         flex-direction: column;
         justify-content: center;
         height: 94%;
@@ -1422,11 +1422,11 @@ input::placeholder {
     transition: all 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
         header .navbar a {
-            display: block; /* Exiba os links na navbar */
+            display: flex; /* Exiba os links na navbar */
         }
     
         header .navbar .navLogo {
-            height: 6rem; /* Aumente a altura do logo, se necessário */
+            /* height: 6rem;  */
         }
     
         header .navbar #mobile-btn {
@@ -1435,7 +1435,7 @@ input::placeholder {
     
         /* MODAL */
         .modal-container {
-            display: flex; /* Exiba o modal */
+            /* display: flex;  */
             z-index: 100;
             left: 0;
             top: 0;
@@ -1449,7 +1449,7 @@ input::placeholder {
             padding: 40px; /* Ajuste o padding para telas maiores */
             border-radius: 10px;
             position: relative;
-            display: flex;
+            /* display: flex; */
             flex-direction: column;
             justify-content: center;
             height: auto; /* Deixe a altura automática */

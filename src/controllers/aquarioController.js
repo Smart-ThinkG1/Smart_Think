@@ -1,20 +1,25 @@
 var aquarioModel = require("../models/aquarioModel");
+const database = require('../database/config');
 
-function buscarAquariosPorEmpresa(req, res) {
-  var idUsuario = req.params.idUsuario;
+async function buscarAquariosPorEmpresa(idEmpresa) {
+    // Verifique o nome da tabela correta. Parece que deveria ser 'funcionario'
+    const instrucaoSql = `
+        SELECT * FROM funcionario WHERE idEmpresa = ?;
+    `;
 
-  aquarioModel.buscarAquariosPorEmpresa(idUsuario).then((resultado) => {
-    if (resultado.length > 0) {
-      res.status(200).json(resultado);
-    } else {
-      res.status(204).json([]);
+    try {
+        const resultados = await database.executar(instrucaoSql, [idEmpresa]);
+        return resultados;
+    } catch (erro) {
+        console.error("Erro ao buscar funcionários por empresa:", erro);
+        throw erro;
     }
-  }).catch(function (erro) {
-    console.log(erro);
-    console.log("Houve um erro ao buscar os aquarios: ", erro.sqlMessage);
-    res.status(500).json(erro.sqlMessage);
-  });
 }
+
+module.exports = {
+    buscarAquariosPorEmpresa
+};
+
 
 
 function cadastrar(req, res) {

@@ -70,9 +70,9 @@
                 Nossa Equipe
             </a>
 
-            <a href="#" id="signupBtn">Cadastrar</a>
+            <a href="#" id="signupBtnMobile">Cadastrar</a>
 
-            <a href="#" class="loginBtn">
+            <a href="#" class="loginBtn" id="loginBtnMobile">
                 Login
             </a>
         </ul>
@@ -129,13 +129,13 @@
                     <div class="input-icon">
                         <i class="fas fa-key"></i>
                     </div>
-                    <input type="text" id="codigoToken" placeholder="" required>
-                    <label for="codigoToken">Código Token</label>
+                    <input type="text" id="codigoAccess" placeholder="" required>
+                    <label for="codigoAccess">Código </label>
                     <span class="info-icon" title="Insira o código enviado para seu email.">
                         <i class="fas fa-info-circle"></i>
                     </span>
                 </div>
-                <button type="submit">Cadastrar</button>
+                <button type="submit" onclick="cadastrar()">Cadastrar</button>
                 <div class="switch-text">
                     <p>Já tem uma conta? <a href="#" id="showLogin">Entre</a></p>
                 </div>
@@ -163,7 +163,7 @@
                     <input type="password" id="loginSenha" placeholder="" required>
                     <label for="loginSenha">Senha</label>
                 </div>
-                <button type="submit">Entrar</button>
+                <button type="submit" onclick="login()">Entrar</button>
                 <div class="switch-text">
                     <p>Ainda não tem uma conta? <a href="#" id="showSignup">Cadastre-se</a></p>
                 </div>
@@ -196,8 +196,8 @@
                     <div class="input-icon">
                         <i class="fas fa-user"></i>
                     </div>
-                    <input type="text" id="nome" placeholder="" required>
-                    <label for="nome">Nome</label>
+                    <input type="text" id="nomeClient" placeholder="" required>
+                    <label for="nomeClient">Nome</label>
                 </div>
                 <div class="input-container">
                     <div class="input-icon">
@@ -635,58 +635,200 @@
         icon.classList.toggle('fa-bars');
     }
 
-    // MODAL
+    
     document.addEventListener('DOMContentLoaded', () => {
-        const modal = document.getElementById("modal-container");
-        const modalService = document.getElementById("serviceModal");
-        const loginModal = document.getElementById("loginModal");
-        const loginBtn = document.getElementById("loginBtn");
-        const signupBtn = document.getElementById("signupBtn");
-        const bannerServiceBtn = document.getElementById("bannerServiceBtn");
-        const closeModal = document.querySelectorAll(".close");
-        const inputs = document.querySelectorAll('input');
-        const cpfInput = document.getElementById('cpf');
+    const modal = document.getElementById("modal-container");
+    const modalService = document.getElementById("serviceModal");
+    const loginModal = document.getElementById("loginModal");
+    const loginBtn = document.getElementById("loginBtn");
+    const loginBtnMobile = document.getElementById("loginBtnMobile");
+    const signupBtn = document.getElementById("signupBtn");
+    const signupBtnMobile = document.getElementById("signupBtnMobile");
+    const bannerServiceBtn = document.getElementById("bannerServiceBtn");
+    const closeModal = document.querySelectorAll(".close");
+    const inputs = document.querySelectorAll('input');
+    const cpfInput = document.getElementById('cpf');
 
-        cpfInput.addEventListener('input', function (e) {
-            cpfInput.value = cpfInput.value.replace(/\D/g, '');
-        });
+    let listaEmpresasCadastradas = [];
 
-        function clearInputs() {
-            inputs.forEach(input => input.value = '');
-        }
+    cpfInput.addEventListener('input', function () {
+        cpfInput.value = cpfInput.value.replace(/\D/g, '');
+    });
 
-        signupBtn.onclick = function () {
-            modal.style.display = "flex";
+    function clearInputs() {
+        inputs.forEach(input => input.value = '');
+    }
+
+    function openSignupModal() {
+        modal.style.display = "flex";
+        clearInputs();
+    }
+
+    function openLoginModal() {
+        loginModal.style.display = "flex";
+        clearInputs();
+    }
+
+    signupBtn.onclick = openSignupModal;
+    signupBtnMobile.onclick = openSignupModal;
+
+    loginBtn.onclick = openLoginModal;
+    loginBtnMobile.onclick = openLoginModal;
+
+    bannerServiceBtn.onclick = function () {
+        modalService.style.display = "flex";
+        clearInputs();
+    };
+
+    closeModal.forEach(button => {
+        button.onclick = function () {
+            modal.style.display = "none";
+            loginModal.style.display = "none";
+            modalService.style.display = "none";
+            clearInputs();
+        };
+    });
+
+    window.onclick = function (event) {
+        if (event.target == modal || event.target == loginModal || event.target == modalService) {
+            modal.style.display = "none";
+            loginModal.style.display = "none";
+            modalService.style.display = "none";
             clearInputs();
         }
+    };
 
-        loginBtn.onclick = function () {
-            loginModal.style.display = "flex";
-            clearInputs();
+    function mostrarErro(mensagem) {
+        let cardErro = document.getElementById('cardErro');
+        if (!cardErro) {
+            cardErro = document.createElement('div');
+            cardErro.id = 'cardErro';
+            cardErro.style.color = 'red';
+            document.querySelector('.modal-content').appendChild(cardErro);
+        }
+        cardErro.style.display = 'block';
+        cardErro.innerHTML = mensagem;
+    }
+
+    function sumirMensagem() {
+        const cardErro = document.getElementById('cardErro');
+        if (cardErro) {
+            cardErro.style.display = 'none';
+        }
+    }
+
+    function cadastrar() {
+        var nomeVar = document.getElementById('nome').value;
+        var cpfVar = document.getElementById('cpf').value;
+        var emailVar = document.getElementById('email').value;
+        var senhaVar = document.getElementById('senha').value;
+        var codigoAccessVar = document.getElementById('codigoAccess').value;
+        var idEmpresaVar = document.getElementById('idEmpresa_input')?.value;
+
+        sumirMensagem(); // Limpa mensagens de erro antes da validação
+
+        var temNumero = /\d/;
+        var temMaiuscula = /[A-Z]/;
+        if (!temNumero.test(senhaVar) || !temMaiuscula.test(senhaVar)) {
+            mostrarErro("A senha precisa ter pelo menos uma letra maiúscula e um número.");
+            return;
         }
 
-        bannerServiceBtn.onclick = function () {
-            modalService.style.display = "flex";
-            clearInputs();
+        if (nomeVar && cpfVar && emailVar && senhaVar && codigoAccessVar) {
+            fetch("/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    nomeServer: nomeVar,
+                    cpfServer: cpfVar,
+                    emailServer: emailVar,
+                    senhaServer: senhaVar,
+                    idEmpresaServer: codigoAccessVar
+                }),
+            })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    alert("Cadastro realizado com sucesso! Agora, faça o login.");
+                    openLoginModal(); // Chama o modal de login
+                    modal.style.display = "none"; // Fecha o modal de cadastro
+                } else {
+                    mostrarErro("Erro ao tentar realizar o cadastro.");
+                }
+            })
+            .catch(function (erro) {
+                console.log("#ERRO:", erro);
+                mostrarErro("Erro ao tentar realizar o cadastro. Tente novamente mais tarde.");
+            });
+        } else {
+            mostrarErro("Todos os campos devem ser preenchidos!");
         }
+    }
 
-        closeModal.forEach(button => {
-            button.onclick = function () {
-                modal.style.display = "none";
-                loginModal.style.display = "none";
-                modalService.style.display = "none"
-                clearInputs();
-            }
-        });
+    // Evento para o botão de submit no modal de cadastro
+    document.querySelector('.modal-content button[type="submit"]').addEventListener('click', function(event) {
+        event.preventDefault();
+        cadastrar();
+    });
 
-        window.onclick = function (event) {
-            if (event.target == modal || event.target == loginModal || event.target == modalService) {
-                modal.style.display = "none";
-                loginModal.style.display = "none";
-                modalService.style.display = "none";
-                clearInputs();
-            }
+    // Login
+    const emailInput = document.getElementById("loginEmail");
+const senhaInput = document.getElementById("loginSenha");
+
+function login() {
+    const emailVar = emailInput.value.trim();
+    const senhaVar = senhaInput.value.trim();
+
+    sumirMensagem(); // Limpa mensagens de erro antes da validação
+
+    if (!emailVar || !emailVar.includes("@") || !emailVar.includes(".")) {
+        mostrarErro("E-mail inválido. Por favor, insira um e-mail válido.");
+        return;
+    }
+
+    if (senhaVar.length < 8) {
+        mostrarErro("A senha deve ter pelo menos 8 caracteres.");
+        return;
+    }
+
+    fetch("/usuarios/autenticar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            emailServer: emailVar,
+            senhaServer: senhaVar
+        }),
+    })
+    .then(function (resposta) {
+        if (resposta.ok) {
+            return resposta.json();
+        } else if (resposta.status === 204) {
+            mostrarErro("Nenhum aquário encontrado para sua empresa.");
+        } else {
+            mostrarErro("E-mail ou senha incorretos. Tente novamente.");
         }
+    })
+    .then(function (dados) {
+        if (dados) {
+            alert("Login realizado com sucesso!");
+            window.location = "./dashboard/dashboard.html";
+        }
+    })
+    .catch(function (erro) {
+        console.error("#ERRO:", erro);
+        mostrarErro("Erro ao tentar realizar o login. Tente novamente mais tarde.");
+    });
+}
+
+// Evento para o botão de submit no modal de login
+document.querySelector('#loginModal form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    login();
+})});
+
 
         const infoIcons = document.querySelectorAll('.info-icon');
         let currentTooltip = null;
@@ -721,7 +863,4 @@
             loginModal.style.display = "none";
             modal.style.display = "flex";
         }
-    });
-
-
 </script>

@@ -185,7 +185,7 @@ header .container {
     background-color: #fff;
     padding: 30px;
     border-radius: 10px;
-    width: 400px;
+    width: 500px;
     position: relative;
     text-align: center;
 }
@@ -202,12 +202,12 @@ header .container {
 
 .modal-content h2, .modal-content-service h2 {
     margin-bottom: 10px;
-    font-size: 26px;
+    font-size: 32px;
     font-weight: 700;
 }
 
 .modal-content p {
-    margin-bottom: 20px;
+    margin-bottom: 26px;
     font-size: small;
 }
 
@@ -394,7 +394,7 @@ input::placeholder {
     letter-spacing: 4px;
     line-height: 1;
     margin-bottom: 18px;
-    color: var(--roxo-primario);
+    color: var(--roxo-secundario);
 }
 
 .banner .banner-info .text h3 {
@@ -1272,7 +1272,7 @@ input::placeholder {
         padding: 30px;
         border-radius: 10px;
         position: relative;
-        display: flex;
+        /* display: flex; */
         flex-direction: column;
         justify-content: center;
         height: 94%;
@@ -1404,18 +1404,175 @@ input::placeholder {
 
 /* Desktop Médio */
 @media (min-width: 1081px) and (max-width: 1536px) {
-    .container {
-        width: 86%;
+    @media (min-width: 1081px) and (max-width: 1536px) {
+        .container {
+            width: 90%; /* Mantenha 90% ou ajuste conforme necessário */
+        }
+    
+        /* HEADER */
+        .header {
+            width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 12;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+        header .navbar a {
+            display: flex; /* Exiba os links na navbar */
+        }
+    
+        header .navbar .navLogo {
+            /* height: 6rem;  */
+        }
+    
+        header .navbar #mobile-btn {
+            display: none; /* O botão móvel deve ser oculto em telas maiores */
+        }
+    
+        /* MODAL */
+        .modal-container {
+            /* display: flex;  */
+            z-index: 100;
+            left: 0;
+            top: 0;
+            background-color: rgba(0, 0, 0, 0.75);
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .modal-content {
+            background-color: #fff;
+            padding: 40px; /* Ajuste o padding para telas maiores */
+            border-radius: 10px;
+            position: relative;
+            /* display: flex; */
+            flex-direction: column;
+            justify-content: center;
+            height: auto; /* Deixe a altura automática */
+            width: 60%; /* Aumente a largura do modal */
+        }
+    
+        /* 1ª SESSÃO - BANNER */
+        .banner .banner-info {
+            width: 100%;
+            padding: 2rem; /* Ajuste o padding */
+            text-align: initial;
+        }
+        .banner .banner-info .text p {
+            font-size: 1.2rem; /* Aumente o tamanho da fonte */
+        }
+        .banner .banner-info .text h3 {
+            font-size: 4rem; /* Aumente o tamanho do título */
+        }
+    
+        /* 2ª SESSÃO - VALORES */
+        .valores {
+            padding: 3rem 0; /* Ajuste o padding */
+        }
+        .valores .container {
+            grid-template-columns: 1fr; /* Um card por vez */
+            gap: 2rem; /* Ajuste o espaço entre os cards */
+        }
+        .valores .container .value-card {
+            width: 100%; /* Altere para 100% */
+            margin: auto; /* Centralize o card */
+        }
+        .value-card .icon i {
+            font-size: 3rem; /* Aumente o tamanho do ícone */
+            top: -10%; /* Ajuste conforme necessário */
+            left: 45%; /* Centralize o ícone */
+        }
+    
+        /* 3ª SESSÃO - SOBRE NÓS */
+        .sobreNos {
+            padding: 4rem 0; /* Aumente o padding */
+        }
+        .sobreNos .container {
+            grid-template-columns: repeat(2, 1fr); /* Duas colunas para maior largura */
+            gap: 2rem; /* Ajuste o espaço */
+        }
+        .sobreNos .bannerArea img {
+            width: 100%;
+            height: 100%;
+        }
+        .headArea .headTitle {
+            font-size: 3rem; /* Aumente o tamanho do título */
+        }
+    
+        /* 4ª SESSÃO - NOSSA SOLUÇÃO */
+        .solution {
+            padding: 4rem 0; /* Aumente o padding */
+            height: auto; /* Permita que a altura seja automática */
+        }
+        .solution .container {
+            height: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Cards ajustáveis */
+            gap: 2rem; /* Ajuste o espaço entre os cards */
+        }
+        .solution .bubbles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Cards ajustáveis */
+            grid-template-rows: auto; /* Permita que a altura seja automática */
+            gap: 2rem;
+            padding-top: 7rem;
+        }
+        .solution .bubbles .dottedLine {
+            display: block; /* Mostre se necessário */
+        }
+        .solution .container .title {
+            margin: 3rem 0; /* Ajuste as margens */
+            top: auto;
+        }
+    
+        /* 5ª SESSÃO - NOSSA EQUIPE */
+        .equipe {
+            height: inherit;
+        }
+        .equipe .container {
+            height: auto;
+            display: grid;
+            gap: 2rem;
+            justify-items: center;
+        }
+        .equipe .card-wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Duas colunas */
+            width: 80%; /* Ajuste a largura */
+            gap: 2rem;
+            padding: 8rem 0rem;
+        }
+        .equipe .card {
+            width: 90%;
+            max-width: 100%;
+            height: auto;
+            margin: auto;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+    
+        /* RODAPÉ */
+        .rodape {
+            padding: 1rem 0;
+        }
+    
+        .rodape .social {
+            flex-direction: row;
+            gap: 2rem; /* Ajuste o espaço */
+        }
+        .rodape .redes-sociais {
+            align-items: center;
+        }
+        .rodape .logo {
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
     }
-
-    .sobreNos .container {
-        grid-template-columns: 50% auto;
-    }
-
-    .sobreNos .headArea {
-        padding: 0 32px;
-        padding-right: 0;
-    }
+    
 }
 
 /* Desktop Grande */

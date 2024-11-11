@@ -597,14 +597,14 @@ input::placeholder {
 .sobreNos .modal {
     background-color: var(--branco);
     position: fixed;
-    width: 640px;
+    width: 800px;
     max-width: 85%;
-    height: 400px;
+    height: 640px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 15;
-    border-radius: 16px;
+    border-radius: 10px;
     min-height: 400px;
     overflow: hidden;
     overflow-y: auto;
@@ -675,7 +675,7 @@ input::placeholder {
 
 .sobreNos .modal .modal-body {
     width: 100%;
-    padding: 16px;
+    padding: 1.45rem 2.5rem ;
 }
 
 .sobreNos .modal .modal-body p {
@@ -1449,7 +1449,6 @@ input::placeholder {
             padding: 40px; /* Ajuste o padding para telas maiores */
             border-radius: 10px;
             position: relative;
-            /* display: flex; */
             flex-direction: column;
             justify-content: center;
             height: auto; /* Deixe a altura automática */

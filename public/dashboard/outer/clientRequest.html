@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+
+    <!-- Icons Font Awesome -->
+    <script src="https://kit.fontawesome.com/64ceb195cd.js" crossorigin="anonymous"></script>
+    <!-- Icones Box Icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- CSS do DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- JS do DataTables -->
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+    <!-- CSS Local -->
+    <link rel="stylesheet" href="../../css/clienteRequest.css">
+</head>
+
+<body>
+
+
+    <div class="dash-box">
+
+        <!-- sidebar -->
+        <div class="sidebar">
+
+            <!-- header sidebar -->
+            <div class="header-sidebar">
+
+                <!-- logo -->
+                <div class="nav-logo">
+                    <img src="../../assets/logoBranca.svg" alt="">
+                    <h2>Smart Think</h2>
+                </div>
+
+                <!-- botão que muda sidebar -->
+                <div id="toggle-dash-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+            <!-- fim header sidebar -->
+
+            <!-- menu sidebar -->
+            <nav class="menu">
+                <div class="menu-label">
+                    <h2>Menu</h2>
+                </div>
+                <ul class="nav-menu">
+
+                    <!-- visão geral -->
+                    <li class="nav-item active">
+                        <a href="#">
+                            <i class='bx bxs-grid-alt'></i>
+                            <p>Visão Geral</p>
+                        </a>
+                    </li>
+
+
+
+                </ul>
+            </nav>
+            <!-- fim menu sidebar -->
+
+            <!-- footer sidebar -->
+            <div class="footer-sidebar">
+                <div class="menu-user">
+                    <div class="user-icon"><i class="fa-solid fa-user"></i></div>
+                    <div class="user-account">
+                        <div class="userName"><span>Fernando</span></div>
+                        <div class="userEmail"><span>fernando@email.com</span></div>
+                    </div>
+                    <div id="exitBtn"><i class="fa-solid fa-right-from-bracket"></i></div>
+                </div>
+            </div>
+            <!-- fim footer sidebar -->
+        </div>
+        <!-- fim sidebar -->
+
+        <!-- conteudo da dash -->
+        <div class="dash-content">
+
+            <!-- header da dash -->
+            <div class="dash-header">
+
+                <div class="text">
+                    <div class="title"><span>Clientes Interessados</span></div>
+                    <div class="description">
+                        <p>Tabela para controle de dados sobre clientes Interessados.</p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- fim header da dash -->
+
+            <!-- modal editar cliente -->
+            <div id="fade-modal" class="hide"></div>
+            <div id="modal-edit" class="modal hide">
+
+                <div class="modal-header">
+                    <div class="close-modal-btn">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <form action="" class="modal-form">
+                        <div class="form-title">
+                            <h2>Alterar Dados</h2>
+                        </div>
+
+                        <!-- NOME -->
+                        <div class="input-field">
+                            <div class="input-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+
+                            <input type="text" placeholder="">
+                            <label for="">Nome</label>
+                        </div>
+
+                        <!-- TELEFONE -->
+                        <div class="input-field">
+                            <div class="input-icon">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+
+                            <input type="text" placeholder="">
+                            <label for="">Telefone</label>
+                        </div>
+
+                        <!-- E-MAIL -->
+                        <div class="input-field">
+                            <div class="input-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+
+                            <input type="text" placeholder="">
+                            <label for="">E-mail</label>
+                        </div>
+
+                        <!-- EMPRESA -->
+                        <div class="input-field">
+                            <div class="input-icon">
+                                <i class="fa-solid fa-building"></i>
+                            </div>
+
+                            <input type="text" placeholder="">
+                            <label for="">Empresa</label>
+                        </div>
+
+                        <div class="form-button">
+                            <button type="button">
+                                Editar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+
+            <!-- corpo da dash -->
+            <div class="dash-body" id="visaoGeral">
+
+                <div class="table-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h2>Registro de Clientes</h2>
+                        </div>
+                        <div class="search-field">
+                            <input type="text" id="customSearch" class="pesquisar" placeholder="Pesquisar unidade">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <table id="myTable" class="display">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Telefone</th>
+                                    <th>Email</th>
+                                    <th>Empresa</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>João Silva</td>
+                                    <td>(11) 1234-5678</td>
+                                    <td>joao.silva@example.com</td>
+                                    <td>Empresa A</td> <!-- Exemplo de nome de empresa -->
+                                    <td>
+                                        <button class="action-btn edit">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                        <button class="action-btn delete">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Maria Oliveira</td>
+                                    <td>(21) 8765-4321</td>
+                                    <td>maria.oliveira@example.com</td>
+                                    <td>Empresa B</td> <!-- Exemplo de nome de empresa -->
+                                    <td>
+                                        <button class="action-btn edit">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                        <button class="action-btn delete">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Carlos Souza</td>
+                                    <td>(31) 9876-5432</td>
+                                    <td>carlos.souza@example.com</td>
+                                    <td>Empresa C</td> <!-- Exemplo de nome de empresa -->
+                                    <td>
+                                        <button class="action-btn edit">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </button>
+                                        <button class="action-btn delete">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- fim do corpo da dash -->
+
+    </div>
+    <!-- fim conteudo da dash -->
+
+    </div>
+
+</body>
+
+</html>
+
+
+<script>
+
+    // *** Função Sidebar Dinâmico 
+
+    // Essa função arruma o sidebar para abrir e fechar e ajustar o layout
+    const barBtn = document.getElementById("toggle-dash-btn");
+    const sidebar = document.querySelector(".sidebar");
+    const dashContent = document.querySelector(".dash-content");
+    const subMenuBtns = document.querySelectorAll(".submenu");
+
+
+    // Função que alterar a classe de estilo active
+    // Também fecha algum submenu aberto
+    const toggleSidebar = () => {
+        sidebar.classList.toggle("active");
+        dashContent.classList.toggle("active");
+
+        // Fecha todos os submenus ao alternar o sidebar
+        subMenuBtns.forEach(btn => {
+            const subMenuList = btn.nextElementSibling;
+            if (subMenuList) {
+                subMenuList.classList.remove("active");
+            }
+        });
+    }
+
+    // Dispara o evento de alterar o sidebar ao clicar no botão de 3 barras
+    barBtn.addEventListener("click", () => {
+        toggleSidebar();
+    });
+
+
+    // Função que expande submenus
+    // Também ajusta o sidebar caso esteja fechado (com active)
+    subMenuBtns.forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+            event.preventDefault(); // Impede o comportamento padrão do link <a>
+
+            // Encontra a lista submenu correspondente
+            const subMenuList = btn.nextElementSibling;
+
+            if (subMenuList) { // Verifica se o submenu existe
+                // Fecha outros submenus abertos
+                subMenuBtns.forEach(otherBtn => {
+                    if (otherBtn !== btn) {
+                        const otherSubMenuList = otherBtn.nextElementSibling;
+                        if (otherSubMenuList) {
+                            otherSubMenuList.classList.remove("active");
+                        }
+                    }
+                });
+
+                // Alterna a visibilidade do submenu clicado
+                subMenuList.classList.toggle("active");
+
+                // Ajusta o sidebar se estiver aberto e o submenu for ativado
+                if (sidebar.classList.contains("active") && subMenuList.classList.contains("active")) {
+                    sidebar.classList.remove("active");
+                    dashContent.classList.remove("active");
+                }
+            }
+        });
+    });
+
+    // *** Função da Tabela Clientes()
+    $(document).ready(function () {
+        var table = $('#myTable').DataTable({
+            paging: false, // Habilita a paginação
+            searching: true, // Desabilita a pesquisa padrão
+            ordering: true, // Habilita a ordenação
+            lengthChange: false, // Esconde seletor de entradas
+            info: false // Esconde detalhe de entradas
+        });
+
+        // Conexão do campo de pesquisa personalizado com a tabela
+        $('#customSearch').on('keyup change', function () {
+            table.search(this.value).draw(); // Filtra a tabela com o valor do campo
+        });
+
+
+    });
+
+    // *** Função modal dinâmico para edição de clientes
+
+    // Elementos do modal dinâmico para edição de clientes
+    const fade_modal = document.getElementById("fade-modal");
+    const modal = document.getElementById("modal-edit");
+    const edit_btn = document.querySelectorAll(".edit");
+    const close_modal_btn = modal.querySelector(".close-modal-btn");
+
+    // Função que altera a classe de estilo "hide" do modal e fundo (fade)
+    const toggleModal = () => {
+        fade_modal.classList.toggle("hide");
+        modal.classList.toggle("hide");
+    }
+
+    // Função que dispara a função de exibição de modal a partir do click no fade ou no "X".
+    [fade_modal, close_modal_btn].forEach((el) => {
+        el.addEventListener("click", () => toggleModal());
+    });
+
+    // Função que dispara a função de exibição do modal ao clicar em qualquer um dos botões de editar cliente
+    edit_btn.forEach((btn) => {
+        btn.addEventListener("click", () => toggleModal());
+    });
+
+</script>

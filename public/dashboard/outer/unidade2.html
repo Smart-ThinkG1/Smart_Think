@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campanhas</title>
+    <title>Unidade 2</title>
 
     <!-- Icons Font Awesome -->
     <script src="https://kit.fontawesome.com/64ceb195cd.js" crossorigin="anonymous"></script>
     <!-- Icones Box Icons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- CSS Local -->
-    <link rel="stylesheet" href="../css/unidade.css">
+    <link rel="stylesheet" href="../../css/unidade.css">
 </head>
 
 <body>
@@ -53,29 +53,29 @@
                         </a>
                     </li>
 
-                   <!-- unidades -->
-                   <li class="nav-item submenu" data-target="unidades">
-                    <i class='bx bxs-store'></i>
-                    <p>Unidades</p>
-                    <span>▾</span>
-                </li>
-                <ul class="submenu-list">
-                    <li class="submenu-item">
-                        <a href="unidadeMatriz.html">
-                            <p>Matriz</p>
-                        </a>
+                    <!-- unidades -->
+                    <li class="nav-item submenu" data-target="unidades">
+                        <i class='bx bxs-store'></i>
+                        <p>Unidades</p>
+                        <span>▾</span>
                     </li>
-                    <li class="submenu-item">
-                        <a href="unidade2.html">
-                            <p>Unidade 2</p>
-                        </a>
-                    </li>
-                    <li class="submenu-item">
-                        <a href="unidade3.html">
-                            <p>Unidade 3</p>
-                        </a>
-                    </li>
-                </ul>
+                    <ul class="submenu-list">
+                        <li class="submenu-item">
+                            <a href="unidadeMatriz.html">
+                                <p>Matriz</p>
+                            </a>
+                        </li>
+                        <li class="submenu-item">
+                            <a href="unidade2.html">
+                                <p>Unidade 2</p>
+                            </a>
+                        </li>
+                        <li class="submenu-item">
+                            <a href="unidade3.html">
+                                <p>Unidade 3</p>
+                            </a>
+                        </li>
+                    </ul>
 
                     <!-- insights  -->
                     <li class="nav-item">
@@ -104,12 +104,12 @@
                     </li>
                     <ul class="submenu-list">
                         <li class="submenu-item">
-                            <a href="">
+                            <a href="user.html">
                                 <p>Meu perfil</p>
                             </a>
                         </li>
                         <li class="submenu-item">
-                            <a href="">
+                            <a href="brand.html">
                                 <p>Minha marca</p>
                             </a>
                         </li>
@@ -140,7 +140,7 @@
             <!-- header da dash -->
             <div class="dash-header">
 
-                <div class="title"><span>Campanhas</span></div>
+                <div class="title"><span>Unidade 2</span></div>
                 <div id="modal-notify">
                     <i class='bx bxs-inbox'></i>
                 </div>
@@ -148,8 +148,109 @@
             <!-- fim header da dash -->
 
             <!-- corpo da dash -->
-            <div class="dash-body">
-                
+            <div class="dash-body" id="visaoGeral">
+                <div class="kpi-wrapper">
+
+                    <!-- kpi 1 -->
+                    <div class="kpi-card primary">
+                        <div class="kpi-header">
+                            <div class="kpi-title">
+                                <h2>Nível de Satisfação</h2>
+                            </div>
+
+                            <div class="tooltip">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <div class="tooltip-box">
+                                    <p>Nível de Satisfação é baseado nas avaliações positivas dos clientes</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="kpi-body">
+                            <div class="kpi-value">
+                                <span>75%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- kpi 2 -->
+                    <div class="kpi-card secondary">
+                        <div class="kpi-header">
+                            <div class="kpi-title">
+                                <h2>Média de reclamações por mês</h2>
+                            </div>
+
+                            <div class="tooltip">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <div class="tooltip-box">
+                                    <p>Este valor representa uma estimativa das reclamações e sentimentos negativos dos clientes ao longo do ano atual.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="kpi-body">
+                            <div class="kpi-value">
+                                <span>40</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- kpi 3 -->
+                    <div class="kpi-card secondary">
+                        <div class="kpi-header">
+                            <div class="kpi-title">
+                                <h2>Indice atual de buscas na Semana</h2>
+                            </div>
+
+                            <div class="tooltip">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <div class="tooltip-box">
+                                    <p>
+                                        Este indicador avalia se a taxa de buscas realizadas sobre a unidade durante a
+                                        semana atual é considerada baixa, média ou alta, com base nas métricas de análise de
+                                        buscas no Google Trends.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="kpi-body">
+                            <div class="kpi-value">
+                                <p>Baixo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-wrapper">
+
+                    <!-- card 1 -->
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h2>Dias mais buscados na Semana</h2>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-box">
+                                <canvas id="matrizBar1"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h2>Reclamações por Mês</h2>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-box">
+                                <canvas id="matrizBar2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- fim do corpo da dash -->
 
@@ -159,7 +260,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/graficoUnidadeMatriz.js"></script>
+    <script src="../js/graficoUnidade2.js"></script>
 
 </body>
 
@@ -167,8 +268,8 @@
 
 <script>
 
-        // Sidebar Dinâmico - Essa função arruma o sidebar para abrir e fechar
-        const barBtn = document.getElementById("toggle-dash-btn");
+    // Sidebar Dinâmico - Essa função arruma o sidebar para abrir e fechar
+    const barBtn = document.getElementById("toggle-dash-btn");
     const sidebar = document.querySelector(".sidebar");
     const dashContent = document.querySelector(".dash-content");
     const subMenuBtns = document.querySelectorAll(".submenu");
@@ -221,7 +322,7 @@
             }
         });
     });
-    
+
 
 
 </script>

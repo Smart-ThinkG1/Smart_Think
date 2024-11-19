@@ -1,3 +1,4 @@
+/* IMPORTAÇÃO DE GOOGLE FONTES - LATO E ROBOTO */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
 
@@ -37,13 +38,14 @@ li {
     list-style: none;
 }
 
-.profile-box {
+/* CRIANDO CAIXA DA DASHBOARD */
+.dash-box {
     display: flex;
     height: 100vh;
 }
 
 /* CRIANDO SIDEBAR */
-.profile-box .sidebar {
+.dash-box .sidebar {
     position: fixed;
     width: 300px;
     height: 100vh;
@@ -102,7 +104,7 @@ li {
 }
 
 /* BOTAO TOGGLE */
-.header-sidebar #toggle-profile-btn {
+.header-sidebar #toggle-dash-btn {
     color: var(--branco);
     cursor: pointer;
     font-size: 1.4rem;
@@ -110,7 +112,7 @@ li {
     border-radius: .5rem;
 }
 
-#toggle-profile-btn:hover {
+#toggle-dash-btn:hover {
     background-color: rgba(255, 255, 255, .2);
 }
 
@@ -128,6 +130,7 @@ li {
     display: flex;
     flex-direction: column;
 }
+
 .nav-menu .submenu-item,
 .nav-menu .nav-item {
     display: flex;
@@ -138,6 +141,7 @@ li {
     font-size: 1rem;
     margin-bottom: .2rem;
 }
+
 .nav-menu .nav-item svg {
     height: 1.4rem;
     width: 1.4rem;
@@ -210,12 +214,14 @@ li {
     background-color: var(--roxo-secundario);
 }
 
-.nav-menu .submenu-item a{
+.nav-menu .submenu-item a {
     padding: 1rem 4rem;
 }
- .submenu-list {
+
+.submenu-list {
     display: none;
 }
+
 .submenu-list.active {
     display: block;
 }
@@ -279,24 +285,25 @@ li {
 
 /* FIM SIDEBAR */
 
-.profile-box .profile-content {
+
+/* CONTEUDO INTERNO DASHBOARD */
+.dash-box .dash-content {
     height: 100%;
     width: calc(100% - 300px);
     position: absolute;
     left: 300px;
     transition: all .3s;
-
+    position: relative;
 }
 
-.profile-box .profile-content.active {
+.dash-box .dash-content.active {
     width: calc(100% - 80px);
     left: 80px;
 }
 
-
 /* HEADER DASHBOARD */
-.profile-box .profile-content .profile-header {
-    width: 100%;
+.dash-box .dash-content .dash-header {
+    width: calc(100% - 300px);
     height: 100px;
     background-color: var(--branco);
     border-bottom: 1px solid var(--cinza-claro);
@@ -304,20 +311,33 @@ li {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: fixed;
     transition: all .3s;
     z-index: 10;
-    border-top: 2px solid #ccc;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
 }
 
-.profile-header .title {
+.dash-content.active .dash-header {
+    width: calc(100% - 80px);
+}
+
+.dash-header .text {
+    display: flex;
+    flex-direction: column;
+}
+
+.dash-header .title {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--cinza-escuro);
 }
 
-.profile-header #modal-notify {
+.dash-header .description {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--cinza-claro);
+}
+
+.dash-header .head-btn {
     color: var(--preto);
     font-size: 1.4rem;
     padding: 0.95rem 1.2rem;
@@ -326,117 +346,265 @@ li {
     border: solid 1px var(--cinza-claro);
 }
 
-.profile-header #modal-notify:hover {
-    background-color: rgba(0, 0, 0, .4);
+.dash-header .head-btn:hover {
+    background-color: rgba(0, 0, 0, .45);
     color: var(--branco);
 }
 
-.profile-box {
-    display: flex;
-}
 
-.sidebar {
-    width: 250px;
-    background-color: #333;
-    color: white;
-}
-
-.profile-content {
-    flex-grow: 1;
-    padding: 5px 15px;
-    background-color: #f5f5f5;
-}
-
-.profile-container {
-    background-color: white;
-    padding: 20px;
-    box-shadow: 
-        0 10px 10px -5px rgba(0, 0, 0, 0.1),
-        10px 0 10px -5px rgba(0, 0, 0, 0.1),
-        -10px 0 10px -5px rgba(0, 0, 0, 0.1);
-    border-bottom: 2px solid #ccc;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    padding-bottom: 20px;
-}
-
-.profile-container h2 {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.profile-picture {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-#profile-image {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-}
-
-.profile-picture button {
-    margin-top: 10px;
-    border: none;
-    border-radius: 4px;
-    padding: 8px;
-    background-color: var(--roxo-escuro);
-    color: var(--branco);
-    cursor: pointer;
-}
-
-.profile-picture button:hover {
-    background-color: var(--roxo-secundario);
-}
-
-.profile-details {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.profile-details label {
-    font-weight: bold;
-}
-
-.profile-details input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.profile-details button {
-    padding: 10px;
-    background-color: var(--roxo-escuro);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.profile-details button:hover {
-    background-color: var(--roxo-secundario);
-}
-
-.password-input {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.password-input input {
+/* BODY DASHBOARD */
+.dash-box .dash-content .dash-body {
     width: 100%;
-    padding: 0.5rem;
-    border: 1px solid var(--cinza-claro);
-    border-radius: 5px;
+    padding: .5rem 2rem;
+    position: relative;
+    z-index: 9;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
 }
 
-.eye-icon {
+/* CARD DA TABELA */
+.dash-body .table-card {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #FFF;
+    border: 1px solid var(--cinza-claro);
+    border-radius: .25rem;
+    padding: 1rem;
+}
+
+/* HEAD DO CARD */
+.table-card .card-header {
+    justify-content: space-between;
+    display: flex;
+}
+
+/* CAMPO DE PESQUISA */
+.card-header .search-field {
+    display: flex;
+    position: relative;
+}
+
+.card-header .search-field .pesquisar {
+    padding: .4rem 0;
+    padding-left: 2rem;
+    width: 240px;
+    position: relative;
+    border: 1px solid var(--cinza-claro);
+    border-radius: 20px;
+}
+
+.search-field i {
     position: absolute;
-    right: 10px;
+    left: .5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #5C5C5C;
+}
+
+/* ESCONDENDO CAMPO DE PESQUISA DEFAULT */
+.dt-search {
+    display: none;
+}
+
+/* TABELA JSTABLE */
+#myTable {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 6px 12px;
+
+}
+
+/* Cor do Thead */
+#myTable thead {
+    background-color: var(--roxo-escuro);
+    color: var(--branco);
+}
+
+/* Espaçamento das células do thead */
+#myTable.dataTable thead th,
+#myTable.dataTable thead td {
+    padding: 1.4rem .25rem;
+    border: none;
+    text-align: center;
+}
+
+/* Espaçamento das células */
+#myTable.dataTable tbody td {
+    padding: 1.2rem 0.25rem;
+}
+
+#myTable.dataTable.no-footer {
+    border: none;
+}
+
+/* Alilhamento de texto do thead */
+#myTable thead th {
+    text-align: center;
+}
+
+/* Alinhamento do texto das linhas */
+#myTable tbody td {
+    text-align: center;
+}
+
+/* Arredondamento de bordas do topo */
+#myTable thead th:first-child {
+    border-top-left-radius: 10px;
+}
+#myTable thead th:last-child {
+    border-top-right-radius: 10px;
+}
+
+#myTable tbody td .action-btn {
+    display: inline;
+    border-radius: 50%;
+    border: 1px solid var(--roxo-escuro);
+    background-color: #FFF;
     cursor: pointer;
 }
+
+#myTable tbody td .action-btn i {
+    padding: .5rem;
+    color: var(--roxo-escuro);
+}
+
+#myTable tbody td .action-btn:hover {
+    background-color: rgba(0, 0, 0, 0.12);
+}
+
+/* MODAL */
+
+/* Fundo do modal */
+#fade-modal {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.45);
+    width: 100%;
+    height: 100%;
+    z-index: 14;
+    top: 0;
+    left: 0;
+}
+
+/* Card card*/
+.dash-content .modal {
+    background-color: var(--branco);
+    position: fixed;
+    width: 640px;
+    max-width: 85%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 15;
+    border-radius: 10px;
+    min-height: 400px;
+    transition: all .3s;
+    padding: 1rem 1.5rem;
+}
+
+/* Esconder modal e fundo */
+.modal.hide,
+#fade-modal.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Posicionar modal para cima */
+.modal.hide {
+    top: 0;
+}
+
+/* Header Modal */
+.modal .modal-header {
+    width: 100%;
+}
+
+/* Botão fechar modal */
+.modal .modal-header .close-modal-btn {
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--cinza-claro);
+    width: fit-content;
+    margin-left: auto;
+}
+.modal .modal-header .close-modal-btn:hover {
+    color: var(--cinza-escuro);
+}
+.modal .modal-body {
+    width: 100%;
+    height: auto;
+}
+.modal .modal-body .modal-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.modal-body .modal-form .form-title {
+    margin-bottom: 2rem;
+}
+.modal .modal-body .input-field {
+    width: 95%;
+    position: relative;
+    margin-bottom: 2rem;
+    display: flex;
+}
+.modal-body .input-field input {
+    width: 100%;
+    font-size: 1rem;
+    padding: .45rem 0;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: 1px solid var(--cinza-claro);
+    outline: none;
+    padding-left: 1rem;
+}
+.modal-body .input-field input:focus {
+    border-color: var(--roxo-primario);
+}
+.modal-body .input-field label {
+    position: absolute;
+    top: 50%;
+    left: 3.45rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--cinza-claro);
+    font-weight: 500;
+    transition: all .2s ease;
+}
+.input-field input:focus + label,
+.input-field input:not(:placeholder-shown) + label {
+    top: -45%;
+    font-size: .75rem;
+    color: rgb(89, 0, 255);
+}
+.input-field .input-icon {
+    width: 2.5rem;
+    background-color: #f0f0f0;
+    border: 1px solid var(--cinza-claro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.modal-form .form-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.form-button button {
+    background-color: rgb(89, 0, 255);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s;
+    width: 50%;
+}
+
+

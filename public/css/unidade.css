@@ -320,13 +320,22 @@ li {
     width: calc(100% - 80px);
 }
 
+.dash-header .text {
+    display: flex;
+    flex-direction: column;
+}
 .dash-header .title {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--cinza-escuro);
 }
+.dash-header .description{
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--cinza-claro);
+}
 
-.dash-header #modal-notify {
+.dash-header .head-btn {
     color: var(--preto);
     font-size: 1.4rem;
     padding: 0.95rem 1.2rem;
@@ -335,8 +344,8 @@ li {
     border: solid 1px var(--cinza-claro);
 }
 
-.dash-header #modal-notify:hover {
-    background-color: rgba(0, 0, 0, .4);
+.dash-header .head-btn:hover {
+    background-color: rgba(0, 0, 0, .45);
     color: var(--branco);
 }
 
@@ -495,4 +504,50 @@ li {
 .card-body .chart-box canvas {
     width: 100% !important;
     height: 100% !important;
+}
+
+/* Chat Think */
+.dash-body .prompt-area {
+display: grid;
+grid-template-columns: 1fr 1.5fr;
+gap: 1rem;
+
+}
+.dash-body .prompt-area .prompt-consult {
+    /* background-color: #373535; */
+}
+.prompt-area .prompt-consult details {
+    padding: 1rem 1.24rem;
+    background-color: #5C5C5C;
+}
+.prompt-consult details p {
+    padding: 1.24rem 0rem;
+}
+.prompt-area .prompt-consult summary {
+    display: flex;
+    justify-content: space-between;
+}
+ summary::marker {
+    display: block;
+}
+.prompt-area .prompt-consult summary h2 {
+    font-size: 1.2rem;
+}
+.prompt-consult summary .btns {
+    display: flex;
+    gap: .5rem;
+}
+.prompt-consult summary .btns button {
+    border-radius: 50%;
+    background-color: var(--branco);
+    border: none;
+    cursor: pointer;
+}
+.prompt-consult summary .btns i {
+    color: var(--preto);
+    padding: .5rem;
+}
+/* Prompt Result */
+.dash-body .prompt-area .prompt-result {
+    background-color: #6b4949;
 }

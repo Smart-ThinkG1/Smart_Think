@@ -178,7 +178,8 @@ li {
 }
 
 .nav-menu .nav-item a i,
-.nav-menu .nav-item.submenu i {
+.nav-menu .nav-item.submenu i,
+.nav-menu .submenu-item .bx {
     font-size: 1.4rem;
 }
 
@@ -317,12 +318,21 @@ li {
 .dash-content.active .dash-header {
     width: calc(100% - 80px);
 }
-
+.dash-header .text {
+    display: flex;
+    flex-direction: column;
+}
 .dash-header .title {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--cinza-escuro);
 }
+.dash-header .description{
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--cinza-claro);
+}
+
 
 .dash-header #modal-notify {
     color: var(--preto);
@@ -431,6 +441,10 @@ li {
 .kpi-body .kpi-value {
     font-size: 4rem;
     font-weight: 700;
+}
+.kpi-body .kpi-value p {
+    font-size: 2.5rem;
+    color: var(--cinza-medio);
 }
 
 .kpi-card.primary {

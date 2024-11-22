@@ -96,21 +96,25 @@
             </div>
             <!-- fim header da dash -->
 
-            <!-- modal editar cliente -->
+            <!-- fundo modal -->
             <div id="fade-modal" class="hide"></div>
+
+            <!-- modal editar cliente -->
             <div id="modal-edit" class="modal hide">
 
+                <!-- head do modal -->
                 <div class="modal-header">
                     <div class="close-modal-btn">
                         <i class="fa-solid fa-xmark"></i>
                     </div>
                 </div>
 
+                <!-- corpo do modal -->
                 <div class="modal-body">
+                    <div class="modal-title">
+                        <h2>Alterar Dados</h2>
+                    </div>
                     <form action="" class="modal-form">
-                        <div class="form-title">
-                            <h2>Alterar Dados</h2>
-                        </div>
 
                         <!-- NOME -->
                         <div class="input-field">
@@ -152,12 +156,49 @@
                             <label for="">Empresa</label>
                         </div>
 
-                        <div class="form-button">
+                        <div class="modal-button">
                             <button type="button">
                                 Editar
                             </button>
                         </div>
                     </form>
+                </div>
+
+            </div>
+
+            <!-- modal apagar cliente -->
+            <div id="modal-delete" class="modal hide">
+                <!-- head do modal -->
+                <div class="modal-header">
+                    <div class="close-modal-btn">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                </div>
+
+                <!-- corpo do modal -->
+                <div class="modal-body">
+                    <div class="modal-title">
+                        <h2>Confirmar Exclusão</h2>
+                    </div>
+                    <div class="modal-description">
+                        <p>Deseja excluir o cliente <span>client_Name</span>?</p>
+                    </div>
+
+                    <div class="group-button">
+                        <div class="modal-button cancel">
+                            <button type="button">
+                                Cancelar
+                            </button>
+                        </div>
+
+                        <div class="modal-button">
+                            <button type="button">
+                                Confirmar
+                            </button>
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>
@@ -337,28 +378,51 @@
 
     });
 
-    // *** Função modal dinâmico para edição de clientes
+    // *** Função modal dinâmico para controle de clientes
 
-    // Elementos do modal dinâmico para edição de clientes
+    // Selecionando fundo modal
     const fade_modal = document.getElementById("fade-modal");
-    const modal = document.getElementById("modal-edit");
-    const edit_btn = document.querySelectorAll(".edit");
-    const close_modal_btn = modal.querySelector(".close-modal-btn");
 
-    // Função que altera a classe de estilo "hide" do modal e fundo (fade)
-    const toggleModal = () => {
+    // Função generica que abre modal
+    const toggleModal = (modal) => {
         fade_modal.classList.toggle("hide");
         modal.classList.toggle("hide");
     }
 
-    // Função que dispara a função de exibição de modal a partir do click no fade ou no "X".
-    [fade_modal, close_modal_btn].forEach((el) => {
-        el.addEventListener("click", () => toggleModal());
+    // Selecionando botões de ação
+    const delete_btns = document.querySelectorAll(".delete")
+    const edit_btns = document.querySelectorAll(".edit");
+
+    // Selecionando tipos de modal
+    const modal_edit = document.getElementById("modal-edit");
+    const modal_delete = document.getElementById("modal-delete");
+
+    // Adiciona evento de clique para abrir o modal de editar cliente
+    edit_btns.forEach((btn) => {
+        btn.addEventListener("click", () => toggleModal(modal_edit));
     });
 
-    // Função que dispara a função de exibição do modal ao clicar em qualquer um dos botões de editar cliente
-    edit_btn.forEach((btn) => {
-        btn.addEventListener("click", () => toggleModal());
+    // Adiciona evento de clique para abrir o modal de deletar cliente
+    delete_btns.forEach((btn) => {
+        btn.addEventListener("click", () => toggleModal(modal_delete));
+    });
+
+    // Selecionando botões de fechando
+    const close_modal_btns = document.querySelectorAll(".close-modal-btn");
+
+    // Função que fecha modal
+    [fade_modal, ...close_modal_btns].forEach((el) => {
+        el.addEventListener("click", () => {
+            if (!fade_modal.classList.contains("hide")) {
+
+                fade_modal.classList.add("hide");
+
+                document.querySelectorAll(".modal").forEach(modal => {
+                    modal.classList.add("hide");
+                });
+
+            }
+        });
     });
 
 </script>

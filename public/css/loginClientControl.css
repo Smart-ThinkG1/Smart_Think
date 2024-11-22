@@ -42,7 +42,6 @@ li {
     height: 100vh;
     background-image: url(../assets/bgWomanDatabase.jpg);
     background-size: cover;
-    /* background-position: center; */
     background-repeat: no-repeat;
     position: relative;
     display: flex;
@@ -59,9 +58,93 @@ li {
 .login .form-card {
     position: relative;
     z-index: 2;
-    width: 35%;
-    height: 400px;
+    width: 30%;
+    min-height: 300px;
     background-color: var(--branco);
     border-radius: 10px;
-    padding: 1.5rem;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.form-card .form-body {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.form-card .form-title {
+    margin-bottom: 2rem;
+    display: flex;
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+.form-card .form-title h2 {
+    font-weight: 800;
+}
+
+.form-body .input-field {
+    width: 100%;
+    position: relative;
+    margin-bottom: 2rem;
+    display: flex;
+}
+.form-body .input-field input {
+    width: 100%;
+    font-size: 1rem;
+    padding: .45rem 0;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: 1px solid var(--cinza-claro);
+    outline: none;
+    padding-left: 1rem;
+}
+.form-body .input-field input:focus {
+    border-color: var(--roxo-primario);
+}
+.form-body .input-field label {
+    position: absolute;
+    top: 50%;
+    left: 3.45rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--cinza-claro);
+    font-weight: 500;
+    transition: all .2s ease;
+}
+.form-body .input-field input:focus + label,
+.form-body .input-field input:not(:placeholder-shown) + label {
+    top: -45%;
+    font-size: .75rem;
+    color: var(--roxo-escuro);
+}
+.form-body .input-field .input-icon {
+    width: 2.5rem;
+    background-color: #f0f0f0;
+    border: 1px solid var(--cinza-claro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.form-body .btn-field {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+}
+.btn-field button {
+    background-color: var(--roxo-escuro);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s;
+    width: 50%;
 }

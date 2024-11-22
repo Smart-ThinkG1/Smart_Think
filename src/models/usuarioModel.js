@@ -6,7 +6,7 @@ async function autenticar(email, senha) {
     try {
         // Consulta SQL parametrizada para evitar injeção de SQL
         const instrucaoSql = `
-            SELECT idFuncionario, nome, cpf, email, senha, idEmpresa 
+            SELECT id, nome, cpf, email, senha, fkEmpresa 
             FROM funcionario 
             WHERE email = ? AND senha = ?;
         `;
@@ -29,13 +29,13 @@ async function autenticar(email, senha) {
 
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
-function cadastrar(nome, cpf, email, senha, idEmpresa) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, cpf, email, senha, idEmpresa);
+function cadastrar(nome, cpf, email, senha, fkEmpresa) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, cpf, email, senha, fkEmpresa);
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO funcionario (nome, cpf, email, senha, idEmpresa) VALUES ('${nome}', '${cpf}','${email}', '${senha}', '${idEmpresa}');
+        INSERT INTO funcionario (nome, cpf, email, senha, fkEmpresa) VALUES ('${nome}', '${cpf}','${email}', '${senha}', '${fkEmpresa}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

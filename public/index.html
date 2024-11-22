@@ -90,7 +90,7 @@
                     <div class="input-icon">
                         <i class="fas fa-user"></i>
                     </div>
-                    <input type="text" maxlength="45" id="nome" placeholder="" required>
+                    <input type="text" maxlength="28" id="nome" placeholder="" required>
                     <label for="nome">Nome</label>
                     <span class="info-icon" title="Insira seu nome completo.">
                         <i class="fas fa-info-circle"></i>
@@ -102,7 +102,7 @@
                     </div>
                     <input type="text" maxlength="14" id="cpf" placeholder="" required pattern="\d*">
                     <label for="cpf">CPF</label>
-                    <span class="info-icon" title="Apenas números. Ex: 12345678900">
+                    <span class="info-icon" title="Apenas números. Ex: 123.456.789-00">
                         <i class="fas fa-info-circle"></i>
                     </span>
                 </div>
@@ -110,7 +110,7 @@
                     <div class="input-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
-                    <input type="email" maxlength="45" id="email" placeholder="" required>
+                    <input type="email" maxlength="28" id="email" placeholder="" required>
                     <label for="email">Email</label>
                     <span class="info-icon" title="Insira um email válido.">
                         <i class="fas fa-info-circle"></i>
@@ -120,7 +120,7 @@
                     <div class="input-icon">
                         <i class="fas fa-lock"></i>
                     </div>
-                    <input type="password" maxlength="28" id="senha" placeholder="" required>
+                    <input type="password" maxlength="20" id="senha" placeholder="" required>
                     <label for="senha">Senha</label>
                     <span class="info-icon" title="A senha deve ter pelo menos 8 caracteres.">
                         <i class="fas fa-info-circle"></i>
@@ -130,7 +130,7 @@
                     <div class="input-icon">
                         <i class="fas fa-key"></i>
                     </div>
-                    <input type="text" maxlength="28" id="codigoAccess" placeholder="" required>
+                    <input type="text" maxlength="20" id="codigoAccess" placeholder="" required>
                     <label for="codigoAccess">Código </label>
                     <span class="info-icon" title="Insira o código enviado para seu email.">
                         <i class="fas fa-info-circle"></i>
@@ -154,14 +154,14 @@
                     <div class="input-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
-                    <input type="email" maxlength="28" id="loginEmail" placeholder="" required>
+                    <input type="email" maxlength="40" id="loginEmail" placeholder="" required>
                     <label for="loginEmail">Email</label>
                 </div>
                 <div class="input-container">
                     <div class="input-icon">
                         <i class="fas fa-lock"></i>
                     </div>
-                    <input type="password" maxlength="28" id="loginSenha" placeholder="" required>
+                    <input type="password" maxlength="20" id="loginSenha" placeholder="" required>
                     <label for="loginSenha">Senha</label>
                 </div>
                 <button type="submit" onclick="login()">Entrar</button>
@@ -191,26 +191,37 @@
         <div class="modal-content-service">
             <span class="close">&times;</span>
             <h2><strong>Interessado em nosso serviço?</strong></h2>
-            <p>Ficamos felizes em saber que você deseja dar o próximo passo para otimizar suas campanhas de marketing!
-                Preencha o formulário abaixo com o email e seu nome, e entraremos em contato em breve para discutir como
-                podemos ajudar sua empresa de fast food a alcançar os melhores resultados. Nossa equipe especializada
-                enviará todos os detalhes diretamente para o seu e-mail por meio do endereço oficial da Smart Think.</p>
+            <p>Ficamos felizes em saber que você deseja dar o próximo passo para otimizar suas campanhas de marketing! Preencha o formulário abaixo com o email e seu nome, e entraremos em contato em breve para discutir como podemos ajudar sua empresa de fast food a alcançar os melhores resultados. Nossa equipe especializada enviará todos os detalhes diretamente para o seu e-mail por meio do endereço oficial da Smart Think.</p>
             <form>
                 <div class="input-container">
                     <div class="input-icon">
                         <i class="fas fa-user"></i>
                     </div>
-                    <input type="text" id="nomeClient" placeholder="" required>
+                    <input type="text" id="nomeClient" maxlength="50" placeholder="" required>
                     <label for="nomeClient">Nome</label>
                 </div>
                 <div class="input-container">
                     <div class="input-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
-                    <input type="email" id="serviceEmail" placeholder="" required>
+                    <input type="email" id="serviceEmail" max="40" placeholder="" required>
                     <label for="serviceEmail">Email</label>
                 </div>
-                <button type="submit">Enviar</button>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <input type="number" id="telephoneClient" maxlength="11" placeholder="" required>
+                    <label for="nomeClient">Telefone</label>
+                </div>
+                <div class="input-container">
+                    <div class="input-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <input type="text" id="empresaClient" max="40" placeholder="" required>
+                    <label for="nomeClient">Empresa</label>
+                </div>
+                <button type="submit" onclick="sendClientData()">Enviar</button>
             </form>
         </div>
     </div>
@@ -662,9 +673,9 @@
 
         let listaEmpresasCadastradas = [];
 
-        cpfInput.addEventListener('input', function () {
-            cpfInput.value = cpfInput.value.replace(/\D/g, '');
-        });
+    cpfInput.addEventListener('input', function () {
+        cpfInput.value = cpfInput.value.replace(/\D/g, '');
+    });
 
         function clearInputs() {
             inputs.forEach(input => input.value = '');
@@ -728,13 +739,13 @@
             }
         }
 
-        function cadastrar() {
-            var nomeVar = document.getElementById('nome').value;
-            var cpfVar = document.getElementById('cpf').value;
-            var emailVar = document.getElementById('email').value;
-            var senhaVar = document.getElementById('senha').value;
-            var codigoAccessVar = document.getElementById('codigoAccess').value;
-            var idEmpresaVar = document.getElementById('idEmpresa_input')?.value;
+    function cadastrar() {
+        var nomeVar = document.getElementById('nome').value;
+        var cpfVar = document.getElementById('cpf').value;
+        var emailVar = document.getElementById('email').value;
+        var senhaVar = document.getElementById('senha').value;
+        var codigoAccessVar = document.getElementById('codigoAccess').value;
+        var idEmpresaVar = document.getElementById('idEmpresa_input')?.value;
 
             sumirMensagem(); // Limpa mensagens de erro antes da validação
 
@@ -745,117 +756,100 @@
                 return;
             }
 
-            if (nomeVar && cpfVar && emailVar && senhaVar && codigoAccessVar) {
-                fetch("/usuarios/cadastrar", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        nomeServer: nomeVar,
-                        cpfServer: cpfVar,
-                        emailServer: emailVar,
-                        senhaServer: senhaVar,
-                        idEmpresaServer: codigoAccessVar
-                    }),
-                })
-                    .then(function (resposta) {
-                        if (resposta.ok) {
-                            alert("Cadastro realizado com sucesso! Agora, faça o login.");
-                            openLoginModal(); // Chama o modal de login
-                            modal.style.display = "none"; // Fecha o modal de cadastro
-                        } else {
-                            mostrarErro("Erro ao tentar realizar o cadastro.");
-                        }
-                    })
-                    .catch(function (erro) {
-                        console.log("#ERRO:", erro);
-                        mostrarErro("Erro ao tentar realizar o cadastro. Tente novamente mais tarde.");
-                    });
-            } else {
-                mostrarErro("Todos os campos devem ser preenchidos!");
-            }
+        if (nomeVar && cpfVar && emailVar && senhaVar && codigoAccessVar) {
+            fetch("/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    nomeServer: nomeVar,
+                    cpfServer: cpfVar,
+                    emailServer: emailVar,
+                    senhaServer: senhaVar,
+                    idEmpresaServer: codigoAccessVar
+                }),
+            })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    alert("Cadastro realizado com sucesso! Agora, faça o login.");
+                    openLoginModal(); // Chama o modal de login
+                    modal.style.display = "none"; // Fecha o modal de cadastro
+                } else {
+                    mostrarErro("Erro ao tentar realizar o cadastro.");
+                }
+            })
+            .catch(function (erro) {
+                console.log("#ERRO:", erro);
+                mostrarErro("Erro ao tentar realizar o cadastro. Tente novamente mais tarde.");
+            });
+        } else {
+            mostrarErro("Todos os campos devem ser preenchidos!");
         }
-
-        // Mascara de inputs -
-        // **** CPF XXX-XXX-XXX.XX:
-        const maskCPF = (cpf) => {
-            return cpf
-                .replace(/\D/g, '')                     // Remove todos os caracteres não dígitos
-                .replace(/(\d{3})(\d)/, '$1.$2')        // Primeiro ponto
-                .replace(/(\d{3})(\d)/, '$1.$2')        // Segundo ponto
-                .replace(/(\d{3})(\d{1,2})$/, '$1-$2'); // Traço
-        };
-
-        // evento que ouve o campo CPF
-        cpfInput.addEventListener('input', () => {
-            cpfInput.value = maskCPF(cpfInput.value);
-        });
-    })
-
+    }
 
     // Evento para o botão de submit no modal de cadastro
-    document.querySelector('.modal-content button[type="submit"]').addEventListener('click', function (event) {
+    document.querySelector('.modal-content button[type="submit"]').addEventListener('click', function(event) {
         event.preventDefault();
         cadastrar();
     });
 
     // Login
     const emailInput = document.getElementById("loginEmail");
-    const senhaInput = document.getElementById("loginSenha");
+const senhaInput = document.getElementById("loginSenha");
 
-    function login() {
-        const emailVar = emailInput.value.trim();
-        const senhaVar = senhaInput.value.trim();
+function login() {
+    const emailVar = emailInput.value.trim();
+    const senhaVar = senhaInput.value.trim();
 
-        sumirMensagem(); // Limpa mensagens de erro antes da validação
+    sumirMensagem(); // Limpa mensagens de erro antes da validação
 
-        if (!emailVar || !emailVar.includes("@") || !emailVar.includes(".")) {
-            mostrarErro("E-mail inválido. Por favor, insira um e-mail válido.");
-            return;
-        }
-
-        if (senhaVar.length < 8) {
-            mostrarErro("A senha deve ter pelo menos 8 caracteres.");
-            return;
-        }
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            }),
-        })
-            .then(function (resposta) {
-                if (resposta.ok) {
-                    return resposta.json();
-                } else if (resposta.status === 204) {
-                    mostrarErro("Nenhum aquário encontrado para sua empresa.");
-                } else {
-                    mostrarErro("E-mail ou senha incorretos. Tente novamente.");
-                }
-            })
-            .then(function (dados) {
-                if (dados) {
-                    alert("Login realizado com sucesso!");
-                    window.location = "./dashboard/dashboard.html";
-                }
-            })
-            .catch(function (erro) {
-                console.error("#ERRO:", erro);
-                mostrarErro("Erro ao tentar realizar o login. Tente novamente mais tarde.");
-            });
+    if (!emailVar || !emailVar.includes("@") || !emailVar.includes(".")) {
+        mostrarErro("E-mail inválido. Por favor, insira um e-mail válido.");
+        return;
     }
 
-    // Evento para o botão de submit no modal de login
-    document.querySelector('#loginModal form').addEventListener('submit', function (event) {
-        event.preventDefault();
-        login();
+    if (senhaVar.length < 8) {
+        mostrarErro("A senha deve ter pelo menos 8 caracteres.");
+        return;
+    }
+
+    fetch("/usuarios/autenticar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            emailServer: emailVar,
+            senhaServer: senhaVar
+        }),
+    })
+    .then(function (resposta) {
+        if (resposta.ok) {
+            return resposta.json();
+        } else if (resposta.status === 204) {
+            mostrarErro("Nenhum aquário encontrado para sua empresa.");
+        } else {
+            mostrarErro("E-mail ou senha incorretos. Tente novamente.");
+        }
+    })
+    .then(function (dados) {
+        if (dados) {
+            alert("Login realizado com sucesso!");
+            window.location = "./dashboard/dashboard.html";
+        }
+    })
+    .catch(function (erro) {
+        console.error("#ERRO:", erro);
+        mostrarErro("Erro ao tentar realizar o login. Tente novamente mais tarde.");
     });
+}
+
+// Evento para o botão de submit no modal de login
+document.querySelector('#loginModal form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    login();
+})});
 
 
     const infoIcons = document.querySelectorAll('.info-icon');

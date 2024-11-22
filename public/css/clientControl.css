@@ -481,7 +481,7 @@ li {
     background-color: rgba(0, 0, 0, 0.45);
     width: 100%;
     height: 100%;
-    z-index: 14;
+    z-index: 16;
     top: 0;
     left: 0;
 }
@@ -495,11 +495,13 @@ li {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 15;
+    z-index: 17;
     border-radius: 10px;
-    min-height: 400px;
+    min-height: 300px;
     transition: all .3s;
     padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Esconder modal e fundo */
@@ -531,8 +533,16 @@ li {
     color: var(--cinza-escuro);
 }
 .modal .modal-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.modal .modal-body .modal-title {
+    margin-bottom: 2rem;
+    display: flex;
+    text-align: center;
     width: 100%;
-    height: auto;
+    justify-content: center;
 }
 .modal .modal-body .modal-form {
     width: 100%;
@@ -541,9 +551,7 @@ li {
     flex-direction: column;
     align-items: center;
 }
-.modal-body .modal-form .form-title {
-    margin-bottom: 2rem;
-}
+
 .modal .modal-body .input-field {
     width: 95%;
     position: relative;
@@ -590,13 +598,21 @@ li {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
 }
-.modal-form .form-button {
+.modal-body .modal-description {
+    font-size: 1rem;
+    color: var(--preto);
+    font-weight: 500;
+}
+.modal-body .modal-description span {
+    font-weight: 700;
+}
+.modal-body .modal-button {
     width: 100%;
     display: flex;
     justify-content: center;
 }
-.form-button button {
-    background-color: rgb(89, 0, 255);
+.modal-button button {
+    background-color: var(--roxo-escuro);
     color: white;
     padding: 12px;
     border: none;
@@ -606,5 +622,21 @@ li {
     transition: background-color 0.3s;
     width: 50%;
 }
+.modal-button.cancel button {
+    background-color: var(--branco);
+    color: var(--roxo-escuro);
+    border: 1px solid var(--roxo-escuro)
+}
+.modal-body .group-button {
+    margin-top: auto;
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+}
+.modal-body .group-button .modal-button button {
+    width: 100%;
+}
+
+
 
 

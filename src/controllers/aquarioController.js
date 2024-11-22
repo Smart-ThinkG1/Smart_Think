@@ -1,14 +1,14 @@
 var aquarioModel = require("../models/aquarioModel");
 const database = require('../database/config');
 
-async function buscarAquariosPorEmpresa(idEmpresa) {
+async function buscarAquariosPorEmpresa(fkEmpresa) {
     // Verifique o nome da tabela correta. Parece que deveria ser 'funcionario'
     const instrucaoSql = `
-        SELECT * FROM funcionario WHERE idEmpresa = ?;
+        SELECT * FROM funcionario WHERE fkEmpresa = ?;
     `;
 
     try {
-        const resultados = await database.executar(instrucaoSql, [idEmpresa]);
+        const resultados = await database.executar(instrucaoSql, [fkEmpresa]);
         return resultados;
     } catch (erro) {
         console.error("Erro ao buscar funcionários por empresa:", erro);

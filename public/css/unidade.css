@@ -180,7 +180,8 @@ li {
 }
 
 .nav-menu .nav-item a i,
-.nav-menu .nav-item.submenu i {
+.nav-menu .nav-item.submenu i,
+.nav-menu .submenu-item .bx {
     font-size: 1.4rem;
 }
 

@@ -141,11 +141,13 @@ li {
     font-size: 1rem;
     margin-bottom: .2rem;
 }
+
 .nav-menu .nav-item svg {
     height: 1.4rem;
     width: 1.4rem;
     overflow: unset;
 }
+
 .nav-menu .nav-item::after {
     content: "";
     width: 8px;
@@ -318,6 +320,7 @@ li {
 .dash-content.active .dash-header {
     width: calc(100% - 80px);
 }
+
 .dash-header .text {
     display: flex;
     flex-direction: column;
@@ -333,8 +336,7 @@ li {
     color: var(--cinza-claro);
 }
 
-
-.dash-header #modal-notify {
+.dash-header .head-btn {
     color: var(--preto);
     font-size: 1.4rem;
     padding: 0.95rem 1.2rem;
@@ -343,8 +345,8 @@ li {
     border: solid 1px var(--cinza-claro);
 }
 
-.dash-header #modal-notify:hover {
-    background-color: rgba(0, 0, 0, .4);
+.dash-header .head-btn:hover {
+    background-color: rgba(0, 0, 0, .45);
     color: var(--branco);
 }
 
@@ -447,6 +449,7 @@ li {
     color: var(--cinza-medio);
 }
 
+
 .kpi-card.primary {
     background-color: var(--roxo-escuro);
     color: var(--branco);
@@ -488,6 +491,7 @@ li {
     font-weight: 500;
     color: var(--cinza-escuro);
 }
+
 .card-header .tooltip i {
     color: #BF0413;
 }

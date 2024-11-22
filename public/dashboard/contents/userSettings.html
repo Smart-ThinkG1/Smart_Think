@@ -4,23 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unidade</title>
-
-    <!-- Icone da Página -->
-    <link rel="shortcut icon" href="../assets/iconPage.png" type="image/x-icon">
+    <title>Meu Perfil</title>
+    <link rel="shortcut icon" href="../../assets/iconPage.png" type="image/x-icon">
     <!-- Icons Font Awesome -->
     <script src="https://kit.fontawesome.com/64ceb195cd.js" crossorigin="anonymous"></script>
     <!-- Icones Box Icons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- CSS Local -->
-    <link rel="stylesheet" href="../css/unidade.css">
+    <link rel="stylesheet" href="../../css/entitySettings.css">
+
 </head>
 
 <body>
-
-
-    <div class="dash-box">
-
+    <div class="profile-box">
         <!-- sidebar -->
         <div class="sidebar">
 
@@ -29,12 +25,12 @@
 
                 <!-- logo -->
                 <div class="nav-logo">
-                    <img src="../assets/logoBranca.svg" alt="">
+                    <img src="../../assets/logoBranca.svg" alt="">
                     <h2>Smart Think</h2>
                 </div>
 
                 <!-- botão que muda sidebar -->
-                <div id="toggle-dash-btn">
+                <div id="toggle-profile-btn">
                     <i class="fa-solid fa-bars"></i>
                 </div>
             </div>
@@ -92,11 +88,11 @@
 
                     <!-- notificações -->
                     <!-- <li class="nav-item">
-                        <a href="">
-                            <i class='bx bxs-inbox'></i>
-                            <p>Atividades</p>
-                        </a>
-                    </li> -->
+                                        <a href="">
+                                            <i class='bx bxs-inbox'></i>
+                                            <p>Atividades</p>
+                                        </a>
+                                    </li> -->
 
                     <!-- configurações -->
                     <li class="nav-item submenu">
@@ -137,139 +133,59 @@
         <!-- fim sidebar -->
 
         <!-- conteudo da dash -->
-        <div class="dash-content">
-
+        <div class="profile-content">
             <!-- header da dash -->
-            <div class="dash-header">
-
-                <div class="title">Boas vindas, <span>Fernando</span>!</div>
-                <div class="head-btn">
+            <div class="profile-header">
+                <div class="title"><span>Meu Perfil</span></div>
+                <div id="modal-notify">
                     <i class='bx bxs-inbox'></i>
                 </div>
             </div>
             <!-- fim header da dash -->
 
-            <!-- corpo da dash -->
-            <div class="dash-body" id="visaoGeral">
-                <div class="kpi-wrapper">
-
-                    <!-- kpi 1 -->
-                    <div class="kpi-card primary">
-                        <div class="kpi-header">
-                            <div class="kpi-title">
-                                <h2>Campanhas Ativas</h2>
-                            </div>
-
-                            <div class="tooltip">
-                                <i class="fa-solid fa-circle-info"></i>
-                                <div class="tooltip-box">
-                                    <p>Total de 3 campanhas</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="kpi-body">
-                            <div class="kpi-value">
-                                <span>3</span>
-                            </div>
-                        </div>
+            <!-- seção de perfil -->
+            <div class="profile-container">
+                <h2>Editar Perfil</h2>
+                <form id="profile-form">
+                    <div class="profile-picture">
+                        <img id="profile-image" src="https://via.placeholder.com/150" alt="Foto do usuário">
+                        <input type="file" id="upload-image" style="display: none;">
+                        <button type="button" onclick="document.getElementById('upload-image').click()">Alterar
+                            Foto</button>
                     </div>
 
-                    <!-- kpi 2 -->
-                    <div class="kpi-card secondary">
-                        <div class="kpi-header">
-                            <div class="kpi-title">
-                                <h2>Nível de Satisfação</h2>
-                            </div>
-                            <div class="tooltip">
-                                <i class="fa-solid fa-circle-info"></i>
-                                <div class="tooltip-box">
-                                    <p>Total de 4 unidades</p>
-                                </div>
-                            </div>
+                    <div class="profile-details">
+                        <label for="name">Nome:</label>
+                        <input type="text" id="name" value="Fernando">
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" value="fernando@email.com">
+
+                        <label for="password">Senha:</label>
+                        <div class="password-input">
+                            <input type="password" id="password" placeholder="Digite sua senha">
+                            <span id="togglePassword" class="eye-icon">
+                                <i class="fa-solid fa-eye-slash"></i>
+                            </span>
                         </div>
 
-                        <div class="kpi-body">
-                            <div class="kpi-value">
-                                <span>75%</span>
-                            </div>
-                        </div>
+                        <button type="submit">Salvar Alterações</button>
                     </div>
-
-                    <!-- kpi 3 -->
-                    <div class="kpi-card secondary">
-                        <div class="kpi-header">
-                            <div class="kpi-title">
-                                <h2>Média de reclamações</h2>
-                            </div>
-
-                            <div class="tooltip">
-                                <i class="fa-solid fa-circle-info"></i>
-                                <div class="tooltip-box">
-                                    <p>Esse valor representa uma estimativa mensal a partir da análise de sentimento dos
-                                        clientes.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="kpi-body">
-                            <div class="kpi-value">
-                                <span>20</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="chart-wrapper">
-
-                    <!-- card 1 -->
-                    <div class="chart-card">
-                        <div class="card-header">
-                            <div class="card-title">
-                                <h2>Dias mais buscados na Semana</h2>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-box">
-                                <canvas id="matrizBar1"></canvas>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="chart-card">
-                        <div class="card-header">
-                            <div class="card-title">
-                                <h2>Buscas por região</h2>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-box">
-                                <canvas id="matrizBar2"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
-            <!-- fim do corpo da dash -->
-
+            <!-- fim seção de marca -->
         </div>
         <!-- fim conteudo da dash -->
-
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/graficoUnidadeMatriz.js"></script>
-
 </body>
 
 </html>
 
 <script>
-
     // Sidebar Dinâmico - Essa função arruma o sidebar para abrir e fechar
-    const barBtn = document.getElementById("toggle-dash-btn");
+    const barBtn = document.getElementById("toggle-profile-btn");
     const sidebar = document.querySelector(".sidebar");
-    const dashContent = document.querySelector(".dash-content");
+    const dashContent = document.querySelector(".profile-content");
     const subMenuBtns = document.querySelectorAll(".submenu");
 
 
@@ -321,6 +237,36 @@
         });
     });
 
+    document.getElementById('upload-image').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('profile-image').src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
 
+    document.getElementById('profile-form').addEventListener('submit', function (event) {
+        event.preventDefault();
 
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+
+        console.log("Nome: ", name);
+        console.log("Email: ", email);
+
+        alert("Perfil atualizado com sucesso!");
+    });
+
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+
+    togglePassword.addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        togglePassword.querySelector('i').classList.toggle('fa-eye');
+        togglePassword.querySelector('i').classList.toggle('fa-eye-slash');
+    });
 </script>

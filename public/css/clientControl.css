@@ -585,7 +585,7 @@ li {
 .input-field input:not(:placeholder-shown) + label {
     top: -45%;
     font-size: .75rem;
-    color: rgb(89, 0, 255);
+    color: var(--roxo-escuro);
 }
 .input-field .input-icon {
     width: 2.5rem;

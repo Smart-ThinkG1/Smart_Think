@@ -826,7 +826,10 @@ function login() {
     })
     .then(function (resposta) {
         if (resposta.ok) {
+          
+                
             return resposta.json();
+          
         } else if (resposta.status === 204) {
             mostrarErro("Nenhum aquário encontrado para sua empresa.");
         } else {
@@ -835,6 +838,8 @@ function login() {
     })
     .then(function (dados) {
         if (dados) {
+            sessionStorage.EMAIL_USUARIO = dados.email;
+            sessionStorage.FK_EMPRESA = dados.fkEmpresa;
             alert("Login realizado com sucesso!");
             window.location = "./dashboard/dashboard.html";
         }

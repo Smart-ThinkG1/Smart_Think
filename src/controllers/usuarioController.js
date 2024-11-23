@@ -28,6 +28,7 @@ function autenticar(req, res) {
                                     email: usuario.email,
                                     nome: usuario.nome,
                                     cpf: usuario.cpf,
+                                    fkEmpresa: usuario.fkEmpresa,
                                     aquarios: resultadoAquarios
                                 });
                             })

@@ -31,4 +31,13 @@ function buscarFKPorCodigo(codigo) {
 
 }
 
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar, buscarFKPorCodigo };
+function buscarUnidadesPorMarca(fkMarca) {
+  var instrucaoSql = `
+      SELECT *
+      FROM empresa
+      WHERE fkMarca = ? AND estado = 'ATIVO';
+  `;
+  return database.executar(instrucaoSql, [fkMarca]);
+}
+
+module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar, buscarFKPorCodigo, buscarUnidadesPorMarca };

@@ -78,23 +78,6 @@
                             </a>
                         </li>
 
-                        <li class="submenu-item">
-                            <a href="static pages/unidadeMatriz.html">
-                                <p>Matriz</p>
-                            </a>
-                        </li>
-
-                        <li class="submenu-item">
-                            <a href="static pages/unidade2.html">
-                                <p>Unidade 2</p>
-                            </a>
-                        </li>
-
-                        <li class="submenu-item">
-                            <a href="static pages/unidade3.html">
-                                <p>Unidade 3</p>
-                            </a>
-                        </li>
                     </ul>
 
 
@@ -143,8 +126,8 @@
                         <i class="fa-solid fa-user"></i>
                     </div>
                     <div class="user-account">
-                        <div class="userName"><span>Fernando</span></div>
-                        <div class="userEmail"><span>fernando@email.com</span></div>
+                        <div class="userName"><span class="userNameSpan">User Name</span></div>
+                        <div class="userEmail"><span class="userEmailSpan">Email.com</span></div>
                     </div>
 
                     <!-- Log Out -->
@@ -163,7 +146,7 @@
             <!-- header da dash -->
             <div class="dash-header">
 
-                <div class="title">Boas vindas, <span>Fernando</span>!</div>
+                <div class="title">Boas vindas, <span class="userNameSpan">User Name</span>!</div>
                 <div class="head-btn">
                     <i class='bx bxs-inbox'></i>
                 </div>
@@ -282,10 +265,10 @@
                         </div>
 
 
-                        <!-- Unidade 1 -->
                         <div class="swiper-wrapper">
+                            <!-- Unidade 1 -->
                             <div class="card-body swiper-slide">
-                                <div class="chart-box flex-display swiper-slide">
+                                <div class="chart-box flex-display">
                                     <!-- wrap 1 -->
                                     <div class="wrap-area">
                                         <!-- descricao da unidade -->
@@ -310,19 +293,6 @@
                                     </div>
                                     <!-- wrap 2 -->
                                     <div class="wrap-area">
-                                        <!-- <div class="review positive-review">
-                                            <h2>Análise Positiva</h2>
-                                            <span><i class="fa-solid fa-check"></i>Comida boa</span>
-                                            <span><i class="fa-solid fa-check"></i>Local Limpo</span>
-                                            <span><i class="fa-solid fa-check"></i>Atendentes</span>
-                                        </div>
-                                        <div class="review negative-review">
-                                            <h2>Análise Negativa</h2>
-                                            <span><i class="fa-solid fa-xmark"></i>Atendimento devagar</span>
-                                            <span><i class="fa-solid fa-xmark"></i>Falta de troco</span>
-                                            <span><i class="fa-solid fa-xmark"></i>Filas</span>
-                                        </div> -->
-
                                         <a href="unidadeMatriz.html" class="linkBtn">acessar</a>
                                     </div>
                                 </div>
@@ -331,7 +301,7 @@
                             <!-- Unidade 2 -->
                             <div class="card-body swiper-slide">
 
-                                <div class="chart-box flex-display swiper-slide">
+                                <div class="chart-box flex-display">
                                     <!-- wrap 1 -->
                                     <div class="wrap-area">
                                         <!-- descricao da unidade -->
@@ -353,17 +323,6 @@
                                     </div>
                                     <!-- wrap 2 -->
                                     <div class="wrap-area">
-                                        <!-- <div class="review positive-review">
-                                            <h2>Análise Positiva</h2>
-                                            <span><i class="fa-solid fa-check"></i>Atendentes carismáticos</span>
-                                        </div>
-                                        <div class="review negative-review">
-                                            <h2>Análise Negativa</h2>
-                                            <span><i class="fa-solid fa-xmark"></i>Atendimento devagar</span>
-                                            <span><i class="fa-solid fa-xmark"></i>Sorvete em Falta</span>
-                                            <span><i class="fa-solid fa-xmark"></i>Batata Fria</span>
-                                            <span><i class="fa-solid fa-xmark"></i>Refigerente Aguado</span>
-                                        </div> -->
                                         <a href="unidade2.html" class="linkBtn">acessar</a>
                                     </div>
                                 </div>
@@ -371,7 +330,7 @@
 
                             <!-- Unidade 3 -->
                             <div class="card-body swiper-slide">
-                                <div class="chart-box flex-display swiper-slide">
+                                <div class="chart-box flex-display">
                                     <!-- wrap 1 -->
                                     <div class="wrap-area">
                                         <!-- descricao da unidade -->
@@ -393,21 +352,12 @@
                                     </div>
                                     <!-- wrap 2 -->
                                     <div class="wrap-area">
-                                        <!-- <div class="review positive-review">
-                                            <h2>Análise Positiva</h2>
-                                            <span><i class="fa-solid fa-check"></i>Atendimento Rápido</span>
-                                        </div>
-                                        <div class="review negative-review">
-                                            <h2>Análise Negativa</h2>
-                                            <span><i class="fa-solid fa-xmark"></i>Falta de Atendentes</span>
-                                            <span><i class="fa-solid fa-xmark"></i>Banheiro Sujo</span>
-                                            <span><i class="fa-solid fa-xmark"></i>Batata Fria</span>
-                                            <span><i class="fa-solid fa-xmark"></i>Sorvete em falta</span>
-                                        </div> -->
                                         <a href="unidade3.html" class="linkBtn">acessar</a>
                                     </div>
+                                    
                                 </div>
                             </div>
+
                         </div>
 
                     </div>
@@ -423,6 +373,8 @@
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 
         <script src="../dashboard/static pages/static js/graficoBodyDash.js"></script>
+        
+        <script src="../js/dashboard.js"></script>
         <!-- JS do Swiper Slides -->
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
@@ -484,30 +436,6 @@
                 }
             }
         });
-    });
-
-    // Inicializando Carrosel   
-    const swiper = new Swiper('.swiper', {
-        pagination: {
-            el: '.swiper-pagination',
-            type: 'progressbar',
-        }
-
-    });
-
-    // Obtenha o campo select
-    const slideSelector = document.getElementById('slideSelector');
-
-    // Adicione um ouvinte de eventos para mudar o slide quando o valor do select mudar
-    slideSelector.addEventListener('change', function () {
-        const selectedSlideIndex = parseInt(this.value, 10);
-        swiper.slideTo(selectedSlideIndex);
-    });
-
-    // Adicione um ouvinte de eventos ao carrossel para detectar mudanças de slide
-    swiper.on('slideChange', function () {
-        const currentSlideIndex = swiper.activeIndex;
-        slideSelector.value = currentSlideIndex;
     });
 
     // Seleciona todos os elementos que contêm as estrelas

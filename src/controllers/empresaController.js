@@ -38,10 +38,27 @@ function cadastrar(req, res) {
     }
   });
 }
+function buscarUnidadesPorMarca(req, res) {
+  var fkMarca = req.params.fkMarca;
+
+    empresaModel.buscarUnidadesPorMarca(fkMarca)
+        .then(resultado => {
+            if (resultado.length > 0) {
+                res.json(resultado);
+            } else {
+                res.status(404).json({ message: "Nenhuma unidade encontrada para essa marca." });
+            }
+        })
+        .catch(erro => {
+            console.error("Erro ao buscar unidades:", erro);
+            res.status(500).json({ message: "Erro ao buscar unidades", erro });
+        });
+}
 
 module.exports = {
   buscarPorCnpj,
   buscarPorId,
   cadastrar,
   listar,
+  buscarUnidadesPorMarca
 };

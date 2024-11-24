@@ -193,6 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (dados) {
                     console.log("Dados recebidos:", dados); // Log para verificar o conteúdo dos dados
 
+                    sessionStorage.setItem("NOME_USUARIO", dados.nome || "");
                     sessionStorage.setItem("EMAIL_USUARIO", dados.email || "");
                     sessionStorage.setItem("FK_EMPRESA", dados.fkEmpresa || "");
                     sessionStorage.setItem("FK_MARCA", dados.fkMarca || "");
@@ -200,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     alert("Login realizado com sucesso!");
 
-                    if (dados.fkMarca === undefined) {
+                    if (dados.fkMarca === null)  {
                         // USUARIO É DIRETOR
                         window.open("./dashboard/dashboard.html", "_blank");
                     } else {

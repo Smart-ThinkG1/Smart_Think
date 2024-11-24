@@ -70,23 +70,6 @@
                             </a>
                         </li>
 
-                        <li class="submenu-item">
-                            <a href="outer/unidadeMatriz.html">
-                                <p>Matriz</p>
-                            </a>
-                        </li>
-
-                        <li class="submenu-item">
-                            <a href="outer/unidade2.html">
-                                <p>Unidade 2</p>
-                            </a>
-                        </li>
-
-                        <li class="submenu-item">
-                            <a href="outer/unidade3.html">
-                                <p>Unidade 3</p>
-                            </a>
-                        </li>
                     </ul>
 
 
@@ -106,13 +89,13 @@
                     </li>
                     <ul class="submenu-list">
                         <li class="submenu-item nav-item">
-                            <a href="outer/user.html">
-                                <p>Meu perfil</p>
+                            <a href="contents/userSettings.html">
+                                <p>Gerenciar perfil</p>
                             </a>
                         </li>
                         <li class="submenu-item nav-item">
-                            <a href="outer/brand.html">
-                                <p>Minha marca</p>
+                            <a href="contents/brandSettings.html">
+                                <p>Gerenciar Marca</p>
                             </a>
                         </li>
                     </ul>
@@ -124,13 +107,21 @@
             <!-- footer sidebar -->
             <div class="footer-sidebar">
                 <div class="menu-user">
-                    <div class="user-icon"><i class="fa-solid fa-user"></i></div>
-                    <div class="user-account">
-                        <div class="userName"><span>Fernando</span></div>
-                        <div class="userEmail"><span>fernando@email.com</span></div>
+
+                    <!-- Dados do Usuario -->
+                    <div class="user-icon">
+                        <i class="fa-solid fa-user"></i>
                     </div>
-                    <div id="exitBtn"><i class="fa-solid fa-right-from-bracket"></i></div>
-                </div>
+                    <div class="user-account">
+                        <div class="userName"><span class="userNameSpan">User Name</span></div>
+                        <div class="userEmail"><span class="userEmailSpan">Email.com</span></div>
+                    </div>
+
+                    <!-- Log Out -->
+                    <div id="exitBtn">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        </div>
+                    </div>
             </div>
             <!-- fim footer sidebar -->
         </div>
@@ -142,7 +133,7 @@
             <!-- header da dash -->
             <div class="dash-header">
 
-                <div class="title">Boas vindas, <span>Fernando</span>!</div>
+                <div class="title">Boas vindas, <span class="userNameSpan">User Name</span>!</div>
                 <div class="head-btn">
                     <i class='bx bxs-inbox'></i>
                 </div>
@@ -257,9 +248,12 @@
 
     </div>
 
+    <!-- CHARTJS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- GRAFICO MOCKADO -->
     <script src="../js/graficoUnidadeMatriz.js"></script>
-
+    <!-- SCRIPT UNIDADE -->
+    <script src="../js/unidade.js"></script>
 </body>
 
 </html>

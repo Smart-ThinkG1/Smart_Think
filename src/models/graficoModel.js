@@ -68,7 +68,6 @@ function obterTotalReclamacoesEAvaliacoesPorMes(fkEmpresa) {
 
 
 
-
 module.exports = {
     obterDadosUnidade,
     obterTotalReclamacoesEAvaliacoesPorMes,

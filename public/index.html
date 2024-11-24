@@ -164,7 +164,7 @@
                     <input type="password" maxlength="20" id="loginSenha" placeholder="" required>
                     <label for="loginSenha">Senha</label>
                 </div>
-                <button type="submit" onclick="login()">Entrar</button>
+                <button type="submit" >Entrar</button>
                 <div class="switch-text">
                     <p>Ainda não tem uma conta? <a href="#" id="showSignup">Cadastre-se</a></p>
                 </div>
@@ -840,8 +840,16 @@ function login() {
         if (dados) {
             sessionStorage.EMAIL_USUARIO = dados.email;
             sessionStorage.FK_EMPRESA = dados.fkEmpresa;
+            sessionStorage.FK_MARCA = dados.fkMarca;
+            sessionStorage.CODIGO = dados.codigo;
             alert("Login realizado com sucesso!");
-            window.location = "./dashboard/dashboard.html";
+
+            if (dados.fkMarca ==  undefined) {
+                window.location = "./dashboard/dashboard.html";
+            } else {
+                window.location = "./dashboard/unidadeMatriz.html";
+            }
+            
         }
     })
     .catch(function (erro) {

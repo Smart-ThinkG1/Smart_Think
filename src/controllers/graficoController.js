@@ -28,9 +28,9 @@ function obterTotalReclamacoesEAvaliacoesPorMes(req, res) {
 
 
 
-
 module.exports = {
     obterDadosUnidade,
     obterTotalReclamacoesEAvaliacoesPorMes,
-    buscarDiasSemana
+    buscarDiasSemana,
+   
   };

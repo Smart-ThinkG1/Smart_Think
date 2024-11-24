@@ -1,9 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const ctx5 = document.getElementById('matrizBar1').getContext('2d');
 
-    diaSemana = JSON.parse(sessionStorage.getItem("DIAS_SEMANAS"));
-    totalDiaSemana = [0, 0, 0, 0, 0, 0, 0];
-
     const diasMap = {
         "Segunda-feira": 0,
         "Terça-feira": 1,
@@ -14,66 +11,92 @@ document.addEventListener("DOMContentLoaded", function () {
         "Domingo": 6
     };
 
-    diaSemana.forEach(function (element) {
-        const index = diasMap[element.diaSemana];
-        if (index !== undefined) {
-            totalDiaSemana[index] = element.total || 0; 
-        }
-    }
-    );
+    function inicializarGraficoDiasSemana(dados) {
+        const totalDiaSemana = [0, 0, 0, 0, 0, 0, 0];
 
+        dados.forEach(function (element) {
+            const index = diasMap[element.diaSemana];
+            if (index !== undefined) {
+                totalDiaSemana[index] = element.total || 0;
+            }
+        });
 
-    new Chart(ctx5, {
-        type: 'bar',
-        data: {
-            labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
-            datasets: [{
-                label: 'Número de Buscas',
-                data: totalDiaSemana, // Exemplo de números de buscas por dia
-                backgroundColor: [
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 99, 132, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 99, 132, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+        new Chart(ctx5, {
+            type: 'bar',
+            data: {
+                labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+                datasets: [{
+                    label: 'Número de Buscas',
+                    data: totalDiaSemana,
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
             },
-            plugins: {
-                legend: {
-                    display: true
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true
+                    }
                 }
             }
-        }
-    });
+        });
+    }
+
+    function buscarDiasSemana() {
+        const fkEmpresa = sessionStorage.getItem("FK_EMPRESA");
+
+        fetch(`/graficos/buscarDiasSemana/${fkEmpresa}`, { cache: 'no-store' })
+            .then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        sessionStorage.setItem("DIAS_SEMANAS", JSON.stringify(resposta));
+                        console.log("Dados recebidos:", resposta);
+
+                        inicializarGraficoDiasSemana(resposta); // Inicializa o gráfico com os dados recebidos
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    buscarDiasSemana();
 });
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
     const ctx6 = document.getElementById('matrizBar2').getContext('2d');
 
     function buscarTotalReclamacoesEAvaliacoesPorMes() {
-        const fkEmpresa = 1; // ID da empresa pode ser dinâmico
+        const fkEmpresa = sessionStorage.getItem('FK_EMPRESA');
         fetch(`/graficos/totalReclamacoesAvaliacoes/${fkEmpresa}`, { cache: 'no-store' })
             .then((response) => {
                 if (response.ok) {
@@ -158,25 +181,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-function buscarDiasSemana() {
-    // var fkEmpresa = sessionStorage.getItem("FK_EMPRESA")
-    var fkEmpresa = 1
-    fetch(`/graficos/buscarDiasSemana/${fkEmpresa}`, { cache: 'no-store' })
-        .then(function (response) {
-            console.log(response);
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    sessionStorage.DIAS_SEMANAS = JSON.stringify(resposta);
-
-                    console.log(JSON.stringify(resposta));
-
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
-}

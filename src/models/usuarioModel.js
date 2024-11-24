@@ -6,9 +6,11 @@ async function autenticar(email, senha) {
     try {
         // Consulta SQL parametrizada para evitar injeção de SQL
         const instrucaoSql = `
-            SELECT id, nome, cpf, email, senha, fkEmpresa 
-            FROM funcionario 
-            WHERE email = ? AND senha = ?;
+        SELECT func.email, fkEmpresa, fkMarca, codigo
+        FROM funcionario AS func
+        INNER JOIN empresa AS emp
+        ON func.fkEmpresa = emp.id
+        WHERE func.email = ? and func.senha = ?;
         `;
 
         // Executa a consulta com o email e senha em texto simples

@@ -18,25 +18,23 @@ function autenticar(req, res) {
                 if (resultadoAutenticar.length === 1) {
                     const usuario = resultadoAutenticar[0];
 
-                    if (!usuario.fkEmpresa) {
-                        res.status(500).json({ message: "fkEmpresa está indefinido" });
-                    } else {
-                        aquarioModel.buscarAquariosPorEmpresa(usuario.fkEmpresa)
-                            .then((resultadoAquarios) => {
-                                res.json({
-                                    id: usuario.id,
-                                    email: usuario.email,
-                                    nome: usuario.nome,
-                                    cpf: usuario.cpf,
-                                    fkEmpresa: usuario.fkEmpresa,
-                                    aquarios: resultadoAquarios
-                                });
-                            })
-                            .catch((erro) => {
-                                console.error("Erro ao buscar aquários:", erro);
-                                res.status(500).json({ message: "Erro ao buscar aquários", erro });
+
+                    aquarioModel.buscarAquariosPorEmpresa(usuario.fkEmpresa)
+                        .then((resultadoAquarios) => {
+                            res.json({
+                                id: usuario.id,
+                                email: usuario.email,
+                                nome: usuario.nome,
+                                cpf: usuario.cpf,
+                                fkEmpresa: usuario.fkEmpresa,
+                                aquarios: resultadoAquarios
                             });
-                    }
+                        })
+                        .catch((erro) => {
+                            console.error("Erro ao buscar aquários:", erro);
+                            res.status(500).json({ message: "Erro ao buscar aquários", erro });
+                        });
+
                 } else {
                     res.status(401).json({ message: "E-mail ou senha incorretos" });
                 }
@@ -56,14 +54,14 @@ function cadastrar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     var fkEmpresa = req.body.idEmpresaServer;
-    
+
 
     // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
     } else if (cpf == undefined) {
         res.status(400).send("Seu cpf está undefined!");
-    }  else if (email == undefined) {
+    } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");

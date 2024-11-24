@@ -1,16 +1,18 @@
 var database = require("../database/config")
+var empresa = require("../models/empresaModel")
 
 async function autenticar(email, senha) {
     console.log("ACESSEI O USUARIO MODEL\n\n function entrar():", email, senha);
-    
+
     try {
         // Consulta SQL parametrizada para evitar injeção de SQL
         const instrucaoSql = `
-            SELECT id, nome, cpf, email, senha, fkEmpresa 
-            FROM funcionario 
-            WHERE email = ? AND senha = ?;
-        `;
-
+        SELECT funcionario.id, funcionario.nome, funcionario.cpf, funcionario.email, funcionario.senha, funcionario.fkEmpresa, empresa.fkMarca, empresa.codigo
+        FROM funcionario
+        JOIN empresa ON funcionario.fkEmpresa = empresa.id
+        WHERE funcionario.email = ? AND funcionario.senha = ?;
+    `;
+    
         // Executa a consulta com o email e senha em texto simples
         const resultados = await database.executar(instrucaoSql, [email, senha]);
 
@@ -29,19 +31,36 @@ async function autenticar(email, senha) {
 
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
-function cadastrar(nome, cpf, email, senha, fkEmpresa) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, cpf, email, senha, fkEmpresa);
-    
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
-    var instrucaoSql = `
-        INSERT INTO funcionario (nome, cpf, email, senha, fkEmpresa) VALUES ('${nome}', '${cpf}','${email}', '${senha}', '${fkEmpresa}');
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+async function cadastrar(nome, cpf, email, senha, codigo) {
+    console.log("ACESSEI O USUARIO MODEL \n\n function cadastrar():", nome, cpf, email, senha, codigo);
+
+    try {
+        // Obtenha a FK da empresa usando o código fornecido
+        const resultadoEmpresa = await empresa.buscarFKPorCodigo(codigo);
+        
+        // Verifique se a empresa foi encontrada
+        if (!resultadoEmpresa || resultadoEmpresa.length === 0) {
+            throw new Error("Código da empresa não encontrado");
+        }
+
+        // Pegue o id da empresa
+        const fkEmpresa = resultadoEmpresa[0].id;
+
+        // Prepare a instrução SQL de inserção
+        const instrucaoSql = `
+            INSERT INTO funcionario (nome, cpf, email, senha, fkEmpresa) VALUES (?, ?, ?, ?, ?);
+        `;
+
+        // Execute a instrução SQL com os valores parametrizados
+        const resultadoCadastro = await database.executar(instrucaoSql, [nome, cpf, email, senha, fkEmpresa]);
+        return resultadoCadastro;
+    } catch (erro) {
+        console.error("Erro ao cadastrar usuário:", erro.message);
+        throw erro;
+    }
 }
 
 module.exports = {
-    autenticar,
-    cadastrar
-};
+        autenticar,
+        cadastrar
+    };

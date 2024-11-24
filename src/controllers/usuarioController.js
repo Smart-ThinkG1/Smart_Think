@@ -1,5 +1,4 @@
 var usuarioModel = require("../models/usuarioModel");
-var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -18,25 +17,15 @@ function autenticar(req, res) {
                 if (resultadoAutenticar.length === 1) {
                     const usuario = resultadoAutenticar[0];
 
-                    if (!usuario.fkEmpresa) {
-                        res.status(500).json({ message: "fkEmpresa está indefinido" });
-                    } else {
-                        aquarioModel.buscarAquariosPorEmpresa(usuario.fkEmpresa)
-                            .then((resultadoAquarios) => {
-                                res.json({
-                                    id: usuario.id,
-                                    email: usuario.email,
-                                    nome: usuario.nome,
-                                    cpf: usuario.cpf,
-                                    fkEmpresa: usuario.fkEmpresa,
-                                    aquarios: resultadoAquarios
-                                });
-                            })
-                            .catch((erro) => {
-                                console.error("Erro ao buscar aquários:", erro);
-                                res.status(500).json({ message: "Erro ao buscar aquários", erro });
-                            });
-                    }
+                    res.json({
+                        id: usuario.id,
+                        email: usuario.email,
+                        nome: usuario.nome,
+                        cpf: usuario.cpf,
+                        fkEmpresa: usuario.fkEmpresa,
+                        fkMarca: usuario.fkMarca,  // Inclua fkMarca se necessário
+                        codigo: usuario.codigo     // Inclua codigo se necessário
+                    });
                 } else {
                     res.status(401).json({ message: "E-mail ou senha incorretos" });
                 }
@@ -55,7 +44,7 @@ function cadastrar(req, res) {
     var cpf = req.body.cpfServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var fkEmpresa = req.body.idEmpresaServer;
+    var codigo = req.body.codigoServer;
     
 
     // Faça as validações dos valores
@@ -67,12 +56,12 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (fkEmpresa == undefined) {
+    } else if (codigo == undefined) {
         res.status(400).send("Sua filial a vincular está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, cpf, email, senha, fkEmpresa)
+        usuarioModel.cadastrar(nome, cpf, email, senha, codigo)
             .then(
                 function (resultado) {
                     res.json(resultado);

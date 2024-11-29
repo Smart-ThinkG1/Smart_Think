@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Unidade</title>
+    <!-- Icone do Site -->
+    <link rel="shortcut icon" href="../../assets/iconPage.png" type="image/x-icon">
+    <!-- Icons Font Awesome -->
+    <script src="https://kit.fontawesome.com/64ceb195cd.js" crossorigin="anonymous"></script>
+    <!-- Icones Box Icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- CSS Local -->
+    <link rel="stylesheet" href="../../css/newUnity.css">
+</head>
+
+<body>
+    <div class="dash-box">
+
+        <!-- sidebar -->
+        <div class="sidebar">
+
+            <!-- header sidebar -->
+            <div class="header-sidebar">
+
+                <!-- logo -->
+                <div class="nav-logo">
+                    <img src="../../assets/logoBranca.svg" alt="">
+                    <h2>Smart Think</h2>
+                </div>
+
+                <!-- botão que muda sidebar -->
+                <div id="toggle-dash-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+            <!-- fim header sidebar -->
+
+            <!-- menu sidebar -->
+            <nav class="menu">
+                <div class="menu-label">
+                    <h2>Menu</h2>
+                </div>
+                <ul class="nav-menu">
+
+                    <!-- visão geral -->
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class='bx bxs-grid-alt'></i>
+                            <p>Relatório da Marca</p>
+                        </a>
+                    </li>
+
+                    <!-- unidades -->
+                    <li class="nav-item submenu">
+                        <i class='bx bxs-store'></i>
+                        <p>Unidades</p>
+                        <span>▾</span>
+                    </li>
+                    <ul class="submenu-list">
+
+                        <li class="submenu-item">
+                            <a href="#">
+                                <i class='bx bxs-plus-circle'></i>
+                                <p>Nova Unidade</p>
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+                    <!-- notificações -->
+                    <!-- <li class="nav-item">
+                        <a href="">
+                            <i class='bx bxs-inbox'></i>
+                            <p>Atividades</p>
+                        </a>
+                    </li> -->
+
+                    <!-- configurações -->
+                    <li class="nav-item submenu">
+                        <i class='bx bxs-cog'></i>
+                        <p>Configurações</p>
+                        <span>▾</span>
+                    </li>
+                    <ul class="submenu-list">
+                        <li class="submenu-item nav-item">
+                            <a href="contents/userSettings.html">
+                                <p>Gerenciar Perfil</p>
+                            </a>
+                        </li>
+                        <li class="submenu-item nav-item">
+                            <a href="contents/brandSettings.html">
+                                <p>Gerenciar Marca</p>
+                            </a>
+                        </li>
+                        <li class="submenu-item nav-item">
+                            <a href="#">
+                                <p>Gerenciar Unidade</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                </ul>
+            </nav>
+            <!-- fim menu sidebar -->
+
+            <!-- footer sidebar -->
+            <div class="footer-sidebar">
+                <div class="menu-user">
+
+                    <!-- Dados do Usuario -->
+                    <div class="user-icon">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="user-account">
+                        <div class="userName"><span class="userNameSpan">User Name</span></div>
+                        <div class="userEmail"><span class="userEmailSpan">Email.com</span></div>
+                    </div>
+
+                    <!-- Log Out -->
+                    <div id="exitBtn">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- fim footer sidebar -->
+        </div>
+        <!-- fim sidebar -->
+
+        <!-- conteudo da dash -->
+        <div class="dash-content">
+
+            <!-- header da dash -->
+            <div class="dash-header">
+
+                <div class="title">Boas vindas, <span class="userNameSpan">User Name</span>!</div>
+                <div class="head-btn">
+                    <i class='bx bxs-inbox'></i>
+                </div>
+            </div>
+            <!-- fim header da dash -->
+
+            <!-- fundo modal -->
+            <div id="fade-modal" class="hide"></div>
+
+            <!-- modal confirmar -->
+            <div id="modal-confirm" class="modal hide">
+                <!-- head do modal -->
+                <div class="modal-header">
+                    <div class="close-modal-btn">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-title">
+                        <h2>Deseja Confirmar a criação de uma nova unidade?</h2>
+                    </div>
+
+                    <div class="form-body">
+
+                        <!-- Nome Fantasia -->
+                        <div id="form_NomeFantasia" class="form-input">
+                            <div class="input-label">
+                                Nome Fantasia
+                            </div>
+                            <div class="input-value">
+                                <p id="value_nomeFantasia">Exemplo de Nome Fantasia</p>
+                            </div>
+                        </div>
+
+                        <!-- Apelido -->
+                        <div id="form_Apelido" class="form-input">
+                            <div class="input-label">
+                                Apelido
+                            </div>
+                            <div class="input-value">
+                                <p id="value_apelido">Exemplo de Apelido</p>
+                            </div>
+                        </div>
+
+                        <!-- Razão Social -->
+                        <div id="form_RazaoSocial" class="form-input">
+                            <div class="input-label">
+                                Razão Social
+                            </div>
+                            <div class="input-value">
+                                <p id="value_razaoSocial">Exemplo de Razão Social</p>
+                            </div>
+                        </div>
+
+                        <!-- CNPJ -->
+                        <div id="form_CNPJ" class="form-input">
+                            <div class="input-label">
+                                CNPJ
+                            </div>
+                            <div class="input-value">
+                                <p id="value_cnpj">12.345.678/0001-90</p>
+                            </div>
+                        </div>
+
+                        <!-- Logradouro -->
+                        <div id="form_Logradouro" class="form-input">
+                            <div class="input-label">
+                                Logradouro
+                            </div>
+                            <div class="input-value">
+                                <p id="value_logradouro">Rua Exemplo, 123</p>
+                            </div>
+                        </div>
+
+                        <!-- CEP -->
+                        <div id="form_CEP" class="form-input">
+                            <div class="input-label">
+                                CEP
+                            </div>
+                            <div class="input-value">
+                                <p id="value_cep">12345-678</p>
+                            </div>
+                        </div>
+
+                        <!-- E-mail -->
+                        <div id="form_Email" class="form-input">
+                            <div class="input-label">
+                                E-mail
+                            </div>
+                            <div class="input-value">
+                                <p id="value_email">exemplo@email.com</p>
+                            </div>
+                        </div>
+
+                        <!-- Telefone -->
+                        <div id="form_Telefone" class="form-input">
+                            <div class="input-label">
+                                Telefone
+                            </div>
+                            <div class="input-value">
+                                <p id="value_telefone">(11) 91234-5678</p>
+                            </div>
+                        </div>
+
+                       <div class="modal-button">
+                         <button type="button">
+                            Confirmar
+                         </button>
+                       </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- corpo da dash -->
+            <div class="dash-body" id="visaoGeral">
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h2>Criar Nova unidade</h2>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <form action="">
+
+                            <div class="input-group">
+                                <!-- NOME FANTASIA -->
+                                <div class="input-field">
+                                    <div class="input-icon">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                    <input type="text" name="nomeFantasia" placeholder="" required>
+                                    <label for="nomeFantasia">Nome Fantasia</label>
+                                </div>
+
+                                <!-- APELIDO -->
+                                <div class="input-field">
+                                    <div class="input-icon">
+                                        <i class="fa-solid fa-tag"></i>
+                                    </div>
+                                    <input type="text" name="apelido" placeholder="">
+                                    <label for="apelido">Apelido</label>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <!-- RAZÃO SOCIAL -->
+                                <div class="input-field">
+                                    <div class="input-icon">
+                                        <i class="fa-solid fa-building"></i>
+                                    </div>
+                                    <input type="text" name="razaoSocial" placeholder="" required>
+                                    <label for="razaoSocial">Razão Social</label>
+                                </div>
+                                <!-- CNPJ -->
+                                <div class="input-field">
+                                    <div class="input-icon">
+                                        <i class="fa-solid fa-id-card"></i>
+                                    </div>
+                                    <input type="text" name="cnpj" placeholder="" required>
+                                    <label for="cnpj">CNPJ</label>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <!-- LOGRADOURO -->
+                                <div class="input-field">
+                                    <div class="input-icon">
+                                        <i class="fa-solid fa-road"></i>
+                                    </div>
+                                    <input type="text" name="logradouro" placeholder="">
+                                    <label for="logradouro">Logradouro</label>
+                                </div>
+                                <!-- CEP -->
+                                <div class="input-field">
+                                    <div class="input-icon">
+                                        <i class="fa-solid fa-map-marker-alt"></i>
+                                    </div>
+                                    <input type="text" name="cep" placeholder="">
+                                    <label for="cep">CEP</label>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <!-- E-MAIL -->
+                                <div class="input-field">
+                                    <div class="input-icon">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>
+                                    <input type="email" name="email" placeholder="" required>
+                                    <label for="email">E-mail</label>
+                                </div>
+                                <!-- TELEFONE -->
+                                <div class="input-field">
+                                    <div class="input-icon">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                    <input type="text" name="telefone" placeholder="">
+                                    <label for="telefone">Telefone</label>
+                                </div>
+                            </div>
+
+                            <div class="form-button">
+                                <button type="button" id="cadastrarUnidade">
+                                    Cadastrar
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- fim do corpo da dash -->
+
+        </div>
+        <!-- fim conteudo da dash -->
+
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    // Sidebar Dinâmico - Essa função arruma o sidebar para abrir e fechar
+    const barBtn = document.getElementById("toggle-dash-btn");
+    const sidebar = document.querySelector(".sidebar");
+    const dashContent = document.querySelector(".dash-content");
+    const subMenuBtns = document.querySelectorAll(".submenu");
+
+
+    const toggleSidebar = () => {
+        sidebar.classList.toggle("active");
+        dashContent.classList.toggle("active");
+
+        // Fecha todos os submenus ao alternar o sidebar
+        subMenuBtns.forEach(btn => {
+            const subMenuList = btn.nextElementSibling;
+            if (subMenuList) {
+                subMenuList.classList.remove("active");
+            }
+        });
+    }
+
+    barBtn.addEventListener("click", () => {
+        toggleSidebar();
+    });
+
+
+    subMenuBtns.forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+            event.preventDefault(); // Impede o comportamento padrão do link <a>
+
+            // Encontra a lista submenu correspondente
+            const subMenuList = btn.nextElementSibling;
+
+            if (subMenuList) { // Verifica se o submenu existe
+                // Fecha outros submenus abertos
+                subMenuBtns.forEach(otherBtn => {
+                    if (otherBtn !== btn) {
+                        const otherSubMenuList = otherBtn.nextElementSibling;
+                        if (otherSubMenuList) {
+                            otherSubMenuList.classList.remove("active");
+                        }
+                    }
+                });
+
+                // Alterna a visibilidade do submenu clicado
+                subMenuList.classList.toggle("active");
+
+                // Ajusta o sidebar se estiver aberto e o submenu for ativado
+                if (sidebar.classList.contains("active") && subMenuList.classList.contains("active")) {
+                    sidebar.classList.remove("active");
+                    dashContent.classList.remove("active");
+                }
+            }
+        });
+    });
+
+    const modal = document.querySelector(".modal");
+    const fade_modal = document.querySelector("#fade-modal")
+
+    const toggleModal = () => {
+        fade_modal.classList.toggle("hide");
+        modal.classList.toggle("hide");
+    }
+
+    const btnCadastrar = document.getElementById('cadastrarUnidade');
+    const close_modal_btn = document.querySelector(".close-modal-btn");
+
+    [btnCadastrar, close_modal_btn, fade_modal].forEach(e => {
+        e.addEventListener("click", () => {
+            toggleModal();
+        })
+    })
+
+
+</script>

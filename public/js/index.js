@@ -112,8 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(function (resposta) {
                     if (resposta.ok) {
                         alert("Cadastro realizado com sucesso! Agora, faça o login.");
-                        openLoginModal(); // Chama o modal de login
-                        modal.style.display = "none"; // Fecha o modal de cadastro
+                        openLoginModal();               // Chama o modal de login
+                        modal.style.display = "none";   // Fecha o modal de cadastro
                     } else {
                         mostrarErro("Erro ao tentar realizar o cadastro.");
                     }

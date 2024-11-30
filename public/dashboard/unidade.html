@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unidade</title>
+    <title>Unidade Matriz</title>
 
     <!-- Icone da Página -->
     <link rel="shortcut icon" href="../assets/iconPage.png" type="image/x-icon">
@@ -13,119 +13,119 @@
     <!-- Icones Box Icons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- CSS Local -->
-    <link rel="stylesheet" href="../css/unidade.css">
+    <link rel="stylesheet" href="../../css/unidade.css">
 </head>
 
-<body>
+<body onload="buscarDiasSemana()">
 
 
     <div class="dash-box">
 
-        <!-- sidebar -->
-        <div class="sidebar">
+                <!-- sidebar -->
+                <div class="sidebar">
 
-            <!-- header sidebar -->
-            <div class="header-sidebar">
-
-                <!-- logo -->
-                <div class="nav-logo">
-                    <img src="../assets/logoBranca.svg" alt="">
-                    <h2>Smart Think</h2>
-                </div>
-
-                <!-- botão que muda sidebar -->
-                <div id="toggle-dash-btn">
-                    <i class="fa-solid fa-bars"></i>
-                </div>
-            </div>
-            <!-- fim header sidebar -->
-
-            <!-- menu sidebar -->
-            <nav class="menu">
-                <div class="menu-label">
-                    <h2>Menu</h2>
-                </div>
-                <ul class="nav-menu">
-
-                    <!-- visão geral -->
-                    <li class="nav-item">
-                        <a href="dashboard.html">
-                            <i class='bx bxs-grid-alt'></i>
-                            <p>Relatório da Marca</p>
-                        </a>
-                    </li>
-
-                    <!-- unidades -->
-                    <li class="nav-item submenu">
-                        <i class='bx bxs-store'></i>
-                        <p>Unidades</p>
-                        <span>▾</span>
-                    </li>
-                    <ul class="submenu-list">
-
-                        <li class="submenu-item">
-                            <a href="#">
-                                <i class='bx bxs-plus-circle'></i>
-                                <p>Nova Unidade</p>
-                            </a>
-                        </li>
-
-                    </ul>
-
-
-                    <!-- notificações -->
-                    <!-- <li class="nav-item">
-                        <a href="">
-                            <i class='bx bxs-inbox'></i>
-                            <p>Atividades</p>
-                        </a>
-                    </li> -->
-
-                    <!-- configurações -->
-                    <li class="nav-item submenu">
-                        <i class='bx bxs-cog'></i>
-                        <p>Configurações</p>
-                        <span>▾</span>
-                    </li>
-                    <ul class="submenu-list">
-                        <li class="submenu-item nav-item">
-                            <a href="contents/userSettings.html">
-                                <p>Gerenciar perfil</p>
-                            </a>
-                        </li>
-                        <li class="submenu-item nav-item">
-                            <a href="contents/brandSettings.html">
-                                <p>Gerenciar Marca</p>
-                            </a>
-                        </li>
-                    </ul>
-
-                </ul>
-            </nav>
-            <!-- fim menu sidebar -->
-
-            <!-- footer sidebar -->
-            <div class="footer-sidebar">
-                <div class="menu-user">
-
-                    <!-- Dados do Usuario -->
-                    <div class="user-icon">
-                        <i class="fa-solid fa-user"></i>
-                    </div>
-                    <div class="user-account">
-                        <div class="userName"><span class="userNameSpan">User Name</span></div>
-                        <div class="userEmail"><span class="userEmailSpan">Email.com</span></div>
-                    </div>
-
-                    <!-- Log Out -->
-                    <div id="exitBtn">
-                        <i class="fa-solid fa-right-from-bracket"></i>
+                    <!-- header sidebar -->
+                    <div class="header-sidebar">
+        
+                        <!-- logo -->
+                        <div class="nav-logo">
+                            <img src="/assets/logoBranca.svg" alt="">
+                            <h2>Smart Think</h2>
+                        </div>
+        
+                        <!-- botão que muda sidebar -->
+                        <div id="toggle-dash-btn">
+                            <i class="fa-solid fa-bars"></i>
                         </div>
                     </div>
-            </div>
-            <!-- fim footer sidebar -->
-        </div>
-        <!-- fim sidebar -->
+                    <!-- fim header sidebar -->
+        
+                    <!-- menu sidebar -->
+                    <nav class="menu">
+                        <div class="menu-label">
+                            <h2>Menu</h2>
+                        </div>
+                        <ul class="nav-menu">
+        
+                            <!-- visão geral -->
+                            <li class="nav-item">
+                                <a href="dashboard.html">
+                                    <i class='bx bxs-grid-alt'></i>
+                                    <p>Relatório da Marca</p>
+                                </a>
+                            </li>
+        
+                            <!-- unidades -->
+                            <li class="nav-item submenu">
+                                <i class='bx bxs-store'></i>
+                                <p>Unidades</p>
+                                <span>▾</span>
+                            </li>
+                            <ul class="submenu-list">
+        
+                                <li class="submenu-item">
+                                    <a href="#">
+                                        <i class='bx bxs-plus-circle'></i>
+                                        <p>Nova Unidade</p>
+                                    </a>
+                                </li>
+        
+                            </ul>
+                            
+        
+                            <!-- notificações -->
+                            <!-- <li class="nav-item">
+                                <a href="">
+                                    <i class='bx bxs-inbox'></i>
+                                    <p>Atividades</p>
+                                </a>
+                            </li> -->
+        
+                            <!-- configurações -->
+                            <li class="nav-item submenu">
+                                <i class='bx bxs-cog'></i>
+                                <p>Configurações</p>
+                                <span>▾</span>
+                            </li>
+                            <ul class="submenu-list">
+                                <li class="submenu-item nav-item">
+                                    <a href="outer/user.html">
+                                        <p>Meu perfil</p>
+                                    </a>
+                                </li>
+                                <li class="submenu-item nav-item">
+                                    <a href="outer/brand.html">
+                                        <p>Minha marca</p>
+                                    </a>
+                                </li>
+                            </ul>
+        
+                        </ul>
+                    </nav>
+                    <!-- fim menu sidebar -->
+        
+                    <!-- footer sidebar -->
+                    <div class="footer-sidebar">
+                        <div class="menu-user">
+        
+                            <!-- Dados do Usuario -->
+                            <div class="user-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="user-account">
+                                <div class="userName"><span class="userNameSpan">User Name</span></div>
+                                <div class="userEmail"><span class="userEmailSpan">Email.com</span></div>
+                            </div>
+        
+                            <!-- Log Out -->
+                            <div id="exitBtn">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                </div>
+                            </div>
+                    </div>
+                    <!-- fim footer sidebar -->
+                </div>
+                <!-- fim sidebar -->
 
         <!-- conteudo da dash -->
         <div class="dash-content">
@@ -133,7 +133,7 @@
             <!-- header da dash -->
             <div class="dash-header">
 
-                <div class="title">Boas vindas, <span class="userNameSpan">User Name</span>!</div>
+                <div class="title">Boas vindas, <span>Fernando</span>!</div>
                 <div class="head-btn">
                     <i class='bx bxs-inbox'></i>
                 </div>
@@ -148,20 +148,20 @@
                     <div class="kpi-card primary">
                         <div class="kpi-header">
                             <div class="kpi-title">
-                                <h2>Campanhas Ativas</h2>
+                                <h2>Nível de Satisfação</h2>
                             </div>
 
                             <div class="tooltip">
                                 <i class="fa-solid fa-circle-info"></i>
                                 <div class="tooltip-box">
-                                    <p>Total de 3 campanhas</p>
+                                    <p>Nível de Satisfação é baseado nas avaliações positivas dos clientes</p>
                                 </div>
                             </div>
 
                         </div>
                         <div class="kpi-body">
                             <div class="kpi-value">
-                                <span>3</span>
+                                <span>75%</span>
                             </div>
                         </div>
                     </div>
@@ -170,19 +170,19 @@
                     <div class="kpi-card secondary">
                         <div class="kpi-header">
                             <div class="kpi-title">
-                                <h2>Nível de Satisfação</h2>
+                                <h2>Média de reclamações por mês</h2>
                             </div>
                             <div class="tooltip">
                                 <i class="fa-solid fa-circle-info"></i>
                                 <div class="tooltip-box">
-                                    <p>Total de 4 unidades</p>
+                                    <p>Este valor representa uma estimativa das reclamações e sentimentos negativos dos clientes ao longo do ano atual.</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="kpi-body">
                             <div class="kpi-value">
-                                <span>75%</span>
+                                <span>29</span>
                             </div>
                         </div>
                     </div>
@@ -191,7 +191,7 @@
                     <div class="kpi-card secondary">
                         <div class="kpi-header">
                             <div class="kpi-title">
-                                <h2>Média de reclamações</h2>
+                                <h2>Indice atual de buscas na Semana</h2>
                             </div>
 
                             <div class="tooltip">
@@ -205,7 +205,7 @@
 
                         <div class="kpi-body">
                             <div class="kpi-value">
-                                <span>20</span>
+                                <p>Baixo</p>
                             </div>
                         </div>
                     </div>
@@ -230,7 +230,7 @@
                     <div class="chart-card">
                         <div class="card-header">
                             <div class="card-title">
-                                <h2>Buscas por região</h2>
+                                <h2>Reclamações por Mês</h2>
                             </div>
                         </div>
                         <div class="card-body">
@@ -248,12 +248,12 @@
 
     </div>
 
-    <!-- CHARTJS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- GRAFICO MOCKADO -->
-    <script src="../js/graficoUnidadeMatriz.js"></script>
-    <!-- SCRIPT UNIDADE -->
-    <script src="../js/unidade.js"></script>
+        <!-- CHARTJS -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <!-- GRAFICO MOCKADO -->
+        <script src="static pages/static js/graficoUnidadeMatriz.js"></script>
+        <!-- SCRIPT UNIDADE -->
+        <script src="../js/unidade.js"></script>
 </body>
 
 </html>
@@ -314,7 +314,4 @@
             }
         });
     });
-
-
-
 </script>

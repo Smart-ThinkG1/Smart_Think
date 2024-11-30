@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 
-<body>
+<body inicializarGraficoReclamacoesAno(), listarDados()>
 
 
     <div class="dash-box">
@@ -77,7 +77,6 @@
                                 <p>Nova Unidade</p>
                             </a>
                         </li>
-
                     </ul>
 
 
@@ -132,7 +131,7 @@
 
                     <!-- Log Out -->
                     <div id="exitBtn">
-                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <i onclick="limparSessao()" class="fa-solid fa-right-from-bracket"></i>
                     </div>
                 </div>
             </div>
@@ -362,6 +361,7 @@
 
                     </div>
                 </div>
+                
                 <!-- fim do corpo da dash -->
 
             </div>
@@ -371,6 +371,32 @@
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+        <script>
+                    var fkEmpresaGrafico = sessionStorage.getItem('FK_EMPRESA');
+
+                    fetch(` /graficos/obterReclamacoesPorUnidade/${fkEmpresaGrafico}`) // Substitua "1" pelo ID real da empresa
+            .then(response => response.json())
+            .then(dados => {
+                console.log('Dados recebidos para o gráfico de unidades:', dados);
+                inicializarGraficoReclamacoesPorUnidade(dados); // Chama a nova função
+            })
+            .catch(error => console.error('Erro ao carregar dados do gráfico de unidades:', error));
+
+
+            var fkCodigo = sessionStorage.getItem('CODIGO_MARCA');
+
+            function listarDados(){
+                fetch(` /graficos/listarUnidades/${fkCodigo}`) // Substitua "1" pelo ID real da empresa
+        .then(response => response.json())
+        .then(dados => {
+        console.log('Dados recebidos para o listar de unidades:', dados);
+        inicializarGraficoReclamacoesPorUnidade(dados); // Chama a nova função
+        })
+        .catch(error => console.error('Erro ao carregar dados do gráfico de unidades:', error))
+            }
+
+
+        </script>
 
         <script src="../dashboard/static pages/static js/graficoBodyDash.js"></script>
         
@@ -476,5 +502,9 @@
         }
     });
 
+    function limparSessao() {
+        sessionStorage.clear();
+        window.location.href = "../index.html";
+    }
 
 </script>

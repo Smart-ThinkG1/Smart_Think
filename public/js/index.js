@@ -192,22 +192,33 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(function (dados) {
                 if (dados) {
                     console.log("Dados recebidos:", dados); // Log para verificar o conteúdo dos dados
-
+                    sessionStorage.setItem("CODIGO_MARCA", dados.codigo || "");
                     sessionStorage.setItem("NOME_USUARIO", dados.nome || "");
                     sessionStorage.setItem("EMAIL_USUARIO", dados.email || "");
+                    sessionStorage.setItem("FK_Unidade", dados.fkEmpresa || "");
                     sessionStorage.setItem("FK_EMPRESA", dados.fkEmpresa || "");
                     sessionStorage.setItem("FK_MARCA", dados.fkMarca || "");
-                    sessionStorage.setItem("CODIGO", dados.codigo || "");
+                    sessionStorage.setItem("STAUS_FUNC", dados.statusFuncionario);
+                    sessionStorage.setItem("STATUS_EMPRESA", dados.estadoEmpresa);
+                    
 
-                    alert("Login realizado com sucesso!");
 
-                    if (dados.fkMarca === null)  {
-                        // USUARIO É DIRETOR
-                        window.open("./dashboard/dashboard.html", "_blank");
-                    } else {
-                        // USUARIO É GERENTE
-                        window.open("./dashboard/unidade.html", "_blank");
-                    }
+                    // if(dados.estadoEmpresa === "INATIVO"){
+                    //     alert("Empresa desativida!");
+                    // }else if (dados.statusFuncionario === "INATIVO"){
+                    //     alert("Funcionário desativado!");
+                    // }else{
+                        alert("Login realizado com sucesso!");
+
+                        if (dados.fkMarca === null)  {
+                            // USUARIO É DIRETOR
+                            window.open("./dashboard/dashboard.html", "_blank");
+                        } else {
+                            // USUARIO É GERENTE
+                            window.open("./dashboard/unidade.html", "_blank");
+                        }
+                    // }
+                    
                     
                 }
             })

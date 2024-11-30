@@ -21,6 +21,10 @@ const userEmailSpans = document.querySelectorAll('.userEmailSpan');
 userNameSpans.forEach(span => span.textContent = firstNameUser);
 userEmailSpans.forEach(span => span.textContent = emailUser);
 
+function guardarUnidade(unidadeId) {
+    sessionStorage.FK_Unidade = unidadeId;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 if(fkMarca === "") {
     fetch(`../empresas/unidades/${fkEmpresa}`, {
@@ -39,7 +43,7 @@ if(fkMarca === "") {
                 const li = document.createElement('li');
                 li.className = 'submenu-item';
                 li.innerHTML = `
-                    <a href="#">
+                    <a href="#" onclick="guardarUnidade(${unidade.id}); window.location.href='unidade.html';">                        <i class='bx bxs-store'></i>
                         <i class='bx bxs-store'></i>
                         <p>${unidade.apelido}</p>
                     </a>
@@ -48,7 +52,8 @@ if(fkMarca === "") {
             });
         })
         .catch(error => console.error('Erro ao carregar unidades:', error));
-    } else {
+    }
+     else {
         const visaoGeralItem = document.querySelector('.nav-menu .nav-item:first-child');
         visaoGeralItem.style.display = 'none';
         

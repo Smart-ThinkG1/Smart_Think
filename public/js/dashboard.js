@@ -16,6 +16,10 @@ if (nameUser) {
 const userNameSpans = document.querySelectorAll('.userNameSpan');
 const userEmailSpans = document.querySelectorAll('.userEmailSpan');
 
+function guardarUnidade(unidadeId) {
+    sessionStorage.FK_Unidade = unidadeId;
+}
+
 // Atualiza o conteúdo de todos os spans encontrados
 userNameSpans.forEach(span => span.textContent = firstNameUser);
 userEmailSpans.forEach(span => span.textContent = emailUser);
@@ -32,15 +36,16 @@ document.addEventListener('DOMContentLoaded', function () {
             fkEmpresa: fkEmpresa
         })
     }).then(response => response.json())
+
         .then(unidades => {
             const submenuList = document.querySelector('.submenu-list');
+            
 
             unidades.forEach(unidade => {
                 const li = document.createElement('li');
                 li.className = 'submenu-item';
                 li.innerHTML = `
-                    <a href="unidade.html?id=${unidade.id}">
-                        <i class='bx bxs-store'></i>
+                    <a href="#" onclick="guardarUnidade(${unidade.id}); window.location.href='unidade.html';">                        <i class='bx bxs-store'></i>
                         <p>${unidade.apelido}</p>
                     </a>
                 `;

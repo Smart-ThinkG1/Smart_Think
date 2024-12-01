@@ -24,7 +24,9 @@ function autenticar(req, res) {
                         cpf: usuario.cpf,
                         fkEmpresa: usuario.fkEmpresa,
                         fkMarca: usuario.fkMarca,  // Inclua fkMarca se necessário
-                        codigo: usuario.codigo     // Inclua codigo se necessário
+                        codigo: usuario.codigo ,
+                        statusFuncionario: usuario.statusFuncionario,
+                        estadoEmpresa: usuario.estadoEmpresa      // Inclua codigo se necessário
                     });
                 } else {
                     res.status(401).json({ message: "E-mail ou senha incorretos" });

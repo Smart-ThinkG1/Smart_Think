@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const li = document.createElement('li');
                 li.className = 'submenu-item';
                 li.innerHTML = `
-                    <a href="#">
+                    <a href="unidade.html?id=${unidade.id}">
                         <i class='bx bxs-store'></i>
                         <p>${unidade.apelido}</p>
                     </a>
@@ -62,14 +62,31 @@ function fetchUnidades() {
         },
         body: JSON.stringify({ fkEmpresa })
     })
-        .then(response => response.json())
-        .then(unidades => {
-            renderUnidades(unidades);
-            initializeSwiper();
-            generateStarRatings();
-        })
-        .catch(error => console.error('Erro ao carregar unidades:', error));
+    .then(response => response.json())
+    .then(unidades => {
+        renderUnidades(unidades);
+        initializeSwiper();
+        generateStarRatings();
+
+        // Atualiza o seletor de slides com os nomes das unidades
+        updateSlideSelector(unidades);
+    })
+    .catch(error => console.error('Erro ao carregar unidades:', error));
 }
+
+function updateSlideSelector(unidades) {
+    const slideSelector = document.getElementById('slideSelector');
+    slideSelector.innerHTML = ''; // Limpa as opções existentes
+
+    // Adiciona uma opção para cada unidade
+    unidades.forEach((unidade, index) => {
+        const option = document.createElement('option');
+        option.value = index; // Define o valor como o índice do slide
+        option.textContent = unidade.nomeFantasia; // Define o texto como o nome da unidade
+        slideSelector.appendChild(option);
+    });
+}
+
 
 function renderUnidades(unidades) {
     const container = document.querySelector('.swiper-wrapper');
@@ -80,6 +97,8 @@ function renderUnidades(unidades) {
         container.appendChild(card);
         initChart(unidade);  // Inicialize o gráfico após adicionar o card
     });
+
+    
 }
 
 function createCard(unidade) {
@@ -90,19 +109,19 @@ function createCard(unidade) {
                 <div class="wrap-area">
                     <div class="unit-desc">
                         <h3 class="name">${unidade.nomeFantasia}</h3>
-                        <p class="adress">${unidade.logradouro}</p>
+                        <p class="adress">${unidade.logradouro} - ${unidade.cep}</p>
                     </div>
                     <div class="unit-stats">
                         <span class="review-rating">0</span>
                         <span class="star-rating" data-rating-value="0"></span>
-                        <span class="review-number">(679 avaliações)</span>
+                        <span class="review-number">(0)</span>
                     </div>
                     <div class="chart-mini-box">
                         <canvas id="myBarChart${unidade.id}"></canvas> 
                     </div>
                 </div>
                 <div class="wrap-area">
-                    <a href="unidadeMatriz.html" class="linkBtn">acessar</a>
+                    <a href="unidade.html?id=${unidade.id}" class="linkBtn">acessar</a>
                 </div>
             </div>
         `;

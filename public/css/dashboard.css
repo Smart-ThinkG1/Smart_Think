@@ -519,11 +519,26 @@ li {
 }
 
 .card-header .selectSlide {
-    padding: .45rem 1rem;
+    padding: .45rem;
     height: 100%;
     font-family: 'Lato', sans-serif;
     border: 1px solid var(--cinza-claro);
     border-radius: .25rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+
+    width: 150px; /* Define uma largura fixa */
+    max-width: 100%; /* Garante que não exceda o contêiner */
+    overflow: hidden; /* Esconde conteúdo que não cabe */
+    text-overflow: ellipsis; /* Adiciona reticências (...) se o texto for muito longo */
+    white-space: nowrap; /* Impede quebra de linha */
+}
+.card-header .selectSlide option{
+    width: 200px; /* Define a largura das opções quando o select está aberto */
+    max-width: 100%; /* Garante que as opções não excedam o contêiner */
+    overflow: hidden; /* Esconde o texto que não cabe */
+    text-overflow: ellipsis; /* Adiciona "..." ao texto que não cabe */
+    white-space: nowrap; /* Impede quebra de linha */
 }
 
 .dash-body .card-body {

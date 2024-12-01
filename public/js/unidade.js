@@ -1,3 +1,12 @@
+// Função para obter o valor de um parâmetro de query string
+function getQueryParameter(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+}
+
+// Captura o ID da unidade
+const unidadeId = getQueryParameter('id');
+
 // Recuperando Nome e Email de SESSION STORAGE
 const nameUser = sessionStorage.NOME_USUARIO;
 const emailUser = sessionStorage.EMAIL_USUARIO;
@@ -38,6 +47,13 @@ if(fkMarca === "") {
             unidades.forEach(unidade => {
                 const li = document.createElement('li');
                 li.className = 'submenu-item';
+
+                // Verifica se o id da unidade atual é igual ao unidadeId
+                if (unidade.id == unidadeId) {
+                    
+                    li.classList.add('active'); // Usa classList para adicionar a classe
+                }
+
                 li.innerHTML = `
                     <a href="#">
                         <i class='bx bxs-store'></i>

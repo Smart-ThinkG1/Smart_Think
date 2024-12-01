@@ -20,6 +20,7 @@ const userEmailSpans = document.querySelectorAll('.userEmailSpan');
 userNameSpans.forEach(span => span.textContent = firstNameUser);
 userEmailSpans.forEach(span => span.textContent = emailUser);
 
+// FUNÇÃO QUE LISTA AS EMPRESAS NA SIDEBAR
 document.addEventListener('DOMContentLoaded', function () {
 
     fetch(`../empresas/unidades/${fkEmpresa}`, {
@@ -49,74 +50,236 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => console.error('Erro ao carregar unidades:', error));
 });
 
-document.addEventListener('DOMContentLoaded', function () {
+// FUNÇÃO DO 2º GRÁFICO
 
+fetchUnidades();
+
+function fetchUnidades() {
     fetch(`../empresas/unidades/${fkEmpresa}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-            fkEmpresa: fkEmpresa
-        })
-    }).then(response => response.json())
+        body: JSON.stringify({ fkEmpresa })
+    })
+        .then(response => response.json())
         .then(unidades => {
-            const container = document.querySelector('.swiper-wrapper');
-            container.innerHTML = ''; // Limpa o conteúdo existente, se necessário
-
-            unidades.forEach(unidade => {
-                console.log(unidade);
-
-                const card = document.createElement('div');
-                card.className = 'card-body swiper-slide';
-                card.innerHTML = `
-                <div class="chart-box flex-display">
-                    <div class="wrap-area">
-                        <div class="unit-desc">
-                            <h3 class="name">${unidade.nomeFantasia}</h3>
-                            <p class="adress">${unidade.logradouro}</p>
-                        </div>
-                        <div class="unit-stats">
-                            <span class="review-rating">3.5</span>
-                            <span class="star-rating" data-rating-value="3.5"></span>
-                            <span class="review-number">(679 avaliações)</span>
-                        </div>
-                        <div class="chart-mini-box">
-                            <canvas id="myBarChart${unidade.id}"></canvas> 
-                        </div>
-                    </div>
-                    <div class="wrap-area">
-                        <a href="unidadeMatriz.html" class="linkBtn">acessar</a>
-                    </div>
-                </div>
-            `;
-                container.appendChild(card); // Adicione o card ao container
-            });
-
-            // Inicialize o Swiper após todos os elementos serem adicionados
-            const swiper = new Swiper('.swiper', {
-                pagination: {
-                    el: '.swiper-pagination',
-                    type: 'progressbar',
-                }
-            });
-
-            // Obtenha o campo select
-            const slideSelector = document.getElementById('slideSelector');
-
-            // Adicione um ouvinte de eventos para mudar o slide quando o valor do select mudar
-            slideSelector.addEventListener('change', function () {
-                const selectedSlideIndex = parseInt(this.value, 10);
-                swiper.slideTo(selectedSlideIndex);
-            });
-
-            // Adicione um ouvinte de eventos ao carrossel para detectar mudanças de slide
-            swiper.on('slideChange', function () {
-                const currentSlideIndex = swiper.activeIndex;
-                slideSelector.value = currentSlideIndex;
-            });
+            renderUnidades(unidades);
+            initializeSwiper();
+            generateStarRatings();
         })
         .catch(error => console.error('Erro ao carregar unidades:', error));
-});
+}
+
+function renderUnidades(unidades) {
+    const container = document.querySelector('.swiper-wrapper');
+    container.innerHTML = '';
+
+    unidades.forEach(unidade => {
+        const card = createCard(unidade);
+        container.appendChild(card);
+        initChart(unidade);  // Inicialize o gráfico após adicionar o card
+    });
+}
+
+function createCard(unidade) {
+    const card = document.createElement('div');
+    card.className = 'card-body swiper-slide';
+    card.innerHTML = `
+            <div class="chart-box flex-display">
+                <div class="wrap-area">
+                    <div class="unit-desc">
+                        <h3 class="name">${unidade.nomeFantasia}</h3>
+                        <p class="adress">${unidade.logradouro}</p>
+                    </div>
+                    <div class="unit-stats">
+                        <span class="review-rating">0</span>
+                        <span class="star-rating" data-rating-value="0"></span>
+                        <span class="review-number">(679 avaliações)</span>
+                    </div>
+                    <div class="chart-mini-box">
+                        <canvas id="myBarChart${unidade.id}"></canvas> 
+                    </div>
+                </div>
+                <div class="wrap-area">
+                    <a href="unidadeMatriz.html" class="linkBtn">acessar</a>
+                </div>
+            </div>
+        `;
+    console.log(`empresa ${unidade.nomeFantasia}, sob o código de identificação ${unidade.id} foi gerada`);
+    return card;
+}
+
+
+function initChart(unidade) {
+
+    const ctxAu = document.getElementById(`myBarChart${unidade.id}`);
+    const ctxAnaliseUnidade = new Chart(ctxAu, {
+        type: 'bar',
+        data: {
+            labels: ['Positivos', 'Neutros', 'Negativos'], // Ordem alterada
+            datasets: [{
+                axis: 'y',
+                label: 'Quantidade', //Legenda Vertical
+                data: [],
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.8)', // Cor para Positivos
+                    'rgba(255, 206, 86, 0.8)', // Cor para Neutros
+                    'rgba(255, 99, 132, 0.8)'  // Cor para Negativos
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        font: {
+                            family: 'Lato',
+                            size: 10
+                        }
+                    }
+                },
+                y: {
+                    ticks: {
+                        font: {
+                            family: 'Lato',
+                            size: 10
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    align: 'start',
+                    text: 'Distribuição de Avaliações',
+                    font: {
+                        family: 'Lato',
+                        size: 12
+                    }
+                }
+            }
+        }
+    });
+
+    // Chama listarAvaliacoes passando o gráfico
+    listarAvaliacoes(unidade, ctxAnaliseUnidade);
+}
+
+function listarAvaliacoes(unidade, chart) {
+    fetch(`../graficos/listarAvaliacoes/${unidade.id}`, {
+        method: "GET",
+    })
+    .then(response => response.json())
+    .then(avaliacao => {
+        console.log(avaliacao);
+
+        // Atualiza os dados do gráfico
+        chart.data.datasets[0].data = [
+            avaliacao[0].positivos,
+            avaliacao[0].neutros,
+            avaliacao[0].negativos
+        ];
+        chart.update();
+
+        // Seleciona o card correspondente
+        const card = document.getElementById(`myBarChart${unidade.id}`).closest('.card-body');
+
+        // Atualiza os spans de review-rating e review-number dentro deste card
+        const reviewRatingElements = card.querySelectorAll('.review-rating');
+        const reviewNumberElements = card.querySelectorAll('.review-number');
+        const starRatingElements = card.querySelectorAll('.star-rating');
+
+        // Atualiza cada review-rating e data-rating-value
+        reviewRatingElements.forEach((reviewRatingElement, index) => {
+            const mediaEstrelas = avaliacao[0].mediaEstrelas;
+            reviewRatingElement.textContent = mediaEstrelas;
+            starRatingElements[index].setAttribute('data-rating-value', mediaEstrelas);
+        });
+
+        // Atualiza cada review-number
+        reviewNumberElements.forEach(reviewNumberElement => {
+            reviewNumberElement.textContent = `(${avaliacao[0].qtdAvaliacoes} avaliações)`;
+        });
+
+        // Gera as estrelas
+        generateStarRatings();
+    })
+    .catch(error => console.error('Erro ao carregar unidades:', error));
+}
+
+function generateStarRatings() {
+    const divEstrelasList = document.querySelectorAll('.star-rating');
+
+    divEstrelasList.forEach(divEstrelas => {
+        // Limpa estrelas existentes para evitar duplicação
+        divEstrelas.innerHTML = '';
+
+        const valorEstrela = Number(divEstrelas.getAttribute('data-rating-value'));
+        const valorEstrelaInteiro = Math.trunc(valorEstrela);
+        const valorEstrelaDecimal = valorEstrela - valorEstrelaInteiro;
+
+        for (let i = 0; i < valorEstrelaInteiro; i++) {
+            divEstrelas.appendChild(createStarIcon('fa-star', 'fill-star'));
+        }
+
+        if (valorEstrelaDecimal >= 0.5) {
+            divEstrelas.appendChild(createStarIcon('fa-star-half', 'fill-star'));
+        }
+
+        const qntdEstrelaPreenchida = divEstrelas.querySelectorAll('.fill-star').length;
+        for (let i = qntdEstrelaPreenchida; i < 5; i++) {
+            divEstrelas.appendChild(createStarIcon('fa-star', 'null-star'));
+        }
+    });
+}
+
+function createStarIcon(starType, starClass) {
+    const starIcon = document.createElement('i');
+    starIcon.classList.add('fa-solid', starType, starClass);
+    return starIcon;
+}
+
+function initializeSwiper() {
+    const swiper = new Swiper('.swiper', {
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'progressbar',
+        }
+    });
+
+    const slideSelector = document.getElementById('slideSelector');
+    slideSelector.addEventListener('change', function () {
+        const selectedSlideIndex = parseInt(this.value, 10);
+        swiper.slideTo(selectedSlideIndex);
+    });
+
+    swiper.on('slideChange', function () {
+        const currentSlideIndex = swiper.activeIndex;
+        slideSelector.value = currentSlideIndex;
+    });
+}
+
+
+
+
+
+
+
+
+
 
 

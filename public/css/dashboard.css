@@ -325,12 +325,14 @@ li {
     display: flex;
     flex-direction: column;
 }
+
 .dash-header .title {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--cinza-escuro);
 }
-.dash-header .description{
+
+.dash-header .description {
     font-weight: 500;
     font-size: 1rem;
     color: var(--cinza-claro);
@@ -444,11 +446,31 @@ li {
     font-size: 4rem;
     font-weight: 700;
 }
+
 .kpi-body .kpi-value p {
     font-size: 2.5rem;
     color: var(--cinza-medio);
 }
 
+#kpi-2 .kpi-value {
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--cinza-medio);
+}
+
+#kpi-2 .kpi-value p {
+    font-size: inherit;
+}
+#kpi-2 .kpi-value p span {
+    font-weight: 700;
+}
+#negative-value {
+    color: #BF0413;
+}
+
+#positive-value {
+    color: green;
+}
 
 .kpi-card.primary {
     background-color: var(--roxo-escuro);
@@ -495,13 +517,15 @@ li {
 .card-header .tooltip i {
     color: #BF0413;
 }
+
 .card-header .selectSlide {
-    padding: .45rem 1rem ;
+    padding: .45rem 1rem;
     height: 100%;
     font-family: 'Lato', sans-serif;
     border: 1px solid var(--cinza-claro);
     border-radius: .25rem;
 }
+
 .dash-body .card-body {
     width: 100%;
     height: 300px;
@@ -557,9 +581,11 @@ li {
     font-weight: 500;
     color: var(--cinza-claro);
 }
+
 .wrap-area .unit-stats .review-rating {
     margin-right: .25rem;
 }
+
 .wrap-area .unit-stats .review-number {
     margin-left: .25rem;
 }
@@ -572,17 +598,21 @@ li {
 .wrap-area .unit-stats .null-star {
     color: #cecece;
 }
+
 .card-header .swiper-pagination {
     top: 100%;
 }
+
 .card-header .swiper-pagination-progressbar-fill {
-    background-color:var(--roxo-escuro);
+    background-color: var(--roxo-escuro);
 }
+
 /* MiniBox */
 .wrap-area .chart-mini-box {
     width: 100%;
     height: fit-content;
 }
+
 .wrap-area .chart-mini-box canvas {
     width: 100% !important;
     height: 100% !important;
@@ -592,28 +622,34 @@ li {
 .wrap-area .review {
     margin-bottom: .85rem;
 }
+
 .wrap-area .review h2 {
     font-size: 1rem;
     font-weight: 800;
     color: var(--cinza-escuro);
     margin-bottom: .25rem;
 }
+
 .review span {
     display: block;
     margin-bottom: .25rem;
     font-size: .75rem;
     font-weight: 500;
 }
+
 .wrap-area .review i {
     margin-right: .25rem;
     font-size: .85rem;
 }
+
 .wrap-area .positive-review i {
     color: green;
 }
+
 .wrap-area .negative-review i {
     color: red;
 }
+
 .wrap-area .linkBtn {
     font-size: 12px;
     text-transform: uppercase;
@@ -627,6 +663,7 @@ li {
     cursor: pointer;
     margin: auto 0 0 auto;
 }
+
 .wrap-area .linkBtn:hover {
     background-color: var(--branco);
     color: #000;

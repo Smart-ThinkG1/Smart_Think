@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 
-<body>
+<body >
 
 
     <div class="dash-box">
@@ -158,7 +158,7 @@
                 <div class="kpi-wrapper">
 
                     <!-- kpi 1 -->
-                    <div class="kpi-card primary">
+                    <div class="kpi-card primary" id="kpi-1">
                         <div class="kpi-header">
                             <div class="kpi-title">
                                 <h2>Unidades Registradas</h2>
@@ -180,7 +180,7 @@
                     </div>
 
                     <!-- kpi 2 -->
-                    <div class="kpi-card secondary">
+                    <div class="kpi-card secondary" id="kpi-2">
                         <div class="kpi-header">
                             <div class="kpi-title">
                                 <h2>Avaliações Positivas X Negativas</h2>
@@ -188,21 +188,25 @@
                             <div class="tooltip">
                                 <i class="fa-solid fa-circle-info"></i>
                                 <div class="tooltip-box">
-                                    <p>Satisfação média mensal é baseada na média das avaliações positivas dos clientes
-                                        em todas unidades ativas.</p>
+                                    <p> Este indicador faz uma comparação de quantas avaliações positivas estão para a
+                                        quantidade de avaliações negativas.
+                                    </p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="kpi-body">
                             <div class="kpi-value">
-                                <span>20%</span>
+                                <p>Existem <span id="positive-value">X</span> avaliações positivas para cada <span
+                                        id="negative-value">X</span> avaliações
+                                    negativas no periodo de 3 meses.
+                                </p>
                             </div>
                         </div>
                     </div>
 
                     <!-- kpi 3 -->
-                    <div class="kpi-card secondary">
+                    <div class="kpi-card secondary" id="kpi-3">
                         <div class="kpi-header">
                             <div class="kpi-title">
                                 <h2>Filial mais reclamada do mês</h2>
@@ -268,34 +272,7 @@
                         <div class="swiper-wrapper">
                             <!-- Unidade 1 -->
                             <div class="card-body swiper-slide">
-                                <div class="chart-box flex-display">
-                                    <!-- wrap 1 -->
-                                    <div class="wrap-area">
-                                        <!-- descricao da unidade -->
-
-                                        <div class="unit-desc">
-                                            <h3 class="name">Unidade Matriz</h3>
-                                            <p class="adress">Av. Sapopemba, 20020 - Vila Ester, São Paulo - SP,
-                                                08330-245</p>
-                                        </div>
-                                        <!-- status da unidade -->
-                                        <div class="unit-stats">
-                                            <span class="review-rating">3.5</span>
-                                            <span class="star-rating" data-rating-value="3.5"></span>
-                                            <span class="review-number">(679 avaliações)</span>
-                                        </div>
-                                        <!-- grafico de avaliações -->
-
-                                        <div class="chart-mini-box">
-                                            <canvas id="myBarChart1"></canvas>
-                                        </div>
-
-                                    </div>
-                                    <!-- wrap 2 -->
-                                    <div class="wrap-area">
-                                        <a href="unidadeMatriz.html" class="linkBtn">acessar</a>
-                                    </div>
-                                </div>
+  
                             </div>
 
                             <!-- Unidade 2 -->
@@ -354,7 +331,7 @@
                                     <div class="wrap-area">
                                         <a href="unidade3.html" class="linkBtn">acessar</a>
                                     </div>
-                                    
+
                                 </div>
                             </div>
 
@@ -372,8 +349,8 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 
-        <script src="../dashboard/static pages/static js/graficoBodyDash.js"></script>
-        
+        <!-- <script src="../dashboard/static pages/static js/graficoBodyDash.js"></script> -->
+
         <script src="../js/dashboard.js"></script>
         <!-- JS do Swiper Slides -->
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -436,44 +413,6 @@
                 }
             }
         });
-    });
-
-    // Seleciona todos os elementos que contêm as estrelas
-    const divEstrelasList = document.querySelectorAll('.star-rating');
-
-    // Itera sobre cada elemento
-    divEstrelasList.forEach(divEstrelas => {
-        // Converte o valor de avaliação para um número
-        const valorEstrela = Number(divEstrelas.getAttribute('data-rating-value'));
-
-        // Separa a parte inteira e decimal do valor de avaliação
-        const valorEstrelaInteiro = Math.trunc(valorEstrela);
-        const valorEstrelaDecimal = valorEstrela - valorEstrelaInteiro;
-
-
-        // Adiciona estrelas inteiras
-        for (let i = 0; i < valorEstrelaInteiro; i++) {
-            const starIcon = document.createElement('i');
-            starIcon.classList.add('fa-solid', 'fa-star', 'fill-star');
-            divEstrelas.appendChild(starIcon);
-        }
-
-        // Adiciona meia estrela se necessário
-        if (valorEstrelaDecimal >= 0.5) {
-            const starIcon = document.createElement('i');
-            starIcon.classList.add('fa-solid', 'fa-star-half', 'fill-star');
-            divEstrelas.appendChild(starIcon);
-        }
-
-        // Conta a quantidade de estrelas já adicionadas
-        let qntdEstrelaPreenchida = divEstrelas.querySelectorAll('.fill-star').length;
-
-        // Adiciona estrelas vazias para completar 5 estrelas
-        for (let i = qntdEstrelaPreenchida; i < 5; i++) {
-            const starIcon = document.createElement('i');
-            starIcon.classList.add('fa-solid', 'fa-star', 'null-star'); // Estrela vazia
-            divEstrelas.appendChild(starIcon);
-        }
     });
 
 

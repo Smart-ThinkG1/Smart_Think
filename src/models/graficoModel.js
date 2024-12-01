@@ -64,7 +64,20 @@ function obterTotalReclamacoesEAvaliacoesPorMes(fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function listarAvaliacoes(fkEmpresa) {
+    const instrucaoSql = `
+        SELECT 
+            SUM(CASE WHEN qtdEstrela > 3 THEN 1 ELSE 0 END) AS positivos,
+            SUM(CASE WHEN qtdEstrela = 3 THEN 1 ELSE 0 END) AS neutros,
+            SUM(CASE WHEN qtdEstrela < 3 THEN 1 ELSE 0 END) AS negativos,
+            COUNT(qtdEstrela) AS qtdAvaliacoes,
+            ROUND(AVG(qtdEstrela), 1) AS mediaEstrelas
+        FROM avaliacao 
+        WHERE fkEmpresa = ${fkEmpresa};
+    `;
 
+    return database.executar(instrucaoSql);
+}
 
 
 
@@ -72,5 +85,7 @@ function obterTotalReclamacoesEAvaliacoesPorMes(fkEmpresa) {
 module.exports = {
     obterDadosUnidade,
     obterTotalReclamacoesEAvaliacoesPorMes,
-    buscarDiasSemana
+    buscarDiasSemana,
+    listarAvaliacoes
+
   };

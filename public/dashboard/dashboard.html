@@ -174,7 +174,7 @@
                         </div>
                         <div class="kpi-body">
                             <div class="kpi-value">
-                                <span>3</span>
+                                <span id="qtdUnidades"> </span>
                             </div>
                         </div>
                     </div>
@@ -196,7 +196,7 @@
 
                         <div class="kpi-body">
                             <div class="kpi-value">
-                                <span>20%</span>
+                                <span id="mediaAvaliacao">20%</span>
                             </div>
                         </div>
                     </div>
@@ -219,7 +219,7 @@
 
                         <div class="kpi-body">
                             <div class="kpi-value">
-                                <p>Unidade 2</p>
+                                <p id="unidadeMaisReclamacoes">Unidade 2</p>
                             </div>
                         </div>
                     </div>
@@ -475,6 +475,77 @@
             divEstrelas.appendChild(starIcon);
         }
     });
+
+    function kpiUnidadesGeral() {
+    fetch("/kpi/listar", { cache: "no-store" }) 
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    const qtdUnidades = document.getElementById("qtdUnidades");
+                    
+                   
+                    if (resposta && resposta.length > 0) {
+                        qtdUnidades.innerHTML = resposta.length; 
+                    } else {
+                        qtdUnidades.innerHTML = "Nenhuma unidade ativa";
+                    }
+                });
+            } else {
+                console.error("Erro ao buscar as unidades");
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados para KPI: ${error.message}`);
+        });
+}
+
+
+kpiUnidadesGeral();
+
+function kpiMaisReclamacoes() {
+    fetch("/kpi/maisReclamacoes", { cache: "no-store" })
+    .then(function (resposta) {
+            resposta.json().then((kpi) => {
+                console.log("Resultado das reclamações", kpi)
+                kpi.forEach((reclamacao) => {
+                    unidadeMaisReclamacoes.innerHTML =` <span>${reclamacao.Unidade}</span>`
+                });
+            });
+
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados: ${error.message}`);
+        });
+}
+
+// Execute a função ao carregar a página
+kpiMaisReclamacoes();
+
+
+function kpiNegativasXPositivas() {
+    // Exemplo de chamada para NegativasXPositivas
+// Fazendo a requisição à API NegativasXPositivas
+fetch('/kpi/NegativasXPositivas')
+    .then(response => {
+        if (!response.ok) throw new Error("Erro na requisição da API NegativasXPositivas");
+        return response.json();
+    })
+    .then(data => {
+        console.log("Resultado NegativasXPositivas:", data);
+        // Supondo que você exiba no HTML o valor retornado
+        document.getElementById("mediaAvaliacao").textContent = data[0]?.media_avaliacoes_positivas || "N/A";
+    })
+    .catch(error => {
+        console.error("Erro ao buscar NegativasXPositivas:", error);
+    });
+
+
+}
+
+kpiNegativasXPositivas(); 
+
+
 
 
 </script>

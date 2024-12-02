@@ -45,7 +45,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 const li = document.createElement('li');
                 li.className = 'submenu-item';
                 li.innerHTML = `
-                    <a href="#" onclick="guardarUnidade(${unidade.id}); window.location.href='unidade.html';">                        <i class='bx bxs-store'></i>
+                    <a href="unidade.html?id=${unidade.id}" onclick="guardarUnidade(${unidade.id})">
+                    <i class='bx bxs-store'></i>
                         <p>${unidade.apelido}</p>
                     </a>
                 `;
@@ -297,6 +298,74 @@ function initializeSwiper() {
     });
 }
 
+Chart.register(ChartDataLabels);
+
+const ctx = document.getElementById('myChart');
+
+const unidadesReclamacao = {
+    "Matriz": 1,
+    "Unidade 1": 2,
+    "Unidade 2": 3,
+    
+};
+
+function inicializarGraficoReclamacoesPorUnidade(dados) {
+    if (!Array.isArray(dados)) {
+        console.error('Os dados recebidos não são um array:', dados);
+        return;
+    }
+
+    const unidades = dados.map(dado => dado.unidade); // Nome das unidades
+    const reclamacoes = dados.map(dado => dado.totalReclamacoes); // Total de reclamações
+
+    console.log('Unidades:', unidades);
+    console.log('Reclamações:', reclamacoes);
+
+    if (!ctx) {
+        console.error('Canvas com ID "myChart" não encontrado.');
+        return;
+    }
+
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: unidades,
+            datasets: [{
+                label: 'Distribuição de Reclamações por Unidade',
+                data: reclamacoes,
+                backgroundColor: [
+                    'rgba(74, 42, 140, 0.9)',
+                    'rgba(95, 59, 170, 0.9)',
+                    'rgba(43, 8, 92, 0.9)',
+                ],
+                borderColor: ['#fff', '#fff', '#fff'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'right',
+                },
+                datalabels: {
+                    color: '#fff',
+                    formatter: (value, context) => {
+                        const data = context.chart.data.datasets[0].data;
+                        const total = data.reduce((acc, val) => acc + val, 0);
+                        const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
+                        return `${percentage}%`;
+                    },
+                    font: {
+                        weight: 'bold',
+                        size: 12,
+                    }
+                }
+            }
+        }
+    });
+}
 
 
 

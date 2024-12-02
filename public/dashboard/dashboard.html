@@ -24,8 +24,7 @@
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 
-<body>
-
+<body inicializarGraficoReclamacoesAno(), listarDados()>
 
     <div class="dash-box">
 
@@ -77,7 +76,6 @@
                                 <p>Nova Unidade</p>
                             </a>
                         </li>
-
                     </ul>
 
 
@@ -98,7 +96,7 @@
                     <ul class="submenu-list">
                         <li class="submenu-item nav-item">
                             <a href="contents/userSettings.html">
-                                <p>Gerenciar perfil</p>
+                                <p>Gerenciar Perfil</p>
                             </a>
                         </li>
                         <li class="submenu-item nav-item">
@@ -132,7 +130,7 @@
 
                     <!-- Log Out -->
                     <div id="exitBtn">
-                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <i onclick="limparSessao()" class="fa-solid fa-right-from-bracket"></i>
                     </div>
                 </div>
             </div>
@@ -158,7 +156,7 @@
                 <div class="kpi-wrapper">
 
                     <!-- kpi 1 -->
-                    <div class="kpi-card primary">
+                    <div class="kpi-card primary" id="kpi-1">
                         <div class="kpi-header">
                             <div class="kpi-title">
                                 <h2>Unidades Registradas</h2>
@@ -180,7 +178,7 @@
                     </div>
 
                     <!-- kpi 2 -->
-                    <div class="kpi-card secondary">
+                    <div class="kpi-card secondary" id="kpi-2">
                         <div class="kpi-header">
                             <div class="kpi-title">
                                 <h2>Avaliações Positivas X Negativas</h2>
@@ -188,21 +186,25 @@
                             <div class="tooltip">
                                 <i class="fa-solid fa-circle-info"></i>
                                 <div class="tooltip-box">
-                                    <p>Satisfação média mensal é baseada na média das avaliações positivas dos clientes
-                                        em todas unidades ativas.</p>
+                                    <p> Este indicador faz uma comparação de quantas avaliações positivas estão para a
+                                        quantidade de avaliações negativas.
+                                    </p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="kpi-body">
                             <div class="kpi-value">
-                                <span id="mediaAvaliacao">20%</span>
+                                <p>Existem <span id="positive-value">X</span> avaliações positivas para cada <span
+                                        id="negative-value">X</span> avaliações
+                                    negativas no periodo de 3 meses.
+                                </p>
                             </div>
                         </div>
                     </div>
 
                     <!-- kpi 3 -->
-                    <div class="kpi-card secondary">
+                    <div class="kpi-card secondary" id="kpi-3">
                         <div class="kpi-header">
                             <div class="kpi-title">
                                 <h2>Filial mais reclamada do mês</h2>
@@ -252,13 +254,10 @@
                     <div class="chart-card swiper">
                         <div class="card-header">
                             <div class="card-title">
-                                <h2>Análise aprofundada de unidade</h2>
+                                    <h2>Análise aprofundada de unidade</h2>
                             </div>
                             <select id="slideSelector" class="selectSlide">
-                                <option value="0">Matriz</option>
-                                <option value="1">Unidade 2</option>
-                                <option value="2">Unidade 3</option>
-
+                                
                             </select>
                             <!-- Pagination -->
                             <div class="swiper-pagination"></div>
@@ -268,100 +267,23 @@
                         <div class="swiper-wrapper">
                             <!-- Unidade 1 -->
                             <div class="card-body swiper-slide">
-                                <div class="chart-box flex-display">
-                                    <!-- wrap 1 -->
-                                    <div class="wrap-area">
-                                        <!-- descricao da unidade -->
-
-                                        <div class="unit-desc">
-                                            <h3 class="name">Unidade Matriz</h3>
-                                            <p class="adress">Av. Sapopemba, 20020 - Vila Ester, São Paulo - SP,
-                                                08330-245</p>
-                                        </div>
-                                        <!-- status da unidade -->
-                                        <div class="unit-stats">
-                                            <span class="review-rating">3.5</span>
-                                            <span class="star-rating" data-rating-value="3.5"></span>
-                                            <span class="review-number">(679 avaliações)</span>
-                                        </div>
-                                        <!-- grafico de avaliações -->
-
-                                        <div class="chart-mini-box">
-                                            <canvas id="myBarChart1"></canvas>
-                                        </div>
-
-                                    </div>
-                                    <!-- wrap 2 -->
-                                    <div class="wrap-area">
-                                        <a href="unidadeMatriz.html" class="linkBtn">acessar</a>
-                                    </div>
-                                </div>
+  
                             </div>
 
                             <!-- Unidade 2 -->
                             <div class="card-body swiper-slide">
 
-                                <div class="chart-box flex-display">
-                                    <!-- wrap 1 -->
-                                    <div class="wrap-area">
-                                        <!-- descricao da unidade -->
-                                        <div class="unit-desc">
-                                            <h3 class="name">Unidade 2</h3>
-                                            <p class="adress">Av. das Américas, 5000 - Barra da Tijuca, Rio de Janeiro -
-                                                RJ, 22640-102</p>
-                                        </div>
-                                        <!-- status da unidade -->
-                                        <div class="unit-stats">
-                                            <span class="review-rating">3.9</span>
-                                            <span class="star-rating" data-rating-value="3.9"></span>
-                                            <span class="review-number">(999 avaliações)</span>
-                                        </div>
-                                        <!-- grafico de avaliações -->
-                                        <div class="chart-mini-box">
-                                            <canvas id="myBarChart2"></canvas>
-                                        </div>
-                                    </div>
-                                    <!-- wrap 2 -->
-                                    <div class="wrap-area">
-                                        <a href="unidade2.html" class="linkBtn">acessar</a>
-                                    </div>
-                                </div>
                             </div>
 
                             <!-- Unidade 3 -->
                             <div class="card-body swiper-slide">
-                                <div class="chart-box flex-display">
-                                    <!-- wrap 1 -->
-                                    <div class="wrap-area">
-                                        <!-- descricao da unidade -->
-                                        <div class="unit-desc">
-                                            <h3 class="name">Unidade 3</h3>
-                                            <p class="adress">Av. Afonso Pena, 1000 - Centro, Belo Horizonte - MG,
-                                                30130-003</p>
-                                        </div>
-                                        <!-- status da unidade -->
-                                        <div class="unit-stats">
-                                            <span class="review-rating">2.2</span>
-                                            <span class="star-rating" data-rating-value="2.2"></span>
-                                            <span class="review-number">(1920 avaliações)</span>
-                                        </div>
-                                        <!-- grafico de avaliações -->
-                                        <div class="chart-mini-box">
-                                            <canvas id="myBarChart3"></canvas>
-                                        </div>
-                                    </div>
-                                    <!-- wrap 2 -->
-                                    <div class="wrap-area">
-                                        <a href="unidade3.html" class="linkBtn">acessar</a>
-                                    </div>
-                                    
-                                </div>
                             </div>
 
                         </div>
 
                     </div>
                 </div>
+                
                 <!-- fim do corpo da dash -->
 
             </div>
@@ -371,9 +293,35 @@
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+        <script>
+                    var fkEmpresaGrafico = sessionStorage.getItem('FK_EMPRESA');
 
-        <script src="../dashboard/static pages/static js/graficoBodyDash.js"></script>
-        
+                    fetch(` /graficos/obterReclamacoesPorUnidade/${fkEmpresaGrafico}`) // Substitua "1" pelo ID real da empresa
+            .then(response => response.json())
+            .then(dados => {
+                console.log('Dados recebidos para o gráfico de unidades:', dados);
+                inicializarGraficoReclamacoesPorUnidade(dados); // Chama a nova função
+            })
+            .catch(error => console.error('Erro ao carregar dados do gráfico de unidades:', error));
+
+
+            var fkCodigo = sessionStorage.getItem('CODIGO_MARCA');
+
+            function listarDados(){
+                fetch(` /graficos/listarUnidades/${fkCodigo}`) // Substitua "1" pelo ID real da empresa
+        .then(response => response.json())
+        .then(dados => {
+        console.log('Dados recebidos para o listar de unidades:', dados);
+        inicializarGraficoReclamacoesPorUnidade(dados); // Chama a nova função
+        })
+        .catch(error => console.error('Erro ao carregar dados do gráfico de unidades:', error))
+            }
+
+
+        </script>
+
+        <!-- <script src="../dashboard/static pages/static js/graficoBodyDash.js"></script> -->
+
         <script src="../js/dashboard.js"></script>
         <!-- JS do Swiper Slides -->
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -475,77 +423,6 @@
             divEstrelas.appendChild(starIcon);
         }
     });
-
-    function kpiUnidadesGeral() {
-    fetch("/kpi/listar", { cache: "no-store" }) 
-        .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    const qtdUnidades = document.getElementById("qtdUnidades");
-                    
-                   
-                    if (resposta && resposta.length > 0) {
-                        qtdUnidades.innerHTML = resposta.length; 
-                    } else {
-                        qtdUnidades.innerHTML = "Nenhuma unidade ativa";
-                    }
-                });
-            } else {
-                console.error("Erro ao buscar as unidades");
-            }
-        })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados para KPI: ${error.message}`);
-        });
-}
-
-
-kpiUnidadesGeral();
-
-function kpiMaisReclamacoes() {
-    fetch("/kpi/maisReclamacoes", { cache: "no-store" })
-    .then(function (resposta) {
-            resposta.json().then((kpi) => {
-                console.log("Resultado das reclamações", kpi)
-                kpi.forEach((reclamacao) => {
-                    unidadeMaisReclamacoes.innerHTML =` <span>${reclamacao.Unidade}</span>`
-                });
-            });
-
-        })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados: ${error.message}`);
-        });
-}
-
-// Execute a função ao carregar a página
-kpiMaisReclamacoes();
-
-
-function kpiNegativasXPositivas() {
-    // Exemplo de chamada para NegativasXPositivas
-// Fazendo a requisição à API NegativasXPositivas
-fetch('/kpi/NegativasXPositivas')
-    .then(response => {
-        if (!response.ok) throw new Error("Erro na requisição da API NegativasXPositivas");
-        return response.json();
-    })
-    .then(data => {
-        console.log("Resultado NegativasXPositivas:", data);
-        // Supondo que você exiba no HTML o valor retornado
-        document.getElementById("mediaAvaliacao").textContent = data[0]?.media_avaliacoes_positivas || "N/A";
-    })
-    .catch(error => {
-        console.error("Erro ao buscar NegativasXPositivas:", error);
-    });
-
-
-}
-
-kpiNegativasXPositivas(); 
-
-
 
 
 </script>

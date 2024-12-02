@@ -64,13 +64,64 @@ function obterTotalReclamacoesEAvaliacoesPorMes(fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function obterReclamacoesPorUnidade(fkEmpresa) {
+    const instrucaoSql = `
+        SELECT 
+    m.nomeFantasia AS marca, -- Nome da marca principal
+    u.nomeFantasia AS unidade, -- Nome da unidade (filial)
+    COUNT(r.id) AS totalReclamacoes -- Total de reclamações por unidade
+    FROM reclamacao r
+    INNER JOIN empresa u ON r.fkEmpresa = u.id -- Vincula reclamações às unidades (filiais)
+    INNER JOIN empresa m ON u.fkMarca = m.id -- Vincula unidades às marcas principais
+    WHERE m.id = ${fkEmpresa} -- Substitua "1" pelo ID da marca principal desejada
+    GROUP BY m.nomeFantasia, u.nomeFantasia;
+    `;
+    return database.executar(instrucaoSql);
+}
+
+function listarUnidades(fkCodigo) {
+    const instrucaoSql = `
+         SELECT 
+    id AS idUnidade,
+    codigo AS codigoUnidade,
+    nomeFantasia AS nomeUnidade,
+    razaoSocial,
+    apelido,
+    cnpj,
+    estado,
+    cep,
+    logradouro,
+    email,
+    telefone
+FROM 
+    empresa
+WHERE 
+    fkMarca = (SELECT id FROM empresa WHERE codigo = '${fkCodigo}');
 
 
+    `;
+    return database.executar(instrucaoSql);
+}
 
-
+function listarAvaliacoes(fkEmpresa) {
+    const instrucaoSql = `
+        SELECT 
+            SUM(CASE WHEN qtdEstrela > 3 THEN 1 ELSE 0 END) AS positivos,
+            SUM(CASE WHEN qtdEstrela = 3 THEN 1 ELSE 0 END) AS neutros,
+            SUM(CASE WHEN qtdEstrela < 3 THEN 1 ELSE 0 END) AS negativos,
+            COUNT(qtdEstrela) AS qtdAvaliacoes,
+            ROUND(AVG(qtdEstrela), 1) AS mediaEstrelas
+        FROM avaliacao 
+        WHERE fkEmpresa = ${fkEmpresa};
+    `;
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
     obterDadosUnidade,
+    obterReclamacoesPorUnidade,
     obterTotalReclamacoesEAvaliacoesPorMes,
-    buscarDiasSemana
+    buscarDiasSemana,
+    listarAvaliacoes,
+    listarUnidades
   };

@@ -3,53 +3,72 @@ Chart.register(ChartDataLabels);
 
 const ctx = document.getElementById('myChart');
 
-new Chart(ctx, {
-    type: 'pie', // Tipo de gráfico
-    data: {
-        labels: ['Unidade 2', 'Unidade 3', 'Matriz'],
-        datasets: [{
-            label: 'Distribuição',
-            data: [1100 , 360, 269], // Dados 
-            backgroundColor: [
-                'rgba(74, 42, 140, 0.9)', 
-                'rgba(95, 59, 170, 0.9)', 
-                'rgba(43, 8, 92, 0.9)', 
-            ],
-            borderColor: [
-                '#fff', // Cor Base
-                '#fff', // Cor Base
-                '#fff', // Cor Base
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true, // Garantir que o gráfico seja responsivo
-        maintainAspectRatio: false, // Permitir que o gráfico mantenha a proporção
-        plugins: {
-            legend: {
-                position: 'right', // Posicionar a legenda na direita
-            },
-            datalabels: {
-                color: '#fff', // Cor dos rótulos
-                formatter: (value, context) => {
-                    // Calcula a porcentagem
-                    const data = context.chart.data.datasets[0].data;
-                    const total = data.reduce((acc, val) => acc + val, 0);
-                    const percentage = (value / total * 100).toFixed(1);
-                    return `${percentage}%`; // Retorna o valor em porcentagem
+const unidadesReclamacao = {
+    "Matriz": 1,
+    "Unidade 1": 2,
+    "Unidade 2": 3,
+    
+};
+
+function inicializarGraficoReclamacoesPorUnidade(dados) {
+    if (!Array.isArray(dados)) {
+        console.error('Os dados recebidos não são um array:', dados);
+        return;
+    }
+
+    const unidades = dados.map(dado => dado.unidade); // Nome das unidades
+    const reclamacoes = dados.map(dado => dado.totalReclamacoes); // Total de reclamações
+
+    console.log('Unidades:', unidades);
+    console.log('Reclamações:', reclamacoes);
+
+    if (!ctx) {
+        console.error('Canvas com ID "myChart" não encontrado.');
+        return;
+    }
+
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: unidades,
+            datasets: [{
+                label: 'Distribuição de Reclamações por Unidade',
+                data: reclamacoes,
+                backgroundColor: [
+                    'rgba(74, 42, 140, 0.9)',
+                    'rgba(95, 59, 170, 0.9)',
+                    'rgba(43, 8, 92, 0.9)',
+                ],
+                borderColor: ['#fff', '#fff', '#fff'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'right',
                 },
-                anchor: 'end', // Alinha o rótulo ao final do setor
-                align: 'start', // Alinha o texto do rótulo
-                offset: 0, // Distância dos rótulos em relação ao gráfico
-                font: {
-                    weight: 'bold',
-                    size: 12,
+                datalabels: {
+                    color: '#fff',
+                    formatter: (value, context) => {
+                        const data = context.chart.data.datasets[0].data;
+                        const total = data.reduce((acc, val) => acc + val, 0);
+                        const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
+                        return `${percentage}%`;
+                    },
+                    font: {
+                        weight: 'bold',
+                        size: 12,
+                    }
                 }
             }
         }
-    }
-});
+    });
+}
+
+
 
 
 

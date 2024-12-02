@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../../css/unidade.css">
 </head>
 
-<body>
+<body onload="buscarDiasSemana()">
 
 
     <div class="dash-box">
@@ -70,25 +70,8 @@
                                     </a>
                                 </li>
         
-                                <li class="submenu-item">
-                                    <a href="unidadeMatriz.html">
-                                        <p>Matriz</p>
-                                    </a>
-                                </li>
-        
-                                <li class="submenu-item">
-                                    <a href="unidade2.html">
-                                        <p>Unidade 2</p>
-                                    </a>
-                                </li>
-        
-                                <li class="submenu-item">
-                                    <a href="unidade3.html">
-                                        <p>Unidade 3</p>
-                                    </a>
-                                </li>
                             </ul>
-        
+                            
         
                             <!-- notificações -->
                             <!-- <li class="nav-item">
@@ -124,13 +107,21 @@
                     <!-- footer sidebar -->
                     <div class="footer-sidebar">
                         <div class="menu-user">
-                            <div class="user-icon"><i class="fa-solid fa-user"></i></div>
-                            <div class="user-account">
-                                <div class="userName"><span>Fernando</span></div>
-                                <div class="userEmail"><span>fernando@email.com</span></div>
+        
+                            <!-- Dados do Usuario -->
+                            <div class="user-icon">
+                                <i class="fa-solid fa-user"></i>
                             </div>
-                            <div id="exitBtn"><i class="fa-solid fa-right-from-bracket"></i></div>
-                        </div>
+                            <div class="user-account">
+                                <div class="userName"><span class="userNameSpan">User Name</span></div>
+                                <div class="userEmail"><span class="userEmailSpan">Email.com</span></div>
+                            </div>
+        
+                            <!-- Log Out -->
+                            <div id="exitBtn">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                </div>
+                            </div>
                     </div>
                     <!-- fim footer sidebar -->
                 </div>
@@ -181,7 +172,6 @@
                             <div class="kpi-title">
                                 <h2>Média de reclamações por mês</h2>
                             </div>
-
                             <div class="tooltip">
                                 <i class="fa-solid fa-circle-info"></i>
                                 <div class="tooltip-box">
@@ -207,11 +197,8 @@
                             <div class="tooltip">
                                 <i class="fa-solid fa-circle-info"></i>
                                 <div class="tooltip-box">
-                                    <p>
-                                        Este indicador avalia se a taxa de buscas realizadas sobre a unidade durante a
-                                        semana atual é considerada baixa, média ou alta, com base nas métricas de análise de
-                                        buscas no Google Trends.
-                                    </p>
+                                    <p>Esse valor representa uma estimativa mensal a partir da análise de sentimento dos
+                                        clientes.</p>
                                 </div>
                             </div>
                         </div>
@@ -261,9 +248,12 @@
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="static js/graficoUnidadeMatriz.js"></script>
-
+        <!-- CHARTJS -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <!-- GRAFICO MOCKADO -->
+        <script src="static pages/static js/graficoUnidadeMatriz.js"></script>
+        <!-- SCRIPT UNIDADE -->
+        <script src="../js/unidade.js"></script>
 </body>
 
 </html>
@@ -324,7 +314,4 @@
             }
         });
     });
-
-
-
 </script>

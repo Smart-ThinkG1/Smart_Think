@@ -13,7 +13,7 @@
     <!-- Icones Box Icons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- CSS Local -->
-    <link rel="stylesheet" href="../../css/unidade.css">
+    <link rel="stylesheet" href="../css/unidade.css">
 </head>
 
 <body >
@@ -21,8 +21,8 @@
 
     <div class="dash-box">
 
-                <!-- sidebar -->
-                <div class="sidebar">
+        <!-- sidebar -->
+        <div class="sidebar">
 
             <!-- header sidebar -->
             <div class="header-sidebar">
@@ -125,8 +125,8 @@
                     <!-- Log Out -->
                     <div id="exitBtn">
                         <i class="fa-solid fa-right-from-bracket"></i>
-                        </div>
                     </div>
+                </div>
             </div>
             <!-- fim footer sidebar -->
         </div>
@@ -156,7 +156,7 @@
                 <div class="kpi-wrapper">
 
                     <!-- kpi 1 -->
-                    <div class="kpi-card primary">
+                    <div class="kpi-card primary" id="kpi-1">
                         <div class="kpi-header">
                             <div class="kpi-title">
                                 <h2>Divisão em % sobre satisfação atual</h2>
@@ -165,8 +165,8 @@
                                 <i class="fa-solid fa-circle-info"></i>
                                 <div class="tooltip-box">
                                     <p> avaliações positivas:<span id="porcentagem-positivas"> X</span></p>
-                                       <p>avaliações neutras:<span id="porcentagem-neutras"> X</span> </p>
-                                        <p>avaliações negativas:<span id="porcentagem-negativas"> X</span></p>
+                                    <p>avaliações neutras:<span id="porcentagem-neutras"> X</span> </p>
+                                    <p>avaliações negativas:<span id="porcentagem-negativas"> X</span></p>
                                     </p>
                                 </div>
                             </div>
@@ -174,13 +174,24 @@
 
                         <div class="kpi-body">
                             <div class="kpi-value">
-                                <span id="avaliacaoTotal">29</span>
+                                <div class="value-box">
+                                    <i class="fa-regular fa-face-smile"></i>
+                                    <span class="postive-value">33%</span>
+                                </div>
+                                <div class="value-box">
+                                    <i class="fa-regular fa-face-meh"></i>
+                                    <span class="neutral-value">33%</span>
+                                </div>
+                                <div class="value-box">
+                                    <i class="fa-regular fa-face-angry"></i>
+                                    <span class="negative-value">33%</span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- kpi 2 -->
-                    <div class="kpi-card secondary">
+                    <div class="kpi-card secondary" id="kpi-2">
                         <div class="kpi-header">
                             <div class="kpi-title">
                                 <h2>Média mensal de reclamações</h2>

@@ -36,10 +36,6 @@ function NegativasXPositivas(req, res) {
     kpiModel.NegativasXPositivas()
         .then(function (resultado) {
             if (resultado && resultado.length > 0) {
-                // Verifique se o resultado está no formato esperado
-                // Caso o modelo retorne um array com valores específicos
-                // Como AvaliacoesPositivas e AvaliacoesNegativas
-
                 const avaliacoes = resultado[0]; // Supondo que resultado seja um array de objetos
 
                 // Verifique se as propriedades existem
@@ -64,7 +60,7 @@ function NegativasXPositivas(req, res) {
 }
 
 function DivisaoSatisfacao(req, res) {
-    kpiModel.listar()
+    kpiModel.DivisaoSatisfacao()
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);

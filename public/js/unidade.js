@@ -295,19 +295,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function DivisaoSatisfacao() {
-    fetch('/kpi/DivisaoSatisfacao') // Chama o endpoint que retorna as porcentagens
-        .then(response => response.json()) // Converte a resposta para JSON
-        .then(data => {
-            // Exibe os dados nas partes do HTML
-            document.getElementById('porcentagem-positivas').innerHTML = `${data.PorcentagemPositivas.toFixed(2)}%`;
-            document.getElementById('porcentagem-neutras').innerHTML = `${data.PorcentagemNeutras.toFixed(2)}%`;
-            document.getElementById('porcentagem-negativas').innerHTML = `${data.PorcentagemNegativas.toFixed(2)}%`;
-        })
-        .catch(error => {
-            console.error('Erro ao buscar dados:', error);
-        });
+    fetch('/kpi/DivisaoSatisfacao')
+    .then(response => response.json())
+    .then(data => {
+        console.log('Dados recebidos:', data); // Verifica o que está sendo retornado pela API
+
+        const positivas = data.PorcentagemPositivas || 0;
+        const neutras = data.PorcentagemNeutras || 0;
+        const negativas = data.PorcentagemNegativas || 0;
+
+        document.getElementById('porcentagem-positivas').innerHTML = `${positivas.toFixed(2)}%`;
+        document.getElementById('porcentagem-neutras').innerHTML = `${neutras.toFixed(2)}%`;
+        document.getElementById('porcentagem-negativas').innerHTML = `${negativas.toFixed(2)}%`;
+    })
+    .catch(error => {
+        console.error('Erro ao buscar dados:', error);
+    });
+
 }
 
 // Chama a função quando a página carrega
-DivisaoSatisfacao();
+window.onload = DivisaoSatisfacao;
+
 

@@ -8,11 +8,15 @@ router.get("/listar", function (req, res) {
 });
 
 router.get('/maisReclamacoes', function (req, res) {
-    kpiController.unidadeMaisReclamacoes(req, res);
+    kpiController.unidadeComMaisReclamacoes(req, res);
 });
 
 router.get('/NegativasXPositivas', function(req, res) {
   kpiController.NegativasXPositivas(req, res);
+});
+
+router.get('/DivisaoSatisfacao', function(req, res) {
+  kpiController.DivisaoSatisfacao(req, res);
 });
 
 

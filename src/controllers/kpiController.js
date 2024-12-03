@@ -1,4 +1,5 @@
-var kpiModel = require("../models/kpiModel");
+var kpiModel = require("../models/kpiModel");  
+
 
 function listar(req, res) {
     kpiModel.listar()
@@ -16,7 +17,7 @@ function listar(req, res) {
 }
 
 
-function unidadeMaisReclamacoes(req, res) {
+function unidadeComMaisReclamacoes(req, res) {
   kpiModel.unidadeComMaisReclamacoes()
       .then(function (resultado) {
           if (resultado.length > 0) {
@@ -33,19 +34,55 @@ function unidadeMaisReclamacoes(req, res) {
 
 function NegativasXPositivas(req, res) {
     kpiModel.NegativasXPositivas()
-        .then((resultado) => {
-            res.status(200).json(resultado);
+        .then(function (resultado) {
+            if (resultado && resultado.length > 0) {
+                // Verifique se o resultado está no formato esperado
+                // Caso o modelo retorne um array com valores específicos
+                // Como AvaliacoesPositivas e AvaliacoesNegativas
+
+                const avaliacoes = resultado[0]; // Supondo que resultado seja um array de objetos
+
+                // Verifique se as propriedades existem
+                if (avaliacoes.AvaliacoesPositivas !== undefined && avaliacoes.AvaliacoesNegativas !== undefined) {
+                    res.status(200).json({
+                        AvaliacoesPositivas: avaliacoes.AvaliacoesPositivas,
+                        AvaliacoesNegativas: avaliacoes.AvaliacoesNegativas
+                    });
+                } else {
+                    res.status(204).send("Dados de avaliações não encontrados!");
+                }
+            } else {
+                res.status(204).send("Nenhuma reclamação encontrada neste mês!");
+            }
         })
-        .catch((erro) => {
-            console.error("Erro ao buscar dados de avaliações positivas:", erro);
-            res.status(500).send(erro.message);
+        .catch(function (erro) {
+            // Log do erro para análise
+            console.error('Erro ao buscar dados: ', erro);
+            // Retorno do erro com status 500
+            res.status(500).json({ message: "Erro ao buscar dados", error: erro.sqlMessage || erro });
+        });
+}
+
+function DivisaoSatisfacao(req, res) {
+    kpiModel.listar()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!");
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
         });
 }
 
   
 
-module.exports = {
+  module.exports = {
     listar,
-    unidadeMaisReclamacoes,
-    NegativasXPositivas
+    unidadeComMaisReclamacoes,
+    NegativasXPositivas,
+    DivisaoSatisfacao
 };

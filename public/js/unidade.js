@@ -292,3 +292,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     buscarTotalReclamacoesEAvaliacoesPorMes();
 });
+
+
+function DivisaoSatisfacao() {
+    fetch('/kpi/DivisaoSatisfacao') // Chama o endpoint que retorna as porcentagens
+        .then(response => response.json()) // Converte a resposta para JSON
+        .then(data => {
+            // Exibe os dados nas partes do HTML
+            document.getElementById('porcentagem-positivas').innerHTML = `${data.PorcentagemPositivas.toFixed(2)}%`;
+            document.getElementById('porcentagem-neutras').innerHTML = `${data.PorcentagemNeutras.toFixed(2)}%`;
+            document.getElementById('porcentagem-negativas').innerHTML = `${data.PorcentagemNegativas.toFixed(2)}%`;
+        })
+        .catch(error => {
+            console.error('Erro ao buscar dados:', error);
+        });
+}
+
+// Chama a função quando a página carrega
+DivisaoSatisfacao();
+

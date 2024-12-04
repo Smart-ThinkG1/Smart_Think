@@ -8,7 +8,7 @@ async function autenticar(email, senha) {
         // Consulta SQL parametrizada para evitar injeção de SQL
         const instrucaoSql = `
        SELECT 
-    funcionario.id,
+    funcionario.id as idfunc,
     funcionario.nome, 
     funcionario.email, 
     funcionario.estado as statusFuncionario, 
@@ -76,8 +76,37 @@ async function cadastrar(nome, cpf, email, senha, codigo) {
         throw erro;
     }
 }
+async function buscar(id) {
+    const instrucaoSql = `
+        SELECT nome, email, senha 
+        FROM funcionario
+        WHERE id = ?;
+    `;
+    return database.executar(instrucaoSql, [id]);
+}
+
+async function editar(nome, email, senha, id) {
+    const instrucaoSql = `
+        UPDATE funcionario
+        SET nome = ?, email = ?, senha = ?
+        WHERE id = ?;
+    `;
+    return database.executar(instrucaoSql, [estado]);
+}
+
+async function deletar(id) {
+    const instrucaoSql = `
+        UPDATE funcionario
+        SET estado = "INATIVO"
+        WHERE id = ?;
+    `;
+    return database.executar(instrucaoSql, [id]);
+}
 
 module.exports = {
         autenticar,
-        cadastrar
+        cadastrar,
+        editar,
+        buscar,
+        deletar
     };

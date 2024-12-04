@@ -293,10 +293,11 @@
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+        <script src="../js/sessao.js"></script>
         <script>
                     var fkEmpresaGrafico = sessionStorage.getItem('FK_EMPRESA');
 
-                    fetch(` /graficos/obterReclamacoesPorUnidade/${fkEmpresaGrafico}`) // Substitua "1" pelo ID real da empresa
+                    fetch(` /graficos/obterReclamacoesPorUnidade/${fkEmpresaGrafico}`) 
             .then(response => response.json())
             .then(dados => {
                 console.log('Dados recebidos para o gráfico de unidades:', dados);
@@ -308,7 +309,7 @@
             var fkCodigo = sessionStorage.getItem('CODIGO_MARCA');
 
             function listarDados(){
-                fetch(` /graficos/listarUnidades/${fkCodigo}`) // Substitua "1" pelo ID real da empresa
+                fetch(` /graficos/listarUnidades/${fkCodigo}`) 
         .then(response => response.json())
         .then(dados => {
         console.log('Dados recebidos para o listar de unidades:', dados);
@@ -386,43 +387,6 @@
         });
     });
 
-    // Seleciona todos os elementos que contêm as estrelas
-    const divEstrelasList = document.querySelectorAll('.star-rating');
-
-    // Itera sobre cada elemento
-    divEstrelasList.forEach(divEstrelas => {
-        // Converte o valor de avaliação para um número
-        const valorEstrela = Number(divEstrelas.getAttribute('data-rating-value'));
-
-        // Separa a parte inteira e decimal do valor de avaliação
-        const valorEstrelaInteiro = Math.trunc(valorEstrela);
-        const valorEstrelaDecimal = valorEstrela - valorEstrelaInteiro;
-
-
-        // Adiciona estrelas inteiras
-        for (let i = 0; i < valorEstrelaInteiro; i++) {
-            const starIcon = document.createElement('i');
-            starIcon.classList.add('fa-solid', 'fa-star', 'fill-star');
-            divEstrelas.appendChild(starIcon);
-        }
-
-        // Adiciona meia estrela se necessário
-        if (valorEstrelaDecimal >= 0.5) {
-            const starIcon = document.createElement('i');
-            starIcon.classList.add('fa-solid', 'fa-star-half', 'fill-star');
-            divEstrelas.appendChild(starIcon);
-        }
-
-        // Conta a quantidade de estrelas já adicionadas
-        let qntdEstrelaPreenchida = divEstrelas.querySelectorAll('.fill-star').length;
-
-        // Adiciona estrelas vazias para completar 5 estrelas
-        for (let i = qntdEstrelaPreenchida; i < 5; i++) {
-            const starIcon = document.createElement('i');
-            starIcon.classList.add('fa-solid', 'fa-star', 'null-star'); // Estrela vazia
-            divEstrelas.appendChild(starIcon);
-        }
-    });
-
+    
 
 </script>

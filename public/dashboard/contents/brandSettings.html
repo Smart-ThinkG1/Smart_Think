@@ -45,7 +45,7 @@
 
                     <!-- visão geral -->
                     <li class="nav-item">
-                        <a href="dashboard.html">
+                        <a href="../dashboard.html">
                             <i class='bx bxs-grid-alt'></i>
                             <p>Relatório da Marca</p>
                         </a>
@@ -102,6 +102,8 @@
                     </li>
                     <ul class="submenu-list">
                         <li class="submenu-item nav-item">
+                            <a href="./userSettings.html">
+                                <p>Meu perfil</p>
                             <a href="userSettings.html">
                                 <p>Gerenciar Perfil</p>
                             </a>
@@ -130,7 +132,7 @@
                         <div class="userName"><span>Fernando</span></div>
                         <div class="userEmail"><span>fernando@email.com</span></div>
                     </div>
-                    <div id="exitBtn"><i class="fa-solid fa-right-from-bracket"></i></div>
+                    <div id="exitBtn" ><i onclick="limparSessao2()" class="fa-solid fa-right-from-bracket"></i></div>
                 </div>
             </div>
             <!-- fim footer sidebar -->
@@ -174,6 +176,7 @@
         </div>
         <!-- fim conteudo da dash -->
     </div>
+    <script src="/js/sessao.js"></script>
 </body>
 
 </html>

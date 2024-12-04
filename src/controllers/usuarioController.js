@@ -26,7 +26,8 @@ function autenticar(req, res) {
                         fkMarca: usuario.fkMarca,  // Inclua fkMarca se necessário
                         codigo: usuario.codigo ,
                         statusFuncionario: usuario.statusFuncionario,
-                        estadoEmpresa: usuario.estadoEmpresa      // Inclua codigo se necessário
+                        estadoEmpresa: usuario.estadoEmpresa,
+                        idfunc:usuario.idfunc    // Inclua codigo se necessário
                     });
                 } else {
                     res.status(401).json({ message: "E-mail ou senha incorretos" });
@@ -80,8 +81,73 @@ function cadastrar(req, res) {
             );
     }
 }
+function buscar(req, res) {
+    var id = req.params.idfuncionario;
+
+    if (!id) {
+        res.status(400).send("ID do funcionário não fornecido.");
+        return;
+    }
+
+    usuarioModel.buscar(id)
+        .then((resultado) => {
+            if (resultado.length > 0) {
+                res.json(resultado[0]); // Retorna o primeiro registro encontrado
+            } else {
+                res.status(404).send("Usuário não encontrado.");
+            }
+        })
+        .catch((erro) => {
+            console.error("Erro ao buscar usuário:", erro.message);
+            res.status(500).json({ message: erro.message });
+        });
+}
+function editar(req, res) {
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+    var id = req.params.idfuncionario;
+
+    if (!id) {
+        res.status(400).send("ID do usuário não fornecido.");
+        return;
+    }
+
+    
+
+    usuarioModel.editar(nome, email, senha, id)
+        .then((resultado) => {
+            res.json(resultado);
+        })
+        .catch((erro) => {
+            console.error("Erro ao editar usuário:", erro.message);
+            res.status(500).json({ message: erro.message });
+        });
+}
+
+function deletar(req, res) {
+    var id = req.params.idfuncionario;
+    var estado = "INATIVO"; // Define que o estado será sempre "INATIVO"
+
+    if (!id) {
+        res.status(400).send("ID do usuário não fornecido.");
+        return;
+    }
+
+    usuarioModel.deletar(id, estado)
+        .then((resultado) => {
+            res.json({ message: "Usuário desativado com sucesso!" });
+        })
+        .catch((erro) => {
+            console.error("Erro ao desativar usuário:", erro.message);
+            res.status(500).json({ message: "Erro ao desativar usuário." });
+        });
+}
 
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    editar,
+    buscar,
+    deletar
 }

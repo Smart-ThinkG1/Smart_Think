@@ -13,10 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let listaEmpresasCadastradas = [];
 
-    cpfInput.addEventListener('input', function () {
-        cpfInput.value = cpfInput.value.replace(/\D/g, '');
-    });
+    
+    if (cpfInput) {
+        cpfInput.addEventListener('input', function () {
+            cpfInput.value = cpfInput.value.replace(/\D/g, '');
+        });
+    }
 
+    
     function clearInputs() {
         inputs.forEach(input => input.value = '');
     }
@@ -31,8 +35,16 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInputs();
     }
 
-    signupBtn.onclick = openSignupModal;
-    signupBtnMobile.onclick = openSignupModal;
+    
+    if (signupBtn) {
+        signupBtn.onclick = openSignupModal;
+    }
+
+    
+    if (signupBtn) {
+        signupBtn.onclick = openSignupModal;
+    }
+
 
     loginBtn.onclick = openLoginModal;
     loginBtnMobile.onclick = openLoginModal;
@@ -192,6 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(function (dados) {
                 if (dados) {
                     console.log("Dados recebidos:", dados); // Log para verificar o conteúdo dos dados
+                    localStorage.setItem("ID_USUARIO", dados.idfunc); // Salva o ID do usuário no LocalStorage
                     sessionStorage.setItem("CODIGO_MARCA", dados.codigo || "");
                     sessionStorage.setItem("NOME_USUARIO", dados.nome || "");
                     sessionStorage.setItem("EMAIL_USUARIO", dados.email || "");
@@ -200,39 +213,39 @@ document.addEventListener('DOMContentLoaded', () => {
                     sessionStorage.setItem("FK_MARCA", dados.fkMarca || "");
                     sessionStorage.setItem("STAUS_FUNC", dados.statusFuncionario);
                     sessionStorage.setItem("STATUS_EMPRESA", dados.estadoEmpresa);
-                    
-
-
-                    // if(dados.estadoEmpresa === "INATIVO"){
-                    //     alert("Empresa desativida!");
-                    // }else if (dados.statusFuncionario === "INATIVO"){
-                    //     alert("Funcionário desativado!");
-                    // }else{
+            
+                    if (dados.estadoEmpresa === "INATIVO") {
+                        alert("Empresa desativida!");
+                    } else if (dados.statusFuncionario === "INATIVO") {
+                        alert("Funcionário desativado!");
+                    } else {
                         alert("Login realizado com sucesso!");
-
-                        if (dados.fkMarca === null)  {
+                        if (dados.fkMarca === null) {
                             // USUARIO É DIRETOR
                             window.open("./dashboard/dashboard.html", "_blank");
                         } else {
                             // USUARIO É GERENTE
                             window.open("./dashboard/unidade.html", "_blank");
                         }
-                    // }
-                    
-                    
+                    }
                 }
             })
+            
             .catch(function (erro) {
                 console.error("#ERRO:", erro);
                 mostrarErro("Erro ao tentar realizar o login. Tente novamente mais tarde.");
             });
     }
+    console.log(localStorage.getItem("ID_USUARIO"));
+
+    
 
     // Evento para o botão de submit no modal de login
     document.querySelector('#loginModal form').addEventListener('submit', function (event) {
         event.preventDefault();
         login();
     });
+    
 
     const infoIcons = document.querySelectorAll('.info-icon');
     let currentTooltip = null;

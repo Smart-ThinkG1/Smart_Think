@@ -41,24 +41,43 @@ function cadastrar(req, res) {
 function buscarUnidadesPorMarca(req, res) {
   var fkMarca = req.params.fkMarca;
 
-    empresaModel.buscarUnidadesPorMarca(fkMarca)
-        .then(resultado => {
-            if (resultado.length > 0) {
-                res.json(resultado);
-            } else {
-                res.status(404).json({ message: "Nenhuma unidade encontrada para essa marca." });
-            }
-        })
-        .catch(erro => {
-            console.error("Erro ao buscar unidades:", erro);
-            res.status(500).json({ message: "Erro ao buscar unidades", erro });
-        });
+  empresaModel.buscarUnidadesPorMarca(fkMarca)
+    .then(resultado => {
+      if (resultado.length > 0) {
+        res.json(resultado);
+      } else {
+        res.status(404).json({ message: "Nenhuma unidade encontrada para essa marca." });
+      }
+    })
+    .catch(erro => {
+      console.error("Erro ao buscar unidades:", erro);
+      res.status(500).json({ message: "Erro ao buscar unidades", erro });
+    });
 }
+function atualizar(req, res) {
+  const id = req.params.fkEmpresa;
+  const values = req.body;
+
+  console.log(`Atualizando empresa com ID: ${id}`);
+  console.log('Novos dados:', values);
+
+  empresaModel.atualizar(id, values)
+    .then(() => {
+      res.status(200).json({ message: "Empresa atualizada com sucesso" });
+      
+    })
+    .catch(error => {
+      console.error("Erro ao atualizar empresa:", error);
+      res.status(500).json({ message: "Erro ao atualizar empresa", error: error.toString() });
+    });
+}
+
 
 module.exports = {
   buscarPorCnpj,
   buscarPorId,
   cadastrar,
   listar,
-  buscarUnidadesPorMarca
+  buscarUnidadesPorMarca,
+  atualizar
 };

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Marca</title>
+    <title>Gerenciar Empresa</title>
     <link rel="shortcut icon" href="../../assets/iconPage.png" type="image/x-icon">
     <!-- Icons Font Awesome -->
     <script src="https://kit.fontawesome.com/64ceb195cd.js" crossorigin="anonymous"></script>
@@ -46,6 +46,7 @@
                     <!-- visão geral -->
                     <li class="nav-item">
                         <a href="../dashboard.html">
+                        <a href="../dashboard.html">
                             <i class='bx bxs-grid-alt'></i>
                             <p>Relatório da Marca</p>
                         </a>
@@ -63,24 +64,6 @@
                             <a href="newUnity.html">
                                 <i class='bx bxs-plus-circle'></i>
                                 <p>Nova Unidade</p>
-                            </a>
-                        </li>
-
-                        <li class="submenu-item">
-                            <a href="outer/unidadeMatriz.html">
-                                <p>Matriz</p>
-                            </a>
-                        </li>
-
-                        <li class="submenu-item">
-                            <a href="outer/unidade2.html">
-                                <p>Unidade 2</p>
-                            </a>
-                        </li>
-
-                        <li class="submenu-item">
-                            <a href="outer/unidade3.html">
-                                <p>Unidade 3</p>
                             </a>
                         </li>
                     </ul>
@@ -110,12 +93,7 @@
                         </li>
                         <li class="submenu-item nav-item">
                             <a href="brandSettings.html">
-                                <p>Gerenciar Marca</p>
-                            </a>
-                        </li>
-                        <li class="submenu-item nav-item">
-                            <a href="brandSettings.html">
-                                <p>Gerenciar Unidade</p>
+                                <p>Gerenciar Empresa</p>
                             </a>
                         </li>
                     </ul>
@@ -129,8 +107,8 @@
                 <div class="menu-user">
                     <div class="user-icon"><i class="fa-solid fa-user"></i></div>
                     <div class="user-account">
-                        <div class="userName"><span>Fernando</span></div>
-                        <div class="userEmail"><span>fernando@email.com</span></div>
+                        <div class="userName"><span class="userNameSpan">User Name</span></div>
+                        <div class="userEmail"><span class="userEmailSpan">Email.com</span></div>
                     </div>
                     <div id="exitBtn" ><i onclick="limparSessao2()" class="fa-solid fa-right-from-bracket"></i></div>
                 </div>
@@ -143,33 +121,119 @@
         <div class="profile-content">
             <!-- header da dash -->
             <div class="profile-header">
-                <div class="title"><span>Minha Marca</span></div>
-                <!-- <div id="modal-notify">
-                    <i class='bx bxs-inbox'></i>
-                </div> -->
+                <div class="text">
+                    <div class="title">Boas vindas, <span class="userNameSpan">Fernando</span>!</div>
+                    <div class="description">
+                        <p>Consulte ou gerencie as informações da empresa</p>
+                    </div>
+                </div>
             </div>
             <!-- fim header da dash -->
 
             <!-- seção de marca -->
             <div class="profile-container">
-                <h2>Editar Marca</h2>
-                <form id="brand-form">
-                    <div class="profile-picture">
-                        <img id="brand-logo" src="https://via.placeholder.com/150" alt="Logo da Marca">
-                        <input type="file" id="upload-logo" style="display: none;">
-                        <button type="button" onclick="document.getElementById('upload-logo').click()">Alterar
-                            Logo</button>
+                <h2>Gerenciar Dados da Empresa</h2>
+
+                <form action="">
+
+                    <div class="input-group">
+                        <!-- NOME FANTASIA -->
+                        <div class="input-field">
+                            <div class="input-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <input type="text" id="nomeFantasia" name="nomeFantasia" placeholder="" required maxlength="65">
+                            <label for="nomeFantasia">Nome Fantasia</label>
+                        </div>
+
+                        <!-- APELIDO -->
+                        <div class="input-field">
+                            <div class="input-icon">
+                                <i class="fa-solid fa-tag"></i>
+                            </div>
+                            <input type="text" id="apelido" name="apelido" placeholder="" maxlength="40">
+                            <label for="apelido">Apelido</label>
+                        </div>
                     </div>
 
-                    <div class="profile-details">
-                        <label for="brand-name">Nome da Marca:</label>
-                        <input type="text" id="brand-name" placeholder="Digite o nome da marca">
+                    <div class="input-group">
+                        <!-- RAZÃO SOCIAL -->
+                        <div class="input-field">
+                            <div class="input-icon">
+                                <i class="fa-solid fa-building"></i>
+                            </div>
+                            <input type="text" id="razaoSocial" name="razaoSocial" placeholder="" required maxlength="80">
+                            <label for="razaoSocial">Razão Social</label>
+                        </div>
 
-                        <label for="brand-email">Email:</label>
-                        <input type="email" id="brand-email" placeholder="Digite o email da marca">
-
-                        <button type="submit">Salvar Alterações</button>
+                        <!-- CNPJ -->
+                        <div class="input-field">
+                            <div class="input-icon">
+                                <i class="fa-solid fa-id-card"></i>
+                            </div>
+                            <input type="text" id="cnpj" name="cnpj" placeholder="" required maxlength="14">
+                            <label for="cnpj">CNPJ</label>
+                        </div>
                     </div>
+
+                    <div class="input-group">
+                        <!-- LOGRADOURO -->
+                        <div class="input-field">
+                            <div class="input-icon">
+                                <i class="fa-solid fa-road"></i>
+                            </div>
+                            <input type="text" id="logradouro" name="logradouro" placeholder="" maxlength="100">
+                            <label for="logradouro">Logradouro</label>
+                        </div>
+
+                        <!-- CEP -->
+                        <div class="input-field">
+                            <div class="input-icon">
+                                <i class="fa-solid fa-map-marker-alt"></i>
+                            </div>
+                            <input type="text" id="cep" name="cep" placeholder="" maxlength="8">
+                            <label for="cep">CEP</label>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <!-- E-MAIL -->
+                        <div class="input-field">
+                            <div class="input-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <input type="email" id="email" name="email" placeholder="" required maxlength="100">
+                            <label for="email">E-mail</label>
+                        </div>
+                        <!-- TELEFONE -->
+                        <div class="input-field">
+                            <div class="input-icon">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <input type="text" maxlength="11" id="telefone" name="telefone" placeholder="" >
+                            <label for="telefone">Telefone</label>
+                        </div>
+                    </div>
+
+                    <!-- CÓDIGO -->
+                    <div class="input-field secondary">
+                        <div class="input-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <input type="text" id="codigo" name="codigo" placeholder="" disabled maxlength="15">
+                        <label for="codigo">Código</label>
+                    </div>
+
+                    <div class="form-button">
+                        <button type="button" id="deletarEmpresa" class="secondary">
+                            Deletar Empresa
+                        </button>
+
+                        <button type="button" id="alterarDados">
+                            Alterar Dados
+                        </button>
+                    </div>
+
                 </form>
             </div>
             <!-- fim seção de marca -->
@@ -177,86 +241,67 @@
         <!-- fim conteudo da dash -->
     </div>
     <script src="/js/sessao.js"></script>
+
+    <script src="../../js/empresa.js"></script>
 </body>
 
 </html>
 
-    <script>
-        // Sidebar Dinâmico - Essa função arruma o sidebar para abrir e fechar
-        const barBtn = document.getElementById("toggle-profile-btn");
-        const sidebar = document.querySelector(".sidebar");
-        const dashContent = document.querySelector(".profile-content");
-        const subMenuBtns = document.querySelectorAll(".submenu");
+<script>
+    // Sidebar Dinâmico - Essa função arruma o sidebar para abrir e fechar
+    const barBtn = document.getElementById("toggle-profile-btn");
+    const sidebar = document.querySelector(".sidebar");
+    const dashContent = document.querySelector(".profile-content");
+    const subMenuBtns = document.querySelectorAll(".submenu");
 
 
-        const toggleSidebar = () => {
-            sidebar.classList.toggle("active");
-            dashContent.classList.toggle("active");
+    const toggleSidebar = () => {
+        sidebar.classList.toggle("active");
+        dashContent.classList.toggle("active");
 
-            // Fecha todos os submenus ao alternar o sidebar
-            subMenuBtns.forEach(btn => {
-                const subMenuList = btn.nextElementSibling;
-                if (subMenuList) {
-                    subMenuList.classList.remove("active");
-                }
-            });
-        }
-
-        barBtn.addEventListener("click", () => {
-            toggleSidebar();
-        });
-
-
-        subMenuBtns.forEach((btn) => {
-            btn.addEventListener("click", (event) => {
-                event.preventDefault(); // Impede o comportamento padrão do link <a>
-
-                // Encontra a lista submenu correspondente
-                const subMenuList = btn.nextElementSibling;
-
-                if (subMenuList) { // Verifica se o submenu existe
-                    // Fecha outros submenus abertos
-                    subMenuBtns.forEach(otherBtn => {
-                        if (otherBtn !== btn) {
-                            const otherSubMenuList = otherBtn.nextElementSibling;
-                            if (otherSubMenuList) {
-                                otherSubMenuList.classList.remove("active");
-                            }
-                        }
-                    });
-
-                    // Alterna a visibilidade do submenu clicado
-                    subMenuList.classList.toggle("active");
-
-                    // Ajusta o sidebar se estiver aberto e o submenu for ativado
-                    if (sidebar.classList.contains("active") && subMenuList.classList.contains("active")) {
-                        sidebar.classList.remove("active");
-                        dashContent.classList.remove("active");
-                    }
-                }
-            });
-        });
-
-        document.getElementById('upload-logo').addEventListener('change', function (event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById('brand-logo').src = e.target.result;
-                }
-                reader.readAsDataURL(file);
+        // Fecha todos os submenus ao alternar o sidebar
+        subMenuBtns.forEach(btn => {
+            const subMenuList = btn.nextElementSibling;
+            if (subMenuList) {
+                subMenuList.classList.remove("active");
             }
         });
+    }
 
-        document.getElementById('brand-form').addEventListener('submit', function (event) {
-            event.preventDefault();
+    barBtn.addEventListener("click", () => {
+        toggleSidebar();
+    });
 
-            const brandName = document.getElementById('brand-name').value;
-            const brandEmail = document.getElementById('brand-email').value;
 
-            console.log("Nome da Marca: ", brandName);
-            console.log("Email da Marca: ", brandEmail);
+    subMenuBtns.forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+            event.preventDefault(); // Impede o comportamento padrão do link <a>
 
-            alert("Marca atualizada com sucesso!");
+            // Encontra a lista submenu correspondente
+            const subMenuList = btn.nextElementSibling;
+
+            if (subMenuList) { // Verifica se o submenu existe
+                // Fecha outros submenus abertos
+                subMenuBtns.forEach(otherBtn => {
+                    if (otherBtn !== btn) {
+                        const otherSubMenuList = otherBtn.nextElementSibling;
+                        if (otherSubMenuList) {
+                            otherSubMenuList.classList.remove("active");
+                        }
+                    }
+                });
+
+                // Alterna a visibilidade do submenu clicado
+                subMenuList.classList.toggle("active");
+
+                // Ajusta o sidebar se estiver aberto e o submenu for ativado
+                if (sidebar.classList.contains("active") && subMenuList.classList.contains("active")) {
+                    sidebar.classList.remove("active");
+                    dashContent.classList.remove("active");
+                }
+            }
         });
-    </script>
+    });
+
+
+</script>

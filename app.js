@@ -19,7 +19,6 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
 var empresasRouter = require("./src/routes/empresas");
-var graficosRouter = require("./src/routes/graficos");
 var kpiRouter = require("./src/routes/kpi");
 
 

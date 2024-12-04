@@ -365,7 +365,101 @@ function inicializarGraficoReclamacoesPorUnidade(dados) {
             }
         }
     });
+ 
 }
+
+// DASH KPI
+
+function kpiUnidadesGeral() {
+    const codigo = sessionStorage.CODIGO_MARCA;
+    fetch(`/kpi/listar/empresa/${codigo}`, { cache: "no-store" }) 
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    const qtdUnidades = document.getElementById("qtdUnidades");
+                    
+                   
+                    if (resposta && resposta.length > 0) {
+                        qtdUnidades.innerHTML = resposta.length; 
+                    } else {
+                        qtdUnidades.innerHTML = "Nenhuma unidade ativa";
+                    }
+                });
+            } else {
+                console.error("Erro ao buscar as unidades");
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados para KPI: ${error.message}`);
+        });
+}
+
+
+
+
+function kpiNegativasXPositivas() {
+    const codigo = sessionStorage.CODIGO_MARCA;
+    // Realizando a requisição para a API
+    fetch(`/kpi/NegativasXPositivas/empresa/${codigo}`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao buscar dados: ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Atualiza os valores com os dados recebidos
+        document.getElementById('positive-value').innerHTML = `${data.AvaliacoesPositivas}`;
+        document.getElementById('negative-value').innerHTML = `${data.AvaliacoesNegativas}`;
+    })
+    .catch(error => {
+        console.error('Erro ao buscar dados:', error);
+    });
+}
+
+kpiNegativasXPositivas(); 
+
+
+kpiUnidadesGeral();
+
+function kpiMaisReclamacoes(req, res) {
+    const codigo = sessionStorage.CODIGO_MARCA;
+    fetch(`/kpi/maisReclamacoes/empresa/${codigo}`, { cache: "no-store" })
+        .then(function (resposta) {
+           
+            if (!resposta.ok) {
+                throw new Error(`Erro ao buscar os dados: ${resposta.statusText}`);
+            }
+
+            
+            return resposta.json();
+        })
+        .then(function (kpi) {
+            console.log("Resultado das reclamações:", kpi);  
+
+            
+            if (Array.isArray(kpi) && kpi.length > 0) {
+                kpi.forEach((reclamacao) => {
+                if (reclamacao.unidade) {
+                        unidadeMaisReclamacoes.innerHTML = `<span>${reclamacao.unidade}</span>`;
+                    } else {
+                        console.warn("Campo 'Unidade' não encontrado ou está vazio");
+                    }
+                });
+            } else {
+                console.warn("Nenhum dado encontrado ou a estrutura da resposta está incorreta");
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados: ${error.message}`);
+        });
+}
+
+
+// Execute a função ao carregar a página
+kpiMaisReclamacoes();
+
 
 
 

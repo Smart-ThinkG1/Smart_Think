@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../css/unidade.css">
 </head>
 
-<body onload="buscarDiasSemana()">
+<body >
 
 
     <div class="dash-box">
@@ -164,9 +164,10 @@
                             <div class="tooltip">
                                 <i class="fa-solid fa-circle-info"></i>
                                 <div class="tooltip-box">
-                                    <p>avaliações positivas: X </p>
-                                    <p>avaliações neutras: X </p>
-                                    <p>avaliações negativas: X</p>
+                                    <p>Avaliações positivas: <span id="quantidade-positivas">0</span></p>
+                                    <p>Avaliações neutras: <span id="quantidade-neutras">0</span></p>
+                                    <p>Avaliações negativas: <span id="quantidade-negativas">0</span></p>
+
                                     </p>
                                 </div>
                             </div>
@@ -176,15 +177,15 @@
                             <div class="kpi-value">
                                 <div class="value-box">
                                     <i class="fa-regular fa-face-smile"></i>
-                                    <span class="postive-value">33%</span>
+                                    <span id="postive-value">33%</span>
                                 </div>
                                 <div class="value-box">
                                     <i class="fa-regular fa-face-meh"></i>
-                                    <span class="neutral-value">33%</span>
+                                    <span id="neutral-value">33%</span>
                                 </div>
                                 <div class="value-box">
                                     <i class="fa-regular fa-face-angry"></i>
-                                    <span class="negative-value">33%</span>
+                                    <span id="negative-value">33%</span>
                                 </div>
                             </div>
                         </div>
@@ -200,15 +201,14 @@
                             <div class="tooltip">
                                 <i class="fa-solid fa-circle-info"></i>
                                 <div class="tooltip-box">
-                                    <p>Esse valor representa uma estimativa mensal a partir da análise de sentimento dos
-                                        clientes.</p>
+                                    <p>Esse valor representa uma média mensal de reclamações.</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="kpi-body">
                             <div class="kpi-value">
-                                <p>Baixo</p>
+                                <p id="mediaMensalReclamacoes">Baixo</p>
                             </div>
                         </div>
                     </div>

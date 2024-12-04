@@ -165,14 +165,14 @@
                             <div class="tooltip">
                                 <i class="fa-solid fa-circle-info"></i>
                                 <div class="tooltip-box">
-                                    <p>Total de 3 unidades registradas em nosso serviço</p>
+                                    <p>Total de unidades registradas em nosso serviço</p>
                                 </div>
                             </div>
 
                         </div>
                         <div class="kpi-body">
                             <div class="kpi-value">
-                                <span>3</span>
+                                <span id="qtdUnidades"> </span>
                             </div>
                         </div>
                     </div>
@@ -221,7 +221,7 @@
 
                         <div class="kpi-body">
                             <div class="kpi-value">
-                                <p>Unidade 2</p>
+                                <p id="unidadeMaisReclamacoes">Unidade 2</p>
                             </div>
                         </div>
                     </div>
@@ -384,6 +384,44 @@
                 }
             }
         });
+    });
+
+    // Seleciona todos os elementos que contêm as estrelas
+    const divEstrelasList = document.querySelectorAll('.star-rating');
+
+    // Itera sobre cada elemento
+    divEstrelasList.forEach(divEstrelas => {
+        // Converte o valor de avaliação para um número
+        const valorEstrela = Number(divEstrelas.getAttribute('data-rating-value'));
+
+        // Separa a parte inteira e decimal do valor de avaliação
+        const valorEstrelaInteiro = Math.trunc(valorEstrela);
+        const valorEstrelaDecimal = valorEstrela - valorEstrelaInteiro;
+
+
+        // Adiciona estrelas inteiras
+        for (let i = 0; i < valorEstrelaInteiro; i++) {
+            const starIcon = document.createElement('i');
+            starIcon.classList.add('fa-solid', 'fa-star', 'fill-star');
+            divEstrelas.appendChild(starIcon);
+        }
+
+        // Adiciona meia estrela se necessário
+        if (valorEstrelaDecimal >= 0.5) {
+            const starIcon = document.createElement('i');
+            starIcon.classList.add('fa-solid', 'fa-star-half', 'fill-star');
+            divEstrelas.appendChild(starIcon);
+        }
+
+        // Conta a quantidade de estrelas já adicionadas
+        let qntdEstrelaPreenchida = divEstrelas.querySelectorAll('.fill-star').length;
+
+        // Adiciona estrelas vazias para completar 5 estrelas
+        for (let i = qntdEstrelaPreenchida; i < 5; i++) {
+            const starIcon = document.createElement('i');
+            starIcon.classList.add('fa-solid', 'fa-star', 'null-star'); // Estrela vazia
+            divEstrelas.appendChild(starIcon);
+        }
     });
 
 

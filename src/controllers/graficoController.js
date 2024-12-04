@@ -6,6 +6,7 @@ function obterDadosUnidade(req, res) {
         .then(resultado => res.status(200).json(resultado))
         .catch(erro => res.status(500).json({ error: "Erro ao obter dados da unidade", detalhe: erro }));
 }
+
 function buscarDiasSemana(req,res){
     const fkEmpresa = req.params.fkEmpresa;
     graficoModel.buscarDiasSemana(fkEmpresa)

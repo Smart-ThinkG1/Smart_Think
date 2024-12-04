@@ -371,7 +371,8 @@ function inicializarGraficoReclamacoesPorUnidade(dados) {
 // DASH KPI
 
 function kpiUnidadesGeral() {
-    fetch("/kpi/listar", { cache: "no-store" }) 
+    const codigo = sessionStorage.CODIGO_MARCA;
+    fetch(`/kpi/listar/empresa/${codigo}`, { cache: "no-store" }) 
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
@@ -397,9 +398,10 @@ function kpiUnidadesGeral() {
 
 
 
-function kpiNegativasXPositivas(req, res) {
+function kpiNegativasXPositivas() {
+    const codigo = sessionStorage.CODIGO_MARCA;
     // Realizando a requisição para a API
-    fetch('/kpi/NegativasXPositivas')
+    fetch(`/kpi/NegativasXPositivas/empresa/${codigo}`)
     .then(response => {
         if (!response.ok) {
             throw new Error('Erro ao buscar dados: ' + response.statusText);
@@ -421,8 +423,9 @@ kpiNegativasXPositivas();
 
 kpiUnidadesGeral();
 
-function kpiMaisReclamacoes() {
-    fetch("/kpi/maisReclamacoes", { cache: "no-store" })
+function kpiMaisReclamacoes(req, res) {
+    const codigo = sessionStorage.CODIGO_MARCA;
+    fetch(`/kpi/maisReclamacoes/empresa/${codigo}`, { cache: "no-store" })
         .then(function (resposta) {
            
             if (!resposta.ok) {

@@ -2,7 +2,8 @@ var kpiModel = require("../models/kpiModel");
 
 
 function listar(req, res) {
-    kpiModel.listar()
+    const codigo = req.params.codigo;
+    kpiModel.listar(codigo)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -18,7 +19,8 @@ function listar(req, res) {
 
 
 function unidadeComMaisReclamacoes(req, res) {
-  kpiModel.unidadeComMaisReclamacoes()
+    const codigo = req.params.codigo;
+  kpiModel.unidadeComMaisReclamacoes(codigo)
       .then(function (resultado) {
           if (resultado.length > 0) {
               res.status(200).json(resultado); // Retorna apenas a unidade com mais reclamações
@@ -33,7 +35,9 @@ function unidadeComMaisReclamacoes(req, res) {
 }
 
 function NegativasXPositivas(req, res) {
-    kpiModel.NegativasXPositivas()
+    const codigo = req.params.codigo;
+
+    kpiModel.NegativasXPositivas(codigo)
         .then(function (resultado) {
             if (resultado && resultado.length > 0) {
                 const avaliacoes = resultado[0]; // Supondo que resultado seja um array de objetos
@@ -60,25 +64,70 @@ function NegativasXPositivas(req, res) {
 }
 
 function DivisaoSatisfacao(req, res) {
-    kpiModel.DivisaoSatisfacao()
+    const fkUnidade = req.params.fkUnidade;
+    kpiModel.DivisaoSatisfacao(fkUnidade)
         .then(function (resultado) {
             if (resultado.length > 0) {
-                res.status(200).json(resultado);
+                const data = resultado[0];
+
+
+                const quantidadePositivas = Number(data.QuantidadePositivas);
+                const quantidadeNeutras = Number(data.QuantidadeNeutras) ;
+                const quantidadeNegativas = Number(data.QuantidadeNegativas);
+
+              
+                const porcentagemPositivas = Number (data.PorcentagemPositivas);
+                const porcentagemNeutras = Number (data.PorcentagemNeutras);
+                const porcentagemNegativas = Number (data.PorcentagemNegativas);
+
+                const resposta = {
+                    QuantidadePositivas: quantidadePositivas,
+                    PorcentagemPositivas: porcentagemPositivas.toFixed(1),
+                    QuantidadeNeutras: quantidadeNeutras,
+                    PorcentagemNeutras: porcentagemNeutras.toFixed(1),
+                    QuantidadeNegativas: quantidadeNegativas,
+                    PorcentagemNegativas: porcentagemNegativas.toFixed(1)
+                };
+
+                res.status(200).json(resposta);
             } else {
                 res.status(204).send("Nenhum resultado encontrado!");
             }
         })
         .catch(function (erro) {
             console.log(erro);
-            res.status(500).json(erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage || erro.message);
         });
 }
 
-  
+function mediaMensal(req, res) {
+    const fkUnidade = req.params.fkUnidade;
+
+    if (!fkUnidade) {
+        res.status(400).send('FK_EMPRESA não foi fornecido.');
+        return;
+    }
+
+    kpiModel.mediaMensal(fkUnidade)
+        .then(resultado => {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado[0]); // Retorna o resultado
+            } else {
+                res.status(204).send('Nenhum resultado encontrado.');
+            }
+        })
+        .catch(erro => {
+            console.error('Erro ao executar consulta:', erro);
+            res.status(500).json(erro);
+        });
+}
+
+
 
   module.exports = {
     listar,
     unidadeComMaisReclamacoes,
     NegativasXPositivas,
-    DivisaoSatisfacao
+    DivisaoSatisfacao,
+    mediaMensal
 };

@@ -1,17 +1,17 @@
 var database = require("../database/config");
 
-function listar() {
+function listar(codigo) {
 
     var instrucaoSql = `SELECT e.id, e.codigo, e.nomeFantasia, e.razaoSocial, e.apelido, e.cnpj, e.estado, e.cep, e.logradouro, e.email, e.telefone
 FROM empresa e
 JOIN empresa m ON e.fkMarca = m.id
-WHERE m.codigo = 'MARCA001';` ;
+WHERE m.codigo = ?;` ;
   
-    return database.executar(instrucaoSql);
+    return database.executar(instrucaoSql, [codigo]);
   }
 
 
-function unidadeComMaisReclamacoes() {
+function unidadeComMaisReclamacoes(codigo) {
     const query = `
      SELECT 
     e.nomeFantasia AS unidade,
@@ -20,54 +20,85 @@ FROM
     reclamacao r
 JOIN 
     empresa e ON r.fkEmpresa = e.id
+JOIN 
+    empresa m ON e.fkMarca = m.id  -- Junção com a tabela empresa para filtrar pela marca
 WHERE 
-    DATE_FORMAT(r.dataExtracao, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m')  -- Compara ano e mês
+    m.codigo = ?  -- Filtro pela marca
 GROUP BY 
     e.id
 ORDER BY 
-    total_reclamacoes DESC
+    total_reclamacoes DESC  -- Ordena pela quantidade de reclamações, em ordem decrescente
 LIMIT 1;
 `;
-    return database.executar(query);
+    return database.executar(query, [codigo]);
 }
 
 
-function NegativasXPositivas() {
+function NegativasXPositivas(codigo) {
     const query = `
      SELECT 
-    COUNT(CASE WHEN qtdEstrela >= 4 THEN 1 ELSE NULL END) AS AvaliacoesPositivas,
-    COUNT(CASE WHEN qtdEstrela < 4 THEN 1 ELSE NULL END) AS AvaliacoesNegativas,
+    COUNT(CASE WHEN qtdEstrela >= 4 THEN 1 ELSE NULL END) AS AvaliacoesPositivas, -- Avaliações positivas
+    COUNT(CASE WHEN qtdEstrela < 4 THEN 1 ELSE NULL END) AS AvaliacoesNegativas, -- Avaliações negativas
     CONCAT(
         COUNT(CASE WHEN qtdEstrela >= 4 THEN 1 ELSE NULL END), 
         ' avaliações positivas para cada ', 
         COUNT(CASE WHEN qtdEstrela < 4 THEN 1 ELSE NULL END), 
         ' avaliações negativas'
-    ) AS Proporcao
+    ) AS Proporcao -- Proporção de avaliações positivas para negativas
 FROM 
-    avaliacao
+    avaliacao a
+JOIN 
+    empresa e ON a.fkEmpresa = e.id
+JOIN 
+    empresa m ON e.fkMarca = m.id -- Relaciona as unidades à marca
 WHERE 
-    dataExtracao >= DATE_ADD(CURRENT_DATE(), INTERVAL -3 MONTH);
+    m.codigo = "MARCA001" -- Filtro pela marca
+    AND a.dataExtracao >= DATE_ADD(CURRENT_DATE(), INTERVAL -3 MONTH);
 `;
-    return database.executar(query);
+    return database.executar(query, [codigo]);
 }
 
-function DivisaoSatisfacao(req, res) {
+function DivisaoSatisfacao(fkUnidade) {
     const query = `
-     SELECT 
-    -- Porcentagem de avaliações positivas (>= 4 estrelas)
-    (COUNT(CASE WHEN qtdEstrela >= 4 THEN 1 END) / COUNT(*)) * 100 AS PorcentagemPositivas,
+    SELECT 
+    COUNT(CASE WHEN qtdEstrela >= 4 THEN 1 END) AS QuantidadePositivas,
+    (COUNT(CASE WHEN qtdEstrela >= 4 THEN 1 END) / NULLIF(COUNT(*), 0)) * 100 AS PorcentagemPositivas,
 
-    -- Porcentagem de avaliações neutras (== 3 estrelas)
-    (COUNT(CASE WHEN qtdEstrela = 3 THEN 1 END) / COUNT(*)) * 100 AS PorcentagemNeutras,
+    COUNT(CASE WHEN qtdEstrela = 3 THEN 1 END) AS QuantidadeNeutras,
+    (COUNT(CASE WHEN qtdEstrela = 3 THEN 1 END) / NULLIF(COUNT(*), 0)) * 100 AS PorcentagemNeutras,
 
-    -- Porcentagem de avaliações negativas (< 3 estrelas)
-    (COUNT(CASE WHEN qtdEstrela < 3 THEN 1 END) / COUNT(*)) * 100 AS PorcentagemNegativas
-
+    COUNT(CASE WHEN qtdEstrela < 3 THEN 1 END) AS QuantidadeNegativas,
+    (COUNT(CASE WHEN qtdEstrela < 3 THEN 1 END) / NULLIF(COUNT(*), 0)) * 100 AS PorcentagemNegativas
 FROM 
-    avaliacao;
+    avaliacao Where fkEmpresa = ?;
+
 `;
-    return database.executar(query);
+    return database.executar(query, [fkUnidade]);
 }
+
+function mediaMensal(fkUnidade) {
+    const query = `
+        SELECT 
+    AVG(mensal.totalReclamacoes) AS mediaMensalReclamacoes
+FROM (
+    SELECT 
+        COUNT(r.id) AS totalReclamacoes
+    FROM 
+        reclamacao r
+    JOIN 
+        empresa e ON r.fkEmpresa = e.id
+    WHERE 
+        e.id = ? -- Substitua "?" pelo ID da unidade desejada
+    GROUP BY 
+        YEAR(r.dataExtracao), MONTH(r.dataExtracao)
+) mensal;
+    `;
+
+    return database.executar(query, [fkUnidade]);
+}
+
+
+
 
 
 
@@ -75,5 +106,6 @@ module.exports = {
     listar,
     unidadeComMaisReclamacoes,
     NegativasXPositivas,
-    DivisaoSatisfacao
+    DivisaoSatisfacao,
+    mediaMensal
 };

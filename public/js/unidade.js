@@ -31,9 +31,18 @@ console.log(userNameSpans)
 userNameSpans.forEach(span => span.textContent = firstNameUser);
 userEmailSpans.forEach(span => span.textContent = emailUser);
 
+
+
+
 function guardarUnidade(unidadeId) {
-    sessionStorage.FK_Unidade = unidadeId;
+    sessionStorage.setItem.FK_Unidade = unidadeId;
 }
+
+const sessionData = {
+    FK_Unidade: unidadeId,
+    FK_EMPRESA: fkMarca
+}
+sessionStorage.setItem('sessionData', JSON.stringify(sessionData));
 
 document.addEventListener('DOMContentLoaded', function () {
     if (fkMarca === "") {
@@ -295,26 +304,71 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function DivisaoSatisfacao() {
-    fetch('/kpi/DivisaoSatisfacao')
-    .then(response => response.json())
+    const fkUnidade = sessionStorage.FK_Unidade;
+    fetch(`/kpi/DivisaoSatisfacao/empresa/${fkUnidade}`)
+    .then(response => response.json())  // Certifique-se de converter a resposta em JSON
     .then(data => {
-        console.log('Dados recebidos:', data); // Verifica o que está sendo retornado pela API
+        console.log('Dados recebidos da API:', data);  // Verifique o que está sendo retornado pela API
 
-        const positivas = data.PorcentagemPositivas || 0;
-        const neutras = data.PorcentagemNeutras || 0;
-        const negativas = data.PorcentagemNegativas || 0;
+        // Garantir que os dados são números e que não são undefined
+        const positivas = data.PorcentagemPositivas ? Number(data.PorcentagemPositivas) : 0;
+        const neutras = data.PorcentagemNeutras ? Number(data.PorcentagemNeutras) : 0;
+        const negativas = data.PorcentagemNegativas ? Number(data.PorcentagemNegativas) : 0;
 
-        document.getElementById('porcentagem-positivas').innerHTML = `${positivas.toFixed(2)}%`;
-        document.getElementById('porcentagem-neutras').innerHTML = `${neutras.toFixed(2)}%`;
-        document.getElementById('porcentagem-negativas').innerHTML = `${negativas.toFixed(2)}%`;
+        // Verificar se as porcentagens são números válidos
+        console.log(`Positivas: ${positivas}, Neutras: ${neutras}, Negativas: ${negativas}`);
+
+        // Atualizar os valores no HTML
+        document.getElementById('postive-value').innerHTML = `${positivas.toFixed(1)}%`;
+        document.getElementById('neutral-value').innerHTML = `${neutras.toFixed(1)}%`;
+        document.getElementById('negative-value').innerHTML = `${negativas.toFixed(1)}%`;
+
+        // Atualizar a quantidade de avaliações
+        const QuantidadePositivas = Number(data.QuantidadePositivas);
+        const QuantidadeNeutras = Number(data.QuantidadeNeutras);
+        const QuantidadeNegativas = Number(data.QuantidadeNegativas);
+
+        console.log(`Quantidade Positivas: ${QuantidadePositivas}, Neutras: ${QuantidadeNeutras}, Negativas: ${QuantidadeNegativas}`);
+
+        document.getElementById('quantidade-positivas').innerHTML = `${QuantidadePositivas}`;
+        document.getElementById('quantidade-neutras').innerHTML = `${QuantidadeNeutras}`;
+        document.getElementById('quantidade-negativas').innerHTML = `${QuantidadeNegativas}`;
     })
     .catch(error => {
         console.error('Erro ao buscar dados:', error);
     });
-
 }
+
+
 
 // Chama a função quando a página carrega
 window.onload = DivisaoSatisfacao;
+
+
+function obterMediaMensal() {
+    
+    const fkUnidade = sessionStorage.FK_Unidade;
+
+    // Faz a requisição para o back-end com FK_Unidade
+    fetch(`/kpi/mediaMensal/empresa/${fkUnidade}`)
+        .then(response => response.json())
+        .then(data => {
+            let resultado = Number( data.mediaMensalReclamacoes);
+            mediaMensalReclamacoes.innerHTML = `${resultado.toFixed(2)}%`;
+        })
+        .catch(error => {
+            console.error('Erro ao buscar a média mensal:', error);
+        });
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    if (sessionStorage.getItem('sessionData')) {
+        obterMediaMensal();
+    } else {
+        console.error('Dados de sessionStorage não encontrados');
+    }
+});
 
 

@@ -1,3 +1,109 @@
+// Recuperando Nome e Email de SESSION STORAGE
+const nameUser = sessionStorage.NOME_USUARIO;
+const emailUser = sessionStorage.EMAIL_USUARIO;
+const fkEmpresa = sessionStorage.FK_EMPRESA;
+const fkMarca = sessionStorage.FK_MARCA;
+
+// Inicializa a variável firstNameUser fora do bloco if para garantir que ela esteja disponível
+let firstNameUser = '';
+
+if (nameUser) {
+    firstNameUser = nameUser.trim().split(' ')[0];
+} else {
+    console.warn("Nome não encontrado");
+}
+
+// Seleciona todos os spans pelos identificadores de classe
+const userNameSpans = document.querySelectorAll('.userNameSpan');
+const userEmailSpans = document.querySelectorAll('.userEmailSpan');
+
+console.log(userNameSpans)
+// Atualiza o conteúdo de todos os spans encontrados
+userNameSpans.forEach(span => span.textContent = firstNameUser);
+userEmailSpans.forEach(span => span.textContent = emailUser);
+
+// SubMenu
+document.addEventListener('DOMContentLoaded', function () {
+    if (fkMarca === "") {
+        fetch(`/empresas/unidades/${fkEmpresa}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkEmpresa: fkEmpresa
+            })
+        }).then(response => response.json())
+            .then(unidades => {
+                const submenuList = document.querySelector('.submenu-list');
+                const descriptionSpan = document.querySelector('.description span');
+
+                unidades.forEach(unidade => {
+                    const li = document.createElement('li');
+                    li.className = 'submenu-item';
+
+
+                    if (unidade.id == fkMarca) {
+                        li.classList.add('active'); // Usa classList para adicionar a classe
+
+                        descriptionSpan.textContent = unidade.nomeFantasia;
+                    }
+                    console.log(`Unidade ID: ${fkMarca},
+                    Unidade.id: ${unidade.id}`)
+
+                    li.innerHTML = `
+                    <a href="../unidade.html?id=${unidade.id}">
+
+                    <i class='bx bxs-store'></i>
+                        <p>${unidade.apelido}</p>
+                    </a>
+                `;
+                    submenuList.appendChild(li);
+                });
+            })
+            .catch(error => console.error('Erro ao carregar unidades:', error));
+    }
+    else {
+        const visaoGeralItem = document.querySelector('.nav-menu .nav-item:first-child');
+        visaoGeralItem.style.display = 'none';
+
+        console.log("Carregando unidade específica");
+
+        fetch(`/empresas/buscar/${fkEmpresa}`)
+            .then(response => response.json())
+            .then(unidades => {
+                if (unidades.length > 0) {
+                    const unidade = unidades[0];
+                    const submenuList = document.querySelector('.submenu-list');
+
+                    submenuList.innerHTML = ''; // Limpa a lista existente
+
+                    const li = document.createElement('li');
+                    li.className = 'submenu-item';
+                    li.classList.add('active');
+                    li.innerHTML = `
+                         <a href="unidade.html?id=${unidade.id}>
+                            <i class='bx bxs-store'></i>
+                            <p>${unidade.apelido}</p>
+                        </a>
+                    `;
+                    submenuList.appendChild(li);
+
+                    // Mudando descrição do header para o nome da unidade atual
+                    const descriptionSpan = document.querySelector('.description span');
+                    descriptionSpan.textContent = unidade.nomeFantasia;
+
+                } else {
+                    console.warn('Nenhuma unidade encontrada.');
+                }
+            })
+            .catch(error => console.error('Erro ao carregar unidade específica:', error));
+    }
+});
+
+///
+
+
 // Recuperando inputs pelo ID
 let varNomeFantasia = document.getElementById("nomeFantasia");
 let varApelido = document.getElementById("apelido");
@@ -53,9 +159,6 @@ function validarCampos() {
 // Recuperando botões pelo ID
 const deletarEmpresaButton = document.getElementById("deletarEmpresa");
 const alterarDadosButton = document.getElementById("alterarDados");
-
-
-const fkEmpresa = sessionStorage.FK_EMPRESA;
 
 document.addEventListener("DOMContentLoaded", function () {
 

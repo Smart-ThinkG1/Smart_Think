@@ -475,7 +475,7 @@ button.desativar-conta:hover {
 
 
 
-form {
+/* form {
     width: 100%;
     height: 100%;
     display: flex;
@@ -568,4 +568,4 @@ form .form-button button {
 
 form .form-button button.secondary {
     background-color: red;
-}
+} */

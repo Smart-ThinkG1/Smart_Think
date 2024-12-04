@@ -135,12 +135,6 @@
             <div class="profile-container">
                 <h2>Editar Perfil</h2>
                 <form id="profile-form">
-                    <div class="profile-picture">
-                        <img id="profile-image" src="https://via.placeholder.com/150" alt="Foto do usuário">
-                        <input type="file" id="upload-image" style="display: none;">
-                        <button type="button" onclick="document.getElementById('upload-image').click()">Alterar
-                            Foto</button>
-                    </div>
 
                     <div class="profile-details">
                         <label for="name">Nome:</label>
@@ -294,17 +288,6 @@ function Deletar_Conta() {
                 }
             }
         });
-    });
-
-    document.getElementById('upload-image').addEventListener('change', function (event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                document.getElementById('profile-image').src = e.target.result;
-            }
-            reader.readAsDataURL(file);
-        }
     });
 
     document.getElementById('profile-form').addEventListener('submit', function (event) {

@@ -12,10 +12,11 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- CSS Local -->
     <link rel="stylesheet" href="../../css/entitySettings.css">
+    
 
 </head>
 
-<body>
+<body EditarFuncionario()>
     <div class="profile-box">
         <!-- sidebar -->
         <div class="sidebar">
@@ -102,12 +103,12 @@
                     </li>
                     <ul class="submenu-list">
                         <li class="submenu-item nav-item">
-                            <a href="outer/user.html">
+                            <a href="./userSettings.html">
                                 <p>Meu perfil</p>
                             </a>
                         </li>
                         <li class="submenu-item nav-item">
-                            <a href="outer/brand.html">
+                            <a href="./brandSettings.html">
                                 <p>Minha marca</p>
                             </a>
                         </li>
@@ -125,7 +126,7 @@
                         <div class="userName"><span>Fernando</span></div>
                         <div class="userEmail"><span>fernando@email.com</span></div>
                     </div>
-                    <div id="exitBtn"><i class="fa-solid fa-right-from-bracket"></i></div>
+                    <div id="exitBtn"><i onclick="limparSessao2()" class="fa-solid fa-right-from-bracket"></i></div>
                 </div>
             </div>
             <!-- fim footer sidebar -->
@@ -137,9 +138,8 @@
             <!-- header da dash -->
             <div class="profile-header">
                 <div class="title"><span>Meu Perfil</span></div>
-                <div id="modal-notify">
-                    <i class='bx bxs-inbox'></i>
-                </div>
+                <button class="desativar-conta" type="button" onclick="Deletar_Conta()">Desativar Conta</button>
+               
             </div>
             <!-- fim header da dash -->
 
@@ -156,20 +156,20 @@
 
                     <div class="profile-details">
                         <label for="name">Nome:</label>
-                        <input type="text" id="name" value="Fernando">
+                        <input type="text" id="name_edit" value="" placeholder="Carregando...">
 
                         <label for="email">Email:</label>
-                        <input type="email" id="email" value="fernando@email.com">
+                        <input type="email" id="email_edit" value="" placeholder="Carregando...">
 
                         <label for="password">Senha:</label>
                         <div class="password-input">
-                            <input type="password" id="password" placeholder="Digite sua senha">
+                            <input type="password" id="password_edit" placeholder="Carregando..." value="">
                             <span id="togglePassword" class="eye-icon">
                                 <i class="fa-solid fa-eye-slash"></i>
                             </span>
                         </div>
 
-                        <button type="submit">Salvar Alterações</button>
+                        <button type="button" onclick="EditarFuncionario()">Salvar Alterações</button>
                     </div>
                 </form>
             </div>
@@ -177,11 +177,82 @@
         </div>
         <!-- fim conteudo da dash -->
     </div>
+    <script src="/js/index.js"></script>
+    <script src="/js/sessao.js"></script>
 </body>
 
 </html>
 
+
 <script>
+    function EditarFuncionario() {
+    var nome_edit = document.getElementById('name_edit').value;
+    var email_edit = document.getElementById('email_edit').value;
+    var senha_edit = document.getElementById('password_edit').value;
+    var id = localStorage.getItem("ID_USUARIO"); // Pegar o ID do localStorage
+
+    if (!id) {
+        alert("Erro: ID do usuário não encontrado.");
+        return;
+    }
+    
+
+    fetch(`/usuarios/editar/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            nomeServer: nome_edit,
+            emailServer: email_edit,
+            senhaServer: senha_edit
+        }),
+    })
+    .then(function (resposta) {
+        if (resposta.ok) {
+            alert("Editado com sucesso!");
+        } else {
+            alert("Erro ao tentar realizar a edição.");
+        }
+    })
+    .catch(function (erro) {
+        console.log("#ERRO:", erro);
+        alert("Erro ao tentar realizar a edição. Tente novamente mais tarde.");
+    });
+}
+function Deletar_Conta() {
+    var id = localStorage.getItem("ID_USUARIO"); // Pegar o ID do LocalStorage
+
+    if (!id) {
+        alert("Erro: ID do usuário não encontrado.");
+        return;
+    }
+
+    fetch(`/usuarios/deletar/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            estadoServer: "INATIVO", // Valor fixo para desativar
+        }),
+    })
+    .then(function (resposta) {
+        if (resposta.ok) {
+            alert("Conta desativada com sucesso!");
+            window.location = "/index.html";
+            // Opcional: Redirecionar para outra página ou logout
+        } else {
+            alert("Erro ao tentar desativar a conta.");
+        }
+    })
+    .catch(function (erro) {
+        console.error("#ERRO:", erro);
+        alert("Erro ao tentar desativar a conta. Tente novamente mais tarde.");
+    });
+}
+
+    
     // Sidebar Dinâmico - Essa função arruma o sidebar para abrir e fechar
     const barBtn = document.getElementById("toggle-profile-btn");
     const sidebar = document.querySelector(".sidebar");
@@ -269,4 +340,50 @@
         togglePassword.querySelector('i').classList.toggle('fa-eye');
         togglePassword.querySelector('i').classList.toggle('fa-eye-slash');
     });
+    document.addEventListener("DOMContentLoaded", function () {
+        const idUsuario = localStorage.getItem("ID_USUARIO");
+
+        if (!idUsuario) {
+            alert("Erro: ID do usuário não encontrado.");
+            return;
+        }
+
+        // Faz a requisição para buscar os dados do usuário
+        fetch(`/usuarios/buscar/${idUsuario}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error("Erro ao buscar os dados do usuário.");
+                }
+            })
+            .then(dados => {
+                // Preenche os campos com os dados retornados
+                document.getElementById("name_edit").value = dados.nome;
+                document.getElementById("email_edit").value = dados.email;
+                document.getElementById("password_edit").value = dados.senha; // Opcional, depende da política de segurança
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Erro ao carregar os dados do usuário.");
+            });
+    });
+    
+    document.getElementById("togglePassword").addEventListener("click", function () {
+    const passwordInput = document.getElementById("password_edit");
+    const icon = this.querySelector("i");
+
+    // Alterna o tipo do input entre 'password' e 'text'
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    } else {
+        passwordInput.type = "password";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    }
+});
+
+    
 </script>

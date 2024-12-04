@@ -11,5 +11,29 @@ router.post("/cadastrar", function (req, res) {
 router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
+router.put("/editar/:idfuncionario", function (req, res) {
+    const { idfuncionario } = req.params;
+    if (!idfuncionario) {
+        return res.status(400).send("ID do funcionário não foi fornecido.");
+    }
+    usuarioController.editar(req, res);
+});
+
+router.get("/buscar/:idfuncionario", function (req, res) {
+    const { idfuncionario } = req.params;
+    if (!idfuncionario) {
+        return res.status(400).send("ID do funcionário não fornecido. (U)");
+    }
+    usuarioController.buscar(req, res);
+});
+
+router.put("/deletar/:idfuncionario", function (req, res) {
+    const { idfuncionario } = req.params;
+    if (!idfuncionario) {
+        return res.status(400).send("ID do funcionário não fornecido.");
+    }
+    usuarioController.deletar(req, res);
+});
+
 
 module.exports = router;

@@ -26,6 +26,12 @@ var graficosRouter = require("./src/routes/graficos");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
+app.use((req, res, next) => {
+    console.log(`Requisição recebida: ${req.method} ${req.url}`);
+    next();
+});
+
 
 app.use(cors());
 
@@ -34,6 +40,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
 app.use("/empresas", empresasRouter);
 app.use("/graficos", graficosRouter);
+
 
 app.listen(PORTA_APP, function () {
     console.log(`

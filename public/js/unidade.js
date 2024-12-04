@@ -35,7 +35,7 @@ userEmailSpans.forEach(span => span.textContent = emailUser);
 
 
 function guardarUnidade(unidadeId) {
-    sessionStorage.setItem.FK_Unidade = unidadeId;
+    sessionStorage.FK_Unidade = unidadeId;
 }
 
 const sessionData = {

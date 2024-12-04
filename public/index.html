@@ -195,7 +195,7 @@
                 Preencha o formulário abaixo com o email e seu nome, e entraremos em contato em breve para discutir como
                 podemos ajudar sua empresa de fast food a alcançar os melhores resultados. Nossa equipe especializada
                 enviará todos os detalhes diretamente para o seu e-mail por meio do endereço oficial da Smart Think.</p>
-            <form>
+            <form id="clientForm" onsubmit="cadastrarSolicitacao(); return false;">
                 <div class="input-container">
                     <div class="input-icon">
                         <i class="fas fa-user"></i>
@@ -207,24 +207,25 @@
                     <div class="input-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
-                    <input type="email" id="serviceEmail" max="40" placeholder="" required>
-                    <label for="serviceEmail">Email</label>
+                    <input type="email" id="serviceEmail" maxlength="40" placeholder="" required>
+                    <label for="serviceEmail">E-mail</label>
                 </div>
                 <div class="input-container">
                     <div class="input-icon">
                         <i class="fas fa-phone"></i>
                     </div>
-                    <input type="number" id="telephoneClient" maxlength="11" placeholder="" required>
-                    <label for="nomeClient">Telefone</label>
+                    <input type="text" id="telephoneClient" maxlength="11" placeholder="" required>
+                    <label for="telephoneClient">Telefone</label>
                 </div>
                 <div class="input-container">
                     <div class="input-icon">
                         <i class="fas fa-building"></i>
                     </div>
-                    <input type="text" id="empresaClient" max="40" placeholder="" required>
-                    <label for="nomeClient">Empresa</label>
+                    <input type="text" id="empresaClient" maxlength="40" placeholder="" required>
+                    <label for="empresaClient">Empresa</label>
                 </div>
-                <button type="submit" onclick="sendClientData()">Enviar</button>
+                <div id="cardErro" style="display: none; color: red; margin-top: 10px;"></div>
+                <button type="submit">Enviar</button>
             </form>
         </div>
     </div>
@@ -659,7 +660,7 @@
         icon.classList.toggle('fa-xmark');
         icon.classList.toggle('fa-bars');
     }
-    
+
     const infoIcons = document.querySelectorAll('.info-icon');
     let currentTooltip = null;
 
@@ -693,6 +694,75 @@
         loginModal.style.display = "none";
         modal.style.display = "flex";
     }
-    
+
+
+    function mostrarErro(mensagem) {
+        let cardErro = document.getElementById('cardErro');
+        if (!cardErro) {
+            cardErro = document.createElement('div');
+            cardErro.id = 'cardErro';
+            cardErro.style.color = 'red';
+            document.querySelector('.modal-content').appendChild(cardErro);
+        }
+        cardErro.style.display = 'block';
+        cardErro.innerHTML = mensagem;
+    }
+
+    function sumirMensagem() {
+        const cardErro = document.getElementById('cardErro');
+        if (cardErro) {
+            cardErro.style.display = 'none';
+        }
+    }
+
+    function fecharModal() {
+        var modal = document.getElementById("serviceModal");
+        modal.style.display = "none";
+    }
+
+    function cadastrarSolicitacao() {
+        var nomeVar = document.getElementById("nomeClient").value;
+        var emailVar = document.getElementById("serviceEmail").value;
+        var telefoneVar = document.getElementById("telephoneClient").value;
+        var empresaVar = document.getElementById("empresaClient").value;
+
+        sumirMensagem();
+
+        if (!nomeVar || !emailVar || !telefoneVar || !empresaVar) {
+            mostrarErro("Todos os campos devem ser preenchidos!")
+            return;
+        }
+
+        if (telefoneVar.length != 11) {
+            mostrarErro("O telefone deve conter 11 dígitos.")
+            return;
+        }
+
+        fetch("/solicitacao/cadastrarSolicitacao", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                telefoneServer: telefoneVar,
+                empresaServer: empresaVar
+            }),
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    alert("Solicitação enviada com sucesso! Entraremos em contato em breve.");
+                    fecharModal();
+                } else {
+                    mostrarErro("Erro ao tentar enviar a solicitação. Tente novamente mais tarde.");
+                }
+            })
+            .catch(function (erro) {
+                console.log("#ERRO:", erro);
+                mostrarErro("Erro ao tentar enviar a solicitação. Tente novamente mais tarde.");
+            });
+    }
+
+
 </script>
-    

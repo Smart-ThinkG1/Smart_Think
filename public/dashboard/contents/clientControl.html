@@ -70,8 +70,8 @@
                 <div class="menu-user">
                     <div class="user-icon"><i class="fa-solid fa-user"></i></div>
                     <div class="user-account">
-                        <div class="userName"><span>Fernando</span></div>
-                        <div class="userEmail"><span>fernando@email.com</span></div>
+                        <div class="userName"><span>Admin SmartThink</span></div>
+                        <div class="userEmail"><span>admin@smart.think</span></div>
                     </div>
                     <div id="exitBtn"><i class="fa-solid fa-right-from-bracket"></i></div>
                 </div>
@@ -122,7 +122,7 @@
                                 <i class="fa-solid fa-user"></i>
                             </div>
 
-                            <input type="text" placeholder="">
+                            <input id="nomeInput" type="text" placeholder="">
                             <label for="">Nome</label>
                         </div>
 
@@ -132,7 +132,7 @@
                                 <i class="fa-solid fa-phone"></i>
                             </div>
 
-                            <input type="text" placeholder="">
+                            <input id="telefoneInput" type="text" placeholder="">
                             <label for="">Telefone</label>
                         </div>
 
@@ -142,7 +142,7 @@
                                 <i class="fa-solid fa-envelope"></i>
                             </div>
 
-                            <input type="text" placeholder="">
+                            <input id="emailInput" type="text" placeholder="">
                             <label for="">E-mail</label>
                         </div>
 
@@ -152,12 +152,12 @@
                                 <i class="fa-solid fa-building"></i>
                             </div>
 
-                            <input type="text" placeholder="">
+                            <input id="empresaInput" type="text" placeholder="">
                             <label for="">Empresa</label>
                         </div>
 
                         <div class="modal-button">
-                            <button type="button">
+                            <button type="button" id="btnEditar" onclick="editarSolicitacao(getIdUsuario())">
                                 Editar
                             </button>
                         </div>
@@ -181,23 +181,22 @@
                         <h2>Confirmar Exclusão</h2>
                     </div>
                     <div class="modal-description">
-                        <p>Deseja excluir o cliente <span>client_Name</span>?</p>
+                        <p>Deseja excluir o cliente <span id="nomeCliente">client_Name</span>?</p>
                     </div>
 
                     <div class="group-button">
                         <div class="modal-button cancel">
-                            <button type="button">
+                            <button type="button" onclick="fecharModal()">
                                 Cancelar
                             </button>
                         </div>
-
                         <div class="modal-button">
-                            <button type="button">
+                            <button type="button" id="btnConfirmar" onclick="desativarSolicitacao(getIdUsuario())">
                                 Confirmar
                             </button>
                         </div>
-
                     </div>
+
 
                 </div>
 
@@ -234,46 +233,14 @@
                                 <tr>
                                     <td>1</td>
                                     <td>João Silva</td>
-                                    <td>(11) 1234-5678</td>
-                                    <td>joao.silva@example.com</td>
-                                    <td>Empresa A</td> <!-- Exemplo de nome de empresa -->
+                                    <td>(11) 99999-9999</td>
+                                    <td>joao@email.com</td>
+                                    <td>Empresa X</td>
                                     <td>
-                                        <button class="action-btn edit">
-                                            <i class="fa-solid fa-pencil"></i>
-                                        </button>
-                                        <button class="action-btn delete">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Maria Oliveira</td>
-                                    <td>(21) 8765-4321</td>
-                                    <td>maria.oliveira@example.com</td>
-                                    <td>Empresa B</td> <!-- Exemplo de nome de empresa -->
-                                    <td>
-                                        <button class="action-btn edit">
-                                            <i class="fa-solid fa-pencil"></i>
-                                        </button>
-                                        <button class="action-btn delete">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Carlos Souza</td>
-                                    <td>(31) 9876-5432</td>
-                                    <td>carlos.souza@example.com</td>
-                                    <td>Empresa C</td> <!-- Exemplo de nome de empresa -->
-                                    <td>
-                                        <button class="action-btn edit">
-                                            <i class="fa-solid fa-pencil"></i>
-                                        </button>
-                                        <button class="action-btn delete">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
+                                        <button class="action-btn edit" data-id="1"><i
+                                                class="fa-solid fa-pen"></i></button>
+                                        <button class="action-btn delete" data-id="1"><i
+                                                class="fa-solid fa-trash"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -297,6 +264,7 @@
 
 
 <script>
+    let idUsuarioSelecionado = null;
 
     // *** Função Sidebar Dinâmico 
 
@@ -360,8 +328,93 @@
         });
     });
 
+    function abrirModalEditar(cliente) {
+        idUsuarioSelecionado = cliente.id;
+        console.log(idUsuarioSelecionado)
+        $('#modal-edit').find('input[placeholder=""]').eq(0).val(cliente.nome);
+        $('#modal-edit').find('input[placeholder=""]').eq(1).val(cliente.telefone);
+        $('#modal-edit').find('input[placeholder=""]').eq(2).val(cliente.email);
+        $('#modal-edit').find('input[placeholder=""]').eq(3).val(cliente.empresa);
+
+        $('#modal-edit').removeClass('hide');
+        $('#fade-modal').removeClass('hide');
+    }
+
+    function abrirModalExcluir(cliente) {
+        idUsuarioSelecionado = cliente.id;
+        console.log(idUsuarioSelecionado)
+        $('#modal-delete .modal-description span').text(cliente.nome);
+        $('#modal-delete').removeClass('hide');
+        $('#fade-modal').removeClass('hide');
+    }
+
+    function fecharModal() {
+        $('.modal').addClass('hide');
+        $('#fade-modal').addClass('hide');
+    }
+
+    function adicionarEventosTabela() {
+        $('#myTable .edit').on('click', function () {
+            const cliente = {
+                id: $(this).data('id'),
+                nome: $(this).data('nome'),
+                telefone: $(this).data('telefone'),
+                email: $(this).data('email'),
+                empresa: $(this).data('empresa')
+            };
+            abrirModalEditar(cliente);
+        });
+
+        $('#myTable .delete').on('click', function () {
+            const cliente = {
+                id: $(this).data('id'),
+                nome: $(this).data('nome')
+            };
+            abrirModalExcluir(cliente);
+        });
+    }
+
     // *** Função da Tabela Clientes()
     $(document).ready(function () {
+        const apiUrl = "/solicitacao/listarSolicitacoes"
+        $.getJSON(apiUrl, function (data) {
+            const tableBody = $("#myTable tbody");
+            tableBody.empty();
+
+            data.forEach((cliente) => {
+                tableBody.append(`
+                <tr>
+                    <td>${cliente.id}</td>
+                    <td>${cliente.nome}</td>
+                    <td>${cliente.telefone}</td>
+                    <td>${cliente.email}</td>
+                    <td>${cliente.empresa}</td>
+                    <td>
+                        <button class="action-btn edit" 
+                                data-id="${cliente.id}" 
+                                data-nome="${cliente.nome}" 
+                                data-telefone="${cliente.telefone}" 
+                                data-email="${cliente.email}" 
+                                data-empresa="${cliente.empresa}"
+                                onclick="abrirModalEditar(${cliente.id}, '${cliente.nome}', '${cliente.telefone}', '${cliente.email}', '${cliente.empresa}')">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="action-btn delete" 
+                                data-id="${cliente.id}" 
+                                data-nome="${cliente.nome}"
+                                onclick="abrirModalExcluir(${cliente.id}, '${cliente.nome}')">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `);
+            });
+
+            adicionarEventosTabela();
+        }).fail(function () {
+            console.error("Erro ao carregar os dados da API.");
+        });
+
         var table = $('#myTable').DataTable({
             paging: false, // Habilita a paginação
             searching: true, // Desabilita a pesquisa padrão
@@ -424,5 +477,103 @@
             }
         });
     });
+
+    function listarSolicitacoes() {
+        fetch("/solicitacao/listarSolicitacoes")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar as solicitações.");
+                }
+                return response.json();
+            })
+            .then(data => {
+                const tbody = document.querySelector("#myTable tbody");
+                tbody.innerHTML = "";
+
+                data.forEach(solicitacao => {
+                    const tr = document.createElement("tr");
+
+                    tr.innerHTML = `
+                    <td>${solicitacao.id}</td>
+                    <td>${solicitacao.nome}</td>
+                    <td>${solicitacao.telefone}</td>
+                    <td>${solicitacao.email}</td>
+                    <td>${solicitacao.empresa}</td>
+                    <td>
+                        <button class="action-btn edit" data-id="${solicitacao.id}">
+                            <i class="fa-solid fa-pencil"></i>
+                        </button>
+                        <button class="action-btn delete" data-id="${solicitacao.id}">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                `;
+
+                    tbody.appendChild(tr);
+                });
+
+                adicionarEventosTabela();
+            })
+            .catch(error => console.error("Erro ao listar solicitações:", error));
+    }
+
+    function editarSolicitacao(id) {
+        const payload = {
+            idServer: id,
+            nomeServer: document.getElementById("nomeInput").value,
+            emailServer: document.getElementById("emailInput").value,
+            telefoneServer: document.getElementById("telefoneInput").value,
+            empresaServer: document.getElementById("empresaInput").value,
+        };
+
+        fetch("/solicitacao/editarSolicitacao", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erro HTTP! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Solicitação editada com sucesso:", data);
+                fecharModal(); // Fecha o modal
+                listarSolicitacoes(); // Atualiza a tabela
+                recarregarPagina();
+            })
+            .catch(error => console.error("Erro ao editar solicitação:", error));
+    }
+
+    function desativarSolicitacao(id) {
+        fetch(`/solicitacao/desativarSolicitacao/${id}`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erro HTTP! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Solicitação desativada com sucesso:", data);
+                fecharModal(); // Fecha o modal
+                listarSolicitacoes(); // Atualiza a tabela
+                recarregarPagina();
+            })
+            .catch(error => console.error("Erro ao desativar solicitação:", error));
+    }
+
+    function getIdUsuario() {
+        return idUsuarioSelecionado;
+    }
+
+    function recarregarPagina() {
+        location.reload();
+    }
+
+
 
 </script>

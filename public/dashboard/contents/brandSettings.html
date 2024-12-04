@@ -45,7 +45,7 @@
 
                     <!-- visão geral -->
                     <li class="nav-item">
-                        <a href="dashboard.html">
+                        <a href="../dashboard.html">
                             <i class='bx bxs-grid-alt'></i>
                             <p>Relatório da Marca</p>
                         </a>
@@ -63,24 +63,6 @@
                             <a href="newUnity.html">
                                 <i class='bx bxs-plus-circle'></i>
                                 <p>Nova Unidade</p>
-                            </a>
-                        </li>
-
-                        <li class="submenu-item">
-                            <a href="outer/unidadeMatriz.html">
-                                <p>Matriz</p>
-                            </a>
-                        </li>
-
-                        <li class="submenu-item">
-                            <a href="outer/unidade2.html">
-                                <p>Unidade 2</p>
-                            </a>
-                        </li>
-
-                        <li class="submenu-item">
-                            <a href="outer/unidade3.html">
-                                <p>Unidade 3</p>
                             </a>
                         </li>
                     </ul>
@@ -108,12 +90,7 @@
                         </li>
                         <li class="submenu-item nav-item">
                             <a href="brandSettings.html">
-                                <p>Gerenciar Marca</p>
-                            </a>
-                        </li>
-                        <li class="submenu-item nav-item">
-                            <a href="brandSettings.html">
-                                <p>Gerenciar Unidade</p>
+                                <p>Gerenciar Empresa</p>
                             </a>
                         </li>
                     </ul>
@@ -162,7 +139,7 @@
                             <div class="input-icon">
                                 <i class="fa-solid fa-user"></i>
                             </div>
-                            <input type="text" name="nomeFantasia" placeholder="" required disabled>
+                            <input type="text" id="nomeFantasia" name="nomeFantasia" placeholder="" required maxlength="65">
                             <label for="nomeFantasia">Nome Fantasia</label>
                         </div>
 
@@ -171,7 +148,7 @@
                             <div class="input-icon">
                                 <i class="fa-solid fa-tag"></i>
                             </div>
-                            <input type="text" name="apelido" placeholder="" disabled>
+                            <input type="text" id="apelido" name="apelido" placeholder="" maxlength="40">
                             <label for="apelido">Apelido</label>
                         </div>
                     </div>
@@ -182,7 +159,7 @@
                             <div class="input-icon">
                                 <i class="fa-solid fa-building"></i>
                             </div>
-                            <input type="text" name="razaoSocial" placeholder="" required disabled>
+                            <input type="text" id="razaoSocial" name="razaoSocial" placeholder="" required maxlength="80">
                             <label for="razaoSocial">Razão Social</label>
                         </div>
 
@@ -191,7 +168,7 @@
                             <div class="input-icon">
                                 <i class="fa-solid fa-id-card"></i>
                             </div>
-                            <input type="text" name="cnpj" placeholder="" required>
+                            <input type="text" id="cnpj" name="cnpj" placeholder="" required maxlength="14">
                             <label for="cnpj">CNPJ</label>
                         </div>
                     </div>
@@ -202,16 +179,16 @@
                             <div class="input-icon">
                                 <i class="fa-solid fa-road"></i>
                             </div>
-                            <input type="text" name="logradouro" placeholder="">
+                            <input type="text" id="logradouro" name="logradouro" placeholder="" maxlength="100">
                             <label for="logradouro">Logradouro</label>
                         </div>
-                        
+
                         <!-- CEP -->
                         <div class="input-field">
                             <div class="input-icon">
                                 <i class="fa-solid fa-map-marker-alt"></i>
                             </div>
-                            <input type="text" name="cep" placeholder="">
+                            <input type="text" id="cep" name="cep" placeholder="" maxlength="8">
                             <label for="cep">CEP</label>
                         </div>
                     </div>
@@ -222,7 +199,7 @@
                             <div class="input-icon">
                                 <i class="fa-solid fa-envelope"></i>
                             </div>
-                            <input type="email" name="email" placeholder="" required>
+                            <input type="email" id="email" name="email" placeholder="" required maxlength="100">
                             <label for="email">E-mail</label>
                         </div>
                         <!-- TELEFONE -->
@@ -230,36 +207,26 @@
                             <div class="input-icon">
                                 <i class="fa-solid fa-phone"></i>
                             </div>
-                            <input type="text" name="telefone" placeholder="">
+                            <input type="text" maxlength="11" id="telefone" name="telefone" placeholder="" >
                             <label for="telefone">Telefone</label>
                         </div>
                     </div>
 
-                    <div class="input-group">
-                        <!-- SENHA -->
-                        <div class="input-field">
-                            <div class="input-icon">
-                                <i class="fa-solid fa-envelope"></i>
-                            </div>
-                            <input type="password" name="senha" placeholder="" required>
-                            <label for="senha">Senha</label>
+                    <!-- CÓDIGO -->
+                    <div class="input-field secondary">
+                        <div class="input-icon">
+                            <i class="fa-solid fa-phone"></i>
                         </div>
-                        <!-- CÓDIGO -->
-                        <div class="input-field">
-                            <div class="input-icon">
-                                <i class="fa-solid fa-phone"></i>
-                            </div>
-                            <input type="text" name="codigo" placeholder="" disabled>
-                            <label for="cogido">Código</label>
-                        </div>
+                        <input type="text" id="codigo" name="codigo" placeholder="" disabled maxlength="15">
+                        <label for="codigo">Código</label>
                     </div>
 
                     <div class="form-button">
-                        <button type="button" id="cadastrarUnidade" class="secondary">
+                        <button type="button" id="deletarEmpresa" class="secondary">
                             Deletar Empresa
                         </button>
 
-                        <button type="button" id="cadastrarUnidade">
+                        <button type="button" id="alterarDados">
                             Alterar Dados
                         </button>
                     </div>
@@ -270,6 +237,8 @@
         </div>
         <!-- fim conteudo da dash -->
     </div>
+
+    <script src="../../js/empresa.js"></script>
 </body>
 
 </html>
@@ -330,26 +299,5 @@
         });
     });
 
-    document.getElementById('upload-logo').addEventListener('change', function (event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                document.getElementById('brand-logo').src = e.target.result;
-            }
-            reader.readAsDataURL(file);
-        }
-    });
 
-    document.getElementById('brand-form').addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        const brandName = document.getElementById('brand-name').value;
-        const brandEmail = document.getElementById('brand-email').value;
-
-        console.log("Nome da Marca: ", brandName);
-        console.log("Email da Marca: ", brandEmail);
-
-        alert("Marca atualizada com sucesso!");
-    });
 </script>

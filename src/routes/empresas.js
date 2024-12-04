@@ -24,4 +24,8 @@ router.post("/unidades/:fkMarca", function (req, res) {
   empresaController.buscarUnidadesPorMarca(req, res);
 });
 
+router.put("/atualizar/:fkEmpresa", function (req, res) {
+  empresaController.atualizar(req, res);
+});
+
 module.exports = router;

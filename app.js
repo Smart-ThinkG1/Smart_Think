@@ -20,7 +20,6 @@ var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
 var empresasRouter = require("./src/routes/empresas");
 var graficosRouter = require("./src/routes/graficos");
-var graficosRouter = require("./src/routes/graficos");
 
 
 app.use(express.json());

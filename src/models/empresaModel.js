@@ -39,5 +39,28 @@ function buscarUnidadesPorMarca(fkMarca) {
   `;
   return database.executar(instrucaoSql, [fkMarca]);
 }
+function atualizar(fkEmpresa, novosDados) {
+  var instrucaoSql = `
+  UPDATE empresa SET
+  razaoSocial = '${novosDados.razaoSocial}',
+  nomeFantasia = '${novosDados.nomeFantasia}',
+  cnpj = '${novosDados.cnpj}',
+  logradouro = '${novosDados.logradouro}',
+  cep = '${novosDados.cep}',
+  email = '${novosDados.email}',
+  telefone = '${novosDados.telefone}'
+  WHERE id = ${fkEmpresa}
+  `;
 
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar, buscarFKPorCodigo, buscarUnidadesPorMarca };
+  return database.executar(instrucaoSql);
+}
+
+module.exports = { 
+  buscarPorCnpj, 
+  buscarPorId, 
+  cadastrar, 
+  listar, 
+  buscarFKPorCodigo, 
+  buscarUnidadesPorMarca,
+  atualizar 
+};

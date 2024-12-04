@@ -64,7 +64,7 @@ function atualizar(req, res) {
   empresaModel.atualizar(id, values)
     .then(() => {
       res.status(200).json({ message: "Empresa atualizada com sucesso" });
-      alert(message);
+      
     })
     .catch(error => {
       console.error("Erro ao atualizar empresa:", error);

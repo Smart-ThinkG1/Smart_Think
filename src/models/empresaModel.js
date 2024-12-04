@@ -43,6 +43,7 @@ function atualizar(fkEmpresa, novosDados) {
   var instrucaoSql = `
   UPDATE empresa SET
   razaoSocial = '${novosDados.razaoSocial}',
+  apelido = '${novosDados.apelido}',
   nomeFantasia = '${novosDados.nomeFantasia}',
   cnpj = '${novosDados.cnpj}',
   logradouro = '${novosDados.logradouro}',

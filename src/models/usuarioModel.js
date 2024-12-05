@@ -88,10 +88,10 @@ async function buscar(id) {
 async function editar(nome, email, senha, id) {
     const instrucaoSql = `
         UPDATE funcionario
-        SET nome = ?, email = ?, senha = ?
+        SET nome = ?, email = ?, senha = ?, estado = "ATIVO"
         WHERE id = ?;
     `;
-    return database.executar(instrucaoSql, [estado]);
+    return database.executar(instrucaoSql, [nome, email, senha, id]);
 }
 
 async function deletar(id) {

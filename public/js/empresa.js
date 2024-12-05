@@ -227,4 +227,34 @@ alterarDadosButton.addEventListener("click", function () {
         });
 });
 
+deletarEmpresaButton.addEventListener("click", function () {
+
+    // Enviar os dados para o backend
+    fetch(`/empresas/deletar/${fkEmpresa}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    }) 
+        .then(response => {
+            
+            if (!response.ok) {
+                throw new Error('Erro ao deletar');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Sucesso:', data);
+            alert(data.message); 
+            window.location.reload(); 
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+        });
+});
+
+
+
+
+
 

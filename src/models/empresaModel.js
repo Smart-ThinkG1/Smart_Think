@@ -1,7 +1,7 @@
 var database = require("../database/config");
 
 function buscarPorId(id) {
-  var instrucaoSql = `SELECT * FROM empresa WHERE id = '${id}'`;
+  var instrucaoSql = `SELECT * FROM empresa WHERE id = '${id}' AND estado = 'ATIVO'`;
 
   return database.executar(instrucaoSql);
 }
@@ -14,12 +14,6 @@ function listar() {
 
 function buscarPorCnpj(cnpj) {
   var instrucaoSql = `SELECT * FROM empresa WHERE cnpj = '${cnpj}'`;
-
-  return database.executar(instrucaoSql);
-}
-
-function cadastrar(razaoSocial, cnpj) {
-  var instrucaoSql = `INSERT INTO empresa (razaoSocial, cnpj) VALUES ('${razaoSocial}', '${cnpj}')`;
 
   return database.executar(instrucaoSql);
 }
@@ -56,12 +50,42 @@ function atualizar(fkEmpresa, novosDados) {
   return database.executar(instrucaoSql);
 }
 
-module.exports = { 
-  buscarPorCnpj, 
-  buscarPorId, 
-  cadastrar, 
-  listar, 
-  buscarFKPorCodigo, 
+function deletar(fkEmpresa) {
+  var instrucaoSql = `
+      UPDATE empresa
+      SET estado = 'INATIVO'
+      WHERE id = ${fkEmpresa};
+  `;
+
+  return database.executar(instrucaoSql);
+}
+function cadastrar(fkEmpresa, novosDados) {
+  var instrucaoSql = `
+  INSERT INTO empresa (codigo, nomeFantasia, razaoSocial, apelido, cnpj, cep, logradouro, email, telefone, fkMarca) 
+  VALUES (
+    '${novosDados.codigo}',
+    '${novosDados.nomeFantasia}',
+    '${novosDados.razaoSocial}',
+    '${novosDados.apelido}',
+    '${novosDados.cnpj}',
+    '${novosDados.cep}', 
+    '${novosDados.logradouro}',
+    '${novosDados.email}',
+    '${novosDados.telefone}',
+    ${fkEmpresa});
+  `;
+
+  return database.executar(instrucaoSql);
+}
+
+
+module.exports = {
+  buscarPorCnpj,
+  buscarPorId,
+  cadastrar,
+  listar,
+  buscarFKPorCodigo,
   buscarUnidadesPorMarca,
-  atualizar 
+  atualizar,
+  deletar
 };

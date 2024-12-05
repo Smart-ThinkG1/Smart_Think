@@ -86,18 +86,13 @@
                     </li>
                     <ul class="submenu-list">
                         <li class="submenu-item nav-item">
-                            <a href="contents/userSettings.html">
+                            <a href="userSettings.html">
                                 <p>Gerenciar Perfil</p>
                             </a>
                         </li>
                         <li class="submenu-item nav-item">
-                            <a href="contents/brandSettings.html">
-                                <p>Gerenciar Marca</p>
-                            </a>
-                        </li>
-                        <li class="submenu-item nav-item">
-                            <a href="#">
-                                <p>Gerenciar Unidade</p>
+                            <a href="brandSettings.html">
+                                <p>Gerenciar Empresa</p>
                             </a>
                         </li>
                     </ul>
@@ -240,11 +235,11 @@
                             </div>
                         </div>
 
-                       <div class="modal-button">
-                         <button type="button">
-                            Confirmar
-                         </button>
-                       </div>
+                        <div class="modal-button">
+                            <button type="button">
+                                Confirmar
+                            </button>
+                        </div>
 
 
                     </div>
@@ -269,8 +264,9 @@
                                     <div class="input-icon">
                                         <i class="fa-solid fa-user"></i>
                                     </div>
-                                    <input type="text" name="nomeFantasia" placeholder="" required>
-                                    <label for="nomeFantasia">Nome Fantasia</label>
+                                    <input type="text" id="newNomeFantasia" name="nomeFantasia" placeholder="" required
+                                        maxlength="65">
+                                    <label for="newNomeFantasia">Nome Fantasia</label>
                                 </div>
 
                                 <!-- APELIDO -->
@@ -278,8 +274,8 @@
                                     <div class="input-icon">
                                         <i class="fa-solid fa-tag"></i>
                                     </div>
-                                    <input type="text" name="apelido" placeholder="">
-                                    <label for="apelido">Apelido</label>
+                                    <input type="text" id="newApelido" name="apelido" placeholder="" maxlength="40">
+                                    <label for="newApelido">Apelido</label>
                                 </div>
                             </div>
 
@@ -289,16 +285,18 @@
                                     <div class="input-icon">
                                         <i class="fa-solid fa-building"></i>
                                     </div>
-                                    <input type="text" name="razaoSocial" placeholder="" required>
-                                    <label for="razaoSocial">Razão Social</label>
+                                    <input type="text" id="newRazaoSocial" name="razaoSocial" placeholder="" required
+                                        maxlength="80">
+                                    <label for="newRazaoSocial">Razão Social</label>
                                 </div>
+
                                 <!-- CNPJ -->
                                 <div class="input-field">
                                     <div class="input-icon">
                                         <i class="fa-solid fa-id-card"></i>
                                     </div>
-                                    <input type="text" name="cnpj" placeholder="" required>
-                                    <label for="cnpj">CNPJ</label>
+                                    <input type="text" id="newCnpj" name="cnpj" placeholder="" required maxlength="14">
+                                    <label for="newCnpj">CNPJ</label>
                                 </div>
                             </div>
 
@@ -308,16 +306,18 @@
                                     <div class="input-icon">
                                         <i class="fa-solid fa-road"></i>
                                     </div>
-                                    <input type="text" name="logradouro" placeholder="">
-                                    <label for="logradouro">Logradouro</label>
+                                    <input type="text" id="newLogradouro" name="logradouro" placeholder=""
+                                        maxlength="100">
+                                    <label for="newLogradouro">Logradouro</label>
                                 </div>
+
                                 <!-- CEP -->
                                 <div class="input-field">
                                     <div class="input-icon">
                                         <i class="fa-solid fa-map-marker-alt"></i>
                                     </div>
-                                    <input type="text" name="cep" placeholder="">
-                                    <label for="cep">CEP</label>
+                                    <input type="text" id="newCep" name="cep" placeholder="" maxlength="8">
+                                    <label for="newCep">CEP</label>
                                 </div>
                             </div>
 
@@ -327,26 +327,28 @@
                                     <div class="input-icon">
                                         <i class="fa-solid fa-envelope"></i>
                                     </div>
-                                    <input type="email" name="email" placeholder="" required>
-                                    <label for="email">E-mail</label>
+                                    <input type="email" id="newEmail" name="email" placeholder="" required
+                                        maxlength="100">
+                                    <label for="newEmail">E-mail</label>
                                 </div>
                                 <!-- TELEFONE -->
                                 <div class="input-field">
                                     <div class="input-icon">
                                         <i class="fa-solid fa-phone"></i>
                                     </div>
-                                    <input type="text" name="telefone" placeholder="">
-                                    <label for="telefone">Telefone</label>
+                                    <input type="text" maxlength="11" id="newTelefone" name="telefone" placeholder="">
+                                    <label for="newTelefone">Telefone</label>
                                 </div>
                             </div>
 
                             <div class="form-button">
-                                <button type="button" id="cadastrarUnidade">
+                                <button type="button" id="cadastrarEmpresa">
                                     Cadastrar
                                 </button>
                             </div>
 
                         </form>
+
 
                     </div>
                 </div>
@@ -358,7 +360,8 @@
 
     </div>
 
-    <script src="../js/sessao.js"></script>
+    <script src="../../js/sessao.js"></script>
+    <script src="../../js/novaUnidade.js"></script>
 </body>
 
 </html>
@@ -419,23 +422,5 @@
             }
         });
     });
-
-    const modal = document.querySelector(".modal");
-    const fade_modal = document.querySelector("#fade-modal")
-
-    const toggleModal = () => {
-        fade_modal.classList.toggle("hide");
-        modal.classList.toggle("hide");
-    }
-
-    const btnCadastrar = document.getElementById('cadastrarUnidade');
-    const close_modal_btn = document.querySelector(".close-modal-btn");
-
-    [btnCadastrar, close_modal_btn, fade_modal].forEach(e => {
-        e.addEventListener("click", () => {
-            toggleModal();
-        })
-    })
-
 
 </script>

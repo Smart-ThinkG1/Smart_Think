@@ -21,6 +21,7 @@ var avisosRouter = require("./src/routes/avisos");
 var empresasRouter = require("./src/routes/empresas");
 var kpiRouter = require("./src/routes/kpi");
 var graficosRouter = require("./src/routes/graficos")
+var solicitacaoRouter = require("./src/routes/solicitacao")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -40,8 +41,8 @@ app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
 app.use("/empresas", empresasRouter);
 app.use("/graficos", graficosRouter);
-app.use("/kpi", kpiRouter);
-
+app.use("/kpi", kpiRouter)
+app.use("/solicitacao", solicitacaoRouter)
 
 
 app.listen(PORTA_APP, function () {

@@ -63,7 +63,18 @@ function listarAvaliacoes(req, res) {
 }
 
 
+function alerta(req, res) {
+    const fkEmpresa = req.params.fkEmpresa;
 
+    graficoModel.alerta(fkEmpresa)
+        .then((resultado) => {
+            res.status(200).json(resultado);
+        })
+        .catch((erro) => {
+            console.error("Erro ao obter soma de reclamações e avaliações:", erro);
+            res.status(500).json({ error: "Erro ao obter dados", detalhe: erro });
+        });
+}
 
 
 
@@ -73,6 +84,7 @@ module.exports = {
     obterTotalReclamacoesEAvaliacoesPorMes,
     buscarDiasSemana,
     listarUnidades,
-    listarAvaliacoes
+    listarAvaliacoes,
+    alerta
 
   };

@@ -117,11 +117,29 @@ function listarAvaliacoes(fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function alerta(fkEmpresa){
+    const instrucaoSql = `
+    SELECT 
+    m.nomeFantasia AS marca, -- Nome da marca principal
+    u.nomeFantasia AS unidade, -- Nome da unidade (filial)
+    COUNT(r.id) AS totalReclamacoes -- Total de reclamações por unidade
+    FROM reclamacao r
+    INNER JOIN empresa u ON r.fkEmpresa = u.id -- Vincula reclamações às unidades (filiais)
+    INNER JOIN empresa m ON u.fkMarca = m.id -- Vincula unidades às marcas principais
+    WHERE m.id = ${fkEmpresa} -- Substitua "1" pelo ID da marca principal desejada
+    GROUP BY m.nomeFantasia, u.nomeFantasia
+    ORDER BY totalReclamacoes DESC -- Ordena por total de reclamações em ordem decrescente
+    LIMIT 1; -- Limita o resultado a 1 linha
+`;
+return database.executar(instrucaoSql);
+}
+
 module.exports = {
     obterDadosUnidade,
     obterReclamacoesPorUnidade,
     obterTotalReclamacoesEAvaliacoesPorMes,
     buscarDiasSemana,
     listarAvaliacoes,
-    listarUnidades
+    listarUnidades,
+    alerta
   };

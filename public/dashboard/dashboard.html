@@ -233,7 +233,7 @@
                             <div class="tooltip">
                                 <i class="fa-solid fa-triangle-exclamation"></i>
                                 <div class="tooltip-box">
-                                    <p>Unidade 3: 72,6%</p>
+                                    <p id="alerta"></p> <!-- O texto será atualizado dinamicamente -->
                                 </div>
                             </div>
 
@@ -313,6 +313,14 @@
         .catch(error => console.error('Erro ao carregar dados do gráfico de unidades:', error))
             }
 
+            fetch(` /graficos/alerta/${fkEmpresaGrafico}`)
+                    .then(response => response.json())
+                    .then(dados => {
+                        console.log('qualquer coisa kkkk', dados);
+                        const aviso = document.querySelector('#alerta')
+                        aviso.innerHTML = dados[0].unidade + `<br>Total de reclamações = `+ dados[0].totalReclamacoes
+                    })
+                    .catch(error => console.error('Erro ao carregar dados do gráfico de unidades:', error))
 
         </script>
 

@@ -21,7 +21,9 @@ router.get("/listarUnidades/:fkCodigo", function (req, res) {
   graficoController.obterReclamacoesPorUnidade(req, res);
 });
 
-
+router.get("/alerta/:fkEmpresa", function (req, res) {
+  graficoController.alerta(req, res);
+});
 
 router.get("/listarAvaliacoes/:fkEmpresa", function (req, res) {
   graficoController.listarAvaliacoes(req, res);

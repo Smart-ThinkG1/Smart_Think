@@ -4,7 +4,7 @@ var router = express.Router();
 var empresaController = require("../controllers/empresaController");
 
 //Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
-router.post("/cadastrar", function (req, res) {
+router.post("/cadastrar/:fkEmpresa", function (req, res) {
     empresaController.cadastrar(req, res);
 })
 
@@ -26,6 +26,10 @@ router.post("/unidades/:fkMarca", function (req, res) {
 
 router.put("/atualizar/:fkEmpresa", function (req, res) {
   empresaController.atualizar(req, res);
+});
+
+router.put("/deletar/:fkEmpresa", function (req, res) {
+  empresaController.deletar(req, res);
 });
 
 module.exports = router;

@@ -31,9 +31,6 @@ console.log(userNameSpans)
 userNameSpans.forEach(span => span.textContent = firstNameUser);
 userEmailSpans.forEach(span => span.textContent = emailUser);
 
-
-
-
 function guardarUnidade(unidadeId) {
     sessionStorage.FK_Unidade = unidadeId;
 }
